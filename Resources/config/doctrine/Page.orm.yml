@@ -1,0 +1,33 @@
+# config/doctrine/Page.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
+    type: entity
+    table: pages
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+        seoTitle:
+            type: string
+            length: 255
+        seoDescription:
+            type: text
+        isEnabled:
+            type: boolean
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedValue ]
+        preUpdate: [ setUpdatedValue ]
