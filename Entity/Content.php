@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  * Page
  *
  * @ORM\Table(name="pages")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository")
+ * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\ContentRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Page
+class Content
 {
     /**
      * @var int
@@ -25,16 +25,30 @@ class Page
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="key", type="string", length=255)
      */
-    private $name;
+    private $key;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="value", type="text", nullable=true)
+     */
+    private $value;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $slug;
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer", length=3)
+     */
+    private $position;
 
     /**
      * @var bool
@@ -80,19 +94,39 @@ class Page
     /**
      * @return string
      */
-    public function getName()
+    public function getKey()
     {
-        return $this->name;
+        return $this->key;
     }
 
     /**
-     * @param string $name
+     * @param string $key
      *
      * @return self
      */
-    public function setName($name)
+    public function setKey($key)
     {
-        $this->name = $name;
+        $this->key = $key;
+
+        return $this;
+    }
+
+    /**
+     * @return text
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param text $value
+     *
+     * @return self
+     */
+    public function setValue(text $value)
+    {
+        $this->value = $value;
 
         return $this;
     }
@@ -100,19 +134,39 @@ class Page
     /**
      * @return string
      */
-    public function getSlug()
+    public function getType()
     {
-        return $this->slug;
+        return $this->type;
     }
 
     /**
-     * @param string $slug
+     * @param string $type
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setType($type)
     {
-        $this->slug = $slug;
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param integer $position
+     *
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
 
         return $this;
     }
