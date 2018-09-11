@@ -37,20 +37,6 @@ class Page
     private $slug;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="seo_title", type="string", length=255)
-     */
-    private $seoTitle;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="seo_description", type="text")
-     */
-    private $seoDescription;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="is_enabled", type="boolean")
@@ -127,46 +113,6 @@ class Page
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSeoTitle()
-    {
-        return $this->seoTitle;
-    }
-
-    /**
-     * @param string $seoTitle
-     *
-     * @return self
-     */
-    public function setSeoTitle($seoTitle)
-    {
-        $this->seoTitle = $seoTitle;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSeoDescription()
-    {
-        return $this->seoDescription;
-    }
-
-    /**
-     * @param string $seoDescription
-     *
-     * @return self
-     */
-    public function setSeoDescription($seoDescription)
-    {
-        $this->seoDescription = $seoDescription;
 
         return $this;
     }

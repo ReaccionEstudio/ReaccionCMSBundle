@@ -15,11 +15,6 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
         slug:
             type: string
             length: 255
-        seoTitle:
-            type: string
-            length: 255
-        seoDescription:
-            type: text
         isEnabled:
             type: boolean
         createdAt:
