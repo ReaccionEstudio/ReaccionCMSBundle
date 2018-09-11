@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * ReaccionCmsBundle class.
  *
- * @author      Alberto Vian <alberto@reaccionestudio.com>
+ * @author Alberto Vian <alberto@reaccionestudio.com>
  */
 class ReaccionCmsBundle extends Bundle
 {
