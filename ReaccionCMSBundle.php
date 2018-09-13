@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the ReaccionCmsBundle package.
+ * This file is part of the ReaccionCMSBundle package.
  *
  * (c) Reaccion Estudio <https://www.reaccionestudio.com/>
  *
@@ -14,10 +14,10 @@ namespace App\ReaccionEstudio\ReaccionCMSBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * ReaccionCmsBundle class.
+ * ReaccionCMSBundle class.
  *
  * @author Alberto Vian <alberto@reaccionestudio.com>
  */
-class ReaccionCmsBundle extends Bundle
+class ReaccionCMSBundle extends Bundle
 {
 }
