@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ReaccionEstudio\ReaccionCms;
+namespace App\ReaccionEstudio\ReaccionCMSBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * ReaccionCmsBundle class.
  *
- * @author      Alberto Vian <alberto@reaccionestudio.com>
+ * @author Alberto Vian <alberto@reaccionestudio.com>
  */
 class ReaccionCmsBundle extends Bundle
 {
