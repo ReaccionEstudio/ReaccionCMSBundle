@@ -44,6 +44,27 @@ class Page
     private $isEnabled = true;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="seo_title", type="string", length=255, nullable=true)
+     */
+    private $seoTitle;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="seo_description", type="text", nullable=true)
+     */
+    private $seoDescription;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="seo_keywords", type="string", length=255, nullable=true)
+     */
+    private $seoKeywords;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -133,6 +154,66 @@ class Page
     public function setIsEnabled($isEnabled)
     {
         $this->isEnabled = $isEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSeoTitle()
+    {
+        return $this->seoTitle;
+    }
+
+    /**
+     * @param string|null $seoTitle
+     *
+     * @return self
+     */
+    public function setSeoTitle($seoTitle)
+    {
+        $this->seoTitle = $seoTitle;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSeoDescription()
+    {
+        return $this->seoDescription;
+    }
+
+    /**
+     * @param string|null $seoDescription
+     *
+     * @return self
+     */
+    public function setSeoDescription($seoDescription)
+    {
+        $this->seoDescription = $seoDescription;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSeoKeywords()
+    {
+        return $this->seoKeywords;
+    }
+
+    /**
+     * @param string|null $seoKeywords
+     *
+     * @return self
+     */
+    public function setSeoKeywords($seoKeywords)
+    {
+        $this->seoKeywords = $seoKeywords;
 
         return $this;
     }

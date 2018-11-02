@@ -9,16 +9,35 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
             type: integer
             generator: { strategy: AUTO }
     fields:
+        
         name:
             type: string
             length: 255
+        
         slug:
             type: string
             length: 255
+        
         isEnabled:
             type: boolean
+        
+        seoTitle:
+            type: string
+            length: 255
+            nullable: true
+        
+        seoDescription:
+            type: text
+            nullable: true
+        
+        seoKeywords:
+            type: string
+            length: 255
+            nullable: true
+        
         createdAt:
             type: datetime
+        
         updatedAt:
             type: datetime
             nullable: true
