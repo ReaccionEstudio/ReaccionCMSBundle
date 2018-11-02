@@ -1,8 +1,16 @@
-# config/doctrine/Content.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Content:
+# config/doctrine/PageContent.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
     type: entity
-    table: contents
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\ContentRepository
+    table: pages_content
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageContentRepository
+
+    manyToOne:
+
+        page:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+          joinColumn:
+            name: page_id
+            referencedColumnName: id
 
     id:
         id:
@@ -10,10 +18,6 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Content:
             generator: { strategy: AUTO }
 
     fields:
-
-        key:
-            type: string
-            length: 255
 
         value:
             type: text
@@ -38,5 +42,5 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Content:
             nullable: true
 
     lifecycleCallbacks: 
-        prePersist: [ setCreatedValue ]
+        prePersist: [ setCreatedValue, setUpdatedValue ]
         preUpdate: [ setUpdatedValue ]

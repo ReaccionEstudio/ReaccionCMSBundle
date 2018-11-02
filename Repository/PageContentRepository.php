@@ -2,11 +2,11 @@
 
 namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Content;
+use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class ContentRepository extends ServiceEntityRepository
+class PageContentRepository extends ServiceEntityRepository
 {
 	public function __construct(RegistryInterface $registry)
     {

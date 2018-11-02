@@ -5,13 +5,13 @@ namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Page
+ * PageContent
  *
- * @ORM\Table(name="pages")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\ContentRepository")
+ * @ORM\Table(name="pages_content")
+ * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageContentRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Content
+class PageContent
 {
     /**
      * @var int
@@ -23,14 +23,7 @@ class Content
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="key", type="string", length=255)
-     */
-    private $key;
-
-    /**
-     * @var text
+     * @var string|null
      *
      * @ORM\Column(name="value", type="text", nullable=true)
      */
@@ -44,7 +37,7 @@ class Content
     private $type;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="position", type="integer", length=3)
      */
@@ -55,7 +48,7 @@ class Content
      *
      * @ORM\Column(name="is_enabled", type="boolean")
      */
-    private $isEnabled = true;
+    private $isEnabled;
 
     /**
      * @var \DateTime
@@ -70,6 +63,16 @@ class Content
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+     *
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="page_id", referencedColumnName="id")
+     * })
+     */
+    private $page;
 
     /**
      * @return int
@@ -92,27 +95,7 @@ class Content
     }
 
     /**
-     * @return string
-     */
-    public function getKey()
-    {
-        return $this->key;
-    }
-
-    /**
-     * @param string $key
-     *
-     * @return self
-     */
-    public function setKey($key)
-    {
-        $this->key = $key;
-
-        return $this;
-    }
-
-    /**
-     * @return text
+     * @return string|null
      */
     public function getValue()
     {
@@ -120,11 +103,11 @@ class Content
     }
 
     /**
-     * @param text $value
+     * @param string|null $value
      *
      * @return self
      */
-    public function setValue(text $value)
+    public function setValue($value)
     {
         $this->value = $value;
 
@@ -152,7 +135,7 @@ class Content
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getPosition()
     {
@@ -160,7 +143,7 @@ class Content
     }
 
     /**
-     * @param integer $position
+     * @param int $position
      *
      * @return self
      */
@@ -232,18 +215,38 @@ class Content
     }
 
     /**
+     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page $page
+     *
+     * @return self
+     */
+    public function setPage(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page $page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
      * @ORM\PrePersist
      */
     public function setCreatedValue()
     {
-        $this->createdAt = new \Datetime();
+        $this->createdAt = new \DateTime();
     }
 
     /**
-     * @ORM\PreUpdate
+     * @ORM\PrePersist
      */
     public function setUpdatedValue()
     {
-        $this->updatedAt = new \Datetime();
+        $this->updatedAt = new \DateTime();
     }
 }
