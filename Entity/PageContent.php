@@ -23,6 +23,13 @@ class PageContent
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="value", type="text", nullable=true)
@@ -90,6 +97,26 @@ class PageContent
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }

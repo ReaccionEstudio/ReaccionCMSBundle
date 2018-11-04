@@ -19,6 +19,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
 
     fields:
 
+        name:
+            type: text
+            nullable: true
+
         value:
             type: text
             nullable: true
