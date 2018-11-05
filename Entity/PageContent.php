@@ -76,7 +76,7 @@ class PageContent
      *
      * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page", inversedBy="content")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="page_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="page_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $page;

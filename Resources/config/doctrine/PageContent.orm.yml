@@ -12,6 +12,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
           joinColumn:
             name: page_id
             referencedColumnName: id
+            onDelete: CASCADE
 
     id:
         id:
