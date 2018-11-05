@@ -74,7 +74,7 @@ class PageContent
     /**
      * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page")
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page", inversedBy="content")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="page_id", referencedColumnName="id")
      * })

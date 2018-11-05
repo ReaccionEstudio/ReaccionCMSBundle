@@ -79,6 +79,21 @@ class Page
     private $updatedAt;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent", mappedBy="page")
+     */
+    private $content;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->content = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -214,6 +229,26 @@ class Page
     public function setSeoKeywords($seoKeywords)
     {
         $this->seoKeywords = $seoKeywords;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $content
+     *
+     * @return self
+     */
+    public function setContent(\Doctrine\Common\Collections\Collection $content)
+    {
+        $this->content = $content;
 
         return $this;
     }
