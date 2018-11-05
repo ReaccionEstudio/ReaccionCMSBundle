@@ -8,6 +8,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
 
         page:
           targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+          inversedBy: content
           joinColumn:
             name: page_id
             referencedColumnName: id

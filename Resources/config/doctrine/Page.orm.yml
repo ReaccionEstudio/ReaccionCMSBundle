@@ -4,6 +4,11 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
     table: pages
     repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository
 
+    oneToMany:
+        content:
+            targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent
+            mappedBy: page
+
     id:
         id:
             type: integer
