@@ -1,0 +1,21 @@
+# config/doctrine/Configuration.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration:
+    type: entity
+    table: config
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\ConfigurationRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+
+        name:
+            type: string
+            length: 255
+         
+        value:
+            type: text
+
+    lifecycleCallbacks: 
