@@ -17,5 +17,14 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration:
          
         value:
             type: text
+        
+        type:
+            type: string
+            length: 255
+            nullable: true
+
+        required:
+            type: boolean
+            nullable: true
 
     lifecycleCallbacks: 

@@ -36,6 +36,20 @@ class Configuration
     private $value;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="required", type="boolean", nullable=true)
+     */
+    private $required;
+
+    /**
      * @return int
      */
     public function getId()
@@ -91,6 +105,46 @@ class Configuration
     public function setValue($value)
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string|null $type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isRequired()
+    {
+        return $this->required;
+    }
+
+    /**
+     * @param bool|null $required
+     *
+     * @return self
+     */
+    public function setRequired($required)
+    {
+        $this->required = $required;
 
         return $this;
     }
