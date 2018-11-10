@@ -1,0 +1,64 @@
+{
+    "name": "reaccionestudio/reaccion-cms-bundle",
+    "type": "symfony-bundle",
+    "description": "An easy Content Management System built with Symfony",
+    "keywords": ["backend", "admin", "cms"],
+    "homepage": "https://github.com/ReaccionEstudio/ReaccionCMSBundle",
+    "license": "",
+    "authors": [
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "cocur/slugify": "^3.1",
+        "doctrine/doctrine-migrations-bundle": "^1.3",
+        "knplabs/knp-paginator-bundle": "^2.8",
+        "sensio/framework-extra-bundle": "^5.1",
+        "symfony/asset": "*",
+        "symfony/console": "*",
+        "symfony/expression-language": "*",
+        "symfony/flex": "^1.1",
+        "symfony/form": "*",
+        "symfony/framework-bundle": "*",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/orm-pack": "*",
+        "symfony/process": "*",
+        "symfony/security-bundle": "*",
+        "symfony/serializer-pack": "*",
+        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/translation": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
+        "symfony/web-link": "*",
+        "symfony/web-server-bundle": "^4.0",
+        "symfony/webpack-encore-pack": "^1.0",
+        "symfony/yaml": "*",
+        "twig/extensions": "^1.5"
+    },
+    "require-dev": {
+        "symfony/debug-pack": "*",
+        "symfony/dotenv": "*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/profiler-pack": "*",
+        "symfony/test-pack": "*",
+        "symfony/web-server-bundle": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "ReaccionEstudio\\ReaccionCMSBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": ""
+        }
+    }
+}
