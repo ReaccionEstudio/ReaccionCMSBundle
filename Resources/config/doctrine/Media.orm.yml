@@ -18,8 +18,35 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media:
             type: string
             length: 255
         
+        large_path:
+            type: string
+            length: 255
+            nullable: true
+        
+        medium_path:
+            type: string
+            length: 255
+            nullable: true
+        
+        small_path:
+            type: string
+            length: 255
+            nullable: true
+        
         size:
             type: decimal
+        
+        large_size:
+            type: decimal
+            nullable: true
+        
+        medium_size:
+            type: decimal
+            nullable: true
+        
+        small_size:
+            type: decimal
+            nullable: true
 
         mimetype:
             type: string

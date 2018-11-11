@@ -37,11 +37,53 @@ class Media
     private $path;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="large_path", type="string", length=255, nullable=true)
+     */
+    private $large_path;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="medium_path", type="string", length=255, nullable=true)
+     */
+    private $medium_path;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="small_path", type="string", length=255, nullable=true)
+     */
+    private $small_path;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="size", type="decimal", length=50)
+     * @ORM\Column(name="size", type="decimal")
      */
     private $size;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="large_size", type="decimal", nullable=true)
+     */
+    private $large_size;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="medium_size", type="decimal", nullable=true)
+     */
+    private $medium_size;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="small_size", type="decimal", nullable=true)
+     */
+    private $small_size;
 
     /**
      * @var string
@@ -126,6 +168,66 @@ class Media
     }
 
     /**
+     * @return string|null
+     */
+    public function getLargePath()
+    {
+        return $this->large_path;
+    }
+
+    /**
+     * @param string|null $large_path
+     *
+     * @return self
+     */
+    public function setLargePath($large_path)
+    {
+        $this->large_path = $large_path;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMediumPath()
+    {
+        return $this->medium_path;
+    }
+
+    /**
+     * @param string|null $medium_path
+     *
+     * @return self
+     */
+    public function setMediumPath($medium_path)
+    {
+        $this->medium_path = $medium_path;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSmallPath()
+    {
+        return $this->small_path;
+    }
+
+    /**
+     * @param string|null $small_path
+     *
+     * @return self
+     */
+    public function setSmallPath($small_path)
+    {
+        $this->small_path = $small_path;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getSize()
@@ -141,6 +243,66 @@ class Media
     public function setSize($size)
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLargeSize()
+    {
+        return $this->large_size;
+    }
+
+    /**
+     * @param string|null $large_size
+     *
+     * @return self
+     */
+    public function setLargeSize($large_size)
+    {
+        $this->large_size = $large_size;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMediumSize()
+    {
+        return $this->medium_size;
+    }
+
+    /**
+     * @param string|null $medium_size
+     *
+     * @return self
+     */
+    public function setMediumSize($medium_size)
+    {
+        $this->medium_size = $medium_size;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSmallSize()
+    {
+        return $this->small_size;
+    }
+
+    /**
+     * @param string|null $small_size
+     *
+     * @return self
+     */
+    public function setSmallSize($small_size)
+    {
+        $this->small_size = $small_size;
 
         return $this;
     }
