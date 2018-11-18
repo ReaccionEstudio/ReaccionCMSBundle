@@ -27,4 +27,8 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration:
             type: boolean
             nullable: true
 
+        value_options:
+            type: text
+            nullable: true
+
     lifecycleCallbacks: 

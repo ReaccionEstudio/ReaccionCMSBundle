@@ -50,6 +50,13 @@ class Configuration
     private $required;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="value_options", type="text", nullable=true)
+     */
+    private $value_options;
+
+    /**
      * @return int
      */
     public function getId()
@@ -145,6 +152,26 @@ class Configuration
     public function setRequired($required)
     {
         $this->required = $required;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getValueOptions()
+    {
+        return $this->value_options;
+    }
+
+    /**
+     * @param string|null $value_options
+     *
+     * @return self
+     */
+    public function setValueOptions($value_options)
+    {
+        $this->value_options = $value_options;
 
         return $this;
     }
