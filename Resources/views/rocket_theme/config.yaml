@@ -2,7 +2,7 @@
 theme_config:
   name: 'Rocket Theme'
   description: 'Rocket Theme is the ReaccionCMS default theme.'
-  keyworkds: 'rocket, simple, reaccion'
+  keywords: 'rocket, simple, reaccion'
   version: 0.1
   author: 'Alberto Vian'
   email: 'alberto@reaccionestudio.com'
