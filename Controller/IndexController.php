@@ -8,7 +8,8 @@
 	{
 		public function index($slug="")
 		{
-			$page = $this->get("reaccion_cms.routing")->loadPage($slug);
+			$routingService = $this->get("reaccion_cms.routing");
+			$page = $routingService->loadPage($slug);
 
 			if($page !== null)
 			{
@@ -24,7 +25,8 @@
 			else
 			{
 				// load 404 error page
-				
+				$viewPath = $routingService->loadErrorPage(404);
+				return $this->render($viewPath, [ 'slug' => $slug ]);
 			}
 
 			// default ReaccionCMSBundle view
