@@ -1,0 +1,13 @@
+# rocket_theme/config.yaml
+theme_config:
+  name: 'Rocket Theme'
+  description: 'Rocket Theme is the ReaccionCMS default theme.'
+  keyworkds: 'rocket, simple, reaccion'
+  version: 0.1
+  author: 'Alberto Vian'
+  email: 'alberto@reaccionestudio.com'
+  website: 'https://www.reaccionestudio.com'
+  views:
+    page: 'page.html.twig'
+    404_error: '404_error.html.twig'
+    500_error: '500_error.html.twig'
