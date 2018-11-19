@@ -17,6 +17,11 @@
 				// TODO: Load page for requested slug
 			}
 
-			return $this->render("@ReaccionCMSBundle/index.html.twig");
+			// TODO: if page not found and main route is not defined then show default view
+			$cmsVersion = $this->getParameter("reaccion_cms.version");
+
+			return $this->render("@ReaccionCMSBundle/index.html.twig", [
+				'cmsVersion' => $cmsVersion
+			]);
 		}
 	}
