@@ -7,8 +7,23 @@
     <parameters>
     	
     	<parameter key="reaccion_cms.version">0.1</parameter>
+    	<parameter key="reaccion_cms.routing.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingService</parameter>
+    	<parameter key="reaccion_cms.theme.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
 
     </parameters>
-    <services></services>
+
+    <services>
+    	
+    	<service id="reaccion_cms.routing" class="%reaccion_cms.routing.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms.theme" />
+        </service>
+    	
+    	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%kernel.project_dir%</argument>
+        </service>
+
+    </services>
 
 </container>

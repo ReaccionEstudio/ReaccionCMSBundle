@@ -8,20 +8,32 @@
 	{
 		public function index($slug="")
 		{
-			if( ! strlen($slug))
+			$page = $this->get("reaccion_cms.routing")->loadPage($slug);
+
+			if($page !== null)
 			{
-				// TODO: Get main route defined in database
+				return $this->render($page->getTemplateView(), 
+					[
+						'seoTitle' => $page->getSeoTitle(),
+						'seoDescription' => $page->getSeoDescription(),
+						'seoKeywords' => $page->getSeoKeywords(),
+						'content' => $page->getContent()
+					]
+				);
 			}
 			else
 			{
-				// TODO: Load page for requested slug
+				// load 404 error page
+				
 			}
 
-			// TODO: if page not found and main route is not defined then show default view
+			// default ReaccionCMSBundle view
 			$cmsVersion = $this->getParameter("reaccion_cms.version");
 
-			return $this->render("@ReaccionCMSBundle/index.html.twig", [
-				'cmsVersion' => $cmsVersion
-			]);
+			return $this->render("@ReaccionCMSBundle/index.html.twig", 
+				[
+					'cmsVersion' => $cmsVersion
+				]
+			);
 		}
 	}
