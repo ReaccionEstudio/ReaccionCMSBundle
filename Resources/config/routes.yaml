@@ -1,0 +1,7 @@
+index:
+    path: /
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
+
+index_slug:
+    path: /{slug}
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
