@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Page
  *
- * @ORM\Table(name="pages", uniqueConstraints={@ORM\UniqueConstraint(name="uniqueMainPage", columns={"mainPage"})})
+ * @ORM\Table(name="pages")
  * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -48,7 +48,7 @@ class Page
      *
      * @ORM\Column(name="main_page", type="boolean", nullable=true)
      */
-    private $mainPage = 0;
+    private $mainPage = null;
 
     /**
      * @var string

@@ -56,10 +56,6 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
             type: datetime
             nullable: true
 
-    uniqueConstraints:
-        uniqueMainPage:
-            columns: [ main_page ]
-
     lifecycleCallbacks: 
         prePersist: [ setCreatedValue, setUpdatedValue ]
         preUpdate: [ setUpdatedValue ]
