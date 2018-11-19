@@ -3,5 +3,5 @@ index:
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
 
 index_slug:
-    path: /{slug}
+    path: /{slug}(?!/admin)
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
