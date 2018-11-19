@@ -42,12 +42,30 @@
 		private $fullTemplateViewPath = "";
 
 		/**
+		 * @var String
+		 * 
+		 * Current theme
+		 */
+		private $currentTheme = "";
+
+		/**
+		 * @var String
+		 * 
+		 * Themes path
+		 */
+		private $themesPath = "";
+
+		/**
 		 * Constructor
 		 */
 		public function __construct(EntityManager $em, String $projectDir)
 		{
 			$this->em = $em;
 			$this->projectDir = $projectDir;
+
+			$this->getCurrentTheme();
+			$this->getThemesPath();
+			$this->generateFullTemplatePath();
 		}
 
 		/**
@@ -60,33 +78,15 @@
 		{
 			$path = '';
 
-			// get required config parameters
-			$currentTheme = $this->getCurrentTheme();
-			$themesPath = $this->getThemesPath();
-
 			// check if view file exists
-			if( ! $this->pageViewFileExists($currentTheme, $themesPath, $page) )
+			if( ! $this->pageViewFileExists($page) )
 			{
 				// throw exception
 				throw new \Exception('Template file not found in: ' . $this->fullTemplateViewPath);
 			}
 
 			// generate twig view file path
-			if($currentTheme == self::DEFAULT_CMS_THEME)
-			{
-
-				$path = self::DEFAULT_CMS_THEMES_TWIG_PATH . "/" . 
-						self::DEFAULT_CMS_THEME . "/" . 
-						$page->getTemplateView();
-			}
-			else
-			{
-				$path = self::DEFAULT_CMS_THEMES_PATH;
-				$path = str_replace("templates/", "", $path);
-				$path .= $currentTheme . "/" . $page->getTemplateView();
-			}
-
-			return $path;
+			return $this->generateRelativeTwigViewPath($page->getTemplateView());
 		}
 
 		/**
@@ -110,25 +110,38 @@
 		}
 
 		/**
-		 * Check if theme view file exists
+		 * Generate relative view path for Twig
 		 *
-		 * @param  String 	$currentTheme 	Current theme
-		 * @param  String 	$themesPath 	Current themes path
-		 * @param  Page 	$page 			Current Page entity
-		 * @return Boolean 	true|false		File exists?
+		 * @param  String 	$baseFilename 	Template filename
+		 * @return String 	$path 			Twig view relative path
 		 */
-		private function pageViewFileExists(String $currentTheme, String $themesPath , Page $page) : bool
+		public function generateRelativeTwigViewPath(String $baseFilename) : String
 		{
-			if($currentTheme == self::DEFAULT_CMS_THEME)
+			if($this->currentTheme == self::DEFAULT_CMS_THEME)
 			{
-				$this->fullTemplatePath 	= $this->projectDir . "/" . self::ROCKET_THEME_PATH . "/";
-				$this->fullTemplateViewPath = $this->fullTemplatePath . $page->getTemplateView();
+				$path = self::DEFAULT_CMS_THEMES_TWIG_PATH . "/" . 
+						self::DEFAULT_CMS_THEME . "/" . 
+						$baseFilename;
 			}
 			else
 			{
-				$this->fullTemplatePath 	= $this->projectDir . "/" . $themesPath . "/" . $currentTheme . "/";
-				$this->fullTemplateViewPath = $this->fullTemplatePath . $page->getTemplateView();
+				$path = $this->themesPath;
+				$path = str_replace("templates/", "", $path);
+				$path .= $this->currentTheme . "/" . $baseFilename;
 			}
+
+			return $path;
+		}
+
+		/**
+		 * Check if theme view file exists
+		 *
+		 * @param  Page 	$page 			Current Page entity
+		 * @return Boolean 	true|false		File exists?
+		 */
+		private function pageViewFileExists(Page $page) : bool
+		{
+			$this->fullTemplateViewPath = $this->fullTemplatePath . $page->getTemplateView();
 
 			if(file_exists($this->fullTemplateViewPath)) 
 			{
@@ -139,11 +152,24 @@
 		}
 
 		/**
-		 * Get current theme name defined in the configuration table
-		 *
-		 * @return 	String 	[type] 	Current theme
+		 * Generate fullTemplatePath var value
 		 */
-		private function getCurrentTheme() : String
+		private function generateFullTemplatePath() : void
+		{
+			if($this->currentTheme == self::DEFAULT_CMS_THEME)
+			{
+				$this->fullTemplatePath = $this->projectDir . "/" . self::ROCKET_THEME_PATH . "/";
+			}
+			else
+			{
+				$this->fullTemplatePath = $this->projectDir . "/" . $this->themesPath . "/" . $this->currentTheme . "/";
+			}
+		}
+
+		/**
+		 * Get current theme name defined in the configuration table
+		 */
+		private function getCurrentTheme() : void
 		{
 			$defaultThemeConfig = 	$this->em->getRepository(Configuration::class)->findOneBy(
 										[ 'name' => 'current_theme' ]
@@ -151,18 +177,16 @@
 
 			if($defaultThemeConfig)
 			{
-				return $defaultThemeConfig->getValue();
+				$this->currentTheme = $defaultThemeConfig->getValue();
 			}
 
-			return self::DEFAULT_CMS_THEME;
+			$this->currentTheme = self::DEFAULT_CMS_THEME;
 		}
 
 		/**
 		 * Get current themes path defined in the configuration table
-		 *
-		 * @return 	String 	[type] 	Current themes path
 		 */
-		private function getThemesPath() : String
+		private function getThemesPath() : void
 		{
 			$themesPathConfig = $this->em->getRepository(Configuration::class)->findOneBy(
 										[ 'name' => 'themes_path' ]
@@ -170,9 +194,9 @@
 
 			if($themesPathConfig)
 			{
-				return $themesPathConfig->getValue();
+				$this->themesPath = $themesPathConfig->getValue();
 			}
 
-			return self::DEFAULT_CMS_THEMES_PATH;
+			$this->themesPath = self::DEFAULT_CMS_THEMES_PATH;
 		}
 	}

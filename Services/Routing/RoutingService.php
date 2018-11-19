@@ -5,6 +5,7 @@
 	use Doctrine\ORM\EntityManager;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 
 	/**
 	 * ReaccionCMSBundle routing service.
@@ -49,6 +50,7 @@
 			if( ! strlen($slug))
 			{
 				// TODO: Get main route defined in database
+				
 			}
 			else
 			{
@@ -70,9 +72,21 @@
 		 *
 		 * @param Integer 	$errorNumber 	Error number
 		 */
-		public function loadErrorPage(Int $errorNumber)
+		public function loadErrorPage(Int $errorNumber) : String
 		{
+			$fullTemplatePath = $this->theme->getFullTemplatePath();
 			
+			// Get theme config file
+			$themeConfigService = new ThemeConfigService($fullTemplatePath);
+			$configFile = $themeConfigService->loadConfigFile();
+
+			if(isset($configFile['theme_config']['views'][$errorNumber . '_error']))
+			{
+				$baseFilename = $configFile['theme_config']['views'][$errorNumber . '_error'];
+				return $this->theme->generateRelativeTwigViewPath($baseFilename);
+			}
+
+			return '';
 		}
 
 		/**
