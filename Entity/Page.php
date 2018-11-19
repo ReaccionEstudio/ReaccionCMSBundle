@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Page
  *
- * @ORM\Table(name="pages")
+ * @ORM\Table(name="pages", uniqueConstraints={@ORM\UniqueConstraint(name="uniqueMainPage", columns={"mainPage"})})
  * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -42,6 +42,20 @@ class Page
      * @ORM\Column(name="is_enabled", type="boolean")
      */
     private $isEnabled = true;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="main_page", type="boolean", nullable=true)
+     */
+    private $mainPage = 0;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="template_view", type="string", length=255)
+     */
+    private $templateView = "page.html.twig";
 
     /**
      * @var string|null
@@ -174,6 +188,46 @@ class Page
     }
 
     /**
+     * @return bool
+     */
+    public function isMainPage()
+    {
+        return $this->mainPage;
+    }
+
+    /**
+     * @param bool $mainPage
+     *
+     * @return self
+     */
+    public function setMainPage($mainPage)
+    {
+        $this->mainPage = $mainPage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplateView()
+    {
+        return $this->templateView;
+    }
+
+    /**
+     * @param string $templateView
+     *
+     * @return self
+     */
+    public function setTemplateView($templateView)
+    {
+        $this->templateView = $templateView;
+
+        return $this;
+    }
+
+    /**
      * @return string|null
      */
     public function getSeoTitle()
@@ -234,26 +288,6 @@ class Page
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $content
-     *
-     * @return self
-     */
-    public function setContent(\Doctrine\Common\Collections\Collection $content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -289,6 +323,26 @@ class Page
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $content
+     *
+     * @return self
+     */
+    public function setContent(\Doctrine\Common\Collections\Collection $content)
+    {
+        $this->content = $content;
 
         return $this;
     }
