@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{{ seoTitle }}</title>
+
+    <link rel="icon" href="favicon.ico" />
+    <link href="{{ asset('build/front_app.css') }}" rel="stylesheet" />
+
+  </head>
+
+  <body>
+
+    {% embed '@ReaccionCMSBundle/rocket_theme/layout/navigation.html.twig' %}{% endembed %}
+
+    <div class="container pt-3">
+
+      {% block body %}{% endblock %}
+
+      {% embed '@ReaccionCMSBundle/rocket_theme/layout/footer.html.twig' %}{% endembed %}
+
+    </div>
+
+    <script type="text/javascript" src="{{ asset('build/front_app.js') }}"></script>
+
+  </body>
+
+</html>
