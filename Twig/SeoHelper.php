@@ -32,12 +32,12 @@ class SeoHelper extends \Twig_Extension
     /**
      * Get page <title> value
      *
-     * @param   String   $seoTitle     Seo title saved in database for current page
+     * @param   String   $seo          Array with SEO values
      * @return  String   $title        Page title
      */
-    public function getTitle($seoTitle) : String
+    public function getTitle($seo) : String
     {
-        $title = $seoTitle;
+        $title = isset($seo['title']) ? $seo['title'] : '';
 
         $siteName = $this->config->get("site_name");
 
