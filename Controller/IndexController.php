@@ -15,6 +15,7 @@
 			{
 				return $this->render($page->getTemplateView(), 
 					[
+						'name' => $page->getName(),
 						'seoTitle' => $page->getSeoTitle(),
 						'seoDescription' => $page->getSeoDescription(),
 						'seoKeywords' => $page->getSeoKeywords(),

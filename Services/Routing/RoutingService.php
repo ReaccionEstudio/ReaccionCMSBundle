@@ -49,8 +49,8 @@
 
 			if( ! strlen($slug))
 			{
-				// TODO: Get main route defined in database
-				
+				// Get main route defined in database
+				$page = $this->getMainPage();
 			}
 			else
 			{
@@ -100,6 +100,21 @@
 			return $this->em->getRepository(Page::class)->findOneBy(
 				[
 					'slug' => $slug,
+					'isEnabled' => true
+				]
+			);
+		}
+
+		/**
+		 * Get main page entity
+		 *
+		 * @return Page | null 	[type] 	Found Page entity
+		 */
+		private function getMainPage()
+		{
+			return $this->em->getRepository(Page::class)->findOneBy(
+				[
+					'mainPage' => true,
 					'isEnabled' => true
 				]
 			);
