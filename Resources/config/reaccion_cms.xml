@@ -8,7 +8,8 @@
     	
     	<parameter key="reaccion_cms.version">0.1</parameter>
     	<parameter key="reaccion_cms.routing.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingService</parameter>
-    	<parameter key="reaccion_cms.theme.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
+        <parameter key="reaccion_cms.theme.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
+        <parameter key="reaccion_cms.config.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
 
     </parameters>
 
@@ -22,6 +23,10 @@
     	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%kernel.project_dir%</argument>
+        </service>
+        
+        <service id="reaccion_cms.config" class="%reaccion_cms.config.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
     </services>
