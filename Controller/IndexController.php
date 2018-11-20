@@ -3,6 +3,7 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller;
 
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewVarsFactory;
 
 	class IndexController extends Controller
 	{
@@ -13,15 +14,9 @@
 
 			if($page !== null)
 			{
-				return $this->render($page->getTemplateView(), 
-					[
-						'name' => $page->getName(),
-						'seoTitle' => $page->getSeoTitle(),
-						'seoDescription' => $page->getSeoDescription(),
-						'seoKeywords' => $page->getSeoKeywords(),
-						'content' => $page->getContent()
-					]
-				);
+				// load page for slug value
+				$pageViewVars = PageViewVarsFactory::makePageViewVars($page);
+				return $this->render($page->getTemplateView(), $pageViewVars->getVars());
 			}
 			else
 			{
@@ -32,11 +27,6 @@
 
 			// default ReaccionCMSBundle view
 			$cmsVersion = $this->getParameter("reaccion_cms.version");
-
-			return $this->render("@ReaccionCMSBundle/index.html.twig", 
-				[
-					'cmsVersion' => $cmsVersion
-				]
-			);
+			return $this->render("@ReaccionCMSBundle/index.html.twig", [ 'cmsVersion' => $cmsVersion ]);
 		}
 	}
