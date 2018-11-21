@@ -22,6 +22,7 @@
     	
     	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms.config" />
             <argument>%kernel.project_dir%</argument>
         </service>
         

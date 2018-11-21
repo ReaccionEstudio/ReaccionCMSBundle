@@ -5,6 +5,7 @@
 	use Doctrine\ORM\EntityManager;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
 	class ThemeService
 	{
@@ -12,6 +13,13 @@
 		CONST ROCKET_THEME_PATH = 'src/ReaccionEstudio/ReaccionCMSBundle/Resources/views/' . self::DEFAULT_CMS_THEME;
 		CONST DEFAULT_CMS_THEMES_PATH = 'templates/ReaccionCMSBundle/themes/';
 		CONST DEFAULT_CMS_THEMES_TWIG_PATH = '@ReaccionCMSBundle';
+
+		/**
+		 * @var ConfigService
+		 *
+		 * Config service
+		 */
+		private $configService;
 
 		/**
 		 * @var EntityManagerInterface
@@ -58,9 +66,10 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManager $em, String $projectDir)
+		public function __construct(EntityManager $em, ConfigService $configService, String $projectDir)
 		{
 			$this->em = $em;
+			$this->configService = $configService;
 			$this->projectDir = $projectDir;
 
 			$this->getCurrentTheme();
@@ -171,16 +180,8 @@
 		 */
 		private function getCurrentTheme() : void
 		{
-			$defaultThemeConfig = 	$this->em->getRepository(Configuration::class)->findOneBy(
-										[ 'name' => 'current_theme' ]
-									);
-
-			if($defaultThemeConfig)
-			{
-				$this->currentTheme = $defaultThemeConfig->getValue();
-			}
-
-			$this->currentTheme = self::DEFAULT_CMS_THEME;
+			$defaultThemeConfig = $this->configService->get("current_theme");
+			$this->currentTheme = ($defaultThemeConfig) ? $defaultThemeConfig : self::DEFAULT_CMS_THEME; 
 		}
 
 		/**
@@ -188,15 +189,7 @@
 		 */
 		private function getThemesPath() : void
 		{
-			$themesPathConfig = $this->em->getRepository(Configuration::class)->findOneBy(
-										[ 'name' => 'themes_path' ]
-									);
-
-			if($themesPathConfig)
-			{
-				$this->themesPath = $themesPathConfig->getValue();
-			}
-
-			$this->themesPath = self::DEFAULT_CMS_THEMES_PATH;
+			$themesPathConfig = $this->configService->get("themes_path");
+			$this->themesPath = ($themesPathConfig) ? $themesPathConfig : self::DEFAULT_CMS_THEMES_PATH;
 		}
 	}
