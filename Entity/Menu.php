@@ -43,6 +43,13 @@ class Menu
     private $target;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer", length=2)
+     */
+    private $position;
+
+    /**
      * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
      *
      * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu")
@@ -128,6 +135,26 @@ class Menu
     public function setTarget($target)
     {
         $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     *
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
 
         return $this;
     }

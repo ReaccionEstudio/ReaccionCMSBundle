@@ -31,6 +31,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu:
         target:
             type: string
             length: 6
+        
+        position:
+            type: integer
+            length: 2
 
     lifecycleCallbacks: 
 
