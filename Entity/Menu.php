@@ -38,6 +38,13 @@ class Menu
     /**
      * @var string
      *
+     * @ORM\Column(name="value", type="string", length=255)
+     */
+    private $value;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="target", type="string", length=6)
      */
     private $target;
@@ -115,6 +122,26 @@ class Menu
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
 
         return $this;
     }

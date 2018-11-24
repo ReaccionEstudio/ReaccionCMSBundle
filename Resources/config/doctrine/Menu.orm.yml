@@ -28,6 +28,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu:
             type: string
             length: 255
         
+        value:
+            type: string
+            length: 255
+        
         target:
             type: string
             length: 6
