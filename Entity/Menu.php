@@ -40,7 +40,7 @@ class Menu
      *
      * @ORM\Column(name="value", type="string", length=255)
      */
-    private $value;
+    private $value = "#";
 
     /**
      * @var string
