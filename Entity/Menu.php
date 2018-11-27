@@ -57,6 +57,13 @@ class Menu
     private $position;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled;
+
+    /**
      * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
      *
      * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu")
@@ -182,6 +189,26 @@ class Menu
     public function setPosition($position)
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     *
+     * @return self
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }

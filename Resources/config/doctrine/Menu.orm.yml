@@ -40,5 +40,8 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu:
             type: integer
             length: 2
 
+        enabled:
+            type: boolean
+
     lifecycleCallbacks: 
 
