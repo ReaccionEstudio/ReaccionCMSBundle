@@ -10,6 +10,7 @@ theme_config:
   views:
     page: 'page.html.twig'
     navigation: 'layout/navigation.html.twig'
+    menu: 'layout/menu.html.twig'
     footer: 'layout/footer.html.twig'
     404_error: '404_error.html.twig'
     500_error: '500_error.html.twig'
