@@ -4,6 +4,7 @@
 
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewVarsInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
 
 	class PageViewVars implements PageViewVarsInterface
 	{
@@ -15,13 +16,21 @@
 		private $page;
 
 		/**
+		 * @var MenuService
+		 *
+		 * Menu service
+		 */
+		private $menuService;
+
+		/**
 		 * Constructor
 		 *
 		 * @var Page 	$page 	Page entity
 		 */
-		public function __construct(Page $page)
+		public function __construct(Page $page, MenuService $menuService)
 		{
 			$this->page = $page;
+			$this->menuService = $menuService;
 		}
 
 		/**
@@ -38,7 +47,8 @@
 								'description' => $this->page->getSeoDescription(),
 								'keywords' => $this->page->getSeoKeywords()
 							],
-							'content' => $this->generateContentCollection()
+							'content' => $this->generateContentCollection(),
+							'menu' => $this->menuService->getMenuHtml()
 						];
 
 			return $viewVars;

@@ -1,0 +1,45 @@
+<nav class="my-2 my-md-0 mr-md-3 navbar navbar-expand-lg navbar-light">
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+	    <ul class="navbar-nav mr-auto">
+
+	      	{% for item in menu %}
+		
+				{% if item.children is defined and item.children is not empty %}
+				<li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.name }}</a>
+			        <ul class="dropdown-menu dropdown-menu-right">
+			        	<!-- TODO: create TWIG macro -->
+			        	{% for child in item.children %}
+			        	<li>
+			        		<a class="dropdown-item" href="#">{{ child.name }}</a>
+			        	</li>
+			        	<li>
+			        		<a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+								<li><a class="dropdown-item" href="#">Submenu action</a></li>
+								<li>
+			        				<a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+			        				<ul class="dropdown-menu dropdown-menu-right">
+			        					<li><a class="dropdown-item" href="#">asds</a></li>
+			        				</ul>
+			        			</li>
+							</ul>
+						</li>
+			          	{% endfor %}
+			        </ul>
+			      </li>
+				{% else %}
+				<li class="nav-item active">
+			        <a class="nav-link" href="#">{{ item.name }}</a>
+			    </li>
+				{% endif %}
+
+			{% endfor %}
+
+	    </ul>
+
+  	</div>
+
+</nav>

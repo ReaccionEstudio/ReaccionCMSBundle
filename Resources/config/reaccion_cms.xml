@@ -10,6 +10,7 @@
     	<parameter key="reaccion_cms.routing.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingService</parameter>
         <parameter key="reaccion_cms.theme.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
         <parameter key="reaccion_cms.config.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
+        <parameter key="reaccion_cms.menu.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService</parameter>
 
     </parameters>
 
@@ -28,6 +29,13 @@
         
         <service id="reaccion_cms.config" class="%reaccion_cms.config.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+        
+        <service id="reaccion_cms.menu" class="%reaccion_cms.menu.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms_admin.menu" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="reaccion_cms.theme" />
         </service>
 
     </services>
