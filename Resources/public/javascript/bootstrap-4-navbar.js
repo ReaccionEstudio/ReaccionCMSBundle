@@ -21,9 +21,15 @@ $( document ).ready( function ()
             $( '.dropdown-menu .show' ).removeClass( "show" );
         } );
         
-         if ( !$parent.parent().hasClass( 'navbar-nav' ) ) {
+         if ( !$parent.parent().hasClass( 'navbar-nav' ) ) 
+         {
+            var height = $parent.parent().css("height");
+                height = height.replace("px", "");
+                height = parseInt(height) - 10;
+                height = height + "px";
+
             //$el.next().css( { "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 } );
-            $el.next().css( { "top": ($el[0].offsetTop + 30), "left": -($parent.outerWidth()/2) } );
+            $el.next().css( { "top": (height), "left": -($parent.outerWidth()/2) } );
         }
 
         return false;

@@ -1,42 +1,41 @@
+<!-- macro definition -->
+{% macro listMenu(menuItem) %}
+{% import _self as self %}
+
+<li class="nav-item dropdown">
+
+	{% if menuItem.children is defined and menuItem.children is not empty %}
+	<a class="nav-link dropdown-toggle pl-4" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ menuItem.name }}</a>
+	{% else %}
+	<a class="nav-link pl-4" href="#">{{ menuItem.name }}</a>
+	{% endif %}
+
+	{% set parentId = menuItem.id %}
+
+	{% if menuItem.children is defined and menuItem.children is not empty %}
+		<ul class="dropdown-menu dropdown-menu-right">
+	    	{% for child in menuItem.children %}
+	        	{{ self.listMenu(child) }}
+	    	{% endfor %}
+		</ul>
+	{% endif %}
+
+</li>
+
+{% endmacro %}
+
 <nav class="my-2 my-md-0 mr-md-3 navbar navbar-expand-lg navbar-light">
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 	    <ul class="navbar-nav mr-auto">
 
-	      	{% for item in menu %}
-		
-				{% if item.children is defined and item.children is not empty %}
-				<li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.name }}</a>
-			        <ul class="dropdown-menu dropdown-menu-right">
-			        	<!-- TODO: create TWIG macro -->
-			        	{% for child in item.children %}
-			        	<li>
-			        		<a class="dropdown-item" href="#">{{ child.name }}</a>
-			        	</li>
-			        	<li>
-			        		<a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-								<li><a class="dropdown-item" href="#">Submenu action</a></li>
-								<li>
-			        				<a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
-			        				<ul class="dropdown-menu dropdown-menu-right">
-			        					<li><a class="dropdown-item" href="#">asds</a></li>
-			        				</ul>
-			        			</li>
-							</ul>
-						</li>
-			          	{% endfor %}
-			        </ul>
-			      </li>
-				{% else %}
-				<li class="nav-item active">
-			        <a class="nav-link" href="#">{{ item.name }}</a>
-			    </li>
-				{% endif %}
+	    	<!-- run macro -->
+			{% from _self import listMenu %}
 
-			{% endfor %}
+	    	{% for menu_item in menu %}
+		   		{{ listMenu(menu_item) }}
+	    	{% endfor %}
 
 	    </ul>
 
