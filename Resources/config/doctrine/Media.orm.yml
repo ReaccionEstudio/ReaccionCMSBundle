@@ -52,6 +52,11 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media:
             type: string
             length: 255
 
+        type:
+            type: string
+            length: 255
+            nullable: true
+
         createdAt:
             type: datetime
 
