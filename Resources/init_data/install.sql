@@ -6,5 +6,6 @@ INSERT INTO config (name,value,type,required) VALUES
 	('language','en',null,1),
 	('themes_path','templates/ReaccionCMSBundle/themes/',null,1),
 	('current_theme','rocket_theme',null,1),
-	('site_name','ReaccionCMS',null,1)
+	('site_name','ReaccionCMS',null,1),
+	('admin_logo','images/reaccion_cms_logo.jpg',null,1)
 ;
