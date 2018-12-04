@@ -80,22 +80,41 @@
 		public function getMenuHtml() : String
 		{
 			$menuHtml   = "";
-			$cachedItem = $this->cache->getItem($this->cacheKey);
+			$cacheItem = $this->cache->getItem($this->cacheKey);
 
-			if($cachedItem->isHit())
+			if($cacheItem->isHit())
 			{
 				// key is cached
-				$menuHtml = $cachedItem->get();
+				$menuHtml = $cacheItem->get();
 			}
 			else
 			{
-				// get menu html
-				$menuHtml = $this->buildMenuHtml();
-
-				// Save config value in cache
-				$cachedItem->set($menuHtml);
-				$this->cache->save($cachedItem);
+				// update menu html cache
+				$menuHtml = $this->updateMenuHtmlCache($cacheItem);
 			}
+
+			return $menuHtml;
+		}
+
+		/**
+		 * Update menu html value for cache
+		 *
+		 * @param  CacheItem 	$cacheItem 		Cache item object
+		 * @return String 		$menuHtml 		Menu HTML value
+		 */
+		public function updateMenuHtmlCache($cacheItem=null) : String
+		{
+			if($cacheItem == null)
+			{
+				$cacheItem = $this->cache->getItem($this->cacheKey);
+			}
+
+			// get menu html
+			$menuHtml = $this->buildMenuHtml();
+
+			// Save config value in cache
+			$cacheItem->set($menuHtml);
+			$this->cache->save($cacheItem);
 
 			return $menuHtml;
 		}
