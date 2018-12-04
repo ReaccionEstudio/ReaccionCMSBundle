@@ -1,0 +1,63 @@
+# config/doctrine/Entry.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
+    type: entity
+    table: entries
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\EntryRepository
+
+    manyToOne:
+
+        defaultImage:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media
+          joinColumn:
+            name: default_image_id
+            referencedColumnName: id
+            onDelete: "SET NULL"
+
+    manyToMany:
+        categories:
+          targetEntity: EntryCategory
+          joinTable:
+            name: entries_rel_categories
+            joinColumns:
+              entry_id:
+                referencedColumnName: id
+            inverseJoinColumns:
+              category_id:
+                referencedColumnName: id
+                unique: true
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        
+        name:
+            type: string
+            length: 255
+        
+        content:
+            type: text
+
+        tags:
+            type: string
+            length: 255
+        
+        language:
+            type: string
+            length: 4
+            nullable: true
+
+        enabled:
+            type: boolean
+        
+        createdAt:
+            type: datetime
+
+        updatedAt:
+            type: datetime
+            nullable: true
+
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedValue ]
+        preUpdate: [ setUpdatedValue ]
