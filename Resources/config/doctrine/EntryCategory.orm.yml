@@ -1,0 +1,34 @@
+# config/doctrine/EntryCategory.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory:
+    type: entity
+    table: entries_categories
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\EntryCategoryRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        
+        name:
+            type: string
+            length: 255
+        
+        language:
+            type: string
+            length: 4
+            nullable: true
+
+        enabled:
+            type: boolean
+        
+        createdAt:
+            type: datetime
+
+        updatedAt:
+            type: datetime
+            nullable: true
+
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedValue ]
+        preUpdate: [ setUpdatedValue ]
