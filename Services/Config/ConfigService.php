@@ -42,7 +42,7 @@
 		 * @param String 	$key 	Configuration entity name
 		 * @param String 	[type] 	Configuration entity value
 		 */
-		public function get(String $key)
+		public function get(String $key) :  String
 		{
 			$cacheKey 	= "config." . $key;
 			$cachedItem = $this->cache->getItem($cacheKey);
