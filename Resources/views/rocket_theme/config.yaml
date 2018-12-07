@@ -1,5 +1,6 @@
 # rocket_theme/config.yaml
 theme_config:
+  folder_name: 'rocket_theme'
   name: 'Rocket Theme'
   description: 'Rocket Theme is the ReaccionCMS default theme.'
   keywords: 'rocket, simple, reaccion'
@@ -7,6 +8,7 @@ theme_config:
   author: 'Alberto Vian'
   email: 'alberto@reaccionestudio.com'
   website: 'https://www.reaccionestudio.com'
+  preview_image: 'images/reaccion_estudio.png'
   views:
     page: 'page.html.twig'
     navigation: 'layout/navigation.html.twig'
