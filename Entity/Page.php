@@ -53,6 +53,13 @@ class Page
     /**
      * @var string
      *
+     * @ORM\Column(name="language", type="string", options={"default"="en"})
+     */
+    private $language = 'en';
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="template_view", type="string", length=255)
      */
     private $templateView = "page.html.twig";
@@ -203,6 +210,26 @@ class Page
     public function setMainPage($mainPage)
     {
         $this->mainPage = $mainPage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param string $language
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
 
         return $this;
     }

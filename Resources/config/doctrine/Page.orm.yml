@@ -31,6 +31,12 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
             type: boolean
             nullable: true
 
+        language:
+            type: string
+            column: language
+            options:
+                default: 'en'
+
         templateView:
             type: string
             length: 255
