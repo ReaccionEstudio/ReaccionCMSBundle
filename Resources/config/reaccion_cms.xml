@@ -11,6 +11,8 @@
         <parameter key="reaccion_cms.theme.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
         <parameter key="reaccion_cms.config.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
         <parameter key="reaccion_cms.menu.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService</parameter>
+        
+        <parameter key="reaccion_cms.cache.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService</parameter>
 
     </parameters>
 
@@ -37,6 +39,8 @@
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.theme" />
         </service>
+        
+        <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true"></service>
 
     </services>
 

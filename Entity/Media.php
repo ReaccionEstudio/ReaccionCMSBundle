@@ -62,28 +62,28 @@ class Media
      *
      * @ORM\Column(name="size", type="decimal")
      */
-    private $size;
+    private $size = 0;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="large_size", type="decimal", nullable=true)
      */
-    private $large_size;
+    private $large_size = 0;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="medium_size", type="decimal", nullable=true)
      */
-    private $medium_size;
+    private $medium_size = 0;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="small_size", type="decimal", nullable=true)
      */
-    private $small_size;
+    private $small_size = 0;
 
     /**
      * @var string

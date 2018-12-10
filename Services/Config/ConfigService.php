@@ -81,11 +81,7 @@
 			try
 			{
 				$config = $this->em->getRepository(Configuration::class)->findOneBy([ 'name' => $key ]);
-
-				if( ! empty($config) )
-				{
-					return $config->getValue();
-				}
+				return ( ! empty($config) ) ? $config->getValue() : '';
 			}
 			catch(\Exception $e)
 			{
