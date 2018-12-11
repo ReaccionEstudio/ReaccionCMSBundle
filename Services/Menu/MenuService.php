@@ -5,7 +5,7 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuService AS AdminMenuService;
+	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 
 	/**
@@ -37,11 +37,11 @@
 		private $em;
 
 		/**
-		 * @var MenuService as AdminMenuService
+		 * @var MenuContentService
 		 *
 		 * EntityManager
 		 */
-		private $adminMenuService;
+		private $menuContentService;
 
 		/**
 		 * @var Twig
@@ -60,12 +60,12 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, AdminMenuService $adminMenuService, $twig, ThemeService $theme)
+		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, $twig, ThemeService $theme)
 		{
 			$this->em = $em;
-			$this->adminMenuService = $adminMenuService;
 			$this->twig = $twig;
 			$this->theme = $theme;
+			$this->menuContentService = $menuContentService;
 
 			// cache
 			$this->cache = new ApcuAdapter();
@@ -127,7 +127,7 @@
 		private function buildMenuHtml() : String
 		{
 			// get menu items as nested array
-			$nestedArray = $this->adminMenuService->buildNestedArray(true);
+			$nestedArray = $this->menuContentService->buildNestedArray(true);
 
 			// get current theme views path
 			$currentThemePath = $this->theme->generateRelativeTwigViewPath("layout/menu.html.twig");

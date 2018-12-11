@@ -35,7 +35,7 @@
         
         <service id="reaccion_cms.menu" class="%reaccion_cms.menu.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="reaccion_cms_admin.menu" />
+            <argument type="service" id="reaccion_cms_admin.menu_content" />
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.theme" />
         </service>
