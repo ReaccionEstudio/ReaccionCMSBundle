@@ -9,39 +9,32 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu:
             type: integer
             generator: { strategy: AUTO }
 
-    manyToOne:
-
-        parent:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
-          joinColumn:
-            name: parent_id
-            referencedColumnName: id
-            onDelete: CASCADE
-
     fields:
         
         name:
             type: string
             length: 255
         
-        type:
+        slug:
             type: string
             length: 255
-        
-        value:
+
+        language:
             type: string
-            length: 255
-        
-        target:
-            type: string
-            length: 6
-        
-        position:
-            type: integer
-            length: 2
+            column: language
+            options:
+                default: 'en'
 
         enabled:
             type: boolean
+        
+        createdAt:
+            type: datetime
+        
+        updatedAt:
+            type: datetime
+            nullable: true
 
     lifecycleCallbacks: 
-
+        prePersist: [ setCreatedValue, setUpdatedValue ]
+        preUpdate: [ setUpdatedValue ]

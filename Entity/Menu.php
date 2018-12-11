@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="menu")
  * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\MenuRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Menu
 {
@@ -31,30 +32,16 @@ class Menu
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=255)
      */
-    private $type;
+    private $slug;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="string", length=255)
+     * @ORM\Column(name="language", type="string", options={"default"="en"})
      */
-    private $value = "#";
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="target", type="string", length=6)
-     */
-    private $target;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="position", type="integer", length=2)
-     */
-    private $position;
+    private $language = 'en';
 
     /**
      * @var bool
@@ -64,14 +51,18 @@ class Menu
     private $enabled;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
-     * })
+     * @ORM\Column(name="created_at", type="datetime")
      */
-    private $parent;
+    private $createdAt;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     /**
      * @return int
@@ -116,19 +107,19 @@ class Menu
     /**
      * @return string
      */
-    public function getType()
+    public function getSlug()
     {
-        return $this->type;
+        return $this->slug;
     }
 
     /**
-     * @param string $type
+     * @param string $slug
      *
      * @return self
      */
-    public function setType($type)
+    public function setSlug($slug)
     {
-        $this->type = $type;
+        $this->slug = $slug;
 
         return $this;
     }
@@ -136,59 +127,19 @@ class Menu
     /**
      * @return string
      */
-    public function getValue()
+    public function getLanguage()
     {
-        return $this->value;
+        return $this->language;
     }
 
     /**
-     * @param string $value
+     * @param string $language
      *
      * @return self
      */
-    public function setValue($value)
+    public function setLanguage($language)
     {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTarget()
-    {
-        return $this->target;
-    }
-
-    /**
-     * @param string $target
-     *
-     * @return self
-     */
-    public function setTarget($target)
-    {
-        $this->target = $target;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
-     * @param int $position
-     *
-     * @return self
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
+        $this->language = $language;
 
         return $this;
     }
@@ -214,22 +165,58 @@ class Menu
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
+     * @return \DateTime
      */
-    public function getParent()
+    public function getCreatedAt()
     {
-        return $this->parent;
+        return $this->createdAt;
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu $parent
+     * @param \DateTime $createdAt
      *
      * @return self
      */
-    public function setParent(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu $parent)
+    public function setCreatedAt(\DateTime $createdAt)
     {
-        $this->parent = $parent;
+        $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime|null $updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \Datetime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setUpdatedValue()
+    {
+        $this->updatedAt = new \Datetime();
     }
 }
