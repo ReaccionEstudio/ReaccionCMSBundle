@@ -1,0 +1,54 @@
+# config/doctrine/MenuContent.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent:
+    type: entity
+    table: menu_content
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\MenuContentRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    manyToOne:
+
+        parent:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
+          joinColumn:
+            name: parent_id
+            referencedColumnName: id
+            onDelete: CASCADE
+
+        menu:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
+          joinColumn:
+            name: menu_id
+            referencedColumnName: id
+            onDelete: CASCADE
+
+    fields:
+        
+        name:
+            type: string
+            length: 255
+        
+        type:
+            type: string
+            length: 255
+        
+        value:
+            type: string
+            length: 255
+        
+        target:
+            type: string
+            length: 6
+        
+        position:
+            type: integer
+            length: 2
+
+        enabled:
+            type: boolean
+
+    lifecycleCallbacks: 
+
