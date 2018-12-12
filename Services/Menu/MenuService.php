@@ -99,10 +99,11 @@
 		/**
 		 * Update menu html value for cache
 		 *
+		 * @param  Menu 		$menu 			Menu entity
 		 * @param  CacheItem 	$cacheItem 		Cache item object
 		 * @return String 		$menuHtml 		Menu HTML value
 		 */
-		public function updateMenuHtmlCache($cacheItem=null) : String
+		public function updateMenuHtmlCache(Menu $menu, $cacheItem=null) : String
 		{
 			if($cacheItem == null)
 			{
@@ -110,7 +111,7 @@
 			}
 
 			// get menu html
-			$menuHtml = $this->buildMenuHtml();
+			$menuHtml = $this->buildMenuHtml($menu);
 
 			// Save config value in cache
 			$cacheItem->set($menuHtml);
@@ -122,12 +123,13 @@
 		/**
 		 * Build menu html
 		 *
+		 * @param  Menu 	$menu 		Menu entity
 		 * @return String 	[type] 		Menu Html
 		 */
-		private function buildMenuHtml() : String
+		private function buildMenuHtml(Menu $menu) : String
 		{
 			// get menu items as nested array
-			$nestedArray = $this->menuContentService->buildNestedArray(true);
+			$nestedArray = $this->menuContentService->buildNestedArray($menu, true);
 
 			// get current theme views path
 			$currentThemePath = $this->theme->generateRelativeTwigViewPath("layout/menu.html.twig");
