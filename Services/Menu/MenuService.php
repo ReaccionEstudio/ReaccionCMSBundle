@@ -93,6 +93,8 @@
 			// get menus html
 			foreach($menus as $menu)
 			{
+				if($menu->isEnabled() == false) continue;
+
 				$menuKey = $menu->getSlug();
 				$menusHtml[$menuKey] = $this->getMenuHtml($menu);
 			}
