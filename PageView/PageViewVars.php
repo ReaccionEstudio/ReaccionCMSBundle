@@ -40,6 +40,8 @@
 		 */
 		public function getVars() : Array
 		{
+			$pageLanguage = $this->page->getLanguage();
+
 			$viewVars = [
 							'name' => $this->page->getName(),
 							'seo' => [
@@ -48,7 +50,7 @@
 								'keywords' => $this->page->getSeoKeywords()
 							],
 							'content' => $this->generateContentCollection(),
-							'menu' => $this->menuService->getMenuHtml()
+							'menus' => $this->menuService->getMenus($pageLanguage)
 						];
 
 			return $viewVars;

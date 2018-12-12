@@ -25,9 +25,9 @@
 		/**
 		 * @var String
 		 *
-		 * Menu cache key
+		 * Menu cache key prefix
 		 */
-		private $cacheKey;
+		private $cacheKeyPrefix;
 
 		/**
 		 * @var EntityManagerInterface
@@ -69,18 +69,48 @@
 
 			// cache
 			$this->cache = new ApcuAdapter();
-			$this->cacheKey = "navigation.menu";
+			$this->cacheKeyPrefix = "menu";
+		}
+
+		/**
+		 * Get all available menus for specified page language
+		 *
+		 * @param   String 	$currentLang 	Page language
+		 * @return  Array 	$menusHtml 		Menus HTML
+		 */
+		public function getMenus(String $language="en") : Array
+		{
+			$menusHtml = [];
+
+			// get all menus
+			$menus = $this->em->getRepository(Menu::class)->findBy(
+				[
+					'enabled' => true,
+					'language' => $language
+				]
+			);
+
+			// get menus html
+			foreach($menus as $menu)
+			{
+				$menuKey = $menu->getSlug();
+				$menusHtml[$menuKey] = $this->getMenuHtml($menu);
+			}
+
+			return $menusHtml;
 		}
 
 		/**
 		 * Get menu HTML
 		 *
-		 * @return String 	$menuHtml 	Menu HTML
+		 * @param  Menu 	$menu 			Menu entity
+		 * @return String 	$menuHtml 		Menu HTML
 		 */
-		public function getMenuHtml() : String
+		private function getMenuHtml(Menu $menu) : String
 		{
-			$menuHtml   = "";
-			$cacheItem = $this->cache->getItem($this->cacheKey);
+			$menuHtml  = "";
+			$cacheKey  = $this->cacheKeyPrefix . $menu->getSlug();
+			$cacheItem = $this->cache->getItem($cacheKey);
 
 			if($cacheItem->isHit())
 			{
@@ -90,7 +120,7 @@
 			else
 			{
 				// update menu html cache
-				$menuHtml = $this->updateMenuHtmlCache($cacheItem);
+				$menuHtml = $this->updateMenuHtmlCache($menu, $cacheItem);
 			}
 
 			return $menuHtml;
@@ -107,7 +137,8 @@
 		{
 			if($cacheItem == null)
 			{
-				$cacheItem = $this->cache->getItem($this->cacheKey);
+				$cacheKey  = $this->cacheKeyPrefix . $menu->getSlug();
+				$cacheItem = $this->cache->getItem($cacheKey);
 			}
 
 			// get menu html
