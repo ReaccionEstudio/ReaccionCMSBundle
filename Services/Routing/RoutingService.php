@@ -78,11 +78,11 @@
 			
 			// Get theme config file
 			$themeConfigService = new ThemeConfigService($fullTemplatePath);
-			$configFile = $themeConfigService->loadConfigFile();
+			$config = $themeConfigService->loadConfigFile()->getConfig();
 
-			if(isset($configFile['theme_config']['views'][$errorNumber . '_error']))
+			if(isset($config['theme_config']['views'][$errorNumber . '_error']))
 			{
-				$baseFilename = $configFile['theme_config']['views'][$errorNumber . '_error'];
+				$baseFilename = $config['theme_config']['views'][$errorNumber . '_error'];
 				return $this->theme->generateRelativeTwigViewPath($baseFilename);
 			}
 
