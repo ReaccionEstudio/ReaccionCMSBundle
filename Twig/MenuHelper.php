@@ -5,6 +5,7 @@
     use Services\Managers\ManagerPermissions;
     use Symfony\Component\HttpFoundation\RequestStack;
     use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+    use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
 
     /**
      * MenuHelper class (Twig_Extension)
@@ -75,10 +76,8 @@
                 $attrs['title'] = $menuItem['name'];
             }
 
-            foreach($attrs as $attr => $value)
-            {
-                $stringAttrs .= ' ' . $attr . '="' . $value . '"';
-            }
+            // Get attributes as string
+            $stringAttrs = (new HtmlAttributesHelper($attrs))->getAttributesAsString();
 
             return $stringAttrs;
         }
