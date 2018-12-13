@@ -22,10 +22,11 @@
         /**
          * Print content
          *
-         * @param   Array    $viewContent     View page content object
-         * @return  String   $htmlContent     Content as HTML
+         * @param   Array    $viewContent           View page content object
+         * @param   Array    $contentProperties     Define content properties
+         * @return  String   $htmlContent           Content as HTML
          */
-        public function printContent(Array $viewContent) : String
+        public function printContent(Array $viewContent, Array $contentProperties=[]) : String
         {
             $htmlContent  = "";
             $contentValue = $viewContent['value'];
