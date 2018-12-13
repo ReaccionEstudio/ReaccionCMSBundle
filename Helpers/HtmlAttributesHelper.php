@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Heleprs;
+	namespace App\ReaccionEstudio\ReaccionCMSBundle\Helpers;
 
 	final class HtmlAttributesHelper
 	{
