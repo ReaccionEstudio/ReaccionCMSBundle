@@ -25,6 +25,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
             type: text
             nullable: true
 
+        slug:
+            type: string
+            length: 255
+
         value:
             type: text
             nullable: true

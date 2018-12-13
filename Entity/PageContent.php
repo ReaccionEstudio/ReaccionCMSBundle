@@ -30,6 +30,13 @@ class PageContent
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="value", type="text", nullable=true)
@@ -117,6 +124,26 @@ class PageContent
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }
