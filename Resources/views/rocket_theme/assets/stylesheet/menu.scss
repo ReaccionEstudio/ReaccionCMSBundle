@@ -12,3 +12,7 @@
     background: transparent;
     outline: 0;
 }
+
+nav li.nav-item a.nav-link.active{
+	text-decoration: underline;
+}
