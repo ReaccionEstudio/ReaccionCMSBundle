@@ -162,7 +162,7 @@
 		private function buildMenuHtml(Menu $menu) : String
 		{
 			// get menu items as nested array
-			$nestedArray = $this->menuContentService->buildNestedArray($menu, true);
+			$nestedArray = $this->menuContentService->buildNestedArray($menu, true, true);
 
 			// get current theme views path
 			$currentThemePath = $this->theme->generateRelativeTwigViewPath("layout/menu.html.twig");

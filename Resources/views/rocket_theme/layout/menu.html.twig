@@ -4,10 +4,16 @@
 
 <li class="nav-item dropdown">
 
+	{% if menuItem.type == "page" %}
+		{% set url = url('index_slug', { 'slug' : menuItem.value }) %}
+	{% elseif menuItem.type == "url" %}
+		{% set url = menuItem.value %}
+	{% endif %}
+	
 	{% if menuItem.children is defined and menuItem.children is not empty %}
 	<a class="nav-link dropdown-toggle pl-4" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ menuItem.name }}</a>
 	{% else %}
-	<a class="nav-link pl-4" href="#">{{ menuItem.name }}</a>
+	<a class="nav-link pl-4" href="{{ url }}">{{ menuItem.name }}</a>
 	{% endif %}
 
 	{% set parentId = menuItem.id %}
