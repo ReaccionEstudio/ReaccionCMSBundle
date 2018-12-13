@@ -5,6 +5,7 @@
 	use Symfony\Component\Routing\RouterInterface;
 	use Symfony\Component\DependencyInjection\ContainerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\PrintContentInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
 
 	class Image implements PrintContentInterface
 	{
@@ -18,6 +19,8 @@
 		{
 			$this->router 		= $router;
 			$this->contentValue = $contentValue;
+			$this->properties  	= $properties;
+			$this->attrs  		= [];
 		}
 
 		/**
@@ -27,9 +30,18 @@
 		 */
 		public function getValue() : String
 		{
-			// TODO: create convertArrayToAttributesString() method in new class
+			// get full image url
 	        $imageUrl = $this->getAppUrl() . '/uploads/' . $this->contentValue;
-	        $imageHtmlElement = '<img src="' . $imageUrl . '" alt="' . basename($this->contentValue) . '" />';
+
+	        // create image attributes
+	        $this->attrs['src'] = $imageUrl;
+	        $this->attrs['alt'] = basename($this->contentValue);
+
+	        // get attributes as string
+            $stringAttrs = (new HtmlAttributesHelper($this->attrs))->getAttributesAsString();
+
+            // generate HTML img element
+	        $imageHtmlElement = '<img ' . $stringAttrs . ' />';
 
 			return $imageHtmlElement;
 		}
