@@ -3,6 +3,7 @@
     namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
 
     use Services\Managers\ManagerPermissions;
+    use Symfony\Component\HttpFoundation\RequestStack;
     use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
     /**
@@ -24,15 +25,17 @@
          *
          * @param Router     $router     Symfony router
          */
-        public function __construct(UrlGeneratorInterface $generator)
+        public function __construct(UrlGeneratorInterface $generator, RequestStack $request)
         {
             $this->generator = $generator;
+            $this->request  = $request;
         }
 
     	public function getFunctions() : Array
         {
             return array(
-                new \Twig_SimpleFunction('getMenuLinkAttrs', array($this, 'getMenuLinkAttrs'))
+                new \Twig_SimpleFunction('getMenuLinkAttrs', array($this, 'getMenuLinkAttrs')),
+                new \Twig_SimpleFunction('isMenuItemRouteActive', array($this, 'isMenuItemRouteActive'))
             );
         }
 
@@ -80,7 +83,25 @@
             return $stringAttrs;
         }
 
-    	public function getName()
+        /** 
+         * Check if menu item is the same that the current route
+         *
+         * @param   Array    $menuItem        Array with menu item data
+         * @return  Boolean  true|false       Return if menu route is active
+         */
+        public function isMenuItemRouteActive(Array $menuItem) : bool
+        {
+            $currentSlug = $this->request->getCurrentRequest()->get('slug');
+
+            if($currentSlug == $menuItem['value']) 
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+    	public function getName() : String
         {
             return 'MenuHelper';
         }
