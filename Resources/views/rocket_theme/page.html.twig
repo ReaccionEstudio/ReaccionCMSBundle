@@ -6,6 +6,8 @@
 	<h1>{{ name }}</h1>
 	{% endif %}
 
+	{% if content.description is defined %}
 	<p class="lead">{{ printContent(content.description) }}</p>
+	{% endif %}
 
 {% endblock %}
