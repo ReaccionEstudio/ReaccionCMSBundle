@@ -4,15 +4,34 @@
 
 	final class HtmlAttributesHelper
 	{
+		/**
+		 * @var Array
+		 *
+		 * Array with attributes
+		 */
 		private $attrs;
 
+		/**
+		 * Constructor
+		 */
 		public function __construct(Array $attrs)
 		{
 			$this->attrs = $attrs;
 		}
 
-		public function getAttributesAsString()
+		/**
+		 * Convert array with attributes to string
+		 */
+		public function getAttributesAsString() : String
 		{
-			// TODO
+			$attributes = "";
+			
+			foreach($this->attrs as $key => $value)
+			{
+				if(empty($value)) continue;
+				$attributes .= ' ' . $key . '="' . $value . '"';
+			}
+
+			return $attributes;
 		}
 	}
