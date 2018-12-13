@@ -43,7 +43,8 @@ class SeoHelper extends \Twig_Extension
 
         if(strlen($siteName))
         {
-            $title .= " - " . $siteName;
+            if(strlen($title)) $title .= " - ";
+            $title .= $siteName;
         }
 
         return $title;
