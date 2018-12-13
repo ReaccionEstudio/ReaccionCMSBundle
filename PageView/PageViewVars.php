@@ -73,7 +73,7 @@
 			{
 				if(empty($content)) continue;
 
-				$contentName = $content->getName();
+				$contentName = $content->getSlug();
 				$contentValue = $content->getValue();
 
 				$contentCollection[$contentName] = [
