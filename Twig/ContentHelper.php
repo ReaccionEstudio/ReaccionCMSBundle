@@ -3,6 +3,9 @@
     namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
 
     use Services\Managers\ManagerPermissions;
+    use Symfony\Component\Routing\RouterInterface;
+
+    use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\Image;
     use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\HtmlText;
 
     /**
@@ -12,6 +15,11 @@
      */
     class ContentHelper extends \Twig_Extension
     {
+        public function __construct(RouterInterface $router)
+        {
+            $this->router = $router;
+        }
+
     	public function getFunctions()
         {
             return array(
@@ -23,29 +31,34 @@
          * Print content
          *
          * @param   Array    $viewContent           View page content object
+         * @param   Array    $contentKey            Content key
          * @param   Array    $contentProperties     Define content properties
          * @return  String   $htmlContent           Content as HTML
          */
-        public function printContent(Array $viewContent, Array $contentProperties=[]) : String
+        public function printContent(Array $viewContent, String $contentKey, Array $contentProperties=[]) : String
         {
-            $htmlContent  = "";
-            $contentValue = $viewContent['value'];
+            if( ! isset($viewContent[$contentKey])) return '';
 
-            switch($viewContent['type'])
+            $htmlContent    = "";
+            $content        = $viewContent[$contentKey];
+            $contentValue   = $content['value'];
+
+            switch($content['type'])
             {
                 case 'text_html':
                     $htmlContent = (new HtmlText($contentValue))->getValue();
                 break;
 
+                case 'img':
                 case 'image':
-                    // TODO ...
+                    $htmlContent = (new Image($this->router, $contentValue))->getValue();
                 break;
             }
 
             return $htmlContent;
         }
 
-    	public function getName()
+    	public function getName() : String
         {
             return 'ContentHelper';
         }
