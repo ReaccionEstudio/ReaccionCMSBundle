@@ -21,11 +21,13 @@
 
 		/**
 		 * Convert array with attributes to string
+		 *
+		 * @return String 	$attributes 	Attributes as string
 		 */
 		public function getAttributesAsString() : String
 		{
 			$attributes = "";
-			
+
 			foreach($this->attrs as $key => $value)
 			{
 				if(empty($value)) continue;
