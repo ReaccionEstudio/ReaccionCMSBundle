@@ -34,6 +34,7 @@
 		public function __construct(String $fullTemplatePath)
 		{
 			$this->fullTemplatePath = $fullTemplatePath;
+			$this->loadConfigFile();
 		}
 
 		/**
@@ -41,7 +42,7 @@
 		 *
 		 * @return ThemeConfigService 	$this 		ThemeConfigService instance
 		 */
-		public function loadConfigFile() : ThemeConfigService
+		private function loadConfigFile() : ThemeConfigService
 		{
 			$configFilePath = $this->fullTemplatePath . "/config.yaml";
 
@@ -53,6 +54,23 @@
 			$this->config = Yaml::parseFile($configFilePath);
 
 			return $this;
+		}
+
+		/**
+		 * Get available views from theme config file
+		 *
+		 * @return Array 	$views 		Available views
+		 */
+		public function getViews() : Array
+		{
+			$views = [];
+
+			if(isset($this->config['theme_config']['views']))
+			{
+				$views = $this->config['theme_config']['views'];
+			}
+
+			return $views;
 		}
 
 		/**
