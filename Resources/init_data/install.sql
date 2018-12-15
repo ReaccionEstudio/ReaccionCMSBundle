@@ -9,5 +9,5 @@ INSERT INTO config (name,value,type,required) VALUES
 	('site_name','ReaccionCMS','text',1),
 	('admin_logo','images/reaccion_cms_logo.jpg',null,1),
 	('entries_list_pagination_limit',10,'number',1),
-	('entries_resume_words_length', 30,'number',1)
+	('entries_resume_characters_length', 350,'number',1)
 ;
