@@ -42,7 +42,7 @@
 		 *
 		 * @return ThemeConfigService 	$this 		ThemeConfigService instance
 		 */
-		private function loadConfigFile() : ThemeConfigService
+		public function loadConfigFile() : ThemeConfigService
 		{
 			$configFilePath = $this->fullTemplatePath . "/config.yaml";
 
