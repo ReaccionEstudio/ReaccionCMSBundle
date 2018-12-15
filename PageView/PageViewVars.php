@@ -5,6 +5,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewVarsInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
 
 	class PageViewVars implements PageViewVarsInterface
 	{
@@ -23,14 +24,22 @@
 		private $menuService;
 
 		/**
+		 * @var EntryService
+		 *
+		 * Entry service
+		 */
+		private $entryService;
+
+		/**
 		 * Constructor
 		 *
 		 * @var Page 	$page 	Page entity
 		 */
-		public function __construct(Page $page, MenuService $menuService)
+		public function __construct(Page $page, MenuService $menuService, EntryService $entryService)
 		{
-			$this->page = $page;
-			$this->menuService = $menuService;
+			$this->page 		= $page;
+			$this->menuService  = $menuService;
+			$this->entryService = $entryService;
 		}
 
 		/**
@@ -67,17 +76,27 @@
 
 			if(empty($contentArray)) return [];
 
-			$contentCollection = [];
+			$contentCollection  = [];
 
 			foreach($contentArray as $content)
 			{
 				if(empty($content)) continue;
 
-				$contentName = $content->getSlug();
-				$contentValue = $content->getValue();
+				$contentName 	= $content->getSlug();
+				$contentValue 	= $content->getValue();
+				$contentType 	= $content->getType();
 
+				// check content type
+				if($contentType == "entries_list") // || $contentType == "entries_categories")
+				{
+					$contentValue = $this->entryService->getEntries($this->page->getLanguage());
+				}
+
+				if( empty($contentValue)) continue;
+				
+				// add content to array collection
 				$contentCollection[$contentName] = [
-					'type' => $content->getType(),
+					'type' => $contentType,
 					'value' => $contentValue
 				];
 			}

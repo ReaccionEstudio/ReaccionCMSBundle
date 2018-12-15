@@ -15,7 +15,11 @@
 			if($page !== null)
 			{
 				// load page for slug value
-				$pageViewVars = PageViewVarsFactory::makePageViewVars($page, $this->get("reaccion_cms.menu"));
+				$pageViewVars = PageViewVarsFactory::makePageViewVars(
+														$page, 
+														$this->get("reaccion_cms.menu"), 
+														$this->get("reaccion_cms.entries")
+													);
 				return $this->render($page->getTemplateView(), $pageViewVars->getVars());
 			}
 			else

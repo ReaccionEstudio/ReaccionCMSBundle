@@ -42,7 +42,12 @@
         
         <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true"></service>
 
-        <service id="reaccion_cms.entries" class="%reaccion_cms.entry.class%" public="true"></service>
+        <service id="reaccion_cms.entries" class="%reaccion_cms.entry.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="knp_paginator" />
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="reaccion_cms.config" />
+        </service>
 
     </services>
 
