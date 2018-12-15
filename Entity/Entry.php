@@ -104,7 +104,7 @@ class Entry
      *     @ORM\JoinColumn(name="entry_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="category_id", referencedColumnName="id", unique=true)
+     *     @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      *   }
      * )
      */

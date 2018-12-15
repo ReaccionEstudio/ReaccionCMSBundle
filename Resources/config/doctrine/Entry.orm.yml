@@ -24,7 +24,6 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
             inverseJoinColumns:
               category_id:
                 referencedColumnName: id
-                unique: true
 
     id:
         id:
