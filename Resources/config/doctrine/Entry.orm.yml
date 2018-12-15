@@ -36,6 +36,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
             type: string
             length: 255
         
+        slug:
+            type: string
+            length: 255
+        
         content:
             type: text
 
