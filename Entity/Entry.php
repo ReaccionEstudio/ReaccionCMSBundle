@@ -37,6 +37,13 @@ class Entry
     private $content;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="resume", type="text", nullable=true)
+     */
+    private $resume;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="tags", type="string", length=255)
@@ -160,6 +167,26 @@ class Entry
     public function setContent($content)
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getResume()
+    {
+        return $this->resume;
+    }
+
+    /**
+     * @param string|null $resume
+     *
+     * @return self
+     */
+    public function setResume($resume)
+    {
+        $this->resume = $resume;
 
         return $this;
     }

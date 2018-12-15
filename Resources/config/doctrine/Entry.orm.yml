@@ -39,6 +39,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
         content:
             type: text
 
+        resume:
+            type: text
+            nullable: true
+
         tags:
             type: string
             length: 255
