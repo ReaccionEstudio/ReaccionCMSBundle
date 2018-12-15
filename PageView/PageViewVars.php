@@ -87,18 +87,23 @@
 				$contentType 	= $content->getType();
 
 				// check content type
-				if($contentType == "entries_list") // || $contentType == "entries_categories")
+				if($contentType == "entries_list")
 				{
-					$contentValue = $this->entryService->getEntries($this->page->getLanguage());
+					// add content to array collection
+					$contentCollection[$contentType] = $this->entryService->getEntries($this->page->getLanguage());
 				}
+				else if($contentType == "entry_categories")
+				{
 
-				if( empty($contentValue)) continue;
-				
-				// add content to array collection
-				$contentCollection[$contentName] = [
-					'type' => $contentType,
-					'value' => $contentValue
-				];
+				}
+				else
+				{
+					// add content to array collection
+					$contentCollection[$contentName] = [
+						'type' => $contentType,
+						'value' => $contentValue
+					];
+				}
 			}
 
 			return $contentCollection;

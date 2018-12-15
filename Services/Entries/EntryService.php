@@ -58,11 +58,14 @@
 		/**
 		 * Get entries for current page lang
 		 */
-		public function getEntries(String $language = "en", Int $page = 1) : SlidingPagination
+		public function getEntries(String $language = "en") : SlidingPagination
 		{
 			// get entries
 			$entries = $this->em->getRepository(Entry::class)->findBy(
-							['language' => $language],
+							[
+								'language' => $language,
+								'enabled' => true
+							],
 							['id' => 'DESC']
 						);
 
@@ -71,10 +74,15 @@
 						? $this->config->get("entries_list_pagination_limit")
 						: 10;
 
+			// get current page
+			$currentPage =  ($this->request->getCurrentRequest()->get('page'))
+							? $this->request->getCurrentRequest()->get('page')
+							: 1;
+
 			// pagination
 			$entries = $this->paginator->paginate(
 		        $entries,
-		        $this->request->getCurrentRequest()->get('page'),
+		        $currentPage,
 		        $limit
 		    );
 
