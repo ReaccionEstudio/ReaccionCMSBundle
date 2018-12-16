@@ -7,6 +7,7 @@
 	use Symfony\Component\HttpFoundation\RequestStack;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
 	/**
@@ -56,7 +57,10 @@
 		}
 
 		/**
-		 * Get entries for current page lang
+		 * Get entries for current page language
+		 *
+		 * @param  String 				$language 	Page language
+		 * @return SlidingPagination 	$entries 	All entries
 		 */
 		public function getEntries(String $language = "en") : SlidingPagination
 		{
@@ -87,5 +91,24 @@
 		    );
 
 			return $entries;
+		}
+
+		/**
+		 * Get categories for current page language
+		 *
+		 * @param  String 	$language 			Page language
+		 * @return Array 	$entryCategories 	Entry categories list
+		 */
+		public function getCategories(String $language = "en") : Array
+		{
+			$entryCategories = $this->em->getRepository(EntryCategory::class)->findBy(
+									[
+										'language' => $language,
+										'enabled' => true
+									],
+									[ 'name' => 'ASC' ]
+								);
+
+			return $entryCategories;
 		}
 	}

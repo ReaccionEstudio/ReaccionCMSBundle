@@ -94,7 +94,7 @@
 				}
 				else if($contentType == "entry_categories")
 				{
-
+					$contentCollection[$contentType] = $this->entryService->getCategories($this->page->getLanguage());
 				}
 				else
 				{
