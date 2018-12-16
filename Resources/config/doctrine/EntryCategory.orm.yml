@@ -14,6 +14,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory:
             type: string
             length: 255
         
+        slug:
+            type: string
+            length: 255
+        
         language:
             type: string
             length: 4
