@@ -24,21 +24,25 @@
 													);
 				return $this->render($page->getTemplateView(), $pageViewVars->getVars());
 			}
-			else
+
+			if($page == null)
 			{
 				// check if it is a slug's entry
 				$entry = $routingService->loadEntry($slug);
 				
-				// load page for slug value
-				$entryViewVars = EntryViewVarsFactory::makeEntryViewVars(
-														$entry['entry'], 
-														$this->get("reaccion_cms.menu"), 
-														$this->get("reaccion_cms.entries")
-													);
-				return $this->render($entry['view'], $entryViewVars->getVars());
+				if(isset($entry['entry']))
+				{
+					// load page for slug value
+					$entryViewVars = EntryViewVarsFactory::makeEntryViewVars(
+															$entry['entry'], 
+															$this->get("reaccion_cms.menu"), 
+															$this->get("reaccion_cms.entries")
+														);
+					return $this->render($entry['view'], $entryViewVars->getVars());
+				}
 			}
 
-			if($page == null && $entry == null)
+			if($page == null && $entry == [])
 			{
 				// load 404 error page
 				$viewPath = $routingService->loadErrorPage(404);
