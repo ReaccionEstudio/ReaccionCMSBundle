@@ -31,6 +31,10 @@
 			</div>
 			{% endfor %}
 
+			<!-- pagination -->
+			{{ knp_pagination_render(content.entries_list) }}
+			<!-- end pagination -->
+
 		</div>
 		{% endif %}
 
@@ -41,6 +45,9 @@
 			  	<div class="col-sm-12">
 			  		<div class="card">
 				    	<div class="card-body">
+
+				    		<h5>Categories</h5>
+
 				    		<ul id="entries_categories" class="pl-3">
 					    		{% for category in content.entries_categories %}
 					    		<li>
