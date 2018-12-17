@@ -6,7 +6,7 @@
 	<h1>{{ name }}</h1>
 	{% endif %}
 	
-	<div class="row">
+	<div class="row pt-3">
 
 		{% if content.entries_list is defined %}
 		<div class="col-sm-8">
@@ -35,7 +35,25 @@
 		{% endif %}
 
 		<div class="col-sm-4">
-			TODO: list categories
+
+			{% if content.entry_categories %}
+			<div class="row">
+			  	<div class="col-sm-12">
+			  		<div class="card">
+				    	<div class="card-body">
+				    		<ul id="entries_categories" class="pl-3">
+					    		{% for category in content.entry_categories %}
+					    		<li>
+					    			<a href="#" title="{{ category.name }}">{{ category.name }}</a>
+					    		</li>
+					    		{% endfor %}
+				    		</ul>
+				      	</div>
+				    </div>
+				</div>
+			</div>
+			{% endif %}
+
 		</div>
 
 	</div>
