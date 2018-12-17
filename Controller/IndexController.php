@@ -4,6 +4,7 @@
 
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewVarsFactory;
+	use App\ReaccionEstudio\ReaccionCMSBundle\EntryView\EntryViewVarsFactory;
 
 	class IndexController extends Controller
 	{
@@ -27,7 +28,14 @@
 			{
 				// check if it is a slug's entry
 				$entry = $routingService->loadEntry($slug);
-				// TODO ...
+				
+				// load page for slug value
+				$entryViewVars = EntryViewVarsFactory::makeEntryViewVars(
+														$entry['entry'], 
+														$this->get("reaccion_cms.menu"), 
+														$this->get("reaccion_cms.entries")
+													);
+				return $this->render($entry['view'], $entryViewVars->getVars());
 			}
 
 			if($page == null && $entry == null)

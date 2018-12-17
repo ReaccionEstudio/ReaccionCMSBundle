@@ -6,6 +6,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewVarsInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewContentCollection;
 
 	class PageViewVars implements PageViewVarsInterface
 	{
@@ -50,6 +51,10 @@
 		public function getVars() : Array
 		{
 			$pageLanguage = $this->page->getLanguage();
+			$pageContent  = $this->page->getContent();
+
+			// create content collection
+			$pageViewContentCollection = new PageViewContentCollection($pageContent, $this->entryService, $pageLanguage);
 
 			$viewVars = [
 							'name' => $this->page->getName(),
@@ -58,54 +63,10 @@
 								'description' => $this->page->getSeoDescription(),
 								'keywords' => $this->page->getSeoKeywords()
 							],
-							'content' => $this->generateContentCollection(),
+							'content' => $pageViewContentCollection->getContentCollection(),
 							'menus' => $this->menuService->getMenus($pageLanguage)
 						];
 
 			return $viewVars;
-		}
-
-		/**
-		 * Generate content collection
-		 * 
-		 * @return Array  	$contentCollection 		Content collection
-		 */
-		private function generateContentCollection() : Array
-		{
-			$contentArray = $this->page->getContent();
-
-			if(empty($contentArray)) return [];
-
-			$contentCollection  = [];
-
-			foreach($contentArray as $content)
-			{
-				if(empty($content)) continue;
-
-				$contentName 	= $content->getSlug();
-				$contentValue 	= $content->getValue();
-				$contentType 	= $content->getType();
-
-				// check content type
-				if($contentType == "entries_list")
-				{
-					// add content to array collection
-					$contentCollection[$contentType] = $this->entryService->getEntries($this->page->getLanguage());
-				}
-				else if($contentType == "entry_categories")
-				{
-					$contentCollection[$contentType] = $this->entryService->getCategories($this->page->getLanguage());
-				}
-				else
-				{
-					// add content to array collection
-					$contentCollection[$contentName] = [
-						'type' => $contentType,
-						'value' => $contentValue
-					];
-				}
-			}
-
-			return $contentCollection;
 		}
 	}
