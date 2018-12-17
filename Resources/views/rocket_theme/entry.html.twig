@@ -2,6 +2,21 @@
 
 {% block body %}
 	
-entry 
+	{% if name is not empty %}
+	<h1>{{ name }}</h1>
+	<p class="text-muted">Created at {{ content.entry.value.createdAt | date('d/m/Y H:i:s') }}</p>
+	{% endif %} 
+
+	{% if content.entry is defined %}
+	<div class="pt-3">{{ content.entry.value.content | raw }}</div>
+	{% endif %}
+
+	{% if content.entry.value.tags is defined %}
+		
+		{% for tag in getArrayTags(content.entry.value) %}
+			<a href="#" class="badge badge-secondary">{{ tag }}</a>
+		{% endfor %}
+
+	{% endif %}
 
 {% endblock %}
