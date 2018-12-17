@@ -4,17 +4,26 @@
 	
 	{% if name is not empty %}
 	<h1>{{ name }}</h1>
-	<p class="text-muted">Created at {{ content.entry.value.createdAt | date('d/m/Y H:i:s') }}</p>
+	<div class="text-muted">
+	{% if content.entry.value.categories is defined %}
+		{% for category in content.entry.value.categories %}
+			<a href="#" title="{{ category.name }}">{{ category.name }}</a>
+		{% endfor %}
+		- 
+	{% endif %}
+
+	Created at {{ content.entry.value.createdAt | date('d/m/Y H:i:s') }}
+	</div>
 	{% endif %} 
 
 	{% if content.entry is defined %}
-	<div class="pt-3">{{ content.entry.value.content | raw }}</div>
+	<div id="entry_detail" class="pt-3">{{ content.entry.value.content | raw }}</div>
 	{% endif %}
 
 	{% if content.entry.value.tags is defined %}
 		
 		{% for tag in getArrayTags(content.entry.value) %}
-			<a href="#" class="badge badge-secondary">{{ tag }}</a>
+			<a href="#" title="{{ tag }}" class="badge badge-secondary">{{ tag }}</a>
 		{% endfor %}
 
 	{% endif %}
