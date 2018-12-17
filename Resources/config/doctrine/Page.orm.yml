@@ -26,6 +26,9 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
         
         isEnabled:
             type: boolean
+
+        visibleInCrud:
+            type: boolean
         
         mainPage:
             type: boolean

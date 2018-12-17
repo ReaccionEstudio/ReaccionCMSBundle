@@ -46,6 +46,13 @@ class Page
     /**
      * @var bool
      *
+     * @ORM\Column(name="visible_in_crud", type="boolean")
+     */
+    private $visibleInCrud = true;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="main_page", type="boolean", nullable=true)
      */
     private $mainPage = null;
@@ -190,6 +197,26 @@ class Page
     public function setIsEnabled($isEnabled)
     {
         $this->isEnabled = $isEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVisibleInCrud()
+    {
+        return $this->visibleInCrud;
+    }
+
+    /**
+     * @param bool $visibleInCrud
+     *
+     * @return self
+     */
+    public function setVisibleInCrud($visibleInCrud)
+    {
+        $this->visibleInCrud = $visibleInCrud;
 
         return $this;
     }
