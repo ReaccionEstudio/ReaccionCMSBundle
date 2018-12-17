@@ -23,7 +23,8 @@
     	public function getFunctions()
         {
             return array(
-                new \Twig_SimpleFunction('printContent', array($this, 'printContent'))
+                new \Twig_SimpleFunction('printContent', array($this, 'printContent')),
+                new \Twig_SimpleFunction('getArrayTags', array($this, 'getArrayTags'))
             );
         }
 
@@ -56,6 +57,24 @@
             }
 
             return $htmlContent;
+        }
+
+        /**
+         * Get tags as array
+         *
+         * @param   Doctrine Entity     $entity     Doctrine entity
+         * @return  Array               [type]      Tags list array
+         */
+        public function getArrayTags($entity) : Array
+        {
+            $tags = $entity->getTags();
+
+            if(preg_match("/,/", $tags))
+            {
+                return explode(",", $this->tags);
+            }
+
+            return [ $tags ];
         }
 
     	public function getName() : String
