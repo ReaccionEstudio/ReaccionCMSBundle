@@ -65,6 +65,13 @@ class PageContent
     private $isEnabled;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="options", type="text", nullable=true)
+     */
+    private $options;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -224,6 +231,26 @@ class PageContent
     public function setIsEnabled($isEnabled)
     {
         $this->isEnabled = $isEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param string|null $options
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
 
         return $this;
     }

@@ -44,6 +44,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
         isEnabled:
             type: boolean
 
+        options:
+            type: text
+            nullable: true
+
         createdAt:
             type: datetime
 
