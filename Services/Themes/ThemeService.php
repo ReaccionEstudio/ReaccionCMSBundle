@@ -4,6 +4,7 @@
 
 	use Doctrine\ORM\EntityManager;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
@@ -64,6 +65,13 @@
 		private $themesPath = "";
 
 		/**
+		 * @var String
+		 * 
+		 * Template view filename
+		 */
+		private $templateView = "";
+
+		/**
 		 * Constructor
 		 */
 		public function __construct(EntityManager $em, ConfigService $configService, String $projectDir)
@@ -80,22 +88,22 @@
 		/**
 		 * Get full view path for Page entity
 		 *
-		 * @param  Page 	$page 		Current Page entity
-		 * @return String 	[type]		View file path for Twig
+		 * @param  Page|Entry	$entity 	Current Page entity
+		 * @return String 		[type]		View file path for Twig
 		 */
-		public function getPageViewPath(Page $page) : String
+		public function getPageViewPath($entity) : String
 		{
 			$path = '';
 
 			// check if view file exists
-			if( ! $this->pageViewFileExists($page) )
+			if( ! $this->viewFileExists($entity) )
 			{
 				// throw exception
 				throw new \Exception('Template file not found in: ' . $this->fullTemplateViewPath);
 			}
 
 			// generate twig view file path
-			return $this->generateRelativeTwigViewPath($page->getTemplateView());
+			return $this->generateRelativeTwigViewPath($this->templateView);
 		}
 
 		/**
@@ -145,12 +153,23 @@
 		/**
 		 * Check if theme view file exists
 		 *
-		 * @param  Page 	$page 			Current Page entity
-		 * @return Boolean 	true|false		File exists?
+		 * @param  Page|Entry 	$entity			Current entity
+		 * @return Boolean 		true|false		File exists?
 		 */
-		private function pageViewFileExists(Page $page) : bool
+		private function viewFileExists($entity) : bool
 		{
-			$this->fullTemplateViewPath = $this->fullTemplatePath . $page->getTemplateView();
+			if($entity instanceof Page)
+			{
+				$this->templateView = $entity->getTemplateView();
+			}
+			else if($entity instanceof Entry)
+			{
+				// TODO: get value from theme config file
+				$this->templateView = "entry.html.twig";
+			}
+
+			// set view file path
+			$this->fullTemplateViewPath = $this->fullTemplatePath . $this->templateView;
 
 			if(file_exists($this->fullTemplateViewPath)) 
 			{

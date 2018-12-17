@@ -10,7 +10,8 @@
 		public function index($slug="")
 		{
 			$routingService = $this->get("reaccion_cms.routing");
-			$page = $routingService->loadPage($slug);
+			$entry = null;
+			$page  = $routingService->loadPage($slug);
 
 			if($page !== null)
 			{
@@ -23,6 +24,13 @@
 				return $this->render($page->getTemplateView(), $pageViewVars->getVars());
 			}
 			else
+			{
+				// check if it is a slug's entry
+				$entry = $routingService->loadEntry($slug);
+				// TODO ...
+			}
+
+			if($page == null && $entry == null)
 			{
 				// load 404 error page
 				$viewPath = $routingService->loadErrorPage(404);

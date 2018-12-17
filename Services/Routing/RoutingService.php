@@ -4,6 +4,7 @@
 
 	use Doctrine\ORM\EntityManager;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 
@@ -68,6 +69,34 @@
 		}
 
 		/**
+		 * Load entry searching by slug
+		 *
+		 * @param  String 	$slug 			Route slug
+		 * @return Array 	$entryResult 	Found entry entity
+		 */
+		public function loadEntry(String $slug="")
+		{
+			$entryResult = [];
+
+			if(strlen($slug))
+			{
+				$entry = $this->searchEntryBySlug($slug);
+			}
+
+			if($entry !== null)
+			{
+				$templateView = $this->theme->getPageViewPath($entry);
+
+				$entryResult = [
+					'entry' => $entry, 
+					'view'  => $templateView
+				];
+			}
+
+			return $entryResult;
+		}
+
+		/**
 		 * Load error page by error number
 		 *
 		 * @param Integer 	$errorNumber 	Error number
@@ -101,6 +130,22 @@
 				[
 					'slug' => $slug,
 					'isEnabled' => true
+				]
+			);
+		}
+
+		/**
+		 * Search entry entity by slug
+		 *
+		 * @param  String 			$slug 	Route slug
+		 * @return Entry | null 	[type] 	Found entry entity
+		 */
+		private function searchEntryBySlug(String $slug)
+		{
+			return $this->em->getRepository(Entry::class)->findOneBy(
+				[
+					'slug' => $slug,
+					'enabled' => true
 				]
 			);
 		}
