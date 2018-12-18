@@ -44,11 +44,11 @@ class Page
     private $isEnabled = true;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="visible_in_crud", type="boolean")
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $visibleInCrud = true;
+    private $type;
 
     /**
      * @var bool
@@ -202,21 +202,21 @@ class Page
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isVisibleInCrud()
+    public function getType()
     {
-        return $this->visibleInCrud;
+        return $this->type;
     }
 
     /**
-     * @param bool $visibleInCrud
+     * @param string $type
      *
      * @return self
      */
-    public function setVisibleInCrud($visibleInCrud)
+    public function setType($type)
     {
-        $this->visibleInCrud = $visibleInCrud;
+        $this->type = $type;
 
         return $this;
     }
