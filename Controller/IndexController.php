@@ -11,8 +11,6 @@
 	{
 		public function index(Request $request, $slug="")
 		{
-			var_dump($request->attributes->get('_route_params'));
-
 			$routingService = $this->get("reaccion_cms.routing");
 			$entry = null;
 			$page  = $routingService->loadPage($slug);
