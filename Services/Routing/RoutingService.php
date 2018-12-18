@@ -107,7 +107,7 @@
 			
 			// Get theme config file
 			$themeConfigService = new ThemeConfigService($fullTemplatePath);
-			$config = $themeConfigService->loadConfigFile()->getConfig();
+			$config = $themeConfigService->getConfig();
 
 			if(isset($config['theme_config']['views'][$errorNumber . '_error']))
 			{
