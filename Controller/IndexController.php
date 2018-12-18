@@ -2,14 +2,17 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller;
 
+	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewVarsFactory;
 	use App\ReaccionEstudio\ReaccionCMSBundle\EntryView\EntryViewVarsFactory;
 
 	class IndexController extends Controller
 	{
-		public function index($slug="")
+		public function index(Request $request, $slug="")
 		{
+			var_dump($request->attributes->get('_route_params'));
+
 			$routingService = $this->get("reaccion_cms.routing");
 			$entry = null;
 			$page  = $routingService->loadPage($slug);
