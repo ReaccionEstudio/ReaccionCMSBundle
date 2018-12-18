@@ -7,6 +7,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 
 	class ThemeService
 	{
@@ -164,8 +165,12 @@
 			}
 			else if($entity instanceof Entry)
 			{
-				// TODO: get value from theme config file
-				$this->templateView = "entry.html.twig";
+				// get view filename from theme config
+				$themeConfigService = new ThemeConfigService($this->fullTemplatePath);
+				$themeConfig = $themeConfigService->getConfig();
+
+				// set templateView value
+				$this->templateView = $themeConfig['theme_config']['views']['entry'] ?? "entry.html.twig";
 			}
 
 			// set view file path
