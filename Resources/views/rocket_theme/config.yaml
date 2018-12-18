@@ -12,6 +12,7 @@ theme_config:
   views:
     page: 'page.html.twig'
     entries: 'entries.html.twig'
+    entry: 'entry.html.twig'
     navigation: 'layout/navigation.html.twig'
     menu: 'layout/menu.html.twig'
     footer: 'layout/footer.html.twig'
