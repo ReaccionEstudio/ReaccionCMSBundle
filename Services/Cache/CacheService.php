@@ -31,9 +31,9 @@
 		 * Set parameter in cache
 		 *
 		 * @param 	String 		$key 		Cache key
-		 * @return 	void 		[type]
+		 * @return 	Boolean		true|false  
 		 */
-		public function set(String $key, $value) : void
+		public function set(String $key, $value) : bool
 		{
 			try
 			{
@@ -42,11 +42,14 @@
 				// Save config value in cache
 				$cachedItem->set($value);
 				$this->cache->save($cachedItem);
+
+				return true;
 			}
 			catch(\Exception $e)
 			{
 				// TODO: log error
 				throw $e;
+				return false;
 			}
 		}
 
@@ -67,5 +70,10 @@
 			}
 
 			return null;
+		}
+
+		public function remove(String $key)
+		{
+			
 		}
 	}
