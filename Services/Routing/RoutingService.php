@@ -2,7 +2,7 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
 
-	use Doctrine\ORM\EntityManager;
+	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
@@ -20,7 +20,7 @@
 		/**
 		 * @var EntityManagerInterface
 		 *
-		 * EntityManager
+		 * EntityManagerInterface
 		 */
 		private $em;
 
@@ -48,7 +48,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManager $em, ThemeService $theme, PageCacheService $pageCache, \Twig_Environment $twig, CacheService $cacheService)
+		public function __construct(EntityManagerInterface $em, ThemeService $theme, PageCacheService $pageCache, \Twig_Environment $twig, CacheService $cacheService)
 		{
 			$this->em 		 = $em;
 			$this->twig 	 = $twig;

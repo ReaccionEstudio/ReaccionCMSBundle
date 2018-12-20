@@ -21,6 +21,9 @@
     	<service id="reaccion_cms.routing" class="%reaccion_cms.routing.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.theme" />
+            <argument type="service" id="reaccion_cms_admin.page_cache_service" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="reaccion_cms.cache" />
         </service>
     	
     	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">
@@ -38,6 +41,7 @@
             <argument type="service" id="reaccion_cms_admin.menu_content" />
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.theme" />
+            <argument type="service" id="reaccion_cms.cache" />
         </service>
         
         <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true"></service>
