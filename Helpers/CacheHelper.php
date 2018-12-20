@@ -9,10 +9,10 @@
 		 *
 		 * @param 	String 	$slug 		Slug to convert
 		 * @param  	String 	$suffix 	Suffix for cache key
-		 * @return  String 	$cacheKey 	Generated cache key
+		 * @return  String 	[type] 		Generated cache key (MD5)
 		 */
 		public function convertSlugToCacheKey(String $slug, String $suffix = "" ) : String
 		{
-			return str_replace("-", "_", $slug) . $suffix;
+			return md5($slug . $suffix);
 		}
 	}
