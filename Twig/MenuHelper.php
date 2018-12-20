@@ -6,6 +6,8 @@
     use Symfony\Component\HttpFoundation\RequestStack;
     use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
     use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
+    use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
+    use App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
 
     /**
      * MenuHelper class (Twig_Extension)
@@ -22,22 +24,43 @@
         private $generator;
 
         /**
+         * @var RequestStack
+         *
+         * RequestStack
+         */
+        private $request;
+
+        /** 
+         * @var MenuService
+         *
+         * Menu service
+         */
+        private $menuService;
+
+        /**
          * Constructor
          *
          * @param Router     $router     Symfony router
          */
-        public function __construct(UrlGeneratorInterface $generator, RequestStack $request)
+        public function __construct(UrlGeneratorInterface $generator, RequestStack $request, MenuService $menuService)
         {
-            $this->generator = $generator;
-            $this->request  = $request;
+            $this->generator    = $generator;
+            $this->request      = $request;
+            $this->menuService  = $menuService;
         }
 
     	public function getFunctions() : Array
         {
             return array(
                 new \Twig_SimpleFunction('getMenuLinkAttrs', array($this, 'getMenuLinkAttrs')),
-                new \Twig_SimpleFunction('isMenuItemRouteActive', array($this, 'isMenuItemRouteActive'))
+                new \Twig_SimpleFunction('isMenuItemRouteActive', array($this, 'isMenuItemRouteActive')),
+                new \Twig_SimpleFunction('printMenu', array($this, 'printMenu'))
             );
+        }
+
+        public function printMenu(String $slug = "navigation", String $language = "en" ) : String
+        {
+            return $this->menuService->getMenu($slug, $language);
         }
 
         /**
