@@ -7,6 +7,8 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
+	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService;
 
 	/**
 	 * ReaccionCMSBundle routing service.
@@ -30,42 +32,67 @@
 		private $theme;
 
 		/**
-		 * Constructor
+		 * @var Twig_Environment
+		 *
+		 * Twig
 		 */
-		public function __construct(EntityManager $em, ThemeService $theme)
-		{
-			$this->em = $em;
-			$this->theme = $theme;
-		}
+		private $twig;
 
 		/**
-		 * Load page searching by slug
+		 * @var CacheService
 		 *
-		 * @param  String 		$slug 	Route slug
-		 * @return Page | null 	[type] 	Found Page entity
+		 * Cache service
 		 */
-		public function loadPage(String $slug="")
-		{
-			$page = null;
+		private $cacheService;
 
-			if( ! strlen($slug))
+		/**
+		 * Constructor
+		 */
+		public function __construct(EntityManager $em, ThemeService $theme, PageCacheService $pageCache, \Twig_Environment $twig, CacheService $cacheService)
+		{
+			$this->em 		 = $em;
+			$this->twig 	 = $twig;
+			$this->theme 	 = $theme;
+			$this->pageCache = $pageCache;
+			$this->cacheService = $cacheService;
+		}
+
+		public function load(String $slug="")
+		{
+			$viewFile = "";
+			$entry 	  = null;
+
+			// Load page by slug or main page if slug is empty
+			$page = (strlen($slug)) 
+					? $this->pageCache->getPageBySlug($slug)
+					: $this->pageCache->getMainPage();
+
+			if($page)
 			{
-				// Get main route defined in database
-				$page = $this->getMainPage();
+				// get page view file
+				$pageEntity = (new Page())->setTemplateView($page['templateView']);
+				$viewFile = $this->theme->getPageViewPath($pageEntity);
 			}
 			else
 			{
-				// Load page for requested slug
-				$page = $this->searchPageBySlug($slug);
+				// it is a entry slug?
+				
 			}
 
-			if($page !== null)
+			if( ! $page && $entry == null)
 			{
-				$templateView = $this->theme->getPageViewPath($page);
-				$page->setTemplateView($templateView);
+				// load 404 error page
+				return $this->loadErrorPage(404, $slug);
 			}
 
-			return $page;
+			// Load default ReaccionCMS home page
+			if( ! strlen($viewFile) )
+			{
+				$viewFile = "@ReaccionCMSBundle/index.html.twig";
+				$page 	  = ['cmsVersion' => 0.1];
+			}
+
+			return $this->twig->render($viewFile, $page);
 		}
 
 		/**
@@ -99,9 +126,11 @@
 		/**
 		 * Load error page by error number
 		 *
-		 * @param Integer 	$errorNumber 	Error number
+		 * @param  Integer 	$errorNumber 	Error number
+		 * @param  String 	$slug 			Slug
+		 * @return String 	[type] 			View rendered as HTML
 		 */
-		public function loadErrorPage(Int $errorNumber) : String
+		public function loadErrorPage(Int $errorNumber, String $slug) : String
 		{
 			$fullTemplatePath = $this->theme->getFullTemplatePath();
 			
@@ -112,26 +141,12 @@
 			if(isset($config['theme_config']['views'][$errorNumber . '_error']))
 			{
 				$baseFilename = $config['theme_config']['views'][$errorNumber . '_error'];
-				return $this->theme->generateRelativeTwigViewPath($baseFilename);
+				$view = $this->theme->generateRelativeTwigViewPath($baseFilename);
+
+				return $this->twig->render($view, [ 'slug' => $slug ]);
 			}
 
 			return '';
-		}
-
-		/**
-		 * Search page entity by slug
-		 *
-		 * @param  String 		$slug 	Route slug
-		 * @return Page | null 	[type] 	Found Page entity
-		 */
-		private function searchPageBySlug(String $slug)
-		{
-			return $this->em->getRepository(Page::class)->findOneBy(
-				[
-					'slug' => $slug,
-					'isEnabled' => true
-				]
-			);
 		}
 
 		/**
@@ -146,21 +161,6 @@
 				[
 					'slug' => $slug,
 					'enabled' => true
-				]
-			);
-		}
-
-		/**
-		 * Get main page entity
-		 *
-		 * @return Page | null 	[type] 	Found Page entity
-		 */
-		private function getMainPage()
-		{
-			return $this->em->getRepository(Page::class)->findOneBy(
-				[
-					'mainPage' => true,
-					'isEnabled' => true
 				]
 			);
 		}
