@@ -2,7 +2,7 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes;
 
-	use Doctrine\ORM\EntityManager;
+	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
@@ -26,7 +26,7 @@
 		/**
 		 * @var EntityManagerInterface
 		 *
-		 * EntityManager
+		 * EntityManagerInterface
 		 */
 		private $em;
 
@@ -75,7 +75,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManager $em, ConfigService $configService, String $projectDir)
+		public function __construct(EntityManagerInterface $em, ConfigService $configService, String $projectDir = "")
 		{
 			$this->em = $em;
 			$this->configService = $configService;
