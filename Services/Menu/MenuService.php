@@ -7,6 +7,8 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService;
 
 	/**
 	 * Menu service.
@@ -16,35 +18,28 @@
 	class MenuService
 	{
 		/**
-		 * @var ApcuAdapter
+		 * @var CacheService
 		 *
-		 * APCu adapter
+		 * Cache service
 		 */
 		private $cache;
 
 		/**
-		 * @var String
-		 *
-		 * Menu cache key prefix
-		 */
-		private $cacheKeyPrefix;
-
-		/**
 		 * @var EntityManagerInterface
 		 *
-		 * EntityManager
+		 * EntityManagerInterface
 		 */
 		private $em;
 
 		/**
 		 * @var MenuContentService
 		 *
-		 * EntityManager
+		 * MenuContent service
 		 */
 		private $menuContentService;
 
 		/**
-		 * @var Twig
+		 * @var Twig_Environment
 		 *
 		 * Twig
 		 */
@@ -60,96 +55,67 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, $twig, ThemeService $theme)
+		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, \Twig_Environment $twig, ThemeService $theme, CacheService $cache)
 		{
 			$this->em = $em;
 			$this->twig = $twig;
+			$this->cache = $cache;
 			$this->theme = $theme;
 			$this->menuContentService = $menuContentService;
-
-			// cache
-			$this->cache = new ApcuAdapter();
-			$this->cacheKeyPrefix = "menu";
-		}
-
-		/**
-		 * Get all available menus for specified page language
-		 *
-		 * @param   String 	$currentLang 	Page language
-		 * @return  Array 	$menusHtml 		Menus HTML
-		 */
-		public function getMenus(String $language="en") : Array
-		{
-			$menusHtml = [];
-
-			// get all menus
-			$menus = $this->em->getRepository(Menu::class)->findBy(
-				[
-					'enabled' => true,
-					'language' => $language
-				]
-			);
-
-			// get menus html
-			foreach($menus as $menu)
-			{
-				if($menu->isEnabled() == false) continue;
-
-				$menuKey = $menu->getSlug();
-				$menusHtml[$menuKey] = $this->getMenuHtml($menu);
-			}
-
-			return $menusHtml;
 		}
 
 		/**
 		 * Get menu HTML
 		 *
-		 * @param  Menu 	$menu 			Menu entity
-		 * @return String 	$menuHtml 		Menu HTML
+		 * @param  String 		$slug			Menu slug
+		 * @param  String 		$language		Menu language
+		 * @return String 		[type] 			Menu HTML value
 		 */
-		private function getMenuHtml(Menu $menu) : String
+		public function getMenu(String $slug = 'navigation', String $language = "en") : String
 		{
-			$menuHtml  = "";
-			$cacheKey  = $this->cacheKeyPrefix . $menu->getSlug();
-			$cacheItem = $this->cache->getItem($cacheKey);
+			// check if menu exists in cache storage
+			$cacheKey  = $this->getCacheKey($slug, $language);
+			$cacheItem = $this->cache->get($cacheKey);
 
-			if($cacheItem->isHit())
+			if($cacheItem !== null)
 			{
-				// key is cached
-				$menuHtml = $cacheItem->get();
+				return $cacheItem;
 			}
 			else
 			{
 				// update menu html cache
-				$menuHtml = $this->updateMenuHtmlCache($menu, $cacheItem);
+				return $this->saveMenuHtmlInCache($slug, $language, $cacheKey);
 			}
-
-			return $menuHtml;
 		}
 
 		/**
 		 * Update menu html value for cache
 		 *
 		 * @param  Menu 		$menu 			Menu entity
-		 * @param  CacheItem 	$cacheItem 		Cache item object
+		 * @param  String 		$slug			Menu slug
+		 * @param  String 		$language		Menu language
 		 * @return String 		$menuHtml 		Menu HTML value
 		 */
-		public function updateMenuHtmlCache(Menu $menu, $cacheItem=null) : String
+		public function saveMenuHtmlInCache(String $slug, String $language, String $cacheKey) : String
 		{
-			if($cacheItem == null)
-			{
-				$cacheKey  = $this->cacheKeyPrefix . $menu->getSlug();
-				$cacheItem = $this->cache->getItem($cacheKey);
-			}
+			// get menu from database
+			$menu = $this->em->getRepository(Menu::class)->findOneBy(
+						[
+							'slug' => $slug,
+							'language' => $language,
+							'enabled' => true
+						]
+					);
+
+			if(empty($menu)) return "";
 
 			// get menu html
 			$menuHtml = $this->buildMenuHtml($menu);
 
 			// Save config value in cache
-			$cacheItem->set($menuHtml);
-			$this->cache->save($cacheItem);
+			$this->cache->set($cacheKey, $menuHtml);
 
+			// return menu html
 			return $menuHtml;
 		}
 
@@ -169,5 +135,18 @@
 
 			// get menu html
 			return $this->twig->render($currentThemePath, [ 'menu' => $nestedArray ]);
+		}
+
+		/**
+		 * Get cache key for menu slug
+		 *
+		 * @param 	String 	$slug 		Menu slug
+		 * @param  	String 	$lang 		Menu language
+		 * @return  String 	[type] 		Menu cache key
+		 */
+		private function getCacheKey(String $slug, String $lang)
+		{
+			$suffix = "_" .  $lang . "_menu";
+			return (new CacheHelper())->convertSlugToCacheKey($slug, $suffix);
 		}
 	}
