@@ -2,7 +2,6 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache;
 
-	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
 
 	/**
