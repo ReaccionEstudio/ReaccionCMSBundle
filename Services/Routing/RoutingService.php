@@ -64,7 +64,7 @@
 
 			// Load page by slug or main page if slug is empty
 			$page = (strlen($slug)) 
-					? $this->pageCache->getPageBySlug($slug)
+					? $this->pageCache->getPage($slug)
 					: $this->pageCache->getMainPage();
 
 			if($page)
