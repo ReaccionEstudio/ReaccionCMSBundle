@@ -8,3 +8,7 @@ ul#entries_categories li{
 div#entry_detail{
 	line-height: 30px;	
 }
+
+li a.blog-category-link.active{
+	text-decoration: underline;
+}
