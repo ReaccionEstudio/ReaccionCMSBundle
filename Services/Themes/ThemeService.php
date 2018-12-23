@@ -151,26 +151,72 @@
 			return $path;
 		}
 
+		/** 
+		 * Get theme config parameters
+		 *
+		 * @param  String 	$key 	Config parameter key
+		 * @return String 	[type] 	Config parameter value
+		 */
+		public function getConfig(String $configKey = "")
+		{
+			// get view filename from theme config
+			$themeConfigService = new ThemeConfigService($this->fullTemplatePath);
+			$config = $themeConfigService->getConfig();
+
+			if(empty($configKey)) 
+			{
+				return $config;
+			}
+			else if(strlen($configKey) && isset($config['theme_config'][$configKey]))
+			{
+				return $config['theme_config'][$configKey];
+			}
+		}
+
+		/**
+		 * Get config view parameter value
+		 * 
+		 * @param  String 	$key 								Config parameter key
+		 * @param  Boolean 	$generateRelativeTwigViewPath		Get relative twig view path
+		 * @return String 	$view 								View path
+		 */
+		public function getConfigView(String $key="", Bool $generateRelativeTwigViewPath = false) : String
+		{
+			$view = "";
+			$configViews = $this->getConfig("views");
+
+			if($configViews && strlen($key) && isset($configViews[$key]))
+			{
+				$view = $configViews[$key];
+			}
+
+			if($generateRelativeTwigViewPath == true)
+			{
+				$view = $this->generateRelativeTwigViewPath($view);
+			}
+
+			return $view;
+		}
+
 		/**
 		 * Check if theme view file exists
 		 *
-		 * @param  Page|Entry 	$entity			Current entity
+		 * @param  Page 		$page			Current page entity
 		 * @return Boolean 		true|false		File exists?
 		 */
-		private function viewFileExists($entity) : bool
+		private function viewFileExists(Page $page) : bool
 		{
-			if($entity instanceof Page)
-			{
-				$this->templateView = $entity->getTemplateView();
-			}
-			else if($entity instanceof Entry)
+			if($page->getType() == "entry")
 			{
 				// get view filename from theme config
-				$themeConfigService = new ThemeConfigService($this->fullTemplatePath);
-				$themeConfig = $themeConfigService->getConfig();
+				$view = $this->getConfigView("entry");
 
 				// set templateView value
-				$this->templateView = $themeConfig['theme_config']['views']['entry'] ?? "entry.html.twig";
+				$this->templateView = $view ?? "entry.html.twig";
+			}
+			else
+			{
+				$this->templateView = $page->getTemplateView();
 			}
 
 			// set view file path
