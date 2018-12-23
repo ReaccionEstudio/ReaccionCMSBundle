@@ -54,7 +54,8 @@
             return array(
                 new \Twig_SimpleFunction('getMenuLinkAttrs', array($this, 'getMenuLinkAttrs')),
                 new \Twig_SimpleFunction('isMenuItemRouteActive', array($this, 'isMenuItemRouteActive')),
-                new \Twig_SimpleFunction('printMenu', array($this, 'printMenu'))
+                new \Twig_SimpleFunction('printMenu', array($this, 'printMenu')),
+                new \Twig_SimpleFunction('isBlogActive', array($this, 'isBlogActive'))
             );
         }
 
@@ -72,12 +73,11 @@
         public function getMenuLinkAttrs(Array $menuItem) : String
         {
             $stringAttrs = '';
-            $attrs = ['href' => '#'];
+            $attrs = ['href' => '#', 'data-slug' => $menuItem['value'] ];
 
             if($menuItem['type'] == "page" )
             {
                 $url = $this->generator->generate("index_slug", [ 'slug' => $menuItem['value'] ]);
-                $attrs['data-slug'] = $menuItem['value'];
             }
             elseif($menuItem['type'] == "url")
             {
@@ -120,6 +120,19 @@
                 return true;
             }
 
+            return false;
+        }
+
+        /**
+         * Check if blog route is active
+         *
+         * @return Boolean  true|false  
+         */
+        public function isBlogActive() : Bool
+        {
+            $currentRoute = $this->request->getCurrentRequest()->get('_route');
+
+            if($currentRoute == "blog") return true;
             return false;
         }
 
