@@ -3,15 +3,18 @@
 {% block body %}
 	
 	{% if name is not empty %}
-	<h1>{{ name }}</h1>
+	<h1>
+		<a href="{{ url('blog') }}" title="{{ name }}">{{ name }}</a>
+		{% if currentCategory is defined %}<small>/ {{ currentCategory.name }}</small>{% endif %}
+	</h1>
 	{% endif %}
 	
 	<div class="row pt-3">
 
-		{% if content.entries_list is defined %}
+		{% if entries is defined %}
 		<div class="col-sm-8">
 
-			{% for entry in content.entries_list %}
+			{% for entry in entries %}
 			<div class="row mb-3">
 			  <div class="col-sm-12">
 			    <div class="card">
@@ -32,7 +35,7 @@
 			{% endfor %}
 
 			<!-- pagination -->
-			{{ knp_pagination_render(content.entries_list) }}
+			{{ knp_pagination_render(entries) }}
 			<!-- end pagination -->
 
 		</div>
@@ -40,7 +43,7 @@
 
 		<div class="col-sm-4">
 
-			{% if content.entries_categories %}
+			{% if categories is defined %}
 			<div class="row">
 			  	<div class="col-sm-12">
 			  		<div class="card">
@@ -49,9 +52,9 @@
 				    		<h5>Categories</h5>
 
 				    		<ul id="entries_categories" class="pl-3">
-					    		{% for category in content.entries_categories %}
+					    		{% for category in categories %}
 					    		<li>
-					    			<a href="#" title="{{ category.name }}">{{ category.name }}</a>
+					    			<a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}" class="blog-category-link {% if currentCategory is defined and currentCategory.slug == category.slug %}active{% endif %}">{{ category.name }}</a>
 					    		</li>
 					    		{% endfor %}
 				    		</ul>
