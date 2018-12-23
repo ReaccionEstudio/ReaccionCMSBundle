@@ -67,9 +67,16 @@
          */
         public function getArrayTags($entity) : Array
         {
-            $tags = $entity->getTags();
+            if(method_exists($entity, 'getTags'))
+            {
+                $tags = $entity->getTags();
+            }
+            else if(gettype($entity) == "array")
+            {
+                $tags = $entity['tags'];
+            }
 
-            if(preg_match("/,/", $tags))
+            if( ! empty($tags) && preg_match("/,/", $tags))
             {
                 return explode(",", $this->tags);
             }
