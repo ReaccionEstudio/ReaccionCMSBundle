@@ -1,6 +1,5 @@
 <script type="text/javascript">
   
-  <!-- TODO: create twig method -->
-  var routeSlug = {% if isBlogActive() %}"/blog"{% else %}"{{ app.request.get('slug') }}"{% endif %};
+  var routeSlug = "{{ getActiveRoute(type) }}";
 
 </script>

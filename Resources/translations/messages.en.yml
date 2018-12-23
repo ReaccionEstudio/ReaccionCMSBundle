@@ -1,0 +1,5 @@
+# blog
+blog:
+  read_more: 'Read more'
+  categories: 'Categories'
+  created_at: 'Created at %datetime%'

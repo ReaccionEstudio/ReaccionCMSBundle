@@ -12,7 +12,7 @@
 		- 
 	{% endif %}
 
-	Created at {{ content.entry.value.createdAt | date('d/m/Y H:i:s') }}
+	{{ 'blog.created_at' | trans({ '%datetime%' : content.entry.value.createdAt | date('d/m/Y H:i') }) }}
 	</div>
 	{% endif %} 
 
@@ -22,7 +22,7 @@
 
 	{% if content.entry.value.tags is defined %}
 		{% for tag in getArrayTags(content.entry.value) %}
-			<a href="#" title="{{ tag }}" class="badge badge-secondary">{{ tag }}</a>
+			<a href="#" title="{{ tag }}" class="">#{{ tag }}</a>
 		{% endfor %}
 	{% endif %}
 

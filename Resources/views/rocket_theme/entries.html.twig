@@ -25,7 +25,7 @@
 			        {% if entry.resume is not empty %}
 			        <p class="card-text">
 			        	{{ entry.resume }}
-				        <a href="{{ url('index_slug', { 'slug' : entry.slug }) }}" title="{{ entry.name }}" class="badge badge-secondary ml-1">Read more</a>
+				        <a href="{{ url('index_slug', { 'slug' : entry.slug }) }}" title="{{ 'blog.read_more' | trans }}: {{ entry.name }}" class="badge badge-secondary ml-1">{{ 'blog.read_more' | trans }}</a>
 			        </p>
 			        {% endif %}
 			      </div>
@@ -49,7 +49,7 @@
 			  		<div class="card">
 				    	<div class="card-body">
 
-				    		<h5>Categories</h5>
+				    		<h5>{{ 'blog.categories' | trans }}</h5>
 
 				    		<ul id="entries_categories" class="pl-3">
 					    		{% for category in categories %}
