@@ -23,7 +23,7 @@
 		 */
 		public function __construct()
 		{
-			$this->cache = new ApcuAdapter();
+			$this->cache = new ApcuAdapter('', 0);
 		}
 
 		/**
