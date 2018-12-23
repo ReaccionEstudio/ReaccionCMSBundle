@@ -60,33 +60,23 @@
 		 * Get entries for current page language
 		 *
 		 * @param  String 				$language 	Page language
+		 * @param  Integer 				$page 		Pagination page number
 		 * @return SlidingPagination 	$entries 	All entries
 		 */
-		public function getEntries(String $language = "en") : SlidingPagination
+		public function getEntries(String $language = "en", Int $page = 1) : SlidingPagination
 		{
 			// get entries
-			$entries = $this->em->getRepository(Entry::class)->findBy(
-							[
-								'language' => $language,
-								'enabled' => true
-							],
-							['id' => 'DESC']
-						);
+			$entries = $this->em->getRepository(Entry::class)->getEntries();
 
 			// load pagination limit parameter from config
 			$limit = 	($this->config->get("entries_list_pagination_limit") > 0) 
 						? $this->config->get("entries_list_pagination_limit")
 						: 10;
 
-			// get current page
-			$currentPage =  ($this->request->getCurrentRequest()->get('page'))
-							? $this->request->getCurrentRequest()->get('page')
-							: 1;
-
 			// pagination
 			$entries = $this->paginator->paginate(
 		        $entries,
-		        $currentPage,
+		        $page,
 		        $limit
 		    );
 
@@ -97,9 +87,11 @@
 		 * Get categories for current page language
 		 *
 		 * @param  String 	$language 			Page language
+		 * @param  Array 				$filters 	Custom filters
 		 * @return Array 	$entryCategories 	Entry categories list
 		 */
-		public function getCategories(String $language = "en") : Array
+		// TODO: Add categories to cache storage
+		public function getCategories(String $language = "en", Array $filters = []) : Array
 		{
 			$entryCategories = $this->em->getRepository(EntryCategory::class)->findBy(
 									[
