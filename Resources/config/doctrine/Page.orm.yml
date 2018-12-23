@@ -30,6 +30,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
         type:
             type: string
             length: 255
+            nullable: true
         
         mainPage:
             type: boolean
