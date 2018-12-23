@@ -2,6 +2,13 @@ index:
     path: /
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
 
+blog:
+    path: /blog/{page}
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::index
+    defaults: { page: 1 }
+    requirements:
+      page: \d+
+
 index_slug:
     path: /{slug}
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
