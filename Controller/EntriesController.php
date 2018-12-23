@@ -26,7 +26,8 @@
 						'language' => 'en', 
 						'name' => 'Blog',
 						'entries' => $entries,
-						'categories' => $categories
+						'categories' => $categories,
+						'type' => 'entry'
 					];
 
 			return $this->render($view, $vars);
@@ -73,7 +74,8 @@
 						'name' => 'Blog',
 						'entries' => $entries,
 						'categories' => $categories,
-						'currentCategory' => $currentCategoryEntity
+						'currentCategory' => $currentCategoryEntity,
+						'type' => 'entry'
 					];
 
 			return $this->render($view, $vars);
