@@ -2,12 +2,14 @@
 
 {% block body %}
 	
+	{{dump(content)}}
+
 	{% if name is not empty %}
 	<h1>{{ name }}</h1>
 	<div class="text-muted">
-	{% if content.entry.value.categories is defined %}
+	{% if content.entry.value.categories is defined and content.entry.value.categories is not empty %}
 		{% for category in content.entry.value.categories %}
-			<a href="#" title="{{ category.name }}">{{ category.name }}</a>
+			<a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}">{{ category.name }}</a>
 		{% endfor %}
 		- 
 	{% endif %}
