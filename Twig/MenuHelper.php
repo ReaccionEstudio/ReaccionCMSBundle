@@ -55,10 +55,18 @@
                 new \Twig_SimpleFunction('getMenuLinkAttrs', array($this, 'getMenuLinkAttrs')),
                 new \Twig_SimpleFunction('isMenuItemRouteActive', array($this, 'isMenuItemRouteActive')),
                 new \Twig_SimpleFunction('printMenu', array($this, 'printMenu')),
-                new \Twig_SimpleFunction('isBlogActive', array($this, 'isBlogActive'))
+                new \Twig_SimpleFunction('isBlogActive', array($this, 'isBlogActive')),
+                new \Twig_SimpleFunction('getActiveRoute', array($this, 'getActiveRoute'))
             );
         }
 
+        /**
+         * Print menu HTML
+         *
+         * @param  String   $slug       Menu slug
+         * @param  String   $language   Menu language
+         * @return String   [type]      Menu HTML
+         */
         public function printMenu(String $slug = "navigation", String $language = "en" ) : String
         {
             return $this->menuService->getMenu($slug, $language);
@@ -121,6 +129,24 @@
             }
 
             return false;
+        }
+
+        /**
+         * Get active routeSlug value
+         *
+         * @param  String   $type   Page type
+         * @return String   $slug   Active routeSlug value
+         */
+        public function getActiveRoute(String $type="") : String
+        {
+            $slug = $this->request->getCurrentRequest()->get('slug');
+
+            if($this->isBlogActive() || $type == "entry")
+            {
+                return "/blog";
+            } 
+
+            return $slug;
         }
 
         /**
