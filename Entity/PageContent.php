@@ -2,6 +2,7 @@
 
 namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -150,7 +151,8 @@ class PageContent
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify($slug);
 
         return $this;
     }
