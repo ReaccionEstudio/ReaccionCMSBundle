@@ -144,9 +144,9 @@
             if($this->isBlogActive() || $type == "entry")
             {
                 return "/blog";
-            } 
+            }
 
-            return $slug;
+            return ($slug) ? $slug : "";
         }
 
         /**
