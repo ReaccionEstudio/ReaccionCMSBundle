@@ -62,30 +62,34 @@
 			$viewFile = "";
 			$entry 	  = null;
 
+			// TODO: Create Facade class
+
 			// Load page by slug or main page if slug is empty
 			$page = (strlen($slug)) 
 					? $this->pageCache->getPage($slug)
 					: $this->pageCache->getMainPage();
 
-			if($page)
+			// if page was not found, we check if any entry matches with this slug
+			if( ! $page)
 			{
-				// get page view file
-				$pageEntity = (new Page())->setTemplateView($page['templateView']);
-				$viewFile = $this->theme->getPageViewPath($pageEntity);
+				$page = $this->pageCache->getEntryDetailPage($slug);
+			}
+			
+			// if page was found gets the twig view path
+			if($page)
+			{	
+				$pageEntity = new Page();
+				$pageEntity->setTemplateView($page['templateView']);
+				$pageEntity->setType($page['type']);
+				$viewFile = $this->theme->getPageViewPath($pageEntity);	
 			}
 			else
 			{
-				// it is a entry slug?
-				
-			}
-
-			if( ! $page && $entry == null)
-			{
-				// load 404 error page
+				// if page was not found, shows 404 error page
 				return $this->loadErrorPage(404, $slug);
 			}
 
-			// Load default ReaccionCMS home page
+			// If there isn't a twig view file path, we load the default ReaccionCMS home page
 			if( ! strlen($viewFile) )
 			{
 				$viewFile = "@ReaccionCMSBundle/index.html.twig";
@@ -93,34 +97,6 @@
 			}
 
 			return $this->twig->render($viewFile, $page);
-		}
-
-		/**
-		 * Load entry searching by slug
-		 *
-		 * @param  String 	$slug 			Route slug
-		 * @return Array 	$entryResult 	Found entry entity
-		 */
-		public function loadEntry(String $slug="")
-		{
-			$entryResult = [];
-
-			if(strlen($slug))
-			{
-				$entry = $this->searchEntryBySlug($slug);
-			}
-
-			if($entry !== null)
-			{
-				$templateView = $this->theme->getPageViewPath($entry);
-
-				$entryResult = [
-					'entry' => $entry, 
-					'view'  => $templateView
-				];
-			}
-
-			return $entryResult;
 		}
 
 		/**
@@ -147,21 +123,5 @@
 			}
 
 			return '';
-		}
-
-		/**
-		 * Search entry entity by slug
-		 *
-		 * @param  String 			$slug 	Route slug
-		 * @return Entry | null 	[type] 	Found entry entity
-		 */
-		private function searchEntryBySlug(String $slug)
-		{
-			return $this->em->getRepository(Entry::class)->findOneBy(
-				[
-					'slug' => $slug,
-					'enabled' => true
-				]
-			);
 		}
 	}
