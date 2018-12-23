@@ -89,6 +89,7 @@
 			$entryResume = $this->entry->getResume();
 
 			$this->page->setName($entryName);
+			$this->page->setType("entry");
 			$this->page->setSlug($this->entry->getSlug());
 			$this->page->setSeoTitle($entryName);
 			$this->page->setSeoDescription($entryResume);
