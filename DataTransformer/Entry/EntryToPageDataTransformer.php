@@ -7,6 +7,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry\EntryToPageContentDataTransformer;
 
 	/**
 	 * Transforms an entry entity into a Page entity with the entry as page content
@@ -65,9 +66,12 @@
 		 */
 		private function generatePageContent() : ArrayCollection
 		{
+			// get entry array data
+			$entryArrayData = ( new EntryToPageContentDataTransformer($this->entry) )->getEntryPageContent();
+
 			// create content entity
 			$pageContent = new PageContent();
-			$pageContent->setValue($this->entry);
+			$pageContent->setValue($entryArrayData);
 			$pageContent->setSlug($this->entry->getSlug());
 			$pageContent->setType("entry");
 
