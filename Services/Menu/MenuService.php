@@ -144,7 +144,7 @@
 		 * @param  	String 	$lang 		Menu language
 		 * @return  String 	[type] 		Menu cache key
 		 */
-		private function getCacheKey(String $slug, String $lang)
+		public function getCacheKey(String $slug, String $lang)
 		{
 			$suffix = "_" .  $lang . "_menu";
 			return (new CacheHelper())->convertSlugToCacheKey($slug, $suffix);
