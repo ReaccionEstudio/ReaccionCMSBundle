@@ -2,8 +2,6 @@
 
 {% block body %}
 	
-	{{dump(content)}}
-
 	{% if name is not empty %}
 	<h1>{{ name }}</h1>
 	<div class="text-muted">
@@ -23,11 +21,9 @@
 	{% endif %}
 
 	{% if content.entry.value.tags is defined %}
-		
 		{% for tag in getArrayTags(content.entry.value) %}
 			<a href="#" title="{{ tag }}" class="badge badge-secondary">{{ tag }}</a>
 		{% endfor %}
-
 	{% endif %}
 
 {% endblock %}
