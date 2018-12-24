@@ -1,0 +1,43 @@
+{% extends '@ReaccionCMSBundle/rocket_theme/base.html.twig' %}
+
+{% block body %}
+
+<div class="card col-sm-6 ml-auto mr-auto mt-4 mb-4">
+	<div class="card-body pl-2 pt-4">
+		<h5 class="card-title">{{ 'user_login.signup' | trans }}</h5>
+		<hr />
+
+		{{ form_start(form) }}
+
+			<div class="form-group">
+	        	{{ form_label(form.username) }}
+	        	{{ form_widget(form.username) }}
+	        </div>
+
+	        {% for passwordField in form.password %}
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-6">
+			        	{{ form_label(passwordField) }}
+					</div>
+					<div class="col-sm-6 text-right">
+						{% if passwordField.vars.name == 'first' %}
+			        	<a href="#" class="text-right"><small>{{ 'user_login.forgot_password' | trans }}</small></a>
+			        	{% endif %}
+			        </div>
+		        </div>
+	        	{{ form_widget(passwordField) }}
+	        </div>
+	        {% endfor %}
+
+			<div class="form-group text-center mt-4">
+	        	{{ form_label(form.save) }}
+	        	{{ form_widget(form.save) }}
+	        </div>
+
+		{{ form_end(form) }}
+
+	</div>
+</div>
+
+{% endblock %}

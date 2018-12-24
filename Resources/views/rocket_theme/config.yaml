@@ -15,6 +15,8 @@ theme_config:
     entry: 'entry.html.twig'
     navigation: 'layout/navigation.html.twig'
     menu: 'layout/menu.html.twig'
+    register: 'user/register.html.twig'
+    login: 'user/login.html.twig'
     footer: 'layout/footer.html.twig'
     404_error: '404_error.html.twig'
     500_error: '500_error.html.twig'
