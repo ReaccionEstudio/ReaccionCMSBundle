@@ -17,6 +17,11 @@ blog_category:
     requirements:
       page: \d+
 
+# users
+user_register:
+    path: /register
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::index
+
 # pages
 index_slug:
     path: /{slug}
