@@ -3,3 +3,29 @@ blog:
   read_more: 'Read more'
   categories: 'Categories'
   created_at: 'Created at %datetime%'
+  created_by: 'Created by %username%'
+
+# navigation
+navigation:
+  signup_link: 'Sign up'
+  signin_link: 'Sign in'
+
+# user - login
+user_login:
+  signin: 'Sign in'
+  email: 'Email'
+  username: 'Username'
+  password: 'Password'
+  repeat_password: 'Repeat password'
+  forgot_password: 'Forgot password?'
+  remember_me: 'Remember me'
+  submit_btn: 'Sign in'
+
+user_register:
+  signup: 'Sign up'
+  email: 'Email'
+  username: 'Username'
+  password: 'Password'
+  repeat_password: 'Repeat password'
+  submit_btn: 'Sign up'
+  seo_title: 'Join %sitename%'
