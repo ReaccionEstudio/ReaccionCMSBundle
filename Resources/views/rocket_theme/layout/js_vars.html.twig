@@ -1,5 +1,7 @@
 <script type="text/javascript">
   
-  var routeSlug = "{{ getActiveRoute(type) }}";
+  	{% if type is defined %}
+  	var routeSlug = "{{ getActiveRoute(type) }}";
+  	{% endif %}
 
 </script>
