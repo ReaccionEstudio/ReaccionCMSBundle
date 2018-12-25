@@ -4,6 +4,7 @@
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\Translation\TranslatorInterface;
+	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
 
@@ -22,7 +23,20 @@
 
 			if ($form->isSubmitted() && $form->isValid()) 
 			{
+				$username 	= $form['username']->getData();
+				$email 		= $form['email']->getData();
+				$password 	= $form['password']->getData();
+				
+				// create new user
+				$newUser = $this->get("reaccion_cms.user")->createNewUserIfAvailable($username, $email, $password);
 
+				if($newUser)
+				{
+					// redirect to home page
+					return $this->redirectToRoute("index");
+				}
+				
+				var_dump($newUser);
 			}
 
 			// view
