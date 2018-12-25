@@ -2,6 +2,8 @@
 App\ReaccionEstudio\ReaccionCMSBundle\Entity\User:
     type:  entity
     table: user
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\UserRepository
+    
     id:
         id:
             type: integer
