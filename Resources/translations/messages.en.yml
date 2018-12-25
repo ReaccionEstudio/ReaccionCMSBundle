@@ -29,3 +29,7 @@ user_register:
   repeat_password: 'Repeat password'
   submit_btn: 'Sign up'
   seo_title: 'Join %sitename%'
+
+signup_errors:
+  username_exists: 'Username already exists.'
+  email_exists: 'Email address already exists.'
