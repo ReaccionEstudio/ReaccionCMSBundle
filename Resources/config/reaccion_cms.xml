@@ -14,6 +14,7 @@
         <parameter key="reaccion_cms.cache.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService</parameter>
         <parameter key="reaccion_cms.entry.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService</parameter>
         <parameter key="reaccion_cms.user.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserService</parameter>
+        <parameter key="reaccion_cms.authentication.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
 
     </parameters>
 
@@ -58,6 +59,12 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="translator" />
             <argument type="service" id="session" />
+        </service>
+
+        <service id="reaccion_cms.authentication" class="%reaccion_cms.authentication.class%" public="true">
+            <argument type="service" id="session" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="security.token_storage" />
         </service>
 
     </services>

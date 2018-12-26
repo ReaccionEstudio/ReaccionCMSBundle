@@ -37,7 +37,9 @@ signup:
 
 signin:
   invalid_credentials: 'Username or password is not valid'
-  signin_success: 'Welcome %username%'
+  signin_success: 'Welcome back <strong>%username%</strong>'
+  user_doesnt_exists: "User <strong>%username%</strong> doesn't exists"
+  title: 'Sign-in'
 
 user:
   logout: 'Log out'
