@@ -29,11 +29,17 @@ class EntryRepository extends ServiceEntityRepository
     				->where('e.enabled = 1')
     				->andWhere('e.language = :language');
 
-    	if(isset($filters['categories']))
+        if(isset($filters['categories']))
+        {
+            $qb->innerJoin('e.categories', 'c')
+               ->andWhere('c.slug IN (:categorySlugs)')
+               ->setParameter('categorySlugs', $filters['categories']);
+        }
+
+    	if(isset($filters['tag']))
     	{
-    		$qb->innerJoin('e.categories', 'c')
-           	   ->andWhere('c.slug IN (:categorySlugs)')
-           	   ->setParameter('categorySlugs', $filters['categories']);
+    		$qb->andWhere('e.tags LIKE :tag')
+           	   ->setParameter('tag', '%' . $filters['tag'] . '%');
     	}
 
     	$qb->orderBy('e.id', 'DESC');

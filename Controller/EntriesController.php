@@ -34,7 +34,7 @@
 		}
 
 		/**
-		 * Blog - Category entries list
+		 * Blog - List entries filtering by category
 		 */
 		public function category(Request $request, String $category="", Int $page = 1)
 		{
@@ -75,6 +75,45 @@
 						'entries' => $entries,
 						'categories' => $categories,
 						'currentCategory' => $currentCategoryEntity,
+						'type' => 'entry'
+					];
+
+			return $this->render($view, $vars);
+		}
+
+		/**
+		 * Blog - List entries filtering by tag
+		 */
+		public function tag(Request $request, String $tag="", Int $page = 1)
+		{
+			$currentCategoryEntity = null;
+			$em = $this->getDoctrine()->getManager();
+			$entriesService = $this->get("reaccion_cms.entries");
+			$view = $this->get("reaccion_cms.theme")->getConfigView("entries", true);
+
+			// get categories
+			$categories = $this->get("reaccion_cms.entries")->getCategories();
+
+			// get entries
+			$entriesFilters = ['tag' => $tag ];
+			$entries = $em->getRepository(Entry::class)->getEntries($entriesFilters);
+
+			// entries pagination
+			$paginator = $this->get('knp_paginator');
+		    $entries = $paginator->paginate(
+		        $entries,
+		        $page,
+		        $this->getParameter("pagination_page_limit")
+		    );
+
+			// view vars
+			$vars = [ 
+						'seo' => [], 
+						'language' => 'en', 
+						'name' => 'Blog',
+						'entries' => $entries,
+						'categories' => $categories,
+						'currentTag' => $tag,
 						'type' => 'entry'
 					];
 

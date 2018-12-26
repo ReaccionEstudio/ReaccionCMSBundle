@@ -17,6 +17,13 @@ blog_category:
     requirements:
       page: \d+
 
+blog_tag:
+    path: /blog/tag/{tag}/{page}
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::tag
+    defaults: { page: 1 }
+    requirements:
+      page: \d+
+
 # users
 user_register:
     path: /register
