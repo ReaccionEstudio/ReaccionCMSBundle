@@ -36,23 +36,3 @@
 	    	{% for menu_item in menu %}
 		   		{{ listMenu(menu_item) }}
 	    	{% endfor %}
-
-	    	<!-- if user is not logged -->
-	    	<li class="nav-item dropdown">
-	    		<a href="#" class="nav-link pl-4">|</a>
-	    	</li>
-	    	<li class="nav-item dropdown">
-	    		<a href="{{ url('user_login') }}" title="{{ 'navigation.signin_link' | trans }}" class="nav-link pl-4">{{ 'navigation.signin_link' | trans }}</a>
-	    	</li>
-	    	<li class="nav-item dropdown pl-4" id="signup_link">
-	    		<a href="{{ url('user_register') }}" title="{{ 'navigation.signup_link' | trans }}" class="nav-link btn-sm btn-primary pl-3 pr-3">{{ 'navigation.signup_link' | trans }}</a>
-	    	</li>
-	    	<!-- else -->
-	    		<!-- TODO -->
-	    	<!-- endif -->
-
-	    </ul>
-
-  	</div>
-
-</nav>

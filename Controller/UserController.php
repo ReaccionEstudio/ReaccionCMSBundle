@@ -63,9 +63,9 @@
 		/**
 		 * Login existing user
 		 */
-		// https://ourcodeworld.com/articles/read/459/how-to-authenticate-login-manually-an-user-in-a-controller-with-or-without-fosuserbundle-on-symfony-3
 		public function login(Request $request, TranslatorInterface $translator, EncoderFactoryInterface $encoder)
 		{
+			// TODO: if user is already logged in, redirect to home
 			$seo = ['title' => 'Sign in in {sitename}'];
 
 			// form
@@ -86,19 +86,20 @@
 
     			if($isValidPassword)
     			{
-    				// TODO: not working
     				$session = $this->get('session');
     				$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
     				$this->get('security.token_storage')->setToken($token);
     				$session->set('_security_main', serialize($token));
     				$session->save();
 
-    				$event = new InteractiveLoginEvent($request, $token);
-		            $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+    				$this->addFlash('signin_success', $translator->trans('signin.invalid_credentials'));
+
+    				// redirect to home page
+					return $this->redirectToRoute("index");
   	  			}
     			else
     			{
-    				$this->addFlash('signin_error', $translator->trans('signin_errors.invalid_credentials'));
+    				$this->addFlash('signin_error', $translator->trans('signin.invalid_credentials'));
     			}
 			}
 

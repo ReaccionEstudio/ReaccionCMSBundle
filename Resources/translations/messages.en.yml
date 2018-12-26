@@ -30,9 +30,13 @@ user_register:
   submit_btn: 'Sign up'
   seo_title: 'Join %sitename%'
 
-signup_errors:
+signup:
   username_exists: 'Username already exists.'
   email_exists: 'Email address already exists.'
 
-signin_errors:
+signin:
   invalid_credentials: 'Username or password is not valid'
+  signin_success: 'Welcome %username%'
+
+user:
+  logout: 'Log out'

@@ -3,7 +3,10 @@
   	<h5 class="my-0 mr-md-auto font-weight-normal">{{ getSiteName() }}</h5>
 
   	{% if language is defined %}
+	
 	{{ printMenu('navigation', language) | raw }}
+	{% embed '@ReaccionCMSBundle/rocket_theme/layout/user_menu.html.twig' %}{% endembed %}
+
 	{% endif %}
 
   	<!--<a class="btn btn-outline-primary" href="#">Sign up</a>-->
