@@ -37,12 +37,10 @@
 				// create new user
 				$newUser = $this->get("reaccion_cms.user")->createNewUserIfAvailable($username, $email, $password);
 
-				if($newUser)
+				if($newUser === true)
 				{
 					// sign in new user
-
-					$token = new UsernamePasswordToken($newUser, null, 'main', $newUser->getRoles());
-        			$this->get('security.token_storage')->setToken($token);
+					$this->get("reaccion_cms.authentication")->setUser($newUser)->authenticate(true);
 
 					// redirect to home page
 					return $this->redirectToRoute("index");
@@ -66,7 +64,7 @@
 		public function login(Request $request, TranslatorInterface $translator, EncoderFactoryInterface $encoder)
 		{
 			// TODO: if user is already logged in, redirect to home
-			$seo = ['title' => 'Sign in in {sitename}'];
+			$seo = ['title' => $translator->trans("signin.title") ];
 
 			// form
 			$form = $this->createForm(UserLoginType::class);
@@ -81,26 +79,27 @@
 				$userManager = $this->get('fos_user.user_manager');
 				$user = $userManager->findUserByUsernameOrEmail($username);
 
-				// check credentials
-    			$isValidPassword = $encoder->getEncoder($user)->isPasswordValid($user->getPassword(), $password, $user->getSalt());
+				if( ! empty($user))
+				{
+					// check credentials
+	    			$isValidPassword = $encoder->getEncoder($user)->isPasswordValid($user->getPassword(), $password, $user->getSalt());
 
-    			if($isValidPassword)
-    			{
-    				$session = $this->get('session');
-    				$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-    				$this->get('security.token_storage')->setToken($token);
-    				$session->set('_security_main', serialize($token));
-    				$session->save();
+	    			if($isValidPassword)
+	    			{
+	    				$this->get("reaccion_cms.authentication")->setUser($user)->authenticate(true);
 
-    				$this->addFlash('signin_success', $translator->trans('signin.invalid_credentials'));
-
-    				// redirect to home page
-					return $this->redirectToRoute("index");
-  	  			}
-    			else
-    			{
-    				$this->addFlash('signin_error', $translator->trans('signin.invalid_credentials'));
-    			}
+	    				// redirect to home page
+						return $this->redirectToRoute("index");
+	  	  			}
+	    			else
+	    			{
+	    				$this->addFlash('signin_error', $translator->trans('signin.invalid_credentials'));
+	    			}
+				}
+				else
+				{
+	    			$this->addFlash('signin_error', $translator->trans('signin.user_doesnt_exists', ['%username%' => $username]));
+				}
 			}
 
 			// view
