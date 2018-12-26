@@ -1,0 +1,52 @@
+# config/doctrine/Comment.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
+    type: entity
+    table: comments
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\CommentRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    manyToOne:
+
+        entry:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
+          joinColumn:
+            name: entry_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            nullable: false
+
+        user:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\User
+          joinColumn:
+            name: user_id
+            referencedColumnName: id
+
+        reply:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+          joinColumn:
+            name: parent_id
+            referencedColumnName: id
+            onDelete: CASCADE
+
+
+    fields:
+
+        content:
+            type: text
+         
+        createdAt:
+            type: datetime
+            column: created_at
+         
+        updatedAt:
+            type: datetime
+            column: updated_at
+            nullable: true
+        
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedValue, setUpdatedValue ]
+        preUpdate: [ setUpdatedValue ]
