@@ -17,10 +17,10 @@ nav li.nav-item a.nav-link.active{
 	text-decoration: underline;
 }
 
-nav li#signup_link{
+nav li#signup_link, nav li.blue-btn{
 	margin-top: 3px;
 }
 
-nav li#signup_link a{
-	color: #FFF;
+nav li#signup_link a, nav li.blue-btn a{
+	color: #FFF !important;
 }

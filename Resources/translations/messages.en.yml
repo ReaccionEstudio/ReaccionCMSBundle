@@ -20,6 +20,7 @@ user_login:
   forgot_password: 'Forgot password?'
   remember_me: 'Remember me'
   submit_btn: 'Sign in'
+  create_new_account_link: 'New around here? Sign up'
 
 user_register:
   signup: 'Sign up'
@@ -40,3 +41,4 @@ signin:
 
 user:
   logout: 'Log out'
+  go_to_admin_panel: 'Go to admin panel'
