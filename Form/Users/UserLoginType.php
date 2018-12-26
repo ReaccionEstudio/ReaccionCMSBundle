@@ -21,20 +21,12 @@
 	            	'required' => true,
 	            	'mapped' => false
 	            ])
-	            ->add('password', RepeatedType::class, [
-				    'type' => PasswordType::class,
+	            ->add('password', PasswordType::class, [
+	            	'label' => 'user_login.password',
 				    'invalid_message' => 'users_form.password_not_matching',
-				    'options' => array('attr' => array('class' => 'password-field')),
 				    'required' => true,
-				    'first_options'  => [ 'label' => 'users_form.password' ],
-				    'second_options' => [ 'label' => 'users_form.repeat_password' ],
 				    'mapped' => false
 				])
-	            ->add('remember_me', CheckboxType::class, [
-	            	'label' => 'user_login.remember_me',
-	            	'required' => false,
-	            	'mapped' => false
-	            ])
 				->add('save', SubmitType::class, [
 					'label' => 'user_login.submit_btn',
 					'attr' => ['class' => 'ml-auto mr-auto btn-primary']

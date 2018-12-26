@@ -4,8 +4,12 @@
 
 <div class="card col-sm-6 ml-auto mr-auto mt-4 mb-4">
 	<div class="card-body pl-2 pt-4">
-		<h5 class="card-title">{{ 'user_login.signup' | trans }}</h5>
+		<h5 class="card-title">{{ 'user_login.signin' | trans }}</h5>
 		<hr />
+
+		{% for message in app.session.flashbag.get('signin_error') %}
+		<div class="alert alert-danger">{{ message }}</div>
+		{% endfor %}
 
 		{{ form_start(form) }}
 
@@ -14,21 +18,19 @@
 	        	{{ form_widget(form.username) }}
 	        </div>
 
-	        {% for passwordField in form.password %}
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-6">
-			        	{{ form_label(passwordField) }}
+		        		{{ form_label(form.password) }}
 					</div>
 					<div class="col-sm-6 text-right">
-						{% if passwordField.vars.name == 'first' %}
+						{% if form.password.vars.name == 'first' %}
 			        	<a href="#" class="text-right"><small>{{ 'user_login.forgot_password' | trans }}</small></a>
 			        	{% endif %}
 			        </div>
 		        </div>
-	        	{{ form_widget(passwordField) }}
+	        	{{ form_widget(form.password) }}
 	        </div>
-	        {% endfor %}
 
 			<div class="form-group text-center mt-4">
 	        	{{ form_label(form.save) }}

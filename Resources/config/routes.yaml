@@ -20,7 +20,11 @@ blog_category:
 # users
 user_register:
     path: /register
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::index
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::register
+
+user_login:
+    path: /login
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::login
 
 # pages
 index_slug:

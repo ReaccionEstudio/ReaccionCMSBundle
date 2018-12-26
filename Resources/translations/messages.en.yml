@@ -33,3 +33,6 @@ user_register:
 signup_errors:
   username_exists: 'Username already exists.'
   email_exists: 'Email address already exists.'
+
+signin_errors:
+  invalid_credentials: 'Username or password is not valid'
