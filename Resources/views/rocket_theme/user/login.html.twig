@@ -24,9 +24,7 @@
 		        		{{ form_label(form.password) }}
 					</div>
 					<div class="col-sm-6 text-right">
-						{% if form.password.vars.name == 'first' %}
 			        	<a href="#" class="text-right"><small>{{ 'user_login.forgot_password' | trans }}</small></a>
-			        	{% endif %}
 			        </div>
 		        </div>
 	        	{{ form_widget(form.password) }}
@@ -40,6 +38,11 @@
 		{{ form_end(form) }}
 
 	</div>
+
+</div>
+
+<div class="text-center">
+	<a href="{{ url('user_register') }}">{{ 'user_login.create_new_account_link' | trans }}</a>
 </div>
 
 {% endblock %}
