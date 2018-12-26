@@ -46,6 +46,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
             type: string
             length: 255
 
+        options:
+            type: text
+            nullable: true
+
         seoTitle:
             type: string
             length: 255

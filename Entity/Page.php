@@ -45,6 +45,13 @@ class Page
     private $isEnabled = true;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="options", type="text", nullable=true)
+     */
+    private $options;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
@@ -199,6 +206,26 @@ class Page
     public function setIsEnabled($isEnabled)
     {
         $this->isEnabled = $isEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param string|null $options
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
 
         return $this;
     }
