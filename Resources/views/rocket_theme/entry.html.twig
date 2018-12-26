@@ -22,8 +22,12 @@
 
 	{% if content.entry.value.tags is defined %}
 		{% for tag in getArrayTags(content.entry.value) %}
-			<a href="#" title="{{ tag }}" class="">#{{ tag }}</a>
+			<a href="{{ url('blog_tag', {'tag' : tag }) }}" title="{{ tag }}" class="">#{{ tag }}</a>
 		{% endfor %}
 	{% endif %}
+
+	<!-- comments -->
+	{% embed '@ReaccionCMSBundle/entries/comments/comments.html.twig' %}{% endembed %}
+	<!-- end comments -->
 
 {% endblock %}
