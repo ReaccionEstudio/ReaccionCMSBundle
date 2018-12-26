@@ -44,3 +44,10 @@ signin:
 user:
   logout: 'Log out'
   go_to_admin_panel: 'Go to admin panel'
+
+# entries comments
+entries_comments:
+  post_comment_title: 'Post a comment'
+  publish_btn: 'Publish'
+  write_comment: 'Write your comment here ...'
+  list_title: '%num% comments'
