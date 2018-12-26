@@ -15,13 +15,20 @@
 			{% else %}
 			<!-- user navigation -->
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle pl-4" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ getUserNickname(app.user) }}</a>
+				<a class="nav-link dropdown-toggle pl-4" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img id="user_nav_icon" src="{{ asset('build/images/user_nav_icon.png') }}" />
+				 	{{ getUserNickname(app.user) }}
+				</a>
 				<ul class="dropdown-menu dropdown-menu-right">
 					<li class="nav-item dropdown">
-						<a class="nav-link pl-4" href="{{ url('fos_user_security_logout') }}" title="">{{ 'user.logout' | trans }}</a>
+						<a class="nav-link pl-4" href="#" data-slug="user_preferences">Preferences</a>
+					</li>
+					<hr />
+					<li class="nav-item dropdown">
+						<a class="nav-link pl-4" href="{{ url('logout') }}" title="">{{ 'user.logout' | trans }}</a>
 					</li>
 				</ul>
-			</li>	
+			</li>
 
 			{% if is_granted('ROLE_ADMIN') %}
 			<li class="nav-item dropdown blue-btn ml-3">
