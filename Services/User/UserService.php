@@ -55,12 +55,12 @@
 			{
 				if($username == $userExists['usernameCanonical'])
 				{
-					$this->session->getFlashBag()->add('signup_errors', $this->translator->trans('signup_errors.username_exists'));
+					$this->session->getFlashBag()->add('signup_errors', $this->translator->trans('signup.username_exists'));
 				}
 
 				if($email == $userExists['emailCanonical'])
 				{
-					$this->session->getFlashBag()->add('signup_errors', $this->translator->trans('signup_errors.email_exists'));
+					$this->session->getFlashBag()->add('signup_errors', $this->translator->trans('signup.email_exists'));
 				}
 
 				return false;
