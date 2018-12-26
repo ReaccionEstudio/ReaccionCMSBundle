@@ -49,13 +49,25 @@
 			$this->tokenStorage = $tokenStorage;
 		}
 
+		/**
+		 * Set user entity
+		 *
+		 * @param 	User 					$user 	User entity
+		 * @return 	AuthenticationService	$this 	AuthenticationService class instance
+		 */
 		public function setUser(User $user)
 		{
 			$this->user = $user;
 			return $this;
 		}
 
-		public function authenticate(Bool $flashMessage = false)
+		/**
+		 * Authenticates a user in the system
+		 *
+		 * @param  Boolean 	$flashMessage 	Indicate if flash message has to be generated
+		 * @return void 	[type]
+		 */
+		public function authenticate(Bool $flashMessage = false) : void
 		{
 			if($this->user == null) return;
 
