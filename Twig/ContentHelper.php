@@ -24,7 +24,8 @@
         {
             return array(
                 new \Twig_SimpleFunction('printContent', array($this, 'printContent')),
-                new \Twig_SimpleFunction('getArrayTags', array($this, 'getArrayTags'))
+                new \Twig_SimpleFunction('getArrayTags', array($this, 'getArrayTags')),
+                new \Twig_SimpleFunction('getSerializedVar', array($this, 'getSerializedVar'))
             );
         }
 
@@ -82,6 +83,25 @@
             }
 
             return [ $tags ];
+        }
+
+        /**
+         * Get serialized variable value
+         *
+         * @param  any       $serializedObject   Serialized object
+         * @param  String    $key                Serialized object key
+         * @return any       [type]              Variable value
+         */
+        public function getSerializedVar($serializedObject, String $key)
+        {
+            $unserializedArray = unserialize($serializedObject);
+
+            if(isset($unserializedArray[$key]))
+            {
+                return $unserializedArray[$key];
+            }
+
+            return '';
         }
 
     	public function getName() : String
