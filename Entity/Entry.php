@@ -73,6 +73,13 @@ class Entry
     private $enabled;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="totalComments", type="integer", length=6)
+     */
+    private $totalComments = 0;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -276,6 +283,26 @@ class Entry
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getTotalComments()
+    {
+        return $this->totalComments;
+    }
+
+    /**
+     * @param integer $enabled
+     *
+     * @return self
+     */
+    public function setTotalComments($totalComments)
+    {
+        $this->totalComments = $totalComments;
 
         return $this;
     }

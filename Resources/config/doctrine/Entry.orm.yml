@@ -57,6 +57,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
 
         enabled:
             type: boolean
+
+        totalComments:
+            type: integer
+            length: 6
         
         createdAt:
             type: datetime
