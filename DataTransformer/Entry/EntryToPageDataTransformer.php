@@ -94,6 +94,7 @@
 			$options = [
 				'entry_id' => $this->entry->getId()
 			];
+			$options = serialize($options);
 
 			$this->page->setName($entryName);
 			$this->page->setType("entry");

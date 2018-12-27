@@ -46,7 +46,7 @@ class Comment
     /**
      * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry")
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry", inversedBy="entry")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="entry_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * })
@@ -56,7 +56,7 @@ class Comment
     /**
      * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\User", inversedBy="creatorUser")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -66,7 +66,7 @@ class Comment
     /**
      * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment")
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment", inversedBy="parent")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * })

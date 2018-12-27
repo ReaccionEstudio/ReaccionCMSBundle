@@ -57,11 +57,10 @@
 		/**
 		 * Get comments list
 		 */
-		public function getComments(Entry $entry)
+		public function getComments(Int $entryId) : Array
 		{
 			$page = 1; // TODO: get from query parameter
-			$getCommentsAsArray = new GetCommentsAsArray($this->em, $entry, $page);
-			$comments = $getCommentsAsArray->getComments();
-			var_dump($comments);
+			$getCommentsAsArray = new GetCommentsAsArray($this->em, $entryId, $page);
+			return $getCommentsAsArray->getComments();
 		}
 	}

@@ -58,7 +58,8 @@
 							'description' => $this->page->getSeoDescription(),
 							'keywords' => $this->page->getSeoKeywords()
 						 ],
-				'content' => $contentCollection
+				'content' => $contentCollection,
+				'options' => $this->page->getOptions()
 			];
 
 			return $pageViewVars;
