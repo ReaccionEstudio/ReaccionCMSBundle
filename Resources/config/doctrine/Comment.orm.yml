@@ -13,7 +13,6 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
 
         entry:
           targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
-          inversedBy: entry
           joinColumn:
             name: entry_id
             referencedColumnName: id
@@ -22,14 +21,12 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
 
         user:
           targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\User
-          inversedBy: creatorUser
           joinColumn:
             name: user_id
             referencedColumnName: id
 
         reply:
           targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
-          inversedBy: parent
           joinColumn:
             name: parent_id
             referencedColumnName: id

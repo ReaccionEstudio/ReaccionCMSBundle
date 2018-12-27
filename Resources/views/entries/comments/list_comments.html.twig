@@ -1,6 +1,6 @@
 <div id="list_comments">
 
-	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : 0}) }}</strong></h4>
+	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : getSerializedVar(options, 'totalComments') }) }}</strong></h4>
 
 	<div>
 		{{ dump(comments) }}

@@ -92,7 +92,8 @@
 			$entryName = $this->entry->getName();
 			$entryResume = $this->entry->getResume();
 			$options = [
-				'entry_id' => $this->entry->getId()
+				'entry_id' => $this->entry->getId(),
+				'totalComments' => $this->entry->getTotalComments()
 			];
 			$options = serialize($options);
 
