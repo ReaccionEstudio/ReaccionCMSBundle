@@ -9,6 +9,11 @@
 	use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
+	/**
+	 * Authentication service.
+	 *
+	 * @author Alberto Vian <alberto@reaccionestudio.com>
+	 */
 	class AuthenticationService
 	{
 		/**

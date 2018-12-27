@@ -11,6 +11,7 @@
 		/**
 		 * Blog home - Entries list
 		 */
+		// TODO: generate SEO title
 		public function index(Request $request, Int $page = 1)
 		{
 			$entriesService = $this->get("reaccion_cms.entries");

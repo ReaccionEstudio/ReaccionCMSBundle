@@ -68,6 +68,7 @@
 			$page = (strlen($slug)) 
 					? $this->pageCache->getPage($slug)
 					: $this->pageCache->getMainPage();
+			
 
 			// if page was not found, we check if any entry matches with this slug
 			if( ! $page)

@@ -91,6 +91,9 @@
 		{
 			$entryName = $this->entry->getName();
 			$entryResume = $this->entry->getResume();
+			$options = [
+				'entry_id' => $this->entry->getId()
+			];
 
 			$this->page->setName($entryName);
 			$this->page->setType("entry");
@@ -98,6 +101,7 @@
 			$this->page->setSeoTitle($entryName);
 			$this->page->setSeoDescription($entryResume);
 			$this->page->setSeoKeywords("");
+			$this->page->setOptions($options);
 
 			$pageContentCollection = $this->generatePageContent();
 
