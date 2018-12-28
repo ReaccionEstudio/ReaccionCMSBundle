@@ -18,3 +18,26 @@ div#post_comment_wrapper div.comment_form_footer{
 	padding:8px 10px;
 	text-align:right;
 }
+
+div#list_comments div.entry_comments_list{
+	margin-top:20px;
+}
+
+div#list_comments div.entry_comments_list ul{
+	list-style: none;
+}
+
+div#list_comments div.entry_comments_list li{
+	width: 100%;
+}
+div#list_comments div.entry_comments_list div.comment-wrapper{
+	border:2px solid #DBDFE4;
+	margin-bottom:10px;
+}
+div#list_comments div.entry_comments_list div.comment-header{
+	background-color:#F6F8F9;
+	padding:10px;
+}
+div#list_comments div.entry_comments_list div.comment-body{
+	padding:10px;
+}

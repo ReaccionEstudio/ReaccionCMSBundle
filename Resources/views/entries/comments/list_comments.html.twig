@@ -2,8 +2,48 @@
 
 	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : getSerializedVar(options, 'totalComments') }) }}</strong></h4>
 
-	<div>
-		{{ dump(comments) }}
+	<div class="entry_comments_list">
+
+		<!-- macro definition -->
+		{% macro listComments(comments, comment) %}
+		{% import _self as self %}
+
+			<li>
+
+				<div class="comment-wrapper">
+					<div class="comment-header">
+						<strong>{{ comment.creatorUsername }}</strong> <small>• hace {{ comment.createdAt | date('d/m/Y H:i') }}</small>
+					</div>
+					<div class="comment-body">
+						{{ comment.content }}
+					</div>
+				</div>
+
+				{% set parentId = comment.id %}
+
+			{% if comment.children is defined and comment.children is not empty %}
+
+				<ul>
+                	{% for child in comment.children %}
+                    	{{ self.listComments(comments, child) }}
+                	{% endfor %}
+                </ul>
+
+			{% endif %}
+
+			</li>
+
+		{% endmacro %}
+
+		<!-- run macro -->
+		{% from _self import listComments %}
+
+		<ul class="pl-0">
+		{% for comment in comments %}
+	   		{{ listComments(comments, comment) }}
+    	{% endfor %}
+    	</ul>
+
 	</div>
 
 </div>
