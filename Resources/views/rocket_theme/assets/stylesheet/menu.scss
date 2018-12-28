@@ -29,3 +29,8 @@ nav img#user_nav_icon{
 	height:18px;
 	margin: -3px 5px 0 0;
 }
+
+li.nav-item.dropdown ul.dropdown-menu li.nav-item.dropdown a.nav-link:hover{
+	background-color: #007BFF;
+	color: #FFF;
+}
