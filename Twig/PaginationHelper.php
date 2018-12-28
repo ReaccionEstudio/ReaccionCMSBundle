@@ -34,16 +34,20 @@ class PaginationHelper extends \Twig_Extension
     /**
      * Get pagination data
      *
-     * @return  Array   $pagination     Pagination data
+     * @param   Integer     $total          Total comments
+     * @param   Integer     $page           Current page
+     * @return  Array       $pagination     Pagination data
      */
-    public function paginate($total = 0, $page = null) : Array
+    public function paginate(Int $total = 0, $page = null) : Array
     {
         $pagination = [];
-        $limit  = 1; // TODO: inject parameter in current method
         $page   = ($page == null) ? 1 : $page;
+        $limit  = $this->config->get("entries_comments_pagination_limit");
 
         $totalPages = $total / $limit;
         $totalPages = round($totalPages, 0, PHP_ROUND_HALF_UP);
+
+        if($totalPages == 0) return [];
 
         // previous page button
         if($page > 1)

@@ -4,6 +4,7 @@
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
 	/**
 	 * Convert comments list as array
@@ -41,6 +42,13 @@
 		private $page;
 
 		/**
+		 * @var Config
+		 *
+		 * Config service
+		 */
+		private $config;
+
+		/**
 		 * @var Integer
 		 *
 		 * Page limit
@@ -50,12 +58,13 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Int $entryId, Int $page = 1, Int $limit = 1)
+		public function __construct(EntityManagerInterface $em, Int $entryId, Int $page = 1, ConfigService $config)
 		{
 			$this->em 	 	= $em;
 			$this->page  	= $page;
-			$this->limit  	= $limit;
 			$this->entryId 	= $entryId;
+			$this->config  	= $config;
+			$this->limit  	= $this->config->get("entries_comments_pagination_limit");
 
 			$this->getNestedComments();
 		}
@@ -120,7 +129,6 @@
 		 *
 		 * @return Array  [type]  Query result
 		 */
-		// TODO: add pagination
 		private function getCommentsFromDatabase() : Array
 		{
 			$dql =  "
