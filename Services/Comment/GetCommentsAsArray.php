@@ -41,12 +41,20 @@
 		private $page;
 
 		/**
+		 * @var Integer
+		 *
+		 * Page limit
+		 */
+		private $limit;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Int $entryId, Int $page = 1)
+		public function __construct(EntityManagerInterface $em, Int $entryId, Int $page = 1, Int $limit = 1)
 		{
 			$this->em 	 	= $em;
 			$this->page  	= $page;
+			$this->limit  	= $limit;
 			$this->entryId 	= $entryId;
 
 			$this->getNestedComments();
@@ -137,8 +145,20 @@
 
 			$query = $this->em
 						  ->createQuery($dql)
-						  ->setParameter("entry", $this->entryId);
+						  ->setParameter("entry", $this->entryId)
+						  ->setMaxResults($this->limit)
+        				  ->setFirstResult($this->getQueryOffset());
 
 			return $query->getArrayResult();
+		}
+
+		/**
+		 * Get query offset value
+		 *
+		 * @return Integer [type] Offset value
+		 */
+		private function getQueryOffset() : Int
+		{
+			return ($this->page == 1) ? 0 : ($this->limit * $this->page);
 		}
 	}

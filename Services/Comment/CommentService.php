@@ -3,6 +3,7 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
 	
 	use Doctrine\ORM\EntityManagerInterface;
+	use Symfony\Component\HttpFoundation\RequestStack;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
@@ -38,6 +39,13 @@
 		private $session;
 
 		/**
+		 * @var RequestStack
+		 *
+		 * RequestStack service
+		 */
+		private $request;
+
+		/**
 		 * @var User
 		 *
 		 * User entity
@@ -47,11 +55,12 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator)
+		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request)
 		{
 			$this->em 			= $em;
 			$this->session 		= $session;
 			$this->translator 	= $translator;
+			$this->request 		= $request->getCurrentRequest();
 		}
 
 		/**
@@ -59,7 +68,7 @@
 		 */
 		public function getComments(Int $entryId) : Array
 		{
-			$page = 1; // TODO: get from query parameter
+			$page = ($this->request->query->get('cp')) ?? 1;
 			$getCommentsAsArray = new GetCommentsAsArray($this->em, $entryId, $page);
 			return $getCommentsAsArray->getComments();
 		}
