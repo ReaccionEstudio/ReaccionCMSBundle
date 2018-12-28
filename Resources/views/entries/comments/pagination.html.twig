@@ -8,7 +8,7 @@
 		  	
 		  	{% for pagination in paginationData %}
 		    <li class="page-item {% if pagination.active %}active{% endif %}">
-		    	<a class="page-link" href="?cp={{ pagination.page }}#comments">{{ pagination.label }}</a>
+		    	<a class="page-link" {% if pagination.page is not empty %}href="?cp={{ pagination.page }}#comments"{% else %}href="javascript:void()"{% endif %}>{{ pagination.label }}</a>
 		    </li>
 		    {% endfor %}
 
