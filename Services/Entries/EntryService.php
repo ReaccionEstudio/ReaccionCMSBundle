@@ -4,7 +4,6 @@
 
 	use Knp\Component\Pager\Paginator;
 	use Doctrine\ORM\EntityManagerInterface;
-	use Symfony\Component\HttpFoundation\RequestStack;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory;
@@ -32,13 +31,6 @@
 		private $paginator;
 
 		/**
-		 * @var RequestStack
-		 *
-		 * RequestStack service
-		 */
-		private $request;
-
-		/**
 		 * @var ConfigService
 		 *
 		 * Config service
@@ -48,10 +40,9 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Paginator $paginator, RequestStack $request, ConfigService $config)
+		public function __construct(EntityManagerInterface $em, Paginator $paginator, ConfigService $config)
 		{
 			$this->em 		 = $em;
-			$this->request 	 = $request;
 			$this->paginator = $paginator;
 			$this->config 	 = $config;
 		}
