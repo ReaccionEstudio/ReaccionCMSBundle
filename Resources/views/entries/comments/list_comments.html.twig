@@ -12,11 +12,21 @@
 
 				<div class="comment-wrapper">
 					<div class="comment-header">
-						<strong>{{ comment.creatorUsername }}</strong> <small>• hace {{ comment.createdAt | date('d/m/Y H:i') }}</small>
+						<strong>{% if comment.creatorNickname is not empty %}{{ comment.creatorNickname }}{% else %}{{ comment.creatorUsername }}{% endif %}</strong><small class="ml-1">{{ comment.createdAt | date('d/m/Y H:i') }}</small>
 					</div>
 					<div class="comment-body">
 						{{ comment.content }}
 					</div>
+
+					{% if app.user is not empty %}
+					<div class="comment-footer">
+						<a href="#" class="mr-1">[+] Reply</a>
+						{% if comment.creatorId == app.user.id %}
+						<a href="#" class="ml-2">[x] Remove</a>
+						{% endif %}
+					</div>
+					{% endif %}
+
 				</div>
 
 				{% set parentId = comment.id %}

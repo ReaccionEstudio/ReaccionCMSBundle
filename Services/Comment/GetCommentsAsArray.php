@@ -122,6 +122,7 @@
 					c.createdAt,
 					c.updatedAt,
 					u.username AS creatorUsername,
+					u.id AS creatorId,
 					u.email AS creatorEmail,
 					u.nickname AS creatorNickname,
 					cp.id AS parent_id
