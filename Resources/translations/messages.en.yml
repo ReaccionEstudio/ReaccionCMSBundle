@@ -51,3 +51,8 @@ entries_comments:
   publish_btn: 'Publish'
   write_comment: 'Write your comment here ...'
   list_title: '%num% comments'
+
+# pagination
+pagination:
+  previous: 'Previous'
+  next: 'Next'

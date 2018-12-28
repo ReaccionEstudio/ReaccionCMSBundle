@@ -3,6 +3,7 @@
 namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
+use Symfony\Component\Translation\TranslatorInterface;
 use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
 /**
@@ -17,9 +18,10 @@ class PaginationHelper extends \Twig_Extension
      *
      * @param ConfigService     $config     Configuration service
      */
-    public function __construct(ConfigService $config)
+    public function __construct(ConfigService $config, TranslatorInterface $translator)
     {
-        $this->config = $config;
+        $this->config       = $config;
+        $this->translator   = $translator;
     }
 
 	public function getFunctions()
@@ -47,7 +49,7 @@ class PaginationHelper extends \Twig_Extension
         if($page > 1)
         {
             $pagination[0] = [
-                'label' => 'Previous',
+                'label' => $this->translator->trans('pagination.previous'),
                 'page' => ($page - 1),
                 'active' => false
             ];
@@ -159,7 +161,7 @@ class PaginationHelper extends \Twig_Extension
         if($page < $totalPages)
         {
             $pagination[] = [
-                'label' => 'Next',
+                'label' => $this->translator->trans('pagination.next'),
                 'page' => ($page + 1),
                 'active' => false
             ];
