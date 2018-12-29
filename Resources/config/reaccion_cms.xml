@@ -16,11 +16,13 @@
         <parameter key="reaccion_cms.user.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserService</parameter>
         <parameter key="reaccion_cms.authentication.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
         <parameter key="reaccion_cms.comment.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
+        <parameter key="reaccion_cms.referrer_url_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
 
     </parameters>
 
     <services>
     	
+        <!-- services -->
     	<service id="reaccion_cms.routing" class="%reaccion_cms.routing.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.theme" />
@@ -73,6 +75,11 @@
             <argument type="service" id="translator" />
             <argument type="service" id="request_stack" />
             <argument type="service" id="reaccion_cms.config" />
+        </service>
+
+        <!-- event listeners -->
+        <service id="reaccion_cms.referrer_url_listener" class="%reaccion_cms.referrer_url_listener.class%" public="true">
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
         </service>
 
     </services>
