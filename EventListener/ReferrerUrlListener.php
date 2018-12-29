@@ -15,7 +15,14 @@
 	    	$response = $event->getResponse();
     		$request  = $event->getRequest();
     		
-    		// TODO: Avoid "login" and "register" urls.
+    		// current route
+    		$route  = $request->attributes->get('_route');
+
+    		if($route == "user_login" || $route == "user_register")
+    		{
+    			return;
+    		}
+
     		$cookie   = new Cookie(
     							Cookies::REFERRER_URL_COOKIE_NAME, 
     							$request->getUri()
