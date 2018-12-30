@@ -7,9 +7,7 @@
 		<h5 class="card-title">{{ 'user_register.signup' | trans }}</h5>
 		<hr />
 		
-		{% for message in app.session.flashbag.get('signup_errors') %}
-		<div class="alert alert-danger">{{ message | raw }}</div>
-		{% endfor %}
+		{{ displayFlashMessages(['signup_errors']) | raw }}
 
 		{{ form_start(form) }}
 
