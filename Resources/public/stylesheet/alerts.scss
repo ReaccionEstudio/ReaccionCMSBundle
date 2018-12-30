@@ -5,15 +5,15 @@ div.fixed-alert{
 }
 div.fixed-alert.fade {
     opacity: 0;
-    -webkit-transition: opacity 0.75s linear;
-    -moz-transition: opacity 0.75s linear;
-    -o-transition: opacity 0.75s linear;
-    transition: opacity 0.75s linear;
+    -webkit-transition: opacity 0.5s linear;
+    -moz-transition: opacity 0.5s linear;
+    -o-transition: opacity 0.5s linear;
+    transition: opacity 0.5s linear;
 }
 div.fixed-alert.fade.in {
     opacity: 1;
-    -webkit-transition: opacity 0.75s linear;
-    -moz-transition: opacity 0.75s linear;
-    -o-transition: opacity 0.75s linear;
-    transition: opacity 0.75s linear;
+    -webkit-transition: opacity 0.5s linear;
+    -moz-transition: opacity 0.5s linear;
+    -o-transition: opacity 0.5s linear;
+    transition: opacity 0.5s linear;
 }
