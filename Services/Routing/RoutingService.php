@@ -9,6 +9,8 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageCacheData;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageViewPathAdapter;
 
 	/**
 	 * ReaccionCMSBundle routing service.
@@ -57,39 +59,27 @@
 			$this->cacheService = $cacheService;
 		}
 
-		public function load(String $slug="")
+		/**
+		 * Load route by slug
+		 *
+		 * @param  String 	$slug 	Route slug
+		 * @return String 	[type]  HTML page view to render
+		 */
+		public function load(String $slug="") : String
 		{
-			$viewFile = "";
-			$entry 	  = null;
-
-			// TODO: Create Facade class
-
-			// Load page by slug or main page if slug is empty
-			$page = (strlen($slug)) 
-					? $this->pageCache->getPage($slug)
-					: $this->pageCache->getMainPage();
+			// get page data from cache
+			$routingPageCacheData = new RoutingPageCacheData($slug, $this->pageCache);
+			$page = $routingPageCacheData->getPageCacheData();
 			
-
-			// if page was not found, we check if any entry matches with this slug
 			if( ! $page)
-			{
-				$page = $this->pageCache->getEntryDetailPage($slug);
-			}
-			
-			// if page was found gets the twig view path
-			if($page)
 			{	
-				$pageEntity = new Page();
-				$pageEntity->setTemplateView($page['templateView']);
-				$pageEntity->setType($page['type']);
-				$viewFile = $this->theme->getPageViewPath($pageEntity);	
-			}
-			else
-			{
-				// if page was not found, shows 404 error page
 				return $this->loadErrorPage(404, $slug);
 			}
-
+			
+			// Get Twig view path
+			$pageEntity = ( new RoutingPageViewPathAdapter($page) )->getPageEntity();
+			$viewFile = $this->theme->getPageViewPath($pageEntity);
+			
 			// If there isn't a twig view file path, we load the default ReaccionCMS home page
 			if( ! strlen($viewFile) )
 			{
