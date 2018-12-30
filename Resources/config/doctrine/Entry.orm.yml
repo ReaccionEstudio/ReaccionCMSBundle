@@ -50,6 +50,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
         tags:
             type: string
             length: 255
+            nullable: true
         
         language:
             type: string

@@ -54,7 +54,7 @@ class Entry
     /**
      * @var string
      *
-     * @ORM\Column(name="tags", type="string", length=255)
+     * @ORM\Column(name="tags", type="string", length=255, nullable=true)
      */
     private $tags;
 
@@ -77,7 +77,7 @@ class Entry
      *
      * @ORM\Column(name="totalComments", type="string", length=255, nullable=true)
      */
-    private $totalComments = null;
+    private $totalComments = 'a:3:{s:8:"comments";i:0;s:7:"replies";i:0;s:5:"total";i:0;}';
 
     /**
      * @var \DateTime
@@ -292,11 +292,6 @@ class Entry
      */
     public function getTotalComments()
     {
-        if(empty($this->totalComments)) 
-        {
-            return $this->totalComments;
-        }
-
         return unserialize($this->totalComments);
     }
 
@@ -397,7 +392,6 @@ class Entry
      */
     public function setCreatedValue()
     {
-        $this->setDefaultValues();
         $this->createdAt = new \Datetime();
     }
 
@@ -406,15 +400,6 @@ class Entry
      */
     public function setUpdatedValue()
     {
-        $this->setDefaultValues();
         $this->updatedAt = new \Datetime();
-    }
-
-    private function setDefaultValues()
-    {
-        if(empty($this->totalComments))
-        {
-            $this->setTotalComments(['comments' => 0, 'replies' => 0, 'total' => 0 ]);
-        }
     }
 }
