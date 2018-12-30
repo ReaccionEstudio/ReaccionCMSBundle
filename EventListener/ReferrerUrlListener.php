@@ -2,12 +2,16 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\EventListener;
 
-	use Symfony\Component\HttpFoundation\Cookie;
 	use Symfony\Component\HttpFoundation\Response;
 	use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 	use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
+    /**
+     * Referrer url listener
+     *
+     * @author Alberto Vian <alberto@reaccionestudio.com>
+     */
 	class ReferrerUrlListener
 	{
 	    public function onKernelResponse(FilterResponseEvent $event)
@@ -23,11 +27,13 @@
     			return;
     		}
 
-    		$cookie   = new Cookie(
-    							Cookies::REFERRER_URL_COOKIE_NAME, 
-    							$request->getUri()
-    						);
+    		$url = $request->getUri();
 
-    		$response->headers->setCookie($cookie);
+    		if( preg_match("/_wdt/", $url) || 
+    			preg_match("/assets/", $url) || 
+    			preg_match("/favicon\.ico/", $url)
+    		) return;
+
+    		setcookie(Cookies::REFERRER_URL_COOKIE_NAME, $url, 0, "/");
 	    }
 	}
