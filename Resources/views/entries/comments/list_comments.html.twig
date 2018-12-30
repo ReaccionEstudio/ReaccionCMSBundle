@@ -4,6 +4,8 @@
 
 	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : totalComments }) }}</strong></h4>
 
+	{% if totalComments > 0 %}
+	
 	<div class="entry_comments_list">
 
 		<!-- macro definition -->
@@ -61,5 +63,7 @@
 	<!-- comments pagination -->
 	{% embed '@ReaccionCMSBundle/entries/comments/pagination.html.twig' %}{% endembed %}
 	<!-- end comments pagination -->
+
+	{% endif %}
 
 </div>
