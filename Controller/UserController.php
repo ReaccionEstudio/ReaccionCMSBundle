@@ -6,6 +6,7 @@
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserLoginType;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -63,7 +64,12 @@
 		 */
 		public function login(Request $request, TranslatorInterface $translator, EncoderFactoryInterface $encoder)
 		{
-			// TODO: if user is already logged in, redirect to home
+			// If user is already logged in, redirect to home
+			if( ! empty($this->getUser()) )
+			{
+				return $this->get("reaccion_cms.user")->redirect('login_route_user_already_logged');
+			}
+			
 			$seo = ['title' => $translator->trans("signin.title") ];
 
 			// form
@@ -87,9 +93,7 @@
 	    			if($isValidPassword)
 	    			{
 	    				$this->get("reaccion_cms.authentication")->setUser($user)->authenticate(true);
-
-	    				// redirect to home page
-						return $this->redirectToRoute("index");
+	    				return $this->get("reaccion_cms.user")->redirect('user_login_successful');
 	  	  			}
 	    			else
 	    			{

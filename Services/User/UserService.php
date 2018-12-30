@@ -3,10 +3,18 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\User;
 
 	use Doctrine\ORM\EntityManagerInterface;
+	use Symfony\Bundle\FrameworkBundle\Routing\Router;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\Translation\TranslatorInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserRedirectionEvent;
+	use Symfony\Component\HttpFoundation\RedirectResponse;
 
+	/**
+	 * User service
+     *
+     * @author Alberto Vian <alberto@reaccionestudio.com>
+     */
 	class UserService
 	{
 		/**
@@ -31,13 +39,21 @@
 		private $session;
 
 		/**
+		 * @var Symfony\Bundle\FrameworkBundle\Routing\Router
+		 *
+		 * Router service
+		 */
+		private $router;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, TranslatorInterface $translator, Session $session)
+		public function __construct(EntityManagerInterface $em, TranslatorInterface $translator, Session $session, Router $router)
 		{
 			$this->em = $em;
 			$this->session = $session;
 			$this->translator = $translator;
+			$this->router = $router;
 		}
 
 		/**
@@ -102,5 +118,16 @@
 			}
 
 			return $user;
+		}
+
+		/**
+		 * Redirect user depending on the event
+		 *
+		 * @return RedirectResponse	 [type]  Redirection response
+		 */
+		public function redirect(String $event = '') : RedirectResponse
+		{
+			$userRedirectionEvent = new UserRedirectionEvent($event, $this->router);
+			return $userRedirectionEvent->redirect();
 		}
 	}
