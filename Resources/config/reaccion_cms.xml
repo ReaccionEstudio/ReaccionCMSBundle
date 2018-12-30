@@ -76,6 +76,7 @@
             <argument type="service" id="translator" />
             <argument type="service" id="request_stack" />
             <argument type="service" id="reaccion_cms.config" />
+            <argument type="service" id="reaccion_cms_admin.page_cache_service" />
         </service>
 
         <!-- event listeners -->
