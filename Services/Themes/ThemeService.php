@@ -89,15 +89,13 @@
 		/**
 		 * Get full view path for Page entity
 		 *
-		 * @param  Page|Entry	$entity 	Current Page entity
+		 * @param  Page			$entity 	Current Page entity
 		 * @return String 		[type]		View file path for Twig
 		 */
-		public function getPageViewPath($entity) : String
+		public function getPageViewPath(Page $page) : String
 		{
-			$path = '';
-
 			// check if view file exists
-			if( ! $this->viewFileExists($entity) )
+			if( ! $this->viewFileExists($page) )
 			{
 				// throw exception
 				throw new \Exception('Template file not found in: ' . $this->fullTemplateViewPath);
@@ -135,6 +133,8 @@
 		 */
 		public function generateRelativeTwigViewPath(String $baseFilename) : String
 		{
+			$path = '';
+
 			if($this->currentTheme == self::DEFAULT_CMS_THEME)
 			{
 				$path = self::DEFAULT_CMS_THEMES_TWIG_PATH . "/" . 
