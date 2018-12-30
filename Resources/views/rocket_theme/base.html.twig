@@ -24,6 +24,8 @@
 
     </div>
 
+    {{ displayFlashMessages(['signin_success'], ['fixed-alert']) | raw }}
+
     {% embed '@ReaccionCMSBundle/rocket_theme/layout/js_vars.html.twig' %}{% endembed %}
     <script type="text/javascript" src="{{ asset('build/front_app.js') }}"></script>
 

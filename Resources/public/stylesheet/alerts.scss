@@ -1,0 +1,19 @@
+div.fixed-alert{
+	position: fixed;
+	top: 20px;
+	right: 20px;
+}
+div.fixed-alert.fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.75s linear;
+    -moz-transition: opacity 0.75s linear;
+    -o-transition: opacity 0.75s linear;
+    transition: opacity 0.75s linear;
+}
+div.fixed-alert.fade.in {
+    opacity: 1;
+    -webkit-transition: opacity 0.75s linear;
+    -moz-transition: opacity 0.75s linear;
+    -o-transition: opacity 0.75s linear;
+    transition: opacity 0.75s linear;
+}

@@ -4,6 +4,10 @@ require("../images/user_nav_icon.png");
 require("./bootstrap-4-navbar.js");
 
 import Menu from './Menu.js';
+import FlashMessages from './FlashMessages.js';
 
 let menu = new Menu(routeSlug);
 	menu.events();
+
+let flashMessages = new FlashMessages();
+	flashMessages.events();

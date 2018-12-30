@@ -31,19 +31,27 @@ class FlashMessagesHelper extends \Twig_Extension
     /**
      * Display flash messages
      *
-     * @param  Array    $keys       Flash messages keys to display
-     * @return String   $result     Flash messages in HTML
+     * @param  Array    $keys           Flash messages keys to display
+     * @param  Array    $extraClasses   Extra classes
+     * @return String   $result         Flash messages in HTML
      */
-    public function displayFlashMessages(Array $keys=[]) : String
+    public function displayFlashMessages(Array $keys=[], Array $extraClasses = []) : String
     {
         $flashMessages = $this->session->getFlashBag()->all();
 
         if(empty($flashMessages)) return '';
 
+        if( ! in_array("fixed-alert", $extraClasses))
+        {
+            $extraClasses[] = "show";
+        }
+
+        $extraClassesString = ( ! empty($extraClasses) ) ? implode(" ", $extraClasses) : "";
+
         $success_num = 0;
         $error_num   = 0;
-        $success_div = '<div class="alert alert-success">';
-        $error_div   = '<div class="alert alert-danger">';
+        $success_div = '<div class="alert alert-success alert-dismissible fade ' . $extraClassesString . '">';
+        $error_div   = '<div class="alert alert-danger alert-dismissible fade ' . $extraClassesString . '">';
         $result      = '';
 
         foreach($flashMessages as $key => $message)
@@ -59,13 +67,13 @@ class FlashMessagesHelper extends \Twig_Extension
             }
             else if(preg_match("/error/", $key))
             {
-                $error_div .= "<p>" . $message . "</p>";
+                $error_div .= '<p class="mb-0">' . $message . "</p>";
                 $error_num++;
             }
         }
 
-        $success_div .= '</div>';
-        $error_div .= '</div>';
+        $success_div .= '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button></div>';
+        $error_div .= '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button></div>';
 
         if($error_num > 0)
         {
