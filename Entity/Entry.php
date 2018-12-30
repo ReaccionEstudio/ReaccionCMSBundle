@@ -73,11 +73,11 @@ class Entry
     private $enabled;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="totalComments", type="integer", length=6)
+     * @ORM\Column(name="totalComments", type="string", length=255, nullable=true)
      */
-    private $totalComments = 0;
+    private $totalComments = null;
 
     /**
      * @var \DateTime
@@ -109,7 +109,7 @@ class Entry
      * @ORM\ManyToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory")
      * @ORM\JoinTable(name="entries_rel_categories",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="entry_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="entry_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -292,7 +292,12 @@ class Entry
      */
     public function getTotalComments()
     {
-        return $this->totalComments;
+        if(empty($this->totalComments)) 
+        {
+            return $this->totalComments;
+        }
+
+        return unserialize($this->totalComments);
     }
 
     /**
@@ -302,7 +307,7 @@ class Entry
      */
     public function setTotalComments($totalComments)
     {
-        $this->totalComments = $totalComments;
+        $this->totalComments = serialize($totalComments);
 
         return $this;
     }
@@ -392,6 +397,7 @@ class Entry
      */
     public function setCreatedValue()
     {
+        $this->setDefaultValues();
         $this->createdAt = new \Datetime();
     }
 
@@ -400,6 +406,15 @@ class Entry
      */
     public function setUpdatedValue()
     {
+        $this->setDefaultValues();
         $this->updatedAt = new \Datetime();
+    }
+
+    private function setDefaultValues()
+    {
+        if(empty($this->totalComments))
+        {
+            $this->setTotalComments(['comments' => 0, 'replies' => 0, 'total' => 0 ]);
+        }
     }
 }

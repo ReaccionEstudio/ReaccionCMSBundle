@@ -21,6 +21,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
             joinColumns:
               entry_id:
                 referencedColumnName: id
+                onDelete: CASCADE
             inverseJoinColumns:
               category_id:
                 referencedColumnName: id
@@ -59,8 +60,8 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
             type: boolean
 
         totalComments:
-            type: integer
-            length: 6
+            type: string
+            nullable: true
         
         createdAt:
             type: datetime
