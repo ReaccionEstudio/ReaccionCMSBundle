@@ -45,9 +45,9 @@ class PaginationHelper extends \Twig_Extension
         $limit  = $this->config->get("entries_comments_pagination_limit");
 
         $totalPages = $total / $limit;
-        $totalPages = round($totalPages, 0, PHP_ROUND_HALF_UP);
+        $totalPages = ceil($totalPages);
 
-        if($totalPages == 0) return [];
+        if($totalPages < 2) return [];
 
         // previous page button
         if($page > 1)
@@ -60,14 +60,14 @@ class PaginationHelper extends \Twig_Extension
         }
 
         $middle = $totalPages / 2;
-        $middle = round($middle, 0, PHP_ROUND_HALF_UP);
+        $middle = ceil($middle);
 
         if($page <= $middle)
         {
             if($page <= 3) 
             {
                 $init = 1;
-                $end = 3;
+                $end  = ($totalPages < 3) ? $totalPages : 3;
             }
             else if($page > 3)
             {
@@ -132,8 +132,9 @@ class PaginationHelper extends \Twig_Extension
         else if($page > $middle)
         {
             // numbers on right
-            $init = $page - 1;
-            $end = ($page < $totalPages) ? $page + 1 : $totalPages;
+            $init = ($totalPages > 3) ? ($page - 1) : $page;
+            $end  = ($page < $totalPages) ? $page + 1 : $totalPages;
+
 
             for($i = $init; $i <= $end; $i++)
             {
