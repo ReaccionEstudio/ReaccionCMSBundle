@@ -56,6 +56,44 @@
 
 			$totalComments['total'] = $totalComments['total'] + 1;
 
+			$this->setTotalComments($totalComments);
+		}
+
+		/**
+		 * Decrease comments count
+		 *
+		 * @param  Boolean 	$isReply 	Indicate if it is a comment reply
+		 * @return void 	[type]
+		 */
+		public function decrease(Bool $isReply = false) : void
+		{
+			$totalComments = $this->entry->getTotalComments();
+
+			if($isReply)
+			{
+				$totalComments['replies'] = $totalComments['replies'] - 1;
+				$totalComments['replies'] = ($totalComments['replies'] < 0) ? 0 : $totalComments['replies'];
+			}
+			else
+			{
+				$totalComments['comments'] = $totalComments['comments'] - 1;
+				$totalComments['comments'] = ($totalComments['comments'] < 0) ? 0 : $totalComments['comments'];
+			}
+
+			$totalComments['total'] = $totalComments['total'] - 1;
+			$totalComments['total'] = ($totalComments['total'] < 0) ? 0 : $totalComments['total'];
+
+			$this->setTotalComments($totalComments);
+		}
+
+		/**
+		 * Update entry entity 'totalComments' field value
+		 *
+		 * @param  Array 	$totalComments 		Array with comments data
+		 * @return void 	[type]
+		 */
+		private function setTotalComments(Array $totalComments) : void
+		{
 			try
 			{
 				$this->entry->setTotalComments($totalComments);

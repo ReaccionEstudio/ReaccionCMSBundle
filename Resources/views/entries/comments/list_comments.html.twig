@@ -26,7 +26,7 @@
 					<div class="comment-footer">
 						<a href="#" class="mr-1">[+] Reply</a>
 						{% if comment.creatorId == app.user.id %}
-						<a href="#" class="ml-2 text-danger">[x] Remove</a>
+						<a href="{{ url('remove_comment', { 'comment' : comment.id }) }}" data-remove-comment="true" class="ml-2 text-danger">[x] Remove</a>
 						{% endif %}
 					</div>
 					{% endif %}

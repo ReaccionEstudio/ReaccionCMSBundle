@@ -29,6 +29,10 @@ post_comment:
     path: /entry/{entry}/comment/add
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::post
 
+remove_comment:
+    path: /entry/comment/{comment}/remove
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
+
 # users
 user_register:
     path: /register

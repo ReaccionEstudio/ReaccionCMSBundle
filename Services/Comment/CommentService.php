@@ -93,7 +93,11 @@
 		/**
 		 * Post a new comment
 		 *
-		 *
+		 * @param  Entry 	$entry 		Entry entity
+		 * @param  String 	$comment 	Comment content
+		 * @param  User 	$user 		User entity
+		 * @param  Integer	$replyTo 	Parent comment
+		 * @return Integer 	[type]		Comment entity ID
 		 */
 		public function postComment(Entry $entry, String $comment, $user = null, $replyTo = null) : Int
 		{
@@ -117,7 +121,7 @@
 				$this->em->flush();
 
 				// increase comment count
-				$this->increaseCommentsCount($entry, $replyTo);
+				$this->updateCommentsCount($entry, $replyTo, "+");
 
 				// refresh entry detail page cache
 				$this->pageCacheService->refreshPageCache($entry->getSlug());
@@ -136,16 +140,58 @@
 			}
 		}
 
+		/**
+		 * Remove comment
+		 *
+		 * @param  Comment 	$comment 	Comment entity
+		 */
+		public function removeComment(Comment $comment) : Bool
+		{
+			try
+			{
+				$entry = $comment->getEntry();
+
+				// remove
+				$this->em->remove($comment);
+				$this->em->flush();
+
+				// decrease comment count
+				$this->updateCommentsCount($entry, false, "-");
+
+				// refresh entry detail page cache
+				$this->pageCacheService->refreshPageCache($entry->getSlug());
+
+				// success message
+				$successMssg = $this->translator->trans('entries_comments.comment_removed_successfully');
+				$this->session->getFlashBag()->add('comment_success', $successMssg);
+
+				return true;
+			}
+			catch(\Exception $e)
+			{
+				// TODO: log error
+				return false;
+			}
+		}
+
 		/** 
 		 * Increase 'totalComments' count for Entry entity
 		 *
 		 * @param  Entry 	$entry 		Entry entity
 		 * @return 
 		 */
-		public function increaseCommentsCount(Entry $entry, Bool $isReply = false)
+		public function updateCommentsCount(Entry $entry, Bool $isReply = false, String $operator="+")
 		{
 			$updateEntryCommentsCount = new UpdateEntryCommentsCount($this->em, $entry);
-			$updateEntryCommentsCount->increase($isReply);
+
+			if($operator == "+")
+			{
+				$updateEntryCommentsCount->increase($isReply);
+			}
+			else if($operator == "-")
+			{
+				$updateEntryCommentsCount->decrease($isReply);
+			}
 		}
 
 		/** 
