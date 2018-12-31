@@ -2,7 +2,7 @@
 
 	{% set totalComments = getSerializedVar(options, 'totalComments') %}
 
-	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : totalComments.total }) }}</strong></h4>
+	<h4><strong>{{ 'entries_comments.list_title' | transchoice(totalComments.total, { "%num%" : totalComments.total }) }}</strong></h4>
 
 	{% if totalComments.total > 0 %}
 	
