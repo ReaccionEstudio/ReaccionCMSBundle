@@ -5,9 +5,15 @@ require("./bootstrap-4-navbar.js");
 
 import Menu from './Menu.js';
 import FlashMessages from './FlashMessages.js';
+import Comment from './Comment.js';
+
+// TODO: get current app language
 
 let menu = new Menu(routeSlug);
 	menu.events();
 
 let flashMessages = new FlashMessages();
 	flashMessages.events();
+
+let comment = new Comment();
+	comment.events();
