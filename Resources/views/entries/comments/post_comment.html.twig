@@ -8,8 +8,8 @@
 			{{ displayFlashMessages(['comment_success'], ['mt-4']) | raw }}
 
 			{% if app.user is not empty %}
-			<form id="post_comment" method="post" action="{{ url('post_comment', { 'entry' : content.entry.value.id }) }}">
-				<textarea id="new_comment" name="comment" placeholder="{{ 'entries_comments.write_comment' | trans }}"></textarea>
+			<form id="post_comment_form" class="post_comment" method="post" action="{{ url('post_comment', { 'entry' : content.entry.value.id }) }}">
+				<textarea name="comment" placeholder="{{ 'entries_comments.write_comment' | trans }}"></textarea>
 				<div class="comment_form_footer">
 					<button type="submit" class="btn btn-sm btn-primary">{{ 'entries_comments.publish_btn' | trans }}</button>
 				</div>
