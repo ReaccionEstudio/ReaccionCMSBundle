@@ -1,13 +1,15 @@
-<div id="post_comment_wrapper">
+<div id="post_comment">
 
 	<h4><strong>{{ 'entries_comments.post_comment_title' | trans }}</strong></h4>
 
 	<div class="row justify-content-center">
 		<div class="col-md-10">
 
+			{{ displayFlashMessages(['comment_success'], ['mt-4']) | raw }}
+
 			{% if app.user is not empty %}
-			<form id="post_comment">
-				<textarea id="new_comment" placeholder="{{ 'entries_comments.write_comment' | trans }}"></textarea>
+			<form id="post_comment" method="post" action="{{ url('post_comment', { 'entry' : content.entry.value.id }) }}">
+				<textarea id="new_comment" name="comment" placeholder="{{ 'entries_comments.write_comment' | trans }}"></textarea>
 				<div class="comment_form_footer">
 					<button type="submit" class="btn btn-sm btn-primary">{{ 'entries_comments.publish_btn' | trans }}</button>
 				</div>

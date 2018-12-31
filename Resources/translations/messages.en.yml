@@ -52,6 +52,7 @@ entries_comments:
   write_comment: 'Write your comment here ...'
   list_title: '%num% comments'
   signin_to_comment: 'To post a comment, please <a href="%signin_link%" title="Sign in">sign in</a> or <a href="%signup_link%" title="Sign up">sign up</a>.'
+  comment_posted_successfully: 'Your comment has been posted successfully'
 
 # pagination
 pagination:

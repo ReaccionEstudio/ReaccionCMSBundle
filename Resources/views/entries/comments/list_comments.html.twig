@@ -2,9 +2,9 @@
 
 	{% set totalComments = getSerializedVar(options, 'totalComments') %}
 
-	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : totalComments }) }}</strong></h4>
+	<h4><strong>{{ 'entries_comments.list_title' | trans({'%num%' : totalComments.total }) }}</strong></h4>
 
-	{% if totalComments > 0 %}
+	{% if totalComments.total > 0 %}
 	
 	<div class="entry_comments_list">
 
@@ -14,19 +14,19 @@
 
 			<li>
 
-				<div class="comment-wrapper">
+				<div id="comment_{{ comment.id }}" class="comment-wrapper">
 					<div class="comment-header">
 						<strong>{% if comment.creatorNickname is not empty %}{{ comment.creatorNickname }}{% else %}{{ comment.creatorUsername }}{% endif %}</strong><small class="ml-1">{{ comment.createdAt | date('d/m/Y H:i') }}</small>
 					</div>
 					<div class="comment-body">
-						{{ comment.content }}
+						{{ comment.content | raw }}
 					</div>
 
 					{% if app.user is not empty %}
 					<div class="comment-footer">
 						<a href="#" class="mr-1">[+] Reply</a>
 						{% if comment.creatorId == app.user.id %}
-						<a href="#" class="ml-2">[x] Remove</a>
+						<a href="#" class="ml-2 text-danger">[x] Remove</a>
 						{% endif %}
 					</div>
 					{% endif %}

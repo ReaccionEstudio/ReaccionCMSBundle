@@ -24,6 +24,11 @@ blog_tag:
     requirements:
       page: \d+
 
+# comments
+post_comment:
+    path: /entry/{entry}/comment/add
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::post
+
 # users
 user_register:
     path: /register

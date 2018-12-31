@@ -1,4 +1,4 @@
-{% set paginationData = paginate(totalComments, app.request.query.get("cp")) %}
+{% set paginationData = paginate(totalComments.comments, app.request.query.get("cp")) %}
 
 <div class="row">
 	<div class="col-md-6 ml-auto mr-auto mt-3">

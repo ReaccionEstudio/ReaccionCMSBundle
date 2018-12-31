@@ -20,7 +20,7 @@
 	<div id="entry_detail" class="pt-3">{{ content.entry.value.content | raw }}</div>
 	{% endif %}
 
-	{% if content.entry.value.tags is defined %}
+	{% if content.entry.value.tags is defined and content.entry.value.tags is not empty %}
 		{% for tag in getArrayTags(content.entry.value) %}
 			<a href="{{ url('blog_tag', {'tag' : tag }) }}" title="{{ tag }}" class="">#{{ tag }}</a>
 		{% endfor %}

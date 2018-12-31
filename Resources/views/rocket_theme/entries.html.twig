@@ -5,7 +5,7 @@
 	{% if name is not empty %}
 	<h1>
 		<a href="{{ url('blog') }}" title="{{ name }}">{{ name }}</a>
-		{% if currentCategory is defined %}<small>/ {{ currentCategory.name }}</small>{% endif %}
+		{% if currentCategory is defined and currentCategory is not empty %}<small>/ {{ currentCategory.name }}</small>{% endif %}
 		{% if currentTag is defined %}<small>/ #{{ currentTag }}</small>{% endif %}
 	</h1>
 	{% endif %}
@@ -30,7 +30,7 @@
 			        </p>
 			        {% endif %}
 
-			        {% if entry.tags is defined %}
+			        {% if entry.tags is defined and entry.tags is not empty %}
 						{% for tag in getArrayTags(entry) %}
 							<a href="{{ url('blog_tag', {'tag' : tag }) }}" title="{{ tag }}" class=""><small>#{{ tag }}</small></a>
 						{% endfor %}
@@ -62,7 +62,7 @@
 				    		<ul id="entries_categories" class="pl-3">
 					    		{% for category in categories %}
 					    		<li>
-					    			<a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}" class="blog-category-link {% if currentCategory is defined and currentCategory.slug == category.slug %}active{% endif %}">{{ category.name }}</a>
+					    			<a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}" class="blog-category-link {% if currentCategory is defined and currentCategory is not empty and currentCategory.slug == category.slug %}active{% endif %}">{{ category.name }}</a>
 					    		</li>
 					    		{% endfor %}
 				    		</ul>

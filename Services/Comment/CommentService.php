@@ -10,6 +10,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentSanitizer;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\GetCommentsAsArray;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
@@ -91,11 +92,17 @@
 
 		/**
 		 * Post a new comment
+		 *
+		 *
 		 */
-		public function postComment(Entry $entry, String $comment, $user = null, $replyTo = null)
+		public function postComment(Entry $entry, String $comment, $user = null, $replyTo = null) : Int
 		{
 			try
 			{
+				// sanitize comment
+				$comment = ( new CommentSanitizer($comment) )->getContent();
+
+				// create a new comment entity
 				$commentEntity = new Comment();
 				$commentEntity->setEntry($entry);
 				$commentEntity->setUser($user);
@@ -116,15 +123,16 @@
 				$this->pageCacheService->refreshPageCache($entry->getSlug());
 
 				// success message
-				
+				$successMssg = $this->translator->trans('entries_comments.comment_posted_successfully');
+				$this->session->getFlashBag()->add('comment_success', $successMssg);
 
-				return true;
+				return $commentEntity->getId();
 			}
 			catch(\Exception $e)
 			{
 				// TODO: log error
 				// error message
-				return false;
+				return 0;
 			}
 		}
 

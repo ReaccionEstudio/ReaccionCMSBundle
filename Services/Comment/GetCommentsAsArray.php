@@ -167,6 +167,6 @@
 		 */
 		private function getQueryOffset() : Int
 		{
-			return ($this->page == 1) ? 0 : ($this->limit * $this->page);
+			return $this->limit * ($this->page - 1);
 		}
 	}
