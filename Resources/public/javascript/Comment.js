@@ -1,18 +1,20 @@
+import Translator from './Translator.js';
+
 /**
  * Comment class
  *
  * @author  Alberto Vian - alberto@reaccionestudio.com
  * @website reaccionestudio.com
  */
-
-import Translations from "./translations/Messages.js";
-
 class Comment
 {
 	/**
    	* Constructor
    	*/
-  	constructor(){ }
+  	constructor()
+    {
+      this.translator = new Translator();
+    }
 
   	/**
   	 * Comment events
@@ -27,14 +29,16 @@ class Comment
   	 */
   	_removeCommentClickEvent()
   	{
+      let _self = this;
+
   		$('[data-remove-comment]').on("click", function(e)
   		{
   			e.preventDefault();
 
   			let url = $(this).attr("href");
 
-  			// TODO: get current app language
-  			if(confirm(Translations['en']['remove_comment_confirmation']))
+        // remove_comment_confirmation
+  			if(confirm(_self.translator.trans('remove_comment_confirmation')))
   			{
   				window.location = url;
   			}

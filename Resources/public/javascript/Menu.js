@@ -4,9 +4,6 @@
  * @author  Alberto Vian - alberto@reaccionestudio.com
  * @website reaccionestudio.com
  */
-
-// import CommonFunctions from './CommonFunctions.js';
-
 class Menu
 {
 	/**
