@@ -74,6 +74,16 @@ class Comment
     private $reply;
 
     /**
+     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+     *
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="root_id", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $root;
+
+    /**
      * @ORM\PrePersist
      */
     public function setCreatedValue()
@@ -225,6 +235,26 @@ class Comment
     public function setReply(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $reply)
     {
         $this->reply = $reply;
+
+        return $this;
+    }
+
+    /**
+     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $root
+     *
+     * @return self
+     */
+    public function setRoot(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $root)
+    {
+        $this->root = $root;
 
         return $this;
     }

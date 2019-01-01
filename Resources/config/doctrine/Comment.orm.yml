@@ -32,6 +32,12 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
             referencedColumnName: id
             onDelete: CASCADE
 
+        root:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+          joinColumn:
+            name: root_id
+            referencedColumnName: id
+            onDelete: CASCADE
 
     fields:
 
