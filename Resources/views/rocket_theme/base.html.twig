@@ -14,6 +14,8 @@
 
   <body>
 
+    {{ displayFlashMessages(['signin_success','post_reply_success','remove_comment_success'], ['fixed-alert']) | raw }}
+    
     {% embed '@ReaccionCMSBundle/rocket_theme/layout/navigation.html.twig' %}{% endembed %}
 
     <div class="container pt-3">
@@ -23,8 +25,6 @@
       {% embed '@ReaccionCMSBundle/rocket_theme/layout/footer.html.twig' %}{% endembed %}
 
     </div>
-
-    {{ displayFlashMessages(['signin_success'], ['fixed-alert']) | raw }}
 
     {% embed '@ReaccionCMSBundle/rocket_theme/layout/js_vars.html.twig' %}{% endembed %}
     <script type="text/javascript" src="{{ asset('build/front_app.js') }}"></script>
