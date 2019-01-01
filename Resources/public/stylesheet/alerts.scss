@@ -2,6 +2,11 @@ div.fixed-alert{
 	position: fixed;
 	top: 20px;
 	right: 20px;
+    z-index: 1;
+
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
 }
 div.fixed-alert.fade {
     opacity: 0;
