@@ -53,7 +53,11 @@ entries_comments:
   list_title: '%num% comment|%num% comments'
   signin_to_comment: 'To post a comment, please <a href="%signin_link%" title="Sign in">sign in</a> or <a href="%signup_link%" title="Sign up">sign up</a>.'
   comment_posted_successfully: 'Your comment has been posted successfully'
+  reply_posted_successfully: 'Your reply has been posted successfully'
+  comment_posted_error: '<strong>An error occurred when posting your comment:</strong> %error%'
   comment_removed_successfully: 'Your comment has been removed successfully'
+  comment_removed_error: '<strong>An error occurred when removing your comment:</strong> %error%'
+  comment_updated_successfully: 'Your comment has been updated successfully'
 
 # pagination
 pagination:
