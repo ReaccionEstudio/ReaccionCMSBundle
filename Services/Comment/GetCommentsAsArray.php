@@ -88,7 +88,7 @@
 			$nested   = array();
 
 			// get raw comments
-			$rawComments = $this->getCommentsFromDatabase();
+			$rawComments = $this->getRawComments();
 
 			// store comments where array key is the entry id
 			foreach($rawComments as $comment)
@@ -100,7 +100,7 @@
 			// build nested comments array
 			foreach ( $comments as &$s ) 
 			{
-				if ( is_null($s['parent_id']) ) 
+				if ( ! isset($s['parent_id']) ) 
 				{
 					// no parent_id so we put it in the root of the array
 					$nested[] = &$s;
@@ -124,6 +124,27 @@
 			$this->comments = $nested;
 		}
 
+		/** 
+		 * Get raw comments array with comments and their replies
+		 *
+		 * @return Array 	$rawComments 	Raw comments array
+		 */
+		private function getRawComments() : Array
+		{
+			$rawComments = $this->getCommentsFromDatabase();
+			$replies 	 = $this->getRepliesFromDatabase($rawComments);
+
+			if( ! empty($replies))
+			{
+				foreach($replies as $reply)
+				{
+					$rawComments[] = $reply;
+				}
+			}
+
+			return $rawComments;
+		}
+
 		/**
 		 * Get comments from database (DQL query)
 		 *
@@ -140,14 +161,12 @@
 					u.username AS creatorUsername,
 					u.id AS creatorId,
 					u.email AS creatorEmail,
-					u.nickname AS creatorNickname,
-					cp.id AS parent_id
+					u.nickname AS creatorNickname
 					FROM  App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment c 
 					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
 					WITH c.user = u.id
-					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment cp 
-					WITH c.reply = cp.id 
-					WHERE c.entry = :entry
+					WHERE c.entry = :entry 
+					AND c.reply IS NULL
 					ORDER BY c.id ASC
 					";
 
@@ -156,6 +175,51 @@
 						  ->setParameter("entry", $this->entryId)
 						  ->setMaxResults($this->limit)
         				  ->setFirstResult($this->getQueryOffset());
+
+			return $query->getArrayResult();
+		}
+
+		/**
+		 * Get all comments replies from database
+		 *
+		 * @param  Array 	$rawComments 	Raw comments array
+		 * @return Array 	[type] 			Comments replies array
+		 */
+		private function getRepliesFromDatabase(Array $rawComments) : Array
+		{
+			$rootValues = [];
+
+			foreach($rawComments as $comment)
+			{
+				$rootValues[] = $comment['id'];
+			}
+
+			$dql =  "
+					SELECT 
+					c.id,
+					c.content, 
+					c.createdAt,
+					c.updatedAt,
+					IDENTITY(c.root), 
+					u.username AS creatorUsername,
+					u.id AS creatorId,
+					u.email AS creatorEmail,
+					u.nickname AS creatorNickname, 
+					cp.id AS parent_id
+					FROM  App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment c 
+					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+					WITH c.user = u.id 
+					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment cp 
+					WITH c.reply = cp.id 
+					WHERE c.entry = :entry 
+					AND c.root IN (:rootValues)
+					ORDER BY c.id ASC
+					";
+
+			$query = $this->em
+						  ->createQuery($dql)
+						  ->setParameter("entry", $this->entryId)
+						  ->setParameter("rootValues", $rootValues);
 
 			return $query->getArrayResult();
 		}

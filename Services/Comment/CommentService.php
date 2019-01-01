@@ -123,11 +123,24 @@
 
 				if($replyTo != null)
 				{
+					// set parent
 					$parentCommentEntity = $this->em->getRepository(Comment::class)->findOneBy(['id' => $replyTo]);
 
 					if($parentCommentEntity)
 					{
 						$commentEntity->setReply($parentCommentEntity);
+					}
+
+					// set root value
+					$root = $this->getCommentRoot($commentEntity);
+
+					if($root)
+					{
+						$commentEntity->setRoot($root);
+					}
+					else if( ! $root && $parentCommentEntity)
+					{
+						$commentEntity->setRoot($parentCommentEntity);
 					}
 				}
 
@@ -141,8 +154,16 @@
 				$this->pageCacheService->refreshPageCache($entry->getSlug());
 
 				// success message
-				$successMssg = $this->translator->trans('entries_comments.comment_posted_successfully');
-				$this->session->getFlashBag()->add('comment_success', $successMssg);
+				if($replyTo == null)
+				{
+					$successMssg = $this->translator->trans('entries_comments.comment_posted_successfully');
+					$this->session->getFlashBag()->add('comment_success', $successMssg);
+				}
+				else
+				{
+					$successMssg = $this->translator->trans('entries_comments.reply_posted_successfully');
+					$this->session->getFlashBag()->add('post_reply_success', $successMssg);
+				}
 
 				return $commentEntity->getId();
 			}
@@ -184,7 +205,7 @@
 
 				// success message
 				$successMssg = $this->translator->trans('entries_comments.comment_removed_successfully');
-				$this->session->getFlashBag()->add('comment_success', $successMssg);
+				$this->session->getFlashBag()->add('remove_comment_success', $successMssg);
 
 				return true;
 			}
@@ -250,6 +271,25 @@
 			else if($operator == "-")
 			{
 				$updateEntryCommentsCount->decrease($isReply);
+			}
+		}
+
+		/**
+		 * Get comment root value
+		 *
+		 * @param  Comment 			$comment 	Comment entity
+		 * @return Comment|null 	[type] 		Root comment entity
+		 */
+		public function getCommentRoot(Comment $comment)
+		{
+			if( empty($comment->getReply()) )
+			{
+				return $comment;
+			}
+			else
+			{
+				$reply = $comment->getReply();
+				return $reply->getRoot();
 			}
 		}
 	}

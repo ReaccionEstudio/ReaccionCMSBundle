@@ -1,5 +1,6 @@
 {% set paginationData = paginate(totalComments.comments, app.request.query.get("cp")) %}
 
+{% if paginationData is not empty %}
 <div class="row">
 	<div class="col-md-6 ml-auto mr-auto mt-3">
 
@@ -17,3 +18,4 @@
 
 	</div>
 </div>
+{% endif %}
