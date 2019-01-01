@@ -18,6 +18,8 @@
         <parameter key="reaccion_cms.comment.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
         <parameter key="reaccion_cms.referrer_url_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
 
+        <parameter key="reaccion_cms.logger.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService</parameter>
+
     </parameters>
 
     <services>
@@ -77,6 +79,12 @@
             <argument type="service" id="request_stack" />
             <argument type="service" id="reaccion_cms.config" />
             <argument type="service" id="reaccion_cms_admin.page_cache_service" />
+            <argument type="service" id="reaccion_cms.logger" />
+        </service>
+
+        <service id="reaccion_cms.logger" class="%reaccion_cms.logger.class%" public="true">
+            <argument type="service" id="logger" />
+            <tag name="monolog.logger" channel="reaccion_cms" />
         </service>
 
         <!-- event listeners -->
