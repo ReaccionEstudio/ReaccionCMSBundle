@@ -14,6 +14,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\GetCommentsAsArray;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 
 	/**
 	 * Comments service.
@@ -65,9 +66,16 @@
 		private $user = null;
 
 		/**
+		 * @var LoggerService
+		 *
+		 * Logger service
+		 */
+		private $logger;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request, ConfigService $config, PageCacheService $pageCacheService)
+		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request, ConfigService $config, PageCacheService $pageCacheService, LoggerService $logger)
 		{
 			$this->em 				= $em;
 			$this->session 			= $session;
@@ -75,6 +83,7 @@
 			$this->config 			= $config;
 			$this->request 			= $request->getCurrentRequest();
 			$this->pageCacheService	= $pageCacheService;
+			$this->logger 			= $logger;
 		}
 
 		/**
@@ -99,7 +108,7 @@
 		 * @param  Integer	$replyTo 	Parent comment
 		 * @return Integer 	[type]		Comment entity ID
 		 */
-		public function postComment(Entry $entry, String $comment, $user = null, $replyTo = null) : Int
+		public function post(Entry $entry, String $comment, $user = null, $replyTo = null) : Int
 		{
 			try
 			{
@@ -114,7 +123,12 @@
 
 				if($replyTo != null)
 				{
-					$commentEntity->setReply($replyTo);
+					$parentCommentEntity = $this->em->getRepository(Comment::class)->findOneBy(['id' => $replyTo]);
+
+					if($parentCommentEntity)
+					{
+						$commentEntity->setReply($parentCommentEntity);
+					}
 				}
 
 				$this->em->persist($commentEntity);
@@ -134,8 +148,15 @@
 			}
 			catch(\Exception $e)
 			{
-				// TODO: log error
 				// error message
+				$errorMssg = $this->translator->trans(
+								'entries_comments.comment_posted_error', 
+								['%error%' => $e->getMessage()]
+							);
+				$this->session->getFlashBag()->add('comment_error', $errorMssg);
+
+				// log
+				$this->logger->logException($e);
 				return 0;
 			}
 		}
@@ -145,7 +166,7 @@
 		 *
 		 * @param  Comment 	$comment 	Comment entity
 		 */
-		public function removeComment(Comment $comment) : Bool
+		public function remove(Comment $comment) : Bool
 		{
 			try
 			{
@@ -169,8 +190,46 @@
 			}
 			catch(\Exception $e)
 			{
-				// TODO: log error
+				// error message
+				$errorMssg = $this->translator->trans(
+								'entries_comments.comment_removed_error', 
+								['%error%' => $e->getMessage()]
+							);
+				$this->session->getFlashBag()->add('comment_error', $errorMssg);
+
+				// log error
+				$this->logger->logException($e);
 				return false;
+			}
+		}
+
+		/**
+		 * Update comment
+		 */
+		public function update(Comment $comment, String $content)
+		{
+			try
+			{	
+				$comment->setContent($content);
+
+				// save
+				$this->em->persist($comment);
+				$this->em->flush();
+
+				// success message
+				$successMssg = $this->translator->trans('entries_comments.comment_updated_successfully');
+				$this->session->getFlashBag()->add('comment_success', $successMssg);
+
+				// refresh cache
+				$entry = $comment->getEntry();
+				$this->pageCacheService->refreshPageCache($entry->getSlug());
+
+				return $comment;
+			}
+			catch(\Exception $e)
+			{
+				// log error
+				$this->logger->logException($e);
 			}
 		}
 
@@ -182,7 +241,7 @@
 		 */
 		public function updateCommentsCount(Entry $entry, Bool $isReply = false, String $operator="+")
 		{
-			$updateEntryCommentsCount = new UpdateEntryCommentsCount($this->em, $entry);
+			$updateEntryCommentsCount = new UpdateEntryCommentsCount($this->em, $entry, $this->logger);
 
 			if($operator == "+")
 			{
@@ -192,15 +251,5 @@
 			{
 				$updateEntryCommentsCount->decrease($isReply);
 			}
-		}
-
-		/** 
-		 * Update 'totalComments' field for Entry entity (Executed by CRON)
-		 *
-		 * @return void
-		 */
-		public function updateEntryComments() : void
-		{
-			// TODO ...
 		}
 	}

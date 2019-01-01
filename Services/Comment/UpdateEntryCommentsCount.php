@@ -4,6 +4,7 @@
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 
 	/**
 	 * Update totalComments field value for a entry entity
@@ -27,12 +28,20 @@
 		private $entry;
 
 		/**
+		 * @var LoggerService
+		 *
+		 * Logger service
+		 */
+		private $logger;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Entry $entry)
+		public function __construct(EntityManagerInterface $em, Entry $entry, LoggerService $logger)
 		{
-			$this->em 	 = $em;
-			$this->entry = $entry;
+			$this->em 	  = $em;
+			$this->entry  = $entry;
+			$this->logger = $logger;
 		}
 
 		/**
@@ -103,8 +112,8 @@
 			}
 			catch(\Exception $e)
 			{
-				// TODO: log error
-				
+				// log error
+				$this->logger->logException($e);
 			}
 		}
 	}
