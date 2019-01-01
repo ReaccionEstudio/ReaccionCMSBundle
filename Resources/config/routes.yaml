@@ -29,6 +29,18 @@ post_comment:
     path: /entry/{entry}/comment/add
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::post
 
+post_comment_reply:
+    path: /entry/comment/{comment}/update
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::postReply
+    options:
+        expose: true
+
+update_comment:
+    path: /entry/comment/{comment}/update
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::update
+    options:
+        expose: true
+
 remove_comment:
     path: /entry/comment/{comment}/remove
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
