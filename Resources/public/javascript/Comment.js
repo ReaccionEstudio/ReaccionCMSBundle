@@ -44,6 +44,8 @@ class Comment
 
       $("body").on("click", 'form.reply_form button[type="submit"]', function(e)
       {
+        if( ! $(this).parent().parent().find('textarea').val().length ) return;
+
         let spinnerHtml = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
         $(this).attr("disabled", "disabled");
         $(this).html(spinnerHtml);
