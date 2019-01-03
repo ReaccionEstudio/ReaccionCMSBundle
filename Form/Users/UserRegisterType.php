@@ -32,8 +32,8 @@
 				    'invalid_message' => 'users_form.password_not_matching',
 				    'options' => array('attr' => array('class' => 'password-field')),
 				    'required' => true,
-				    'first_options'  => [ 'label' => 'users_form.password' ],
-				    'second_options' => [ 'label' => 'users_form.repeat_password' ],
+				    'first_options'  => [ 'label' => 'user_register.password' ],
+				    'second_options' => [ 'label' => 'user_register.repeat_password' ],
 				    'mapped' => false
 				])
 				->add('save', SubmitType::class, [
