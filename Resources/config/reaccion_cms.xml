@@ -17,8 +17,9 @@
         <parameter key="reaccion_cms.authentication.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
         <parameter key="reaccion_cms.comment.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
         <parameter key="reaccion_cms.referrer_url_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
-
         <parameter key="reaccion_cms.logger.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService</parameter>
+        <parameter key="reaccion_cms.language.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
+        <parameter key="reaccion_cms.language_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
 
     </parameters>
 
@@ -87,9 +88,19 @@
             <tag name="monolog.logger" channel="reaccion_cms" />
         </service>
 
+        <service id="reaccion_cms.language" class="%reaccion_cms.language.class%" public="true">
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="reaccion_cms.config" />
+            <argument>%locale%</argument>
+        </service>
+
         <!-- event listeners -->
         <service id="reaccion_cms.referrer_url_listener" class="%reaccion_cms.referrer_url_listener.class%" public="true">
             <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
+        </service>
+        <service id="reaccion_cms.language_listener" class="%reaccion_cms.language_listener.class%" public="true">
+            <argument type="service" id="reaccion_cms.language" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="27" />
         </service>
 
     </services>

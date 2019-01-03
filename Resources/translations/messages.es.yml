@@ -1,0 +1,65 @@
+# blog
+blog:
+  read_more: 'Leer más'
+  categories: 'Categorías'
+  created_at: 'Creado el %datetime%'
+  created_by: 'Creado por %username%'
+
+# navigation
+navigation:
+  signup_link: 'Registro'
+  signin_link: 'Acceso'
+
+# user - login
+user_login:
+  signin: 'Sign in'
+  email: 'Email'
+  username: 'Username'
+  password: 'Password'
+  repeat_password: 'Repeat password'
+  forgot_password: 'Forgot password?'
+  remember_me: 'Remember me'
+  submit_btn: 'Sign in'
+  create_new_account_link: 'New around here? Sign up'
+
+user_register:
+  signup: 'Sign up'
+  email: 'Email'
+  username: 'Username'
+  password: 'Password'
+  repeat_password: 'Repeat password'
+  submit_btn: 'Sign up'
+  seo_title: 'Join %sitename%'
+
+signup:
+  username_exists: 'Username already exists.'
+  email_exists: 'Email address already exists.'
+
+signin:
+  invalid_credentials: 'Username or password is not valid'
+  signin_success: 'Welcome back <strong>%username%</strong>'
+  user_doesnt_exists: "User <strong>%username%</strong> doesn't exists"
+  title: 'Sign-in'
+
+user:
+  logout: 'Log out'
+  go_to_admin_panel: 'Go to admin panel'
+
+# entries comments
+entries_comments:
+  post_comment_title: 'Post a comment'
+  publish_btn: 'Publish'
+  write_comment: 'Write your comment here ...'
+  list_title: '%num% comment|%num% comments'
+  signin_to_comment: 'To post a comment, please <a href="%signin_link%" title="Sign in">sign in</a> or <a href="%signup_link%" title="Sign up">sign up</a>.'
+  comment_posted_successfully: 'Your comment has been posted successfully'
+  reply_posted_successfully: 'Your reply has been posted successfully'
+  comment_posted_error: '<strong>An error occurred when posting your comment:</strong> %error%'
+  comment_removed_successfully: 'Your comment has been removed successfully'
+  comment_removed_error: '<strong>An error occurred when removing your comment:</strong> %error%'
+  comment_updated_successfully: 'Your comment has been updated successfully'
+
+# pagination
+pagination:
+  previous: 'Previous'
+  next: 'Next'
