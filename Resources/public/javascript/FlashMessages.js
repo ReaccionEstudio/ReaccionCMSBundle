@@ -32,7 +32,7 @@ class FlashMessages
 			// fadeOut
 			setTimeout(function()
 			{
-				$("div.fixed-alert").removeClass('in');
+				$("div.fixed-alert").removeClass('in').remove();
 			}, 
 			5000);
 		}
