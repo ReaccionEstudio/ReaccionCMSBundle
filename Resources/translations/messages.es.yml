@@ -12,54 +12,54 @@ navigation:
 
 # user - login
 user_login:
-  signin: 'Sign in'
+  signin: 'Acceso'
   email: 'Email'
-  username: 'Username'
-  password: 'Password'
-  repeat_password: 'Repeat password'
-  forgot_password: 'Forgot password?'
-  remember_me: 'Remember me'
-  submit_btn: 'Sign in'
-  create_new_account_link: 'New around here? Sign up'
+  username: 'Usuario o email'
+  password: 'Contraseña'
+  repeat_password: 'Repite la contraseña'
+  forgot_password: '¿Olvidaste tu contraseña?'
+  remember_me: 'Recordarme'
+  submit_btn: 'Acceder'
+  create_new_account_link: '¿Eres nuevo? Regístrate'
 
 user_register:
-  signup: 'Sign up'
+  signup: 'Registro'
   email: 'Email'
-  username: 'Username'
-  password: 'Password'
-  repeat_password: 'Repeat password'
-  submit_btn: 'Sign up'
-  seo_title: 'Join %sitename%'
+  username: 'Usuario'
+  password: 'Contraseña'
+  repeat_password: 'Repite la contraseña'
+  submit_btn: 'Registrarme'
+  seo_title: 'Únete a %sitename%'
 
 signup:
-  username_exists: 'Username already exists.'
-  email_exists: 'Email address already exists.'
+  username_exists: 'El nombre de usuario ya existe.'
+  email_exists: 'La dirección de email ya existe.'
 
 signin:
-  invalid_credentials: 'Username or password is not valid'
-  signin_success: 'Welcome back <strong>%username%</strong>'
-  user_doesnt_exists: "User <strong>%username%</strong> doesn't exists"
-  title: 'Sign-in'
+  invalid_credentials: 'El usuario o la contraseña no es válido/a'
+  signin_success: 'Bienvenido de nuevo <strong>%username%</strong>'
+  user_doesnt_exists: "El usuario <strong>%username%</strong> no existe"
+  title: 'Registro'
 
 user:
-  logout: 'Log out'
-  go_to_admin_panel: 'Go to admin panel'
+  logout: 'Salir'
+  go_to_admin_panel: 'Ir al panel de administración'
 
 # entries comments
 entries_comments:
-  post_comment_title: 'Post a comment'
-  publish_btn: 'Publish'
-  write_comment: 'Write your comment here ...'
-  list_title: '%num% comment|%num% comments'
-  signin_to_comment: 'To post a comment, please <a href="%signin_link%" title="Sign in">sign in</a> or <a href="%signup_link%" title="Sign up">sign up</a>.'
-  comment_posted_successfully: 'Your comment has been posted successfully'
-  reply_posted_successfully: 'Your reply has been posted successfully'
-  comment_posted_error: '<strong>An error occurred when posting your comment:</strong> %error%'
-  comment_removed_successfully: 'Your comment has been removed successfully'
-  comment_removed_error: '<strong>An error occurred when removing your comment:</strong> %error%'
-  comment_updated_successfully: 'Your comment has been updated successfully'
+  post_comment_title: 'Escribir un comentario'
+  publish_btn: 'Publicar'
+  write_comment: 'Escribe aquí tu comentario ...'
+  list_title: '%num% comentario|%num% comentarios'
+  signin_to_comment: 'Para escribir un comentario, por favor <a href="%signin_link%" title="Identifícate">identifícate</a> o <a href="%signup_link%" title="Sign up">crea una cuenta de usuario</a>.'
+  comment_posted_successfully: 'Tu comentario se ha publicado correctamente'
+  reply_posted_successfully: 'Tu respuesta se ha publicado correctamente'
+  comment_posted_error: '<strong>Ha ocurrido un error al publicar tu comentario:</strong> %error%'
+  comment_removed_successfully: 'Tu comentario se ha eliminado correctamente'
+  comment_removed_error: '<strong>Ha ocurrido un error al eliminar tu comentario:</strong> %error%'
+  comment_updated_successfully: 'Tu comentario se ha actualizado correctamente'
 
 # pagination
 pagination:
-  previous: 'Previous'
-  next: 'Next'
+  previous: 'Anterior'
+  next: 'Siguiente'
