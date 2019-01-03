@@ -21,6 +21,9 @@
 	    public function onKernelRequest(GetResponseEvent $event)
 	    {
     		$request  = $event->getRequest();
+            $route = $request->get('_route');
+
+            if( ! preg_match("/reaccion_cms_admin_/", $route) ) return;
 
             // get locale
             $locale = $this->language->getLanguage();
