@@ -137,7 +137,7 @@
          * @param  String   $type   Page type
          * @return String   $slug   Active routeSlug value
          */
-        public function getActiveRoute(String $type="") : String
+        public function getActiveRoute($type="") : String
         {
             $slug = $this->request->getCurrentRequest()->get('slug');
 
