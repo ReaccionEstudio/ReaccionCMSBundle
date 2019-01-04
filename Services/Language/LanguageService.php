@@ -2,10 +2,11 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
+	use Symfony\Component\HttpFoundation\Session\Session;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
-	use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 	/**
 	 * Language service.
@@ -19,7 +20,7 @@
 		 *
 		 * User entity
 		 */
-		private $user;
+		private $user = null;
 
 		/**
 		 * @var ConfigService
@@ -29,11 +30,11 @@
 		private $config;
 
 		/**
-		 * @var TokenStorage
+		 * @var Session
 		 *
-		 * Token storage service
+		 * Session
 		 */
-		private $token_storage;
+		private $session;
 
 		/**
 		 * @var String
@@ -45,12 +46,11 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(TokenStorage $token_storage, ConfigService $config, String $defaultLanguage)
+		public function __construct(Session $session, ConfigService $config, String $defaultLanguage)
 		{
-			$this->token_storage = $token_storage;
-			$this->config 		 = $config;
-			$this->user 		 = $this->getUser();
-			$this->language 	 = $defaultLanguage;
+			$this->session 	= $session;
+			$this->config 	= $config;
+			$this->language = $defaultLanguage;
 		}
 
 		/**
@@ -60,6 +60,8 @@
 		 */
 		public function getLanguage() : String
 		{
+			$this->setCurrentUserTokenLanguage();
+
 			$language = ( new LanguageFacade($this->user, $this->config) )->getLanguage();
 
 			if($language && in_array($language, Languages::LANGUAGES))
@@ -71,23 +73,37 @@
 		}
 
 		/**
-	     * Get a user from the Security Token Storage.
-	     *
-	     * @return mixed
-	     * @see TokenInterface::getUser()
-	     */
-	    private function getUser()
-	    {
-	        if (null === $token = $this->token_storage->getToken()) 
-	        {
-	            return;
-	        }
+		 * Set current user language from user token
+		 */
+		private function setCurrentUserTokenLanguage() : void
+		{
+			$userLanguage 		 = null;
+			$serializedUserToken = $this->session->get("_security_main");
+			$unserializedToken   = unserialize($serializedUserToken);
 
-	        if ( ! is_object($user = $token->getUser()))
-	        {
-	            return;
-	        }
+			if($unserializedToken)
+			{
+				$this->user = $unserializedToken->getUser();
+				$tokenAttrs = $unserializedToken->getAttributes();
+				
+				if(isset($tokenAttrs['userLanguage']))
+				{
+					$userLanguage = $tokenAttrs['userLanguage'];
+				}
+			}
 
-	        return $user;
-	    }
+			$this->user->setLanguage($userLanguage);
+		}
+
+	    /**
+		 * Set user entity
+		 *
+		 * @param  User 	$user 	User entity
+		 * @return self
+		 */
+		public function setUser(User $user) : self
+		{
+			$this->user = $user;
+			return $this;
+		}
 	}

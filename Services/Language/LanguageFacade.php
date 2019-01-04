@@ -44,7 +44,7 @@
 		{
 			$this->language = $this->getUserLanguage();
 
-			if($this->language == '')
+			if($this->language == '' || $this->language == null)
 			{
 				$this->language = $this->getCookieLanguage();
 			}
@@ -64,7 +64,7 @@
 		 */
 		private function getUserLanguage() : String
 		{
-			if($this->user)
+			if($this->user && $this->user->getLanguage())
 			{
 				return $this->user->getLanguage();
 			}

@@ -89,7 +89,7 @@
         </service>
 
         <service id="reaccion_cms.language" class="%reaccion_cms.language.class%" public="true">
-            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="session" />
             <argument type="service" id="reaccion_cms.config" />
             <argument>%locale%</argument>
         </service>
