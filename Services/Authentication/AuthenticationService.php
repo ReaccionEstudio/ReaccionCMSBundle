@@ -78,6 +78,10 @@
 
 			$token = new UsernamePasswordToken($this->user, null, 'main', $this->user->getRoles());
 			$this->tokenStorage->setToken($token);
+
+			// set user language as token attribute
+			$token->setAttributes([ 'userLanguage' => $this->user->getLanguage() ]);
+
 			$this->session->set('_security_main', serialize($token));
 			$this->session->save();
 
