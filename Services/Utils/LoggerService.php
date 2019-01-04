@@ -2,21 +2,21 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils;
 
-	use Symfony\Bridge\Monolog\Logger;
+	use Psr\Log\LoggerInterface;
 
 	class LoggerService
 	{
 		/**
-		 * @var Logger
+		 * @var LoggerInterface
 		 *
-		 * Monolog logger
+		 * Logger
 		 */
 		private $monolog;
 
 		/**
 		 * Constructor
 		 */
-		public function __construct(Logger $monolog)
+		public function __construct(LoggerInterface $monolog)
 		{
 			$this->monolog = $monolog;
 		}
@@ -33,5 +33,16 @@
 					 ". [TRACE] " . $exception->getTraceAsString();
 					 
 			$this->monolog->addError($message);
+		}
+
+		/**
+ 		 * Add info message to current log
+ 		 *
+ 		 * @param  String 	$message 	Log message
+ 		 * @return void 	[type]
+		 */
+		public function addInfo(String $message)
+		{
+			$this->monolog->addInfo($message);
 		}
 	}
