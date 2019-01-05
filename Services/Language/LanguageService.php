@@ -92,7 +92,10 @@
 				}
 			}
 
-			$this->user->setLanguage($userLanguage);
+			if($this->user != null)
+			{
+				$this->user->setLanguage($userLanguage);
+			}
 		}
 
 	    /**
