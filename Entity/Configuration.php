@@ -57,6 +57,13 @@ class Configuration
     private $value_options;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="groups", type="text", nullable=true)
+     */
+    private $groups;
+
+    /**
      * @return int
      */
     public function getId()
@@ -172,6 +179,26 @@ class Configuration
     public function setValueOptions($value_options)
     {
         $this->value_options = $value_options;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param string|null $groups
+     *
+     * @return self
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
 
         return $this;
     }
