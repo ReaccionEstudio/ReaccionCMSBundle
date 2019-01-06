@@ -39,15 +39,16 @@
 		/**
 		 * Get configuration value
 		 *
-		 * @param String 	$key 	Configuration entity name
-		 * @param String 	[type] 	Configuration entity value
+		 * @param String 	$key 			Configuration entity name
+		 * @param String 	$loadFromCache 	Indicates if the config entity has to be loaded from cache
+		 * @param String 	[type] 			Configuration entity value
 		 */
-		public function get(String $key) :  String
+		public function get(String $key, Bool $loadFromCache = true) :  String
 		{
 			$cacheKey 	= "config." . $key;
 			$cachedItem = $this->cache->getItem($cacheKey);
 
-			if($cachedItem->isHit())
+			if($loadFromCache && $cachedItem->isHit())
 			{
 				// key is cached
 				$keyValue = $cachedItem->get();
@@ -57,7 +58,7 @@
 				// generate cache
 				$keyValue = $this->getConfigFromDatabase($key);
 
-				if(strlen($keyValue))
+				if(strlen($keyValue) && $loadFromCache)
 				{
 					// Save config value in cache
 					$cachedItem->set($keyValue);
