@@ -25,11 +25,12 @@
 		 * Add exception log
 		 *
 		 * @param  Exception 	$exception 	 Exception object
+		 * @param  String 		$message 	 Initial log message
 		 * @return void 		[type]
 		 */
-		public function logException(\Exception $exception)
+		public function logException(\Exception $exception, String $message = "" )
 		{
-			$message = "[ERROR] " . $exception->getMessage() . 
+			$message .= " [ERROR] " . $exception->getMessage() . 
 					 ". [TRACE] " . $exception->getTraceAsString();
 					 
 			$this->monolog->addError($message);
