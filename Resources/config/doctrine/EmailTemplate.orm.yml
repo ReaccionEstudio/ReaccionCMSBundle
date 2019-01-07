@@ -1,0 +1,68 @@
+# config/doctrine/EmailTemplate.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate:
+    type: entity
+    table: email_templates
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\EmailTemplateRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        
+        name:
+            type: string
+            length: 255
+        
+        type:
+            type: string
+            length: 255
+            nullable: true
+        
+        slug:
+            type: string
+            length: 255
+
+        message:
+            type: text
+
+        subject:
+            type: string
+            length: 255
+            nullable: true
+
+        fromname:
+            type: string
+            length: 255
+
+        fromemail:
+            type: string
+            length: 255
+            nullable: true
+        
+        language:
+            type: string
+            length: 4
+            nullable: true
+
+        templateFile:
+            type: string
+            length: 255
+            nullable: true
+
+        plainText:
+            type: boolean
+
+        enabled:
+            type: boolean
+        
+        createdAt:
+            type: datetime
+
+        updatedAt:
+            type: datetime
+            nullable: true
+
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedValue ]
+        preUpdate: [ setUpdatedValue ]
