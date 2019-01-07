@@ -70,6 +70,25 @@
 		}
 
 		/**
+		 * Get configuration entity
+		 *
+		 * @param  String 			$key 			Configuration entity name
+		 * @return Configuration 	[type] 			Configuration entity
+		 */
+		public function getEntity(String $key) : Configuration
+		{
+			try
+			{
+				return $this->em->getRepository(Configuration::class)->findOneBy([ 'name' => $key ]);
+			}
+			catch(\Exception $e)
+			{
+				// TODO: log error
+				return new Configuration();
+			}
+		}
+
+		/**
 		 * Get config parameter from database
 		 *
 		 * @param String 	$key 	Configuration entity name
