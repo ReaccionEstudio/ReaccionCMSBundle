@@ -15,5 +15,6 @@ INSERT INTO config (name,value,type,required, groups) VALUES
 	('mailer_port', 25,'number',1, 'mailer'),
 	('mailer_username', '','text',1, 'mailer'),
 	('mailer_password', '','password',1, 'mailer'),
-	('mailer_authentication', '','text',1, 'mailer')
+	('mailer_authentication', '','text',1, 'mailer'),
+	('email_templates_path', 'templates/ReaccionCMSBundle/emailTemplates/','text',1, null)
 ;
