@@ -111,6 +111,18 @@
 		}
 
 		/**
+		 * Send email using a defined email
+		 * 
+		 * @param  String 	$slug 				Email slug
+		 * @param  Array 	$messageParams 		Parameters to be replaced in the email message
+		 * @return Boolean 	$result  			Email sent result
+		 */
+		public function sendTemplate(String $slug, Array $messageParams = []) : Bool
+		{
+			
+		}
+
+		/**
 		 * Send test email
 		 *
 		 * @return Boolean 	true|false
