@@ -2,7 +2,9 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils;
 
+	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\Session\Session;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
@@ -72,13 +74,21 @@
 		private $password;
 
 		/**
+		 * @var EntityManagerInterface
+		 *
+		 * EntityManagerInterface
+		 */
+		private $em;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger, ConfigService $config, Session $session)
+		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em)
 		{
-			$this->logger  = $logger;
-			$this->config  = $config;
-			$this->session = $session;
+			$this->logger   = $logger;
+			$this->config   = $config;
+			$this->session  = $session;
+			$this->em 		= $em;
 		}
 
 		/**
@@ -134,20 +144,27 @@
 				$this->getSmtpTransport();
 
 				$subject = 'ReaccionCMS test email';
-				$to = ['alberto@reaccionestudio.com'];
 
-				// TODO: get admin emails.
-				$message = (new \Swift_Message($subject))
-						  ->setFrom([ $this->username => 'ReaccionCMS'])
-						  ->setTo($to)
-						  ->setBody('Your email settings were saved correctly!', 'text/html');
+				// Get all administrators emails
+				$adminEmails = $this->em->getRepository(User::class)->getAdminEmailAdresses();
 
-				$result = $this->mailer->send($message);
-
-				// log email result
-				if($result)
+				foreach($adminEmails as $email)
 				{
-					$this->logger->addInfo("Test email sent to: " . implode(", ", $to) . " with subject: " . $subject);
+					$username = $email['nickname'] ?? $email['username'];
+					$to = [ $email['email'] => $username ];
+					
+					$message = (new \Swift_Message($subject))
+							  ->setFrom([ $this->username => 'ReaccionCMS'])
+							  ->setTo($to)
+							  ->setBody('Your email settings were saved correctly!', 'text/html');
+
+					$result = $this->mailer->send($message);
+
+					// log email result
+					if($result)
+					{
+						$this->logger->addInfo("Test email sent to: " . implode(", ", $to) . " with subject: " . $subject);
+					}
 				}
 
 				return $result;

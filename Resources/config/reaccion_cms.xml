@@ -104,6 +104,7 @@
             <argument type="service" id="reaccion_cms.mailer_logger" />
             <argument type="service" id="reaccion_cms.config" />
             <argument type="service" id="session" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
         <!-- event listeners -->

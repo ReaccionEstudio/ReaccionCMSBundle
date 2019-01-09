@@ -41,4 +41,26 @@ class UserRepository extends ServiceEntityRepository
 
     	return $query->getSingleResult();
     }
+
+    /**
+     * Get admin email addresses
+     *
+     * @return  Array   [type]      Admin emails
+     */
+    public function getAdminEmailAdresses()
+    {
+        $em = $this->getEntityManager();
+
+        $dql = "SELECT 
+                u.username, 
+                u.nickname, 
+                u.email 
+                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+                WHERE u.enabled = 1 
+                AND u.roles LIKE '%\"ROLE_ADMIN\"%'";
+
+        $query = $em->createQuery($dql);
+
+        return $query->getResult();
+    }
 }
