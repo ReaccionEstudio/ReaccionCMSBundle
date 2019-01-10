@@ -55,6 +55,10 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate:
 
         enabled:
             type: boolean
+
+        messageParams:
+            type: text
+            nullable: true
         
         createdAt:
             type: datetime

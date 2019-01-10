@@ -51,6 +51,13 @@ class EmailTemplate
     private $message;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="messageParams", type="text")
+     */
+    private $messageParams;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="subject", type="string", length=255, nullable=true)
@@ -209,6 +216,26 @@ class EmailTemplate
     public function setMessage($message)
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageParams()
+    {
+        return $this->messageParams;
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return self
+     */
+    public function setMessageParams($messageParams)
+    {
+        $this->messageParams = $messageParams;
 
         return $this;
     }
