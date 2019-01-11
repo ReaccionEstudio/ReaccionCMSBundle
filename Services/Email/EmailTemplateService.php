@@ -37,6 +37,13 @@
 		private $emailTemplateData = [];
 
 		/**
+		 * @var Array
+		 *
+		 * Email Custom params
+		 */
+		private $customParams = [];
+
+		/**
 		 * @var String
 		 *
 		 * Email body HTML
@@ -112,41 +119,43 @@
 				return $this;
 			}
 
+			// Generate email view vars
+			$this->generateEmailViewVars($emailTemplateEntity);
+
+			// Email template data
 			$this->emailTemplateData = [
 				'name' => $emailTemplateEntity->getName(),
-				'message' => $emailTemplateEntity->getMessage(),
 				'subject' => $emailTemplateEntity->getSubject(),
 				'fromname' => $emailTemplateEntity->getFromname(),
 				'fromemail' => $emailTemplateEntity->getFromemail(),
 				'template_file' => $emailTemplateEntity->getTemplateFile(),
 				'plain_text' => $emailTemplateEntity->isPlainText(),
-				'enabled' => $emailTemplateEntity->isEnabled(),
-				'custom_params' => json_decode($emailTemplateEntity->getMessageParams(), true)
+				'enabled' => $emailTemplateEntity->isEnabled()
 			];
 
-			$this->generateEmailHtml();
+			$this->bodyHtml = $this->getTemplateFileHtml($this->emailTemplateData['template_file']);
 
 			return $this;
 		}
 
 		/**
-		 * Generate email body HTML
+		 * Generate email view vars
 		 */
-		private function generateEmailHtml() : void
+		private function generateEmailViewVars(EmailTemplate $emailTemplateEntity) : void
 		{
-			$emailFileHtml = $this->getTemplateFileHtml($this->emailTemplateData['template_file']);
+			// custom params
+			$customParams = json_decode($emailTemplateEntity->getMessageParams(), true);
 
-			if( ! empty($this->emailTemplateData['custom_params']))
+			if( ! empty($customParams))
 			{
-				foreach($this->emailTemplateData['custom_params'] as $param)
+				foreach($customParams as $param)
 				{
-					if( ! preg_match("/" . $param['name'] . "/", $emailFileHtml)) continue;
-					
-					$emailFileHtml = str_replace($param['name'], $param['value'], $emailFileHtml);
-				}
+					$this->customParams[$param['name']] = $param['value'];
+				}	
 			}
 
-			$this->bodyHtml = $emailFileHtml;
+			// add message in the custom params array
+			$this->customParams['message'] = $emailTemplateEntity->getMessage();
 		}
 
 		/**
@@ -174,33 +183,9 @@
 			$relativeEmailTemplatesPath = $relativeEmailTemplatesPath[1];
 
 			// get email file html
-			$emailFileHtml = $this->twig->render($relativeEmailTemplatesPath);
+			$emailFileHtml = $this->twig->render($relativeEmailTemplatesPath, $this->customParams);
 
 			return $emailFileHtml;
-		}
-
-		/**
-		 * Replace custom parameters defined in the message with their value
-		 *
-		 * @param  EmailTemplate 	$emailTemplateEntity 	Email template entity
-		 * @return String 			$message 				Final email template message
-		 */
-		private function replaceMessageCustomParams(EmailTemplate $emailTemplateEntity) : String
-		{
-			$message = $emailTemplateEntity->getMessage();
-			$customParams = $emailTemplateEntity->getMessageParams();
-			$customParams = json_decode($customParams);
-
-			if(empty($customParams)) return $message;
-
-			foreach($customParams as $param)
-			{
-				if( ! preg_match("/" . $param . "/", $message)) continue;
-
-				$message = str_replace($param['name'], $param['value'], $message);
-			}
-
-			return $message;
 		}
 
 		/**
