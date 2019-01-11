@@ -148,6 +148,12 @@
 				$from = [ $this->username ];
 			}
 
+			if(empty($message))
+			{
+				$this->logger->addError("Error sending email template with '" . $slug . "' slug: Email body message variable is empty.");
+				return false;
+			}
+
 			// send email
 			return $this->send($from, $to, $emailData['subject'], $message);
 		}
