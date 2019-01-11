@@ -20,6 +20,7 @@
         <parameter key="reaccion_cms.logger.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService</parameter>
         <parameter key="reaccion_cms.language.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
         <parameter key="reaccion_cms.mailer.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
+        <parameter key="reaccion_cms.email_template.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>
         <parameter key="reaccion_cms.language_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
 
     </parameters>
@@ -105,6 +106,16 @@
             <argument type="service" id="reaccion_cms.config" />
             <argument type="service" id="session" />
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms.email_template" />
+        </service>
+
+        <service id="reaccion_cms.email_template" class="%reaccion_cms.email_template.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms.mailer_logger" />
+            <argument type="service" id="reaccion_cms.language" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="reaccion_cms.config" />
+            <argument>%kernel.project_dir%</argument>
         </service>
 
         <!-- event listeners -->
