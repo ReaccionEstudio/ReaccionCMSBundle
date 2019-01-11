@@ -46,4 +46,15 @@
 		{
 			$this->monolog->addInfo($message);
 		}
+
+		/**
+ 		 * Add error message to current log
+ 		 *
+ 		 * @param  String 	$message 	Log message
+ 		 * @return void 	[type]
+		 */
+		public function addError(String $message)
+		{
+			$this->monolog->addError($message);
+		}
 	}
