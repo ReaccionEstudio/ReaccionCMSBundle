@@ -7,6 +7,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
 
 	class MailerService
 	{
@@ -83,12 +84,13 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em)
+		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate)
 		{
-			$this->logger   = $logger;
-			$this->config   = $config;
-			$this->session  = $session;
-			$this->em 		= $em;
+			$this->em 			 = $em;
+			$this->logger   	 = $logger;
+			$this->config   	 = $config;
+			$this->session  	 = $session;
+			$this->emailTemplate = $emailTemplate;
 		}
 
 		/**
@@ -124,12 +126,30 @@
 		 * Send email using a defined email
 		 * 
 		 * @param  String 	$slug 				Email slug
-		 * @param  Array 	$messageParams 		Parameters to be replaced in the email message
+		 * @param  Array  	$to 				Email receiver
 		 * @return Boolean 	$result  			Email sent result
 		 */
-		public function sendTemplate(String $slug, Array $messageParams = []) : Bool
+		public function sendTemplate(String $slug, Array $to = []) : Bool
 		{
+			$message 	= $this->emailTemplate->loadTemplate($slug)->getBodyHtml();
+			$emailData 	= $this->emailTemplate->getEmailTemplateData();
 			
+			// From
+			if( ! empty($emailData['fromname']) && ! empty($emailData['fromemail']) )
+			{
+				$from = [ $emailData['fromemail'] => $emailData['fromname'] ];
+			}
+			else if( ! empty($emailData['fromemail']) )
+			{
+				$from = [ $emailData['fromemail'] ];
+			}
+			else if( empty($emailData['fromemail']) )
+			{
+				$from = [ $this->username ];
+			}
+
+			// send email
+			return $this->send($from, $to, $emailData['subject'], $message);
 		}
 
 		/**
