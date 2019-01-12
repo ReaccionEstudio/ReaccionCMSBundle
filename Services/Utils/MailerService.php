@@ -131,6 +131,8 @@
 		 */
 		public function sendTemplate(String $slug, Array $to = []) : Bool
 		{
+			if(empty($to)) return false;
+
 			$message 	= $this->emailTemplate->loadTemplate($slug)->getBodyHtml();
 			$emailData 	= $this->emailTemplate->getEmailTemplateData();
 			
