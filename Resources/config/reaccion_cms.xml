@@ -21,7 +21,12 @@
         <parameter key="reaccion_cms.language.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
         <parameter key="reaccion_cms.mailer.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
         <parameter key="reaccion_cms.email_template.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>
+        <parameter key="reaccion_cms.user_mailer_service.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserMailerService</parameter>
         <parameter key="reaccion_cms.language_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
+
+        <!-- fos user bundle parameters -->
+        <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
+        <parameter key="fos_user.registration.confirmation.template">@FOSUser/Registration/email.txt.twig</parameter>
 
     </parameters>
 
@@ -116,6 +121,22 @@
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.config" />
             <argument>%kernel.project_dir%</argument>
+        </service>
+
+        <service id="reaccion_cms.user_mailer" class="%reaccion_cms.user_mailer_service.class%" public="true">
+            <argument type="service" id="reaccion_cms.mailer" />
+            <argument type="service" id="router" />
+            <argument type="service" id="reaccion_cms.mailer_logger" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="reaccion_cms.config" />
+            <argument type="collection">
+                <argument key="confirmation.template">%fos_user.registration.confirmation.template%</argument>
+                <argument key="resetting.template">%fos_user.resetting.email.template%</argument>
+                <argument key="from_email" type="collection">
+                    <argument key="confirmation">%fos_user.registration.confirmation.from_email%</argument>
+                    <argument key="resetting">%fos_user.resetting.email.from_email%</argument>
+                </argument>
+            </argument>
         </service>
 
         <!-- event listeners -->
