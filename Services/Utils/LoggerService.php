@@ -4,6 +4,11 @@
 
 	use Psr\Log\LoggerInterface;
 
+	/**
+	 * Logger service - Handles application logs
+     *
+     * @author Alberto Vian <alberto@reaccionestudio.com>
+     */
 	class LoggerService
 	{
 		/**
