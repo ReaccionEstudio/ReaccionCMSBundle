@@ -5,6 +5,7 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
@@ -82,14 +83,22 @@
 		private $em;
 
 		/**
+		 * @var Encryptor
+		 *
+		 * Encryptor service
+		 */
+		private $encryptor;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate)
+		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, Encryptor $encryptor)
 		{
 			$this->em 			 = $em;
 			$this->logger   	 = $logger;
 			$this->config   	 = $config;
 			$this->session  	 = $session;
+			$this->encryptor 	 = $encryptor;
 			$this->emailTemplate = $emailTemplate;
 		}
 
@@ -171,8 +180,6 @@
 			{
 				$this->getSmtpTransport();
 
-				$subject = 'ReaccionCMS test email';
-
 				// Get all administrators emails
 				$adminEmails = $this->em->getRepository(User::class)->getAdminEmailAdresses();
 
@@ -181,17 +188,12 @@
 					$username = $email['nickname'] ?? $email['username'];
 					$to = [ $email['email'] => $username ];
 					
-					$message = (new \Swift_Message($subject))
-							  ->setFrom([ $this->username => 'ReaccionCMS'])
-							  ->setTo($to)
-							  ->setBody('Your email settings were saved correctly!', 'text/html');
-
-					$result = $this->mailer->send($message);
+					$result = $this->sendTemplate("test-email", $to);
 
 					// log email result
 					if($result)
 					{
-						$this->logger->addInfo("Test email sent to: " . implode(", ", $to) . " with subject: " . $subject);
+						$this->logger->addInfo("Test email sent to: " . implode(", ", $to) . ".");
 					}
 				}
 
@@ -234,9 +236,12 @@
 		{
 			$this->host = $this->config->get("mailer_host", false);
 			$this->port = $this->config->get("mailer_port", false);
-			$this->username = $this->config->get("mailer_username", false);
-			$this->password = $this->config->get("mailer_password", false);
 			$this->auth = $this->config->get("mailer_authentication", false);
+			$this->username = $this->config->get("mailer_username", false);
+			
+			// Get password and decrypt it
+			$password = $this->config->get("mailer_password", false);
+			$this->password = $this->encryptor->decrypt($password);
 		}
 
 		/**
