@@ -22,6 +22,9 @@
         <parameter key="reaccion_cms.mailer.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
         <parameter key="reaccion_cms.email_template.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>
         <parameter key="reaccion_cms.user_mailer_service.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserMailerService</parameter>
+        <parameter key="reaccion_cms.encryptor.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor</parameter>
+
+        <!-- listeners -->
         <parameter key="reaccion_cms.language_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
 
         <!-- fos user bundle parameters -->
@@ -137,6 +140,10 @@
                     <argument key="resetting">%fos_user.resetting.email.from_email%</argument>
                 </argument>
             </argument>
+        </service>
+
+        <service id="reaccion_cms.encryptor" class="%reaccion_cms.encryptor.class%" public="true">
+            <argument type="service" id="reaccion_cms.mailer_logger" />
         </service>
 
         <!-- event listeners -->
