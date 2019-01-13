@@ -63,4 +63,24 @@ class UserRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * Get admin user entities
+     *
+     * @return  Array   [type]      Admin user entities
+     */
+    public function getAdminEntities()
+    {
+        $em = $this->getEntityManager();
+
+        $dql = "SELECT 
+                u
+                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+                WHERE u.enabled = 1 
+                AND u.roles LIKE '%\"ROLE_ADMIN\"%'";
+
+        $query = $em->createQuery($dql);
+
+        return $query->getResult();
+    }
 }
