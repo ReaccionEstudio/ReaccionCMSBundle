@@ -115,6 +115,7 @@
             <argument type="service" id="session" />
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.email_template" />
+            <argument type="service" id="reaccion_cms.encryptor" />
         </service>
 
         <service id="reaccion_cms.email_template" class="%reaccion_cms.email_template.class%" public="true">
@@ -144,6 +145,7 @@
 
         <service id="reaccion_cms.encryptor" class="%reaccion_cms.encryptor.class%" public="true">
             <argument type="service" id="reaccion_cms.mailer_logger" />
+            <argument>%encryption_key%</argument>
         </service>
 
         <!-- event listeners -->

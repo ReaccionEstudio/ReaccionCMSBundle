@@ -20,11 +20,19 @@
 		private $logger;
 
 		/**
+		 * @var String 
+		 *
+		 * Default encryption key
+		 */
+		private $encryption_key;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger)
+		public function __construct(LoggerService $logger, String $encryption_key)
 		{
 			$this->logger = $logger;
+			$this->encryption_key = $encryption_key;
 		}
 
 		/**
@@ -34,10 +42,11 @@
 		 * @param  String 	$password 	Encryption password
 		 * @return String 	[type]		Encrypted value
 		 */
-		public function encrypt(String $content, String $password) : String
+		public function encrypt(String $content, String $password="") : String
 		{
 			try
 			{
+				$password = ($password) ?? $this->encryption_key;
 				return Crypto::encryptWithPassword($content, $password);
 			}
 			catch(\Exception $e)
@@ -54,10 +63,11 @@
 		 * @param  String 	$password 	Encryption password
 		 * @return String 	[type]		Encrypted value
 		 */
-		public function decrypt(String $content, String $password) : String
+		public function decrypt(String $content, String $password="") : String
 		{
 			try
 			{
+				$password = ($password) ?? $this->encryption_key;
 				return Crypto::decryptWithPassword($content, $password);
 			}
 			catch(\Exception $e)
