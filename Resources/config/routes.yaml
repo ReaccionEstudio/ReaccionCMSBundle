@@ -54,6 +54,13 @@ user_login:
     path: /login
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::login
 
+# languages
+change_language:
+    path: /change_language/{language}
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
+    options:
+        expose: true
+
 # pages
 index_slug:
     path: /{slug}

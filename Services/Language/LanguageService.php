@@ -2,10 +2,12 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
+	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\HttpFoundation\Session\SessionInterface;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
 
 	/**
@@ -15,6 +17,13 @@
 	 */
 	class LanguageService
 	{
+		/**
+		 * @var EntityManagerInterface
+		 *
+		 * EntityManagerInterface
+		 */
+		private $em;
+
 		/**
 		 * @var User
 		 *
@@ -46,8 +55,9 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(SessionInterface $session, ConfigService $config, String $defaultLanguage = 'en')
+		public function __construct(EntityManagerInterface $em, SessionInterface $session, ConfigService $config, String $defaultLanguage = 'en')
 		{
+			$this->em 		= $em;
 			$this->session 	= $session;
 			$this->config 	= $config;
 			$this->language = $defaultLanguage;
@@ -70,6 +80,56 @@
 			}
 
 			return $this->language;
+		}
+
+		/**
+		 * Update user language
+		 *
+		 * @return Boolean 	true|false  Update result
+		 */
+		public function updateLanguage(String $language) : Bool
+		{
+			// Check if language var is valid
+			if( $language == "" || ! in_array($language, Languages::LANGUAGES))
+			{
+				return false;	
+			}
+
+			$this->setCurrentUserTokenLanguage();
+
+			// If user is signed in, update language value in the user preferences
+			if( ! empty($this->user))
+			{
+				return $this->updateUserEntityLanguage($this->user->getId(), $language);
+			}
+
+			// update language
+			return (new LanguageCookie($this->config))->setLanguageCookieValue($language);
+		}
+
+		/**
+		 * Update user entity language value
+		 *
+		 * @return Boolean 	true|false  Update result
+		 */
+		public function updateUserEntityLanguage($user, $language) : Bool
+		{
+			$userId = ($user instanceof User) ? $user->getId() : $user;
+
+			try
+			{
+				$userEntity = $this->em->getRepository(User::class)->findOneBy(['id' => $userId]);
+				$userEntity->setLanguage($language);
+
+				$this->em->persist($userEntity);
+				$this->em->flush();
+
+				return true;
+			}
+			catch(\Exception $e)
+			{
+				return false;
+			}
 		}
 
 		/**
