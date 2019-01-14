@@ -2,8 +2,8 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
-	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use Symfony\Component\HttpFoundation\Session\SessionInterface;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
@@ -46,7 +46,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(Session $session, ConfigService $config, String $defaultLanguage)
+		public function __construct(SessionInterface $session, ConfigService $config, String $defaultLanguage = 'en')
 		{
 			$this->session 	= $session;
 			$this->config 	= $config;
