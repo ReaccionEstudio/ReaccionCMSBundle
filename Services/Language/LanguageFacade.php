@@ -1,8 +1,8 @@
 <?php
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
-
-	use Cocur\Slugify\Slugify;
+	
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
 
 	/**
 	 * Language facade class.
@@ -19,6 +19,13 @@
 		private $user;
 
 		/**
+		 * @var ConfigService
+		 *
+		 * Config service
+		 */
+		private $config;
+
+		/**
 		 * @var String
 		 *
 		 * Language cookie name
@@ -32,7 +39,7 @@
 		{
 			$this->user = $user;
 			$this->config = $config;
-			$this->generateLanguageCookieName();
+			$this->languageCookieName = (new LanguageCookie($config))->getLanguageCookieName();
 		}
 
 		/**
@@ -98,16 +105,5 @@
 			}
 
 			return '';
-		}
-
-		/**
-		 * Generate language cookie name
-		 *
-		 * @return String 	[type] 	User language
-		 */
-		private function generateLanguageCookieName()
-		{
-			$siteName = $this->config->get("site_name");
-			$this->languageCookieName = ( new Slugify() )->slugify($siteName) . "-lang";
 		}
 	}
