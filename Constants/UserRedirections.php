@@ -17,6 +17,8 @@
 			'user_login_successful' => [
 				'type' => 'referrer'
 			],
-
+			'user_updated_language' => [
+				'type' => 'referrer'
+			]
 		];
 	}
