@@ -1,0 +1,26 @@
+# config/doctrine/PageTranslationGroup.orm.yml
+App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup:
+    type: entity
+    table: pages_translation_groups
+    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageTranslationGroupRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        
+        name:
+            type: string
+            length: 255
+        
+        createdAt:
+            type: datetime
+        
+        updatedAt:
+            type: datetime
+            nullable: true
+
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedValue, setUpdatedValue ]
+        preUpdate: [ setUpdatedValue ]
