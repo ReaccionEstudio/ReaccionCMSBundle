@@ -9,6 +9,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService;
 
 	/**
 	 * Language service.
@@ -55,12 +56,13 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, SessionInterface $session, ConfigService $config, String $defaultLanguage = 'en')
+		public function __construct(EntityManagerInterface $em, SessionInterface $session, ConfigService $config, AuthenticationService $authenticationService, String $defaultLanguage = 'en')
 		{
-			$this->em 		= $em;
-			$this->session 	= $session;
-			$this->config 	= $config;
-			$this->language = $defaultLanguage;
+			$this->em 					 = $em;
+			$this->session 				 = $session;
+			$this->config 				 = $config;
+			$this->language 			 = $defaultLanguage;
+			$this->authenticationService = $authenticationService;
 		}
 
 		/**
@@ -92,7 +94,7 @@
 			// Check if language var is valid
 			if( $language == "" || ! in_array($language, Languages::LANGUAGES))
 			{
-				return false;	
+				return false;
 			}
 
 			$this->setCurrentUserTokenLanguage();
@@ -100,6 +102,7 @@
 			// If user is signed in, update language value in the user preferences
 			if( ! empty($this->user))
 			{
+				// update user entity
 				return $this->updateUserEntityLanguage($this->user->getId(), $language);
 			}
 
@@ -121,8 +124,12 @@
 				$userEntity = $this->em->getRepository(User::class)->findOneBy(['id' => $userId]);
 				$userEntity->setLanguage($language);
 
+				// update
 				$this->em->persist($userEntity);
 				$this->em->flush();
+
+				// update current user session language value
+				$this->authenticationService->createUserToken($userEntity);
 
 				return true;
 			}

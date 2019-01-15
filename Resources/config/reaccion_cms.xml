@@ -107,6 +107,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="session" />
             <argument type="service" id="reaccion_cms.config" />
+            <argument type="service" id="reaccion_cms.authentication" />
             <argument>%locale%</argument>
         </service>
 
