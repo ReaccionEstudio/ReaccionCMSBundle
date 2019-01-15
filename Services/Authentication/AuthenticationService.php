@@ -3,10 +3,10 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\Translation\TranslatorInterface;
-	use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+	use Symfony\Component\HttpFoundation\Session\SessionInterface;
+	use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 	/**
@@ -24,14 +24,14 @@
 		private $translator;
 
 		/**
-		 * @var Session
+		 * @var SessionInterface
 		 *
 		 * Session
 		 */
 		private $session;
 
 		/**
-		 * @var TokenStorage
+		 * @var TokenStorageInterface
 		 *
 		 * TokenStorage
 		 */
@@ -47,7 +47,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(Session $session, TranslatorInterface $translator, TokenStorage $tokenStorage)
+		public function __construct(SessionInterface $session, TranslatorInterface $translator, TokenStorageInterface $tokenStorage)
 		{
 			$this->session 		= $session;
 			$this->translator 	= $translator;
@@ -76,18 +76,28 @@
 		{
 			if($this->user == null) return;
 
-			$token = new UsernamePasswordToken($this->user, null, 'main', $this->user->getRoles());
-			$this->tokenStorage->setToken($token);
-
-			// set user language as token attribute
-			$token->setAttributes([ 'userLanguage' => $this->user->getLanguage() ]);
-
-			$this->session->set('_security_main', serialize($token));
-			$this->session->save();
+			$this->createUserToken($this->user);
 
 			if($flashMessage)
 			{
 				$this->session->getFlashBag()->add('signin_success', $this->translator->trans('signin.signin_success', ['%username%' => $this->user->getUsername() ]));
 			}
+		}
+
+		/**
+		 * Create user token and save it in session
+		 *
+		 * @param 	User 	$user 	User entity
+		 */
+		public function createUserToken(User $user)
+		{
+			$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+			$this->tokenStorage->setToken($token);
+
+			// set user language as token attribute
+			$token->setAttributes([ 'userLanguage' => $user->getLanguage() ]);
+
+			$this->session->set('_security_main', serialize($token));
+			$this->session->save();
 		}
 	}
