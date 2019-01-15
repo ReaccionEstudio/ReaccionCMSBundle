@@ -20,20 +20,16 @@
     		$request  = $event->getRequest();
     		
     		// current route
-    		$route  = $request->attributes->get('_route');
+    		$route   = $request->attributes->get('_route');
+            $referer = $request->headers->get('referer');
 
-    		if($route == "user_login" || $route == "user_register")
-    		{
-    			return;
-    		}
+            if($route == "user_login" || $route == "user_register" || preg_match("/login/", $referer))
+            {
+                return;
+            }
 
-    		$url = $request->getUri();
+    		if($referer == null) return;
 
-    		if( preg_match("/_wdt/", $url) || 
-    			preg_match("/assets/", $url) || 
-    			preg_match("/favicon\.ico/", $url)
-    		) return;
-
-    		setcookie(Cookies::REFERRER_URL_COOKIE_NAME, $url, 0, "/");
+    		setcookie(Cookies::REFERRER_URL_COOKIE_NAME, $referer, 0, "/");
 	    }
 	}
