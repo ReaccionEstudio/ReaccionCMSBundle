@@ -8,7 +8,16 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
         content:
             targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent
             mappedBy: page
-            
+    
+    manyToOne:
+
+        translationGroup:
+          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+          inversedBy: translationGroup
+          joinColumn:
+            name: translation_group_id
+            referencedColumnName: id
+            onDelete: SET NULL
 
     id:
         id:
@@ -63,7 +72,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
             type: string
             length: 255
             nullable: true
-        
+
         createdAt:
             type: datetime
         

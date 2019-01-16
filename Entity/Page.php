@@ -101,6 +101,16 @@ class Page
     private $seoKeywords;
 
     /**
+     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+     *
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup", inversedBy="translationGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="translation_group_id", referencedColumnName="id", onDelete="SET NULL")
+     * })
+     */
+    private $translationGroup;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -426,6 +436,26 @@ class Page
     public function setContent(\Doctrine\Common\Collections\Collection $content)
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+     */
+    public function getTranslationGroup()
+    {
+        return $this->translationGroup;
+    }
+
+    /**
+     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup
+     *
+     * @return self
+     */
+    public function setTranslationGroup(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup)
+    {
+        $this->translationGroup = $translationGroup;
 
         return $this;
     }
