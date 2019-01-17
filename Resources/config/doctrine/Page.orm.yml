@@ -13,7 +13,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
 
         translationGroup:
           targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
-          inversedBy: translationGroup
+          inversedBy: pages
           joinColumn:
             name: translation_group_id
             referencedColumnName: id

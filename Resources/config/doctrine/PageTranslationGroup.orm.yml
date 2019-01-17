@@ -8,6 +8,12 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup:
         id:
             type: integer
             generator: { strategy: AUTO }
+
+    oneToMany:
+        pages:
+            targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+            mappedBy: translationGroup
+
     fields:
         
         name:

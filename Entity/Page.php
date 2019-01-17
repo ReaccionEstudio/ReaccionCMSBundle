@@ -101,16 +101,6 @@ class Page
     private $seoKeywords;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
-     *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup", inversedBy="translationGroup")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="translation_group_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
-     */
-    private $translationGroup;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -130,6 +120,16 @@ class Page
      * @ORM\OneToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent", mappedBy="page")
      */
     private $content;
+
+    /**
+     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+     *
+     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup", inversedBy="pages")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="translation_group_id", referencedColumnName="id", onDelete="SET NULL")
+     * })
+     */
+    private $translationGroup;
 
     /**
      * Constructor

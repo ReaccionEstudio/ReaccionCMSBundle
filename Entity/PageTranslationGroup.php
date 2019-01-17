@@ -30,6 +30,13 @@ class PageTranslationGroup
     private $name;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page", mappedBy="translationGroup")
+     */
+    private $pages;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -42,6 +49,14 @@ class PageTranslationGroup
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * @return int
@@ -79,6 +94,26 @@ class PageTranslationGroup
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $content
+     *
+     * @return self
+     */
+    public function setPages(\Doctrine\Common\Collections\Collection $pages)
+    {
+        $this->pages = $pages;
 
         return $this;
     }
