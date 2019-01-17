@@ -453,7 +453,7 @@ class Page
      *
      * @return self
      */
-    public function setTranslationGroup(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup)
+    public function setTranslationGroup(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup = null)
     {
         $this->translationGroup = $translationGroup;
 
