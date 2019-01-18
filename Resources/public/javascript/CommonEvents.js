@@ -27,7 +27,11 @@ class CommonEvents
 
 		    if( ! language) return;
 
+        let appRoute = $(this).parent().parent().attr("data-app-route");
+        let appRouteSlug = $(this).parent().parent().attr("data-app-route-slug");
+        let routeParams = '?appRoute=' + appRoute + '&appRouteSlug=' + appRouteSlug;
 		    let route = _self.router.generate('change_language', { 'language' : language });
+            route += routeParams;
 
 		    window.location = route;
     	});

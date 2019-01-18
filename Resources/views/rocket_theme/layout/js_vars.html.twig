@@ -1,9 +1,7 @@
 <script type="text/javascript">
   
-  	{% if type is defined %}
-  	var routeSlug = "{{ getActiveRoute(type) }}";
-  	{% endif %}
-
+  	var route = "{{ app.request.get('_route') }}";
+  	var routeSlug = "{% if type is defined %}{{ getActiveRoute(type) }}{% endif %}";
   	var appLanguage = 'en'; // TODO 
 
 </script>

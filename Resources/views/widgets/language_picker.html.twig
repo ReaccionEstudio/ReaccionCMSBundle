@@ -1,5 +1,5 @@
 {% set languagesData = getLanguagesWidgetData() %}
-<div id="language_picker_widget" class="dropdown">
+<div id="language_picker_widget" data-app-route="{{ app.request.get('_route') }}" data-app-route-slug="{% if type is defined %}{{ getActiveRoute(type) }}{% endif %}" class="dropdown">
 	<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">{{ languagesData.default.originalName }}</button>
   	<div class="dropdown-menu">
   		{% for languageData in languagesData.languages %}
