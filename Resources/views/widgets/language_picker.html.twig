@@ -1,6 +1,6 @@
 {% set languagesData = getLanguagesWidgetData() %}
 <div id="language_picker_widget" class="dropdown">
-	<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">{{ languagesData.default.originalName }}</button>
+	<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">{{ languagesData.default.originalName }}</button>
   	<div class="dropdown-menu">
   		{% for languageData in languagesData.languages %}
 	    <a class="dropdown-item" data-language="{{ languageData.language }}" href="#">
