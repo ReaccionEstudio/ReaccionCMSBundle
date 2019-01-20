@@ -5,7 +5,7 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 
 	/**
 	 * Config service.
@@ -29,7 +29,7 @@
 		private $em;
 
 		/**
-		 * @var Logger
+		 * @var LoggerService
 		 *
 		 * Logger
 		 */
@@ -38,7 +38,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Logger $logger)
+		public function __construct(EntityManagerInterface $em, LoggerService $logger)
 		{
 			$this->em 		= $em;
 			$this->logger 	= $logger;
