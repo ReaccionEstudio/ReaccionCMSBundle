@@ -53,6 +53,7 @@
         
         <service id="reaccion_cms.config" class="%reaccion_cms.config.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms.logger" />
             <tag name="monolog.logger" channel="reaccion_cms" />
         </service>
         
