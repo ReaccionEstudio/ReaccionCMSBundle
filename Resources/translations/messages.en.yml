@@ -63,3 +63,6 @@ entries_comments:
 pagination:
   previous: 'Previous'
   next: 'Next'
+
+change_language:
+  error: 'Error switching the language. Try it again.'
