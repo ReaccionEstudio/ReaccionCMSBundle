@@ -12,7 +12,6 @@
 	class ThemeService
 	{
 		CONST DEFAULT_CMS_THEME = 'rocket_theme';
-		CONST ROCKET_THEME_PATH = 'src/ReaccionEstudio/ReaccionCMSBundle/Resources/views/' . self::DEFAULT_CMS_THEME;
 		CONST DEFAULT_CMS_THEMES_PATH = 'templates/ReaccionCMSBundle/themes/';
 		CONST DEFAULT_CMS_THEMES_TWIG_PATH = '@ReaccionCMSBundle';
 
@@ -133,20 +132,9 @@
 		 */
 		public function generateRelativeTwigViewPath(String $baseFilename) : String
 		{
-			$path = '';
-
-			if($this->currentTheme == self::DEFAULT_CMS_THEME)
-			{
-				$path = self::DEFAULT_CMS_THEMES_TWIG_PATH . "/" . 
-						self::DEFAULT_CMS_THEME . "/" . 
-						$baseFilename;
-			}
-			else
-			{
-				$path = $this->themesPath;
-				$path = str_replace("templates/", "", $path);
-				$path .= $this->currentTheme . "/" . $baseFilename;
-			}
+			$path = $this->themesPath;
+			$path = str_replace("templates/", "", $path);
+			$path .= $this->currentTheme . "/" . $baseFilename;
 
 			return $path;
 		}
@@ -235,14 +223,7 @@
 		 */
 		private function generateFullTemplatePath() : void
 		{
-			if($this->currentTheme == self::DEFAULT_CMS_THEME)
-			{
-				$this->fullTemplatePath = $this->projectDir . "/" . self::ROCKET_THEME_PATH . "/";
-			}
-			else
-			{
-				$this->fullTemplatePath = $this->projectDir . "/" . $this->themesPath . "/" . $this->currentTheme . "/";
-			}
+			$this->fullTemplatePath = $this->projectDir . "/" . $this->themesPath . "/" . $this->currentTheme . "/";
 		}
 
 		/**
