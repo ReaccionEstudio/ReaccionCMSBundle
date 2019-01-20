@@ -228,7 +228,7 @@
 		 */
 		private function generateFullTemplatePath() : void
 		{
-			$this->fullTemplatePath = $this->projectDir . "/" . $this->themesPath . "/" . $this->currentTheme . "/";
+			$this->fullTemplatePath = $this->projectDir . "/" . $this->themesPath . $this->currentTheme . "/";
 		}
 
 		/**
