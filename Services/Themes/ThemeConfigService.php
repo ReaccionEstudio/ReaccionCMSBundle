@@ -5,6 +5,11 @@
 	use Symfony\Component\Yaml\Yaml;
 	use Symfony\Component\Yaml\Exception\ParseException;
 
+	/**
+	 * Read theme file config for given template path
+	 *
+	 * @author Alberto Vian <alberto@reaccionestudio.com>
+	 */
 	class ThemeConfigService
 	{
 		/**

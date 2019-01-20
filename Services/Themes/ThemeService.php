@@ -9,6 +9,11 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 
+	/**
+	 * Manage themes usage for pages view
+	 *
+	 * @author Alberto Vian <alberto@reaccionestudio.com>
+	 */
 	class ThemeService
 	{
 		CONST DEFAULT_CMS_THEME = 'rocket_theme';
