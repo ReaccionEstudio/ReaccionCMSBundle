@@ -5,6 +5,7 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
 
 	/**
 	 * Config service.
@@ -28,12 +29,20 @@
 		private $em;
 
 		/**
+		 * @var Logger
+		 *
+		 * Logger
+		 */
+		private $logger;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em)
+		public function __construct(EntityManagerInterface $em, Logger $logger)
 		{
-			$this->em = $em;
-			$this->cache = new ApcuAdapter();
+			$this->em 		= $em;
+			$this->logger 	= $logger;
+			$this->cache 	= new ApcuAdapter();
 		}
 
 		/**
@@ -45,7 +54,7 @@
 		 */
 		public function get(String $key, Bool $loadFromCache = true) :  String
 		{
-			$cacheKey 	= "config." . $key;
+			$cacheKey 	= $this->getCacheKey($key);
 			$cachedItem = $this->cache->getItem($cacheKey);
 
 			if($loadFromCache && $cachedItem->isHit())
@@ -67,6 +76,86 @@
 			}
 
 			return $keyValue;
+		}
+
+		/**
+		 * Update configuration parameter value
+		 *
+		 * @param  String 	$key 		Configuration entity name
+		 * @param  Any 		[type]  	Parameter value
+		 * @return Boolean 	true|false 	Update result
+		 */
+		public function set(String $key, $value)
+		{
+			// get config entity
+			$configEntity = $this->em->getRepository(Configuration::class)->findOneBy(['name' => $key]);
+
+			if(empty($configEntity))
+			{
+				$this->logger->addError("Error updating configuration param value: Config key '" . $key . "' was not found.");
+				return false;
+			}
+
+			try
+			{
+				$configEntity->setValue($value);
+				
+				$this->em->persist($configEntity);
+				$this->em->flush();
+
+				$this->logger->addInfo("Config key '" . $key . "' value updated.");
+
+				// update cache
+				$this->updateConfigCacheValue($key, $value);
+
+				return true;
+			}
+			catch(\Doctrine\DBAL\DBALException $e)
+			{
+				$this->logger->logException($e, "Error in ConfigService::set() method.");
+				return false;
+			}
+		}
+
+		/**
+		 * Update config cache value if param is already in the cache storage
+		 *
+		 * @param  String 	$key 		Configuration entity name
+		 * @param  Any 		[type]  	Parameter value
+		 * @return Boolean 	true|false 	Update result
+		 */
+		private function updateConfigCacheValue(String $key, $value) : Bool
+		{
+			$cacheKey = $this->getCacheKey($key);
+
+			try
+			{
+				$cachedItem = $this->cache->getItem($cacheKey);
+
+				if( ! $cachedItem->isHit()) return true;
+
+				// Save config value in cache
+				$cachedItem->set($value);
+				$this->cache->save($cachedItem);
+
+				return true;
+			}
+			catch(\Exception $e)
+			{
+				$this->logger->logException($e, "Error in ConfigService::updateConfigCacheValue() method.");
+				return false;
+			}
+		}
+
+		/**
+		 * Get cache key name for config parameter keys
+		 *
+		 * @param String 	$key 	Configuration entity name
+		 * @return String 	[type] 	Configuration cache key
+		 */
+		private function getCacheKey(String $key)
+		{
+			return "config." . $key;
 		}
 
 		/**
