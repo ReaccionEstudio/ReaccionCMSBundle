@@ -153,6 +153,7 @@
 
         <service id="reaccion_cms.language_page_translation_group_redirection" class="%reaccion_cms.language_page_translation_group_redirection.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="router" />
         </service>
 
         <!-- event listeners -->
