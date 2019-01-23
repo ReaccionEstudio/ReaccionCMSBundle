@@ -26,6 +26,10 @@
 		{% endfor %}
 	{% endif %}
 
+	<!-- next and previous entries links -->
+	{% embed '@ReaccionCMSBundle/entries/nextAndPreviousEntriesLinks.html.twig' %}{% endembed %}
+	<!-- end next and previous entries links -->
+
 	<!-- comments -->
 	{% embed '@ReaccionCMSBundle/entries/comments/comments.html.twig' %}{% endembed %}
 	<!-- end comments -->

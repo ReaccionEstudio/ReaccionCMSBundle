@@ -1,0 +1,19 @@
+{% set nextEntry = getSerializedVar(options, 'nextEntry') %}
+{% set previousEntry = getSerializedVar(options, 'previousEntry') %}
+
+<div class="pt-4 pb-3">
+
+	<div class="row">
+		<div class="col-6">
+			{% if previousEntry is not empty %}
+				<a href="{{ url('index_slug', { 'slug' : previousEntry.slug }) }}" title="{{ previousEntry.name }}">← {{ previousEntry.name }}</a>
+			{% endif %}
+		</div>
+		<div class="col-6 text-right">
+			{% if nextEntry is not empty %}
+				<a href="{{ url('index_slug', { 'slug' : nextEntry.slug }) }}" title="{{ nextEntry.name }}">{{ nextEntry.name }} →</a>
+			{% endif %}
+		</div>
+	</div>
+
+</div>

@@ -94,4 +94,40 @@
 
 			return $entryCategories;
 		}
+
+		/**
+		 * Get previous and next entries for a given entry
+		 *
+		 * @param  Entry 	$entry 			Entry entity
+		 * @param  String 	$language 		Entry language
+		 * @return Array 	$arrayResult 	Query results
+		 */
+		public function getPreviousAndNextEntries(Entry $entry, String $language = "en")
+		{
+			$arrayResult = [
+				'next' => [],
+				'previous' => []
+			];
+
+			$result = $this->em->getRepository(Entry::class)->getPreviousAndNextEntries($entry, $language);
+
+			if($result)
+			{
+				$entryId = $entry->getId();
+
+				foreach($result as $entryRow)
+				{
+					if($entryId > $entryRow['id'])
+					{
+						$arrayResult['next'] = $entryRow;
+					}
+					else if($entryId < $entryRow['id'])
+					{
+						$arrayResult['previous'] = $entryRow;
+					}
+				}
+			}
+
+			return $arrayResult;
+		}
 	}

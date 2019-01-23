@@ -91,9 +91,14 @@
 		{
 			$entryName = $this->entry->getName();
 			$entryResume = $this->entry->getResume();
+			$entryLanguage = $this->entry->getLanguage();
+			$nextAndPreviousEntries = $this->entryService->getPreviousAndNextEntries($this->entry, $entryLanguage);
+			
 			$options = [
 				'entry_id' => $this->entry->getId(),
-				'totalComments' => $this->entry->getTotalComments()
+				'totalComments' => $this->entry->getTotalComments(),
+				'nextEntry' => $nextAndPreviousEntries['next'],
+				'previousEntry' => $nextAndPreviousEntries['previous']
 			];
 			$options = serialize($options);
 
