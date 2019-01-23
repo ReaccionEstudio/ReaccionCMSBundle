@@ -5,15 +5,15 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	class MailerService
 	{
 		/**
-		 * @var LoggerService
+		 * @var LoggerServiceInterface
 		 *
 		 * Logger
 		 */
@@ -92,7 +92,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, EncryptorInterface $encryptor)
+		public function __construct(LoggerServiceInterface $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, EncryptorInterface $encryptor)
 		{
 			$this->em 			 = $em;
 			$this->logger   	 = $logger;

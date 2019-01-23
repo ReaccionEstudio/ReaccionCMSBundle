@@ -4,9 +4,9 @@
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Email template service.
@@ -23,7 +23,7 @@
 		private $em;
 
 		/**
-		 * @var LoggerService
+		 * @var LoggerServiceInterface
 		 *
 		 * Logger
 		 */
@@ -67,7 +67,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, LoggerService $logger, LanguageService $language, \Twig_Environment $twig, ConfigService $config, String $projectDir)
+		public function __construct(EntityManagerInterface $em, LoggerServiceInterface $logger, LanguageService $language, \Twig_Environment $twig, ConfigService $config, String $projectDir)
 		{
 			$this->em 				= $em;
 			$this->twig 	 		= $twig;

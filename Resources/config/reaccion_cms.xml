@@ -17,7 +17,7 @@
         <parameter key="reaccion_cms.authentication.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
         <parameter key="reaccion_cms.comment.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
         <parameter key="reaccion_cms.referrer_url_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
-        <parameter key="reaccion_cms.logger.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService</parameter>
+        <parameter key="reaccion_cms.logger.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerService</parameter>
         <parameter key="reaccion_cms.language.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
         <parameter key="reaccion_cms.mailer.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
         <parameter key="reaccion_cms.email_template.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>

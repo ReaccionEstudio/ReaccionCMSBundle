@@ -1,15 +1,16 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils;
+	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
 
 	use Psr\Log\LoggerInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Logger service - Handles application logs
      *
      * @author Alberto Vian <alberto@reaccionestudio.com>
      */
-	class LoggerService
+	class LoggerService implements LoggerServiceInterface
 	{
 		/**
 		 * @var LoggerInterface

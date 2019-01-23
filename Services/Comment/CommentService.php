@@ -14,7 +14,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\GetCommentsAsArray;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Comments service.
@@ -66,7 +66,7 @@
 		private $user = null;
 
 		/**
-		 * @var LoggerService
+		 * @var LoggerServiceInterface
 		 *
 		 * Logger service
 		 */
@@ -75,7 +75,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request, ConfigService $config, PageCacheService $pageCacheService, LoggerService $logger)
+		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request, ConfigService $config, PageCacheService $pageCacheService, LoggerServiceInterface $logger)
 		{
 			$this->em 				= $em;
 			$this->session 			= $session;

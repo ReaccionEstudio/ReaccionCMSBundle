@@ -5,9 +5,9 @@
 	use FOS\UserBundle\Model\UserInterface;
 	use FOS\UserBundle\Mailer\MailerInterface;
 	use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Custom FOS User bundle mailer service.
@@ -29,7 +29,7 @@
 	    protected $router;
 
 		/**
-		 * @var LoggerService
+		 * @var LoggerServiceInterface
 		 *
 		 * Logger service
 		 */
@@ -69,7 +69,7 @@
 	     * @param \Twig_Environment     $twig
 	     * @param array                 $parameters
 	     */
-		public function __construct(MailerService $mailer, UrlGeneratorInterface $router, LoggerService $logger, \Twig_Environment $twig, ConfigService $config, array $parameters)
+		public function __construct(MailerService $mailer, UrlGeneratorInterface $router, LoggerServiceInterface $logger, \Twig_Environment $twig, ConfigService $config, array $parameters)
 		{
 			$this->mailer 		= $mailer;
 			$this->router 		= $router;

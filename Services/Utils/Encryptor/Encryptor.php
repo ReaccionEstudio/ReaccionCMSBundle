@@ -3,8 +3,8 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor;
 
 	use Defuse\Crypto\Crypto;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Encryptor - Simple Encryption in PHP
@@ -14,7 +14,7 @@
 	class Encryptor implements EncryptorInterface
 	{
 		/**
-		 * @var LoggerService
+		 * @var LoggerServiceInterface
 		 *
 		 * Logger
 		 */
@@ -30,7 +30,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger, String $encryption_key)
+		public function __construct(LoggerServiceInterface $logger, String $encryption_key)
 		{
 			$this->logger = $logger;
 			$this->encryption_key = $encryption_key;
