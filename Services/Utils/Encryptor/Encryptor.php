@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils;
+	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor;
 
 	use Defuse\Crypto\Crypto;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\EncryptorInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
 
 	/**
 	 * Encryptor - Simple Encryption in PHP

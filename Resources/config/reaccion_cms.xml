@@ -22,7 +22,7 @@
         <parameter key="reaccion_cms.mailer.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
         <parameter key="reaccion_cms.email_template.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>
         <parameter key="reaccion_cms.user_mailer_service.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserMailerService</parameter>
-        <parameter key="reaccion_cms.encryptor.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor</parameter>
+        <parameter key="reaccion_cms.encryptor.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\Encryptor</parameter>
         <parameter key="reaccion_cms.language_page_translation_group_redirection.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguagePageTranslationGroupRedirection</parameter>
 
         <!-- listeners -->

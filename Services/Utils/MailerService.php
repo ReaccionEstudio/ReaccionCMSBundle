@@ -7,8 +7,8 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\EncryptorInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
 
 	class MailerService
 	{
