@@ -50,7 +50,7 @@
 			else if($route == "index")
 			{
 				// get main page entity for given language
-				$mainPageEntity = $this->getMainTranslationPageEntity();
+				$mainPageEntity = $this->getMainTranslationPageEntity($language);
 				$redirectionUrl = $this->router->generate('index_slug', [ 'slug' => $mainPageEntity->getSlug() ]);
 			}
 			else
