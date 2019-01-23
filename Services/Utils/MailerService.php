@@ -5,9 +5,9 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\EncryptorInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
 
 	class MailerService
@@ -83,7 +83,7 @@
 		private $em;
 
 		/**
-		 * @var Encryptor
+		 * @var EncryptorInterface
 		 *
 		 * Encryptor service
 		 */
@@ -92,7 +92,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, Encryptor $encryptor)
+		public function __construct(LoggerService $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, EncryptorInterface $encryptor)
 		{
 			$this->em 			 = $em;
 			$this->logger   	 = $logger;

@@ -4,13 +4,14 @@
 
 	use Defuse\Crypto\Crypto;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\LoggerService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\EncryptorInterface;
 
 	/**
 	 * Encryptor - Simple Encryption in PHP
 	 *
 	 * @author Alberto Vian <alberto@reaccionestudio.com>
 	 */
-	class Encryptor
+	class Encryptor implements EncryptorInterface
 	{
 		/**
 		 * @var LoggerService
