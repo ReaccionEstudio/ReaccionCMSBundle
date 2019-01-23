@@ -7,7 +7,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 	/**
 	 * Entry service.
@@ -31,7 +31,7 @@
 		private $paginator;
 
 		/**
-		 * @var ConfigService
+		 * @var ConfigServiceInterface
 		 *
 		 * Config service
 		 */
@@ -40,7 +40,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Paginator $paginator, ConfigService $config)
+		public function __construct(EntityManagerInterface $em, Paginator $paginator, ConfigServiceInterface $config)
 		{
 			$this->em 		 = $em;
 			$this->paginator = $paginator;

@@ -9,11 +9,11 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentSanitizer;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\GetCommentsAsArray;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
@@ -52,7 +52,7 @@
 		private $request;
 
 		/**
-		 * @var ConfigService
+		 * @var ConfigServiceInterface
 		 *
 		 * Config service
 		 */
@@ -75,7 +75,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request, ConfigService $config, PageCacheService $pageCacheService, LoggerServiceInterface $logger)
+		public function __construct(EntityManagerInterface $em, Session $session, TranslatorInterface $translator, RequestStack $request, ConfigServiceInterface $config, PageCacheService $pageCacheService, LoggerServiceInterface $logger)
 		{
 			$this->em 				= $em;
 			$this->session 			= $session;

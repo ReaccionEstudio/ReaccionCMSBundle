@@ -6,7 +6,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\HttpFoundation\Session\SessionInterface;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService;
@@ -33,7 +33,7 @@
 		private $user = null;
 
 		/**
-		 * @var ConfigService
+		 * @var ConfigServiceInterface
 		 *
 		 * Config service
 		 */
@@ -56,7 +56,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, SessionInterface $session, ConfigService $config, AuthenticationService $authenticationService, String $defaultLanguage = 'en')
+		public function __construct(EntityManagerInterface $em, SessionInterface $session, ConfigServiceInterface $config, AuthenticationService $authenticationService, String $defaultLanguage = 'en')
 		{
 			$this->em 					 = $em;
 			$this->session 				 = $session;

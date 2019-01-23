@@ -6,7 +6,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 
 	/**
@@ -21,7 +21,7 @@
 		CONST DEFAULT_CMS_THEMES_TWIG_PATH = '@ReaccionCMSBundle';
 
 		/**
-		 * @var ConfigService
+		 * @var ConfigServiceInterface
 		 *
 		 * Config service
 		 */
@@ -79,7 +79,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, ConfigService $configService, String $projectDir = "")
+		public function __construct(EntityManagerInterface $em, ConfigServiceInterface $configService, String $projectDir = "")
 		{
 			$this->em = $em;
 			$this->configService = $configService;

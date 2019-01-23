@@ -4,7 +4,7 @@ namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
 use Symfony\Component\Translation\TranslatorInterface;
-use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 /**
  * PaginationHelper class (Twig_Extension)
@@ -16,9 +16,9 @@ class PaginationHelper extends \Twig_Extension
     /**
      * Constructor
      *
-     * @param ConfigService     $config     Configuration service
+     * @param ConfigServiceInterface     $config     Configuration service
      */
-    public function __construct(ConfigService $config, TranslatorInterface $translator)
+    public function __construct(ConfigServiceInterface $config, TranslatorInterface $translator)
     {
         $this->config       = $config;
         $this->translator   = $translator;

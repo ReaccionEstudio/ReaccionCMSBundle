@@ -3,7 +3,7 @@
 namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
-use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 /**
  * ConfigHelper class (Twig_Extension)
@@ -15,9 +15,9 @@ class ConfigHelper extends \Twig_Extension
     /**
      * Constructor
      *
-     * @param ConfigService     $config     Configuration service
+     * @param ConfigServiceInterface     $config     Configuration service
      */
-    public function __construct(ConfigService $config)
+    public function __construct(ConfigServiceInterface $config)
     {
         $this->config = $config;
     }

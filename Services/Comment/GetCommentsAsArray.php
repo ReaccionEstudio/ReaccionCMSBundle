@@ -4,7 +4,7 @@
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 	/**
 	 * Convert comments list as array
@@ -42,7 +42,7 @@
 		private $page;
 
 		/**
-		 * @var Config
+		 * @var ConfigServiceInterface
 		 *
 		 * Config service
 		 */
@@ -58,7 +58,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, Int $entryId, Int $page = 1, ConfigService $config)
+		public function __construct(EntityManagerInterface $em, Int $entryId, Int $page = 1, ConfigServiceInterface $config)
 		{
 			$this->em 	 	= $em;
 			$this->page  	= $page;

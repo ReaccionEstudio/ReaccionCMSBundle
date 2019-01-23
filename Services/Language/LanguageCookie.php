@@ -3,7 +3,7 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
 	use Cocur\Slugify\Slugify;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 	/**
 	 * Manages the language cookie
@@ -13,7 +13,7 @@
 	class LanguageCookie
 	{
 		/**
-		 * @var ConfigService
+		 * @var ConfigServiceInterface
 		 *
 		 * Config service
 		 */
@@ -29,7 +29,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(ConfigService $config)
+		public function __construct(ConfigServiceInterface $config)
 		{
 			$this->config = $config;
 		}

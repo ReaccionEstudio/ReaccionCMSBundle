@@ -5,6 +5,7 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
@@ -12,7 +13,7 @@
 	 *
 	 * @author Alberto Vian <alberto@reaccionestudio.com>
 	 */
-	class ConfigService
+	class ConfigService implements ConfigServiceInterface
 	{
 		/**
 		 * @var ApcuAdapter

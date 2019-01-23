@@ -5,8 +5,8 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
@@ -20,7 +20,7 @@
 		private $logger;
 
 		/**
-		 * @var ConfigService
+		 * @var ConfigServiceInterface
 		 *
 		 * Config
 		 */
@@ -92,7 +92,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(LoggerServiceInterface $logger, ConfigService $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, EncryptorInterface $encryptor)
+		public function __construct(LoggerServiceInterface $logger, ConfigServiceInterface $config, Session $session, EntityManagerInterface $em, EmailTemplateService $emailTemplate, EncryptorInterface $encryptor)
 		{
 			$this->em 			 = $em;
 			$this->logger   	 = $logger;
