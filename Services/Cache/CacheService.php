@@ -3,13 +3,15 @@
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache;
 
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Cache service.
 	 *
 	 * @author Alberto Vian <alberto@reaccionestudio.com>
 	 */
-	class CacheService
+	class CacheService implements CacheServiceInterface
 	{
 		/**
 		 * @var ApcuAdapter
@@ -19,11 +21,19 @@
 		private $cache;
 
 		/**
+		 * @var LoggerServiceInterface
+		 *
+		 * Logger service
+		 */
+		private $logger;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct()
+		public function __construct(LoggerServiceInterface $logger)
 		{
 			$this->cache = new ApcuAdapter('', 0);
+			$this->logger = $logger;
 		}
 
 		/**
@@ -46,8 +56,7 @@
 			}
 			catch(\Exception $e)
 			{
-				// TODO: log error
-				throw $e;
+				$this->logger->logException($e, 'Error setting cache item.');
 				return false;
 			}
 		}

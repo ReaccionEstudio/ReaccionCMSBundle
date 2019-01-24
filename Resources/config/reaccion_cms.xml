@@ -65,7 +65,9 @@
             <argument type="service" id="reaccion_cms.cache" />
         </service>
         
-        <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true"></service>
+        <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true">
+            <argument type="service" id="reaccion_cms.logger" />
+        </service>
 
         <service id="reaccion_cms.entries" class="%reaccion_cms.entry.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
