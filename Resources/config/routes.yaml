@@ -58,6 +58,10 @@ user_resetting:
     path: /reset-password
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::index
 
+user_resetting_check_email:
+    path: /reset-password/check
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::checkEmail
+
 # languages
 change_language:
     path: /change_language/{language}

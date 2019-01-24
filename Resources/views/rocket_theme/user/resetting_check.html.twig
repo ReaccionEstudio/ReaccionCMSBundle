@@ -1,0 +1,15 @@
+{% extends '@ReaccionCMSBundle/rocket_theme/base.html.twig' %}
+
+{% block body %}
+
+	<div class="card col-sm-6 ml-auto mr-auto mt-4 mb-4">
+		<div class="card-body pl-2 pt-4">
+
+			<h5 class="card-title">{{ 'user_resetting.title' | trans }}</h5>
+			<hr />
+			<p>{{ 'user_resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>
+			
+		</div>
+	</div>
+
+{% endblock %}
