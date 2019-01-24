@@ -14,8 +14,9 @@ echo "Copying ${REACCION_ADMIN_BUNDLES_TEMPLATES_PATH} in ${BUNDLES_TEMPLATES_PA
 cp -R ${REACCION_ADMIN_BUNDLES_TEMPLATES_PATH} ${BUNDLES_TEMPLATES_PATH}/bundles
 
 # Removing ReaccionCMSBundle
-rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates/*
+rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
 mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
+rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes
 mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes
 
 # copying ReaccionCMS/Resources/views/emailTemplates
