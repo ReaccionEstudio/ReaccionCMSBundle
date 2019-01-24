@@ -34,9 +34,13 @@ php ${SF_PATH}/bin/console fos:js-routing:dump --format=json --target=public/js/
 echo "Installing assets ..."
 php ${SF_PATH}/bin/console assets:install --symlink 
 
-# Run Webpack encore
-echo "Compiling assets ..."
-yarn encore dev
+if [ "$1" ]; then
+
+	# Run Webpack encore
+	echo "Compiling assets ..."
+	yarn encore dev
+
+fi
 
 # Clear cache
 php ${SF_PATH}/bin/console cache:clear
