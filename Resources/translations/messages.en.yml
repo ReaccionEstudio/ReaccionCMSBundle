@@ -31,6 +31,12 @@ user_register:
   submit_btn: 'Sign up'
   seo_title: 'Join %sitename%'
 
+user_resetting:
+  title: 'Reset your account password'
+  username_label: 'Enter your account username or email address'
+  submit_btn: 'Submit'
+  seo_title: 'Reset your account password'
+
 signup:
   username_exists: 'Username already exists.'
   email_exists: 'Email address already exists.'

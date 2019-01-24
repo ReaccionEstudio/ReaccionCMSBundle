@@ -48,11 +48,15 @@ remove_comment:
 # users
 user_register:
     path: /register
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::register
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\RegistrationController::index
 
 user_login:
     path: /login
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\UserController::login
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\LoginController::index
+
+user_resetting:
+    path: /reset-password
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::index
 
 # languages
 change_language:

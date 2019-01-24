@@ -18,5 +18,6 @@ theme_config:
     register: 'user/register.html.twig'
     login: 'user/login.html.twig'
     footer: 'layout/footer.html.twig'
+    resetting: 'user/resetting.html.twig'
     404_error: '404_error.html.twig'
     500_error: '500_error.html.twig'

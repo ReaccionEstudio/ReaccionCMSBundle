@@ -1,0 +1,11 @@
+<form method="POST">
+    
+    <div class="form-group pt-2">
+        <label for="username">{{ 'user_resetting.username_label'|trans }}</label>
+        <input type="text" id="username" name="username" class="form-control" required="required" value="{{ username }}" />
+    </div>
+    <div class="text-center pb-2">
+        <input class="btn btn-primary" type="submit" value="{{ 'user_resetting.submit_btn'|trans }}" />
+    </div>
+
+</form>
