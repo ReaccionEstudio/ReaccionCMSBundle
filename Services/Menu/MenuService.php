@@ -8,7 +8,7 @@
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
 
 	/**
 	 * Menu service.
@@ -18,7 +18,7 @@
 	class MenuService
 	{
 		/**
-		 * @var CacheService
+		 * @var CacheServiceInterface
 		 *
 		 * Cache service
 		 */
@@ -55,7 +55,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, \Twig_Environment $twig, ThemeService $theme, CacheService $cache)
+		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, \Twig_Environment $twig, ThemeService $theme, CacheServiceInterface $cache)
 		{
 			$this->em = $em;
 			$this->twig = $twig;

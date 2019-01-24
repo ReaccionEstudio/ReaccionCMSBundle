@@ -8,7 +8,7 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageCacheData;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageViewPathAdapter;
 
@@ -41,7 +41,7 @@
 		private $twig;
 
 		/**
-		 * @var CacheService
+		 * @var CacheServiceInterface
 		 *
 		 * Cache service
 		 */
@@ -50,7 +50,7 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, ThemeService $theme, PageCacheService $pageCache, \Twig_Environment $twig, CacheService $cacheService)
+		public function __construct(EntityManagerInterface $em, ThemeService $theme, PageCacheService $pageCache, \Twig_Environment $twig, CacheServiceInterface $cacheService)
 		{
 			$this->em 		 = $em;
 			$this->twig 	 = $twig;
