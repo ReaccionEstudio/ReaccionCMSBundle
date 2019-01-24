@@ -5,10 +5,11 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
+	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
+	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
 
 	/**
 	 * Menu service.
@@ -96,8 +97,10 @@
 		 * @param  String 		$language		Menu language
 		 * @return String 		$menuHtml 		Menu HTML value
 		 */
-		public function saveMenuHtmlInCache(String $slug, String $language, String $cacheKey) : String
+		public function saveMenuHtmlInCache(String $slug, String $language, String $cacheKey = "") : String
 		{
+			$cacheKey = ( ! strlen($cacheKey) ) ? $this->getCacheKey($slug, $language) : $cacheKey;
+
 			// get menu from database
 			$menu = $this->em->getRepository(Menu::class)->findOneBy(
 						[
@@ -149,4 +152,15 @@
 			$suffix = "_" .  $lang . "_menu";
 			return (new CacheHelper())->convertSlugToCacheKey($slug, $suffix);
 		}
+
+		/**
+	     * Checks if given page has a relationship with any Menu
+	     *
+	     * @param  Integer 			$pageId 	Page Id
+     	 * @return Menu|null		[type] 		Menu entity
+	     */
+	    public function getPageMenu(Int $pageId)
+	    {
+	    	return $this->em->getRepository(MenuContent::class)->getPageMenu($pageId);
+	    }
 	}
