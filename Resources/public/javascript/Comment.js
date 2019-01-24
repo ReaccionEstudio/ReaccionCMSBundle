@@ -60,7 +60,7 @@ class Comment
      */
     _generateReplyForm(commentId)
     {
-      $("form.reply_form").remove();
+      $("form.reply_form").parent().parent().remove();
 
       let commentSelector = '#comment_' + commentId;
       let formHtml   = $("form#post_comment_form").html();
