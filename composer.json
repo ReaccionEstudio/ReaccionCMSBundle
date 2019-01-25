@@ -56,10 +56,5 @@
     "autoload-dev": {
         "psr-4": {
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": ""
-        }
     }
 }
