@@ -2,7 +2,7 @@
     "name": "reaccionestudio/reaccion-cms-bundle",
     "type": "symfony-bundle",
     "description": "An easy Content Management System built with Symfony",
-    "keywords": ["backend", "admin", "cms"],
+    "keywords": ["cms", "content management system"],
     "homepage": "https://github.com/ReaccionEstudio/ReaccionCMSBundle",
     "license": "MIT",
     "authors": [
@@ -54,11 +54,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ReaccionEstudio\\ReaccionCMSBundle\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
+            "ReaccionEstudio\\ReaccionCMSBundle\\": ""
         }
     }
 }
