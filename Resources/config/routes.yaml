@@ -1,3 +1,16 @@
+# lougout path
+logout:
+    path: /logout
+
+# fos js routing
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+# fos user
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# main route
 index:
     path: /
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
@@ -61,6 +74,10 @@ user_resetting:
 user_resetting_check_email:
     path: /reset-password/check
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::checkEmail
+
+#fos_user_resetting_reset:
+#    path: /reset-password/reset/{token}
+#    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset
 
 # languages
 change_language:
