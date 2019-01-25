@@ -4,7 +4,7 @@
     "description": "An easy Content Management System built with Symfony",
     "keywords": ["backend", "admin", "cms"],
     "homepage": "https://github.com/ReaccionEstudio/ReaccionCMSBundle",
-    "license": "",
+    "license": "MIT",
     "authors": [
     ],
     "require": {
