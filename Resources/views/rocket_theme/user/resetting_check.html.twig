@@ -7,7 +7,8 @@
 
 			<h5 class="card-title">{{ 'user_resetting.title' | trans }}</h5>
 			<hr />
-			<p>{{ 'user_resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>
+			
+			{% embed '@ReaccionCMSBundle/user/resetting/resetting_check.html.twig' %}{% endembed %}
 			
 		</div>
 	</div>

@@ -22,7 +22,7 @@
 		        		{{ form_label(form.password) }}
 					</div>
 					<div class="col-sm-6 text-right">
-			        	<a href="#" class="text-right"><small>{{ 'user_login.forgot_password' | trans }}</small></a>
+			        	<a href="{{ url('user_resetting') }}" class="text-right" title="{{ 'user_login.forgot_password' | trans }}"><small>{{ 'user_login.forgot_password' | trans }}</small></a>
 			        </div>
 		        </div>
 	        	{{ form_widget(form.password) }}
