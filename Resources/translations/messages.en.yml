@@ -14,7 +14,7 @@ navigation:
 user_login:
   signin: 'Sign in'
   email: 'Email'
-  username: 'Username'
+  username: 'Username or email address'
   password: 'Password'
   repeat_password: 'Repeat password'
   forgot_password: 'Forgot password?'
