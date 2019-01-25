@@ -8,11 +8,6 @@ BUNDLES_TEMPLATES_PATH=./templates
 # OVERRIDE THIRD-PARTY BUNDLE VIEWS
 echo "Removing ${BUNDLES_TEMPLATES_PATH}/bundles folder ..."
 
-rm -R ${BUNDLES_TEMPLATES_PATH}/bundles
-
-echo "Copying ${REACCION_ADMIN_BUNDLES_TEMPLATES_PATH} in ${BUNDLES_TEMPLATES_PATH}/bundles ..."
-cp -R ${REACCION_ADMIN_BUNDLES_TEMPLATES_PATH} ${BUNDLES_TEMPLATES_PATH}/bundles
-
 # Removing ReaccionCMSBundle
 rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
 mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
