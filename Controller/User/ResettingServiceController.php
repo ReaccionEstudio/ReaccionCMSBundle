@@ -2,20 +2,21 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 
-	use FOS\UserBundle\Event\FilterUserResponseEvent;
-	use FOS\UserBundle\Event\FormEvent;
-	use FOS\UserBundle\Event\GetResponseNullableUserEvent;
-	use FOS\UserBundle\Event\GetResponseUserEvent;
-	use FOS\UserBundle\Form\Factory\FactoryInterface;
 	use FOS\UserBundle\FOSUserEvents;
+	use FOS\UserBundle\Event\FormEvent;
 	use FOS\UserBundle\Mailer\MailerInterface;
+	use Symfony\Component\HttpFoundation\Response;
+	use Symfony\Component\HttpFoundation\Request;
 	use FOS\UserBundle\Model\UserManagerInterface;
+	use FOS\UserBundle\Event\GetResponseUserEvent;
+	use Symfony\Component\Form\FormFactoryInterface;
 	use FOS\UserBundle\Util\TokenGeneratorInterface;
+	use FOS\UserBundle\Event\FilterUserResponseEvent;
+	use FOS\UserBundle\Form\Factory\FactoryInterface;
+	use Symfony\Component\HttpFoundation\RedirectResponse;
+	use FOS\UserBundle\Event\GetResponseNullableUserEvent;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-	use Symfony\Component\HttpFoundation\RedirectResponse;
-	use Symfony\Component\HttpFoundation\Request;
-	use Symfony\Component\HttpFoundation\Response;
 
 	class ResettingServiceController extends Controller
 	{
@@ -90,7 +91,7 @@
 
 	        if (empty($username)) {
 	            // the user does not come from the sendEmail action
-	            return new RedirectResponse($this->generateUrl('fos_user_resetting_request'));
+	            return new RedirectResponse($this->generateUrl('user_resetting'));
 	        }
 
 	        $retryTtl = $this->getParameter("fos_user.resetting.retry_ttl");
@@ -108,39 +109,42 @@
 	     *
 	     * @return Response
 	     */
-	    // TODO: customize this method.
-	    public function resetAction(Request $request, $token)
+	    public function resetAction(Request $request, $token, $view)
 	    {
-	        $user = $this->userManager->findUserByConfirmationToken($token);
+	    	$formFactory = $this->get("resetting.form.factory");
+	    	$userManager = $this->get("fos_user.user_manager");
+	    	$eventDispatcher = $this->get("event_dispatcher");
+	        $user = $userManager->findUserByConfirmationToken($token);
 
 	        if (null === $user) {
-	            return new RedirectResponse($this->container->get('router')->generate('fos_user_security_login'));
+	            return new RedirectResponse($this->container->get('router')->generate('user_login'));
 	        }
 
 	        $event = new GetResponseUserEvent($user, $request);
-	        $this->eventDispatcher->dispatch(FOSUserEvents::RESETTING_RESET_INITIALIZE, $event);
+	        $eventDispatcher->dispatch(FOSUserEvents::RESETTING_RESET_INITIALIZE, $event);
 
 	        if (null !== $event->getResponse()) {
 	            return $event->getResponse();
 	        }
 
-	        $form = $this->formFactory->createForm();
+	        $form = $formFactory->createForm();
 	        $form->setData($user);
 
 	        $form->handleRequest($request);
 
-	        if ($form->isSubmitted() && $form->isValid()) {
+	        if ($form->isSubmitted() && $form->isValid()) 
+	        {
 	            $event = new FormEvent($form, $request);
-	            $this->eventDispatcher->dispatch(FOSUserEvents::RESETTING_RESET_SUCCESS, $event);
+	            $eventDispatcher->dispatch(FOSUserEvents::RESETTING_RESET_SUCCESS, $event);
 
-	            $this->userManager->updateUser($user);
+	            $userManager->updateUser($user);
 
 	            if (null === $response = $event->getResponse()) {
-	                $url = $this->generateUrl('fos_user_profile_show');
+	                $url = $this->generateUrl('index'); // TODO: set /profile route
 	                $response = new RedirectResponse($url);
 	            }
 
-	            $this->eventDispatcher->dispatch(
+	            $eventDispatcher->dispatch(
 	                FOSUserEvents::RESETTING_RESET_COMPLETED,
 	                new FilterUserResponseEvent($user, $request, $response)
 	            );
@@ -148,9 +152,9 @@
 	            return $response;
 	        }
 
-	        return $this->render('@FOSUser/Resetting/reset.html.twig', array(
+	        return $this->render($view, array(
 	            'token' => $token,
-	            'form' => $form->createView(),
+	            'form' => $form->createView()
 	        ));
 	    }
 	}

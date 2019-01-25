@@ -41,6 +41,8 @@ user_resetting:
         Note: You can only request a new password once within %tokenLifetime% hours.
 
         If you don't get an email check your spam folder or try again.
+  reset:
+    submit: 'Reset password'
 
 signup:
   username_exists: 'Username already exists.'

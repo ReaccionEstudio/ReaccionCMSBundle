@@ -2,8 +2,9 @@
 
 	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 
-	use Symfony\Component\HttpFoundation\Response;
+	use FOS\UserBundle\Form\Factory\FormFactory;
 	use Symfony\Component\HttpFoundation\Request;
+	use Symfony\Component\HttpFoundation\Response;
 	use FOS\UserBundle\Util\TokenGeneratorInterface;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -44,5 +45,11 @@
 		{
 			$view = $this->get("reaccion_cms.theme")->getConfigView("resetting_check", true);
 			return $this->get("reaccion_cms.resetting.controller")->checkEmailAction($request, $view);
+		}
+
+		public function reset(Request $request, $token)
+		{
+			$view = $this->get("reaccion_cms.theme")->getConfigView("resetting_reset", true);
+			return $this->get("reaccion_cms.resetting.controller")->resetAction($request, $token, $view);
 		}
 	}

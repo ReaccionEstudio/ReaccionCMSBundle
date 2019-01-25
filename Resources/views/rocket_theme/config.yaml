@@ -20,5 +20,6 @@ theme_config:
     footer: 'layout/footer.html.twig'
     resetting: 'user/resetting.html.twig'
     resetting_check: 'user/resetting_check.html.twig'
+    resetting_reset: 'user/resetting_reset.html.twig'
     404_error: '404_error.html.twig'
     500_error: '500_error.html.twig'

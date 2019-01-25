@@ -6,9 +6,6 @@ logout:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-# fos user
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 # main route
 index:
@@ -75,16 +72,20 @@ user_resetting_check_email:
     path: /reset-password/check
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::checkEmail
 
-#fos_user_resetting_reset:
-#    path: /reset-password/reset/{token}
-#    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset
-
 # languages
 change_language:
     path: /change_language/{language}
     controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
     options:
         expose: true
+
+# fos user
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_resetting_reset:
+    path: /reset-password/reset/{token}
+    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset
 
 # pages
 index_slug:
