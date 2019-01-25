@@ -96,8 +96,7 @@
 	        $retryTtl = $this->getParameter("fos_user.resetting.retry_ttl");
 
 	        return $this->render($view, array(
-	            'tokenLifetime' => ceil($retryTtl / 3600),
-	            'language' => 'en'
+	            'tokenLifetime' => ceil($retryTtl / 3600)
 	        ));
 	    }
 

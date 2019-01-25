@@ -33,7 +33,6 @@
 
 			$view = $this->get("reaccion_cms.theme")->getConfigView("resetting", true);
 			$vars = [
-				'language' 	=> 'en',
 				'seo' 		=> $seo,
 				'username'  => $accountUsername
 			];

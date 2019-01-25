@@ -64,12 +64,11 @@
          * Print menu HTML
          *
          * @param  String   $slug       Menu slug
-         * @param  String   $language   Menu language
          * @return String   [type]      Menu HTML
          */
-        public function printMenu(String $slug = "navigation", String $language = "en" ) : String
+        public function printMenu(String $slug = "navigation") : String
         {
-            return $this->menuService->getMenu($slug, $language);
+            return $this->menuService->getMenu($slug);
         }
 
         /**

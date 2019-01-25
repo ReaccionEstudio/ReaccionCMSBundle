@@ -24,7 +24,6 @@
 			// view vars
 			$vars = [ 
 						'seo' => [], 
-						'language' => 'en', 
 						'name' => 'Blog',
 						'entries' => $entries,
 						'categories' => $categories,
@@ -71,7 +70,6 @@
 			// view vars
 			$vars = [ 
 						'seo' => [], 
-						'language' => 'en', 
 						'name' => 'Blog',
 						'entries' => $entries,
 						'categories' => $categories,
@@ -110,7 +108,6 @@
 			// view vars
 			$vars = [ 
 						'seo' => [], 
-						'language' => 'en', 
 						'name' => 'Blog',
 						'entries' => $entries,
 						'categories' => $categories,

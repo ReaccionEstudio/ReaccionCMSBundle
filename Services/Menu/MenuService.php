@@ -11,6 +11,8 @@
 	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
 	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
 
+	use Symfony\Component\HttpFoundation\RequestStack;
+
 	/**
 	 * Menu service.
 	 *
@@ -54,14 +56,22 @@
 		private $theme;
 
 		/**
+		 * @var RequestStack
+		 *
+		 * RequestStack service
+		 */
+		private $request;
+
+		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, \Twig_Environment $twig, ThemeService $theme, CacheServiceInterface $cache)
+		public function __construct(EntityManagerInterface $em, MenuContentService $menuContentService, \Twig_Environment $twig, ThemeService $theme, CacheServiceInterface $cache, RequestStack $request)
 		{
 			$this->em = $em;
 			$this->twig = $twig;
 			$this->cache = $cache;
 			$this->theme = $theme;
+			$this->request = $request->getCurrentRequest();
 			$this->menuContentService = $menuContentService;
 		}
 
@@ -72,8 +82,11 @@
 		 * @param  String 		$language		Menu language
 		 * @return String 		[type] 			Menu HTML value
 		 */
-		public function getMenu(String $slug = 'navigation', String $language = "en") : String
+		public function getMenu(String $slug = 'navigation', String $language = "" ) : String
 		{
+			// get current app language
+			$language = (strlen($language)) ? $language : $this->request->getLocale();
+
 			// check if menu exists in cache storage
 			$cacheKey  = $this->getCacheKey($slug, $language);
 			$cacheItem = $this->cache->get($cacheKey);

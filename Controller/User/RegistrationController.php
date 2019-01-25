@@ -51,7 +51,6 @@
 			// view
 			$view = $this->get("reaccion_cms.theme")->getConfigView("register", true);
 			$vars = [
-				'language' 	=> 'en',
 				'form' 		=> $form->createView(),
 				'seo' 		=> $seo
 			];

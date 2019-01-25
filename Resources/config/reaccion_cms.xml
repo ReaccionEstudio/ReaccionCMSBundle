@@ -63,6 +63,7 @@
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.theme" />
             <argument type="service" id="reaccion_cms.cache" />
+            <argument type="service" id="request_stack" />
         </service>
         
         <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true">
