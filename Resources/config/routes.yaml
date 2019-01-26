@@ -55,23 +55,6 @@ remove_comment:
     path: /entry/comment/{comment}/remove
     controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
 
-# users
-user_register:
-    path: /register
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\RegistrationController::index
-
-user_login:
-    path: /login
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\LoginController::index
-
-user_resetting:
-    path: /reset-password
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::index
-
-user_resetting_check_email:
-    path: /reset-password/check
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::checkEmail
-
 # languages
 change_language:
     path: /change_language/{language}
@@ -86,10 +69,3 @@ fos_user:
 fos_user_resetting_reset:
     path: /reset-password/reset/{token}
     controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset
-
-# pages
-index_slug:
-    path: /{slug}
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
-    requirements:
-      slug:  "^(?!admin).+"

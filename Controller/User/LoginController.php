@@ -16,9 +16,28 @@
 	class LoginController extends Controller
 	{
 		/**
+		 * @var TranslatorInterface
+		 */
+		private $translator;
+
+		/**
+		 * @var EncoderFactoryInterface
+		 */
+		private $encoder;
+
+		/**
+		 * Construct
+		 */
+		public function __construct(TranslatorInterface $translator, EncoderFactoryInterface $encoder)
+		{
+			$this->translator 	= $translator;
+			$this->encoder 		= $encoder;
+		}
+
+		/**
 		 * Login existing user
 		 */
-		public function index(Request $request, TranslatorInterface $translator, EncoderFactoryInterface $encoder)
+		public function index(Request $request)
 		{
 			// If user is already logged in, redirect to home
 			if( ! empty($this->getUser()) )
@@ -26,7 +45,7 @@
 				return $this->get("reaccion_cms.user")->redirect('login_route_user_already_logged');
 			}
 			
-			$seo = ['title' => $translator->trans("signin.title") ];
+			$seo = ['title' => $this->translator->trans("signin.title") ];
 
 			// form
 			$form = $this->createForm(UserLoginType::class);
@@ -44,7 +63,7 @@
 				if( ! empty($user))
 				{
 					// check credentials
-	    			$isValidPassword = $encoder->getEncoder($user)->isPasswordValid($user->getPassword(), $password, $user->getSalt());
+	    			$isValidPassword = $this->encoder->getEncoder($user)->isPasswordValid($user->getPassword(), $password, $user->getSalt());
 
 	    			if($isValidPassword)
 	    			{
@@ -53,12 +72,12 @@
 	  	  			}
 	    			else
 	    			{
-	    				$this->addFlash('signin_error', $translator->trans('signin.invalid_credentials'));
+	    				$this->addFlash('signin_error', $this->translator->trans('signin.invalid_credentials'));
 	    			}
 				}
 				else
 				{
-	    			$this->addFlash('signin_error', $translator->trans('signin.user_doesnt_exists', ['%username%' => $username]));
+	    			$this->addFlash('signin_error', $this->translator->trans('signin.user_doesnt_exists', ['%username%' => $username]));
 				}
 			}
 

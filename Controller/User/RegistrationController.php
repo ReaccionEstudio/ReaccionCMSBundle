@@ -16,13 +16,26 @@
 	class RegistrationController extends Controller
 	{
 		/**
+		 * @var TranslatorInterface
+		 */
+		private $translator;
+
+		/**
+		 * Construct
+		 */
+		public function __construct(TranslatorInterface $translator)
+		{
+			$this->translator = $translator;
+		}
+
+		/**
 		 * Register a new user
 		 */
-		public function index(Request $request, TranslatorInterface $translator)
+		public function index(Request $request)
 		{
 			$sitename = $this->get("reaccion_cms.config")->get("site_name");
 			$seo = [
-				'title' => $translator->trans("user_register.seo_title", ['%sitename%' => $sitename])
+				'title' => $this->translator->trans("user_register.seo_title", ['%sitename%' => $sitename])
 			];
 
 			// form

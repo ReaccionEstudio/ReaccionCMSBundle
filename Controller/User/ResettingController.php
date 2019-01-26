@@ -18,18 +18,37 @@
 
 	class ResettingController extends Controller
 	{
-		public function index(Request $request, TranslatorInterface $translator, TokenGeneratorInterface $tokenGenerator)
+		/**
+		 * @var TranslatorInterface
+		 */
+		private $translator;
+
+		/**
+		 * @var TokenGeneratorInterface
+		 */
+		private $tokenGenerator;
+
+		/**
+		 * Constructor
+		 */
+		public function __construct(TranslatorInterface $translator, TokenGeneratorInterface $tokenGenerator)
+		{
+			$this->translator = $translator;
+			$this->tokenGenerator = $tokenGenerator;
+		}
+
+		public function index(Request $request)
 		{
 			$accountUsername = ($request->request->get("username")) ?? '';
 
 			if(strlen($accountUsername))
 			{
-				return $this->get("reaccion_cms.resetting.controller")->sendEmailAction($request, $tokenGenerator);
+				return $this->get("reaccion_cms.resetting_service.controller")->sendEmailAction($request, $this->tokenGenerator);
 			}
 
 			$sitename = $this->get("reaccion_cms.config")->get("site_name");
 			$seo = [
-				'title' => $translator->trans("user_resetting.seo_title", ['%sitename%' => $sitename])
+				'title' => $this->translator->trans("user_resetting.seo_title", ['%sitename%' => $sitename])
 			];
 
 			$view = $this->get("reaccion_cms.theme")->getConfigView("resetting", true);
@@ -44,12 +63,12 @@
 		public function checkEmail(Request $request)
 		{
 			$view = $this->get("reaccion_cms.theme")->getConfigView("resetting_check", true);
-			return $this->get("reaccion_cms.resetting.controller")->checkEmailAction($request, $view);
+			return $this->get("reaccion_cms.resetting_service.controller")->checkEmailAction($request, $view);
 		}
 
 		public function reset(Request $request, $token)
 		{
 			$view = $this->get("reaccion_cms.theme")->getConfigView("resetting_reset", true);
-			return $this->get("reaccion_cms.resetting.controller")->resetAction($request, $token, $view);
+			return $this->get("reaccion_cms.resetting_service.controller")->resetAction($request, $token, $view);
 		}
 	}

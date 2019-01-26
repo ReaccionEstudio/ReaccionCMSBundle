@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="user_login" path="/login" methods="GET POST">
+        <default key="_controller">reaccion_cms.login.controller:index</default>
+    </route>
+    
+    <route id="user_register" path="/register" methods="GET POST">
+        <default key="_controller">reaccion_cms.registration.controller:index</default>
+    </route>
+    
+    <route id="user_resetting" path="/reset-password" methods="GET POST">
+        <default key="_controller">reaccion_cms.resetting.controller:index</default>
+    </route>
+    
+    <route id="user_resetting_check_email" path="/reset-password/check" methods="GET POST">
+        <default key="_controller">reaccion_cms.resetting.controller:checkEmail</default>
+    </route>
+
+</routes>
