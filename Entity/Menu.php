@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Menu
  *
  * @ORM\Table(name="menu")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\MenuRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\MenuRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Menu

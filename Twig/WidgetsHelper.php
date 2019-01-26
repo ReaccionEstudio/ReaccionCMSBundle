@@ -1,11 +1,11 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
+namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
 use Symfony\Component\HttpFoundation\RequestStack;
-use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
-use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
+use ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
+use ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
 
 /**
  * Twig widgets helper class (Twig_Extension)

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PageTranslationGroup
  *
  * @ORM\Table(name="page_translation_groups")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageTranslationGroupRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\PageTranslationGroupRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class PageTranslationGroup
@@ -32,7 +32,7 @@ class PageTranslationGroup
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page", mappedBy="translationGroup")
+     * @ORM\OneToMany(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Page", mappedBy="translationGroup")
      */
     private $pages;
 

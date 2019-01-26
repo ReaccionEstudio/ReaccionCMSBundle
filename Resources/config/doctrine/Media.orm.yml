@@ -1,8 +1,8 @@
 # config/doctrine/Media.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media:
+ReaccionEstudio\ReaccionCMSBundle\Entity\Media:
     type: entity
     table: media
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\MediaRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\MediaRepository
 
     id:
         id:

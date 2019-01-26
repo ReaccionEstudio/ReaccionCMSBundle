@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Update totalComments field value for a entry entity

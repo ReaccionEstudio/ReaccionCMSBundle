@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller\User;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 
 	use FOS\UserBundle\FOSUserEvents;
 	use FOS\UserBundle\Event\FormEvent;

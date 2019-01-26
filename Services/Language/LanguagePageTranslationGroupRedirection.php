@@ -1,13 +1,13 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup;
+	use ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
 
 	/**
 	 * Helper class for managing page redirections which have a page translation group relationship.

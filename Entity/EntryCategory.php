@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntryCategory
  *
  * @ORM\Table(name="entries_categories")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\EntryCategoryRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\EntryCategoryRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class EntryCategory

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EmailTemplate
  *
  * @ORM\Table(name="email_templates")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\EmailTemplateRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\EmailTemplateRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class EmailTemplate

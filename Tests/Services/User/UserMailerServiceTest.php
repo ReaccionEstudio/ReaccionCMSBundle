@@ -1,10 +1,10 @@
 <?php
 	
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Tests\Services\User;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Tests\Services\User;
 	
 	use PHPUnit\Framework\TestCase;
 	use Doctrine\Common\Collections\ArrayCollection;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 	/**

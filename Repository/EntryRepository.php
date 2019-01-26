@@ -1,18 +1,12 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
+namespace ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 
-class EntryRepository extends ServiceEntityRepository
+class EntryRepository extends EntityRepository
 {
-	public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, Entry::class);
-    }
-
     /**
      * Get entry entities
      *
@@ -62,10 +56,10 @@ class EntryRepository extends ServiceEntityRepository
 
         $dql = "SELECT 
                 e.id, e.name, e.slug
-                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e 
                 WHERE 
-                e.id  = (SELECT MIN(e1.id) FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e1 WHERE e1.id > :entryId AND e1.language = :language AND e1.enabled = 1) 
-                OR e.id  = (SELECT MAX(e2.id) FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e2 WHERE e2.id < :entryId AND e2.language = :language AND e2.enabled = 1)
+                e.id  = (SELECT MIN(e1.id) FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e1 WHERE e1.id > :entryId AND e1.language = :language AND e1.enabled = 1) 
+                OR e.id  = (SELECT MAX(e2.id) FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e2 WHERE e2.id < :entryId AND e2.language = :language AND e2.enabled = 1)
                 ";
 
         $query = $em->createQuery($dql)

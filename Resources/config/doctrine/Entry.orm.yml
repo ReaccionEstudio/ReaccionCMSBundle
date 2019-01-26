@@ -1,13 +1,13 @@
 # config/doctrine/Entry.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
+ReaccionEstudio\ReaccionCMSBundle\Entity\Entry:
     type: entity
     table: entries
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\EntryRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\EntryRepository
 
     manyToOne:
 
         defaultImage:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\Media
           joinColumn:
             name: default_image_id
             referencedColumnName: id

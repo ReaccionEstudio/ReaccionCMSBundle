@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\DependencyInjection;
+namespace ReaccionEstudio\ReaccionCMSBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -1,18 +1,12 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
+namespace ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent;
 
-class MenuContentRepository extends ServiceEntityRepository
+class MenuContentRepository extends EntityRepository
 {
-	public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, MenuContent::class);
-    }
-
     /**
      * Checks if given page has a relationship with any Menu
      *
@@ -25,8 +19,8 @@ class MenuContentRepository extends ServiceEntityRepository
 
     	$dql = "SELECT 
     			me 
-                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent m 
-                LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu me 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent m 
+                LEFT JOIN ReaccionEstudio\ReaccionCMSBundle\Entity\Menu me 
                 WITH me.id = m.menu
                 WHERE m.type = 'page' 
                 AND m.value = :pageId

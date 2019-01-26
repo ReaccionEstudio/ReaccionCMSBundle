@@ -1,9 +1,9 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\PageView;
+	namespace ReaccionEstudio\ReaccionCMSBundle\PageView;
 	
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
 
 	final class PageViewContentCollection
 	{

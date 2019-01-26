@@ -1,13 +1,13 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller;
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\JsonResponse;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 

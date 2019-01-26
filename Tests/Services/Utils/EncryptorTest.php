@@ -1,6 +1,6 @@
 <?php
 	
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Tests\Services\Utils;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Tests\Services\Utils;
 	
 	use PHPUnit\Framework\TestCase;
 	use Doctrine\Common\Collections\ArrayCollection;

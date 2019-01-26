@@ -1,20 +1,20 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
 	
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\RequestStack;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use Symfony\Component\Translation\TranslatorInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentSanitizer;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\GetCommentsAsArray;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentSanitizer;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Comment\GetCommentsAsArray;
+	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Comment\UpdateEntryCommentsCount;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Comments service.

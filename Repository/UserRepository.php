@@ -1,10 +1,9 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
+namespace ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,13 +11,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends EntityRepository
 {
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, User::class);
-    }
-
     /**
 	 * Check if username and email already exists
 	 * 
@@ -31,7 +25,7 @@ class UserRepository extends ServiceEntityRepository
     	$em = $this->getEntityManager();
 
     	$dql = "SELECT COUNT(u.id) AS total, u.usernameCanonical, u.emailCanonical 
-                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
                 WHERE u.usernameCanonical = :username 
                 OR  u.emailCanonical = :email";
 
@@ -55,7 +49,7 @@ class UserRepository extends ServiceEntityRepository
                 u.username, 
                 u.nickname, 
                 u.email 
-                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
                 WHERE u.enabled = 1 
                 AND u.roles LIKE '%\"ROLE_ADMIN\"%'";
 
@@ -75,7 +69,7 @@ class UserRepository extends ServiceEntityRepository
 
         $dql = "SELECT 
                 u
-                FROM App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
                 WHERE u.enabled = 1 
                 AND u.roles LIKE '%\"ROLE_ADMIN\"%'";
 

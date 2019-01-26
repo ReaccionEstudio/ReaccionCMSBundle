@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
+namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 

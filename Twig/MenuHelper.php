@@ -1,13 +1,13 @@
 <?php
 
-    namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
+    namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
     use Services\Managers\ManagerPermissions;
     use Symfony\Component\HttpFoundation\RequestStack;
     use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-    use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
-    use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
-    use App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
+    use ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
+    use ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
+    use ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
 
     /**
      * MenuHelper class (Twig_Extension)

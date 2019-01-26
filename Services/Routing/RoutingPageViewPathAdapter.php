@@ -1,8 +1,8 @@
 <?php
 	
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
 
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 
 	/**
 	 * Adapts the page cache data into a new Page entity

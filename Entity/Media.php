@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Media
  *
  * @ORM\Table(name="media")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\MediaRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Media

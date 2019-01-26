@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor;
 
 	interface EncryptorInterface
 	{

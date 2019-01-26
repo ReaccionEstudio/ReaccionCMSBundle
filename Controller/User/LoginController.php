@@ -1,14 +1,14 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller\User;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserLoginType;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
+	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
+	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserLoginType;
+	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 	use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 	use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;

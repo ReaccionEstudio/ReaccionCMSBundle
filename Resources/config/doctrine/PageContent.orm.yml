@@ -1,13 +1,13 @@
 # config/doctrine/PageContent.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
+ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent:
     type: entity
     table: pages_content
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageContentRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\PageContentRepository
 
     manyToOne:
 
         page:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\Page
           inversedBy: content
           joinColumn:
             name: page_id

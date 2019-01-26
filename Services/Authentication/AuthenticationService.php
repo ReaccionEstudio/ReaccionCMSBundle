@@ -1,9 +1,9 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Authentication;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\Session\SessionInterface;
 	use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;

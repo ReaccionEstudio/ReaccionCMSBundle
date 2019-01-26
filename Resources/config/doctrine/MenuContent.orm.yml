@@ -1,8 +1,8 @@
 # config/doctrine/MenuContent.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent:
+ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent:
     type: entity
     table: menu_content
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\MenuContentRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\MenuContentRepository
 
     id:
         id:
@@ -12,14 +12,14 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent:
     manyToOne:
 
         parent:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
           joinColumn:
             name: parent_id
             referencedColumnName: id
             onDelete: CASCADE
 
         menu:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
           joinColumn:
             name: menu_id
             referencedColumnName: id

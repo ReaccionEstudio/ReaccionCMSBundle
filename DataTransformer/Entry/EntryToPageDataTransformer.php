@@ -1,13 +1,13 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry;
+	namespace ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry;
 
 	use Doctrine\Common\Collections\ArrayCollection;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry\EntryToPageContentDataTransformer;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
+	use ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry\EntryToPageContentDataTransformer;
 
 	/**
 	 * Transforms an entry entity into a Page entity with the entry as page content

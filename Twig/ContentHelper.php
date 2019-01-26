@@ -1,12 +1,12 @@
 <?php
 
-    namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
+    namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
     use Services\Managers\ManagerPermissions;
     use Symfony\Component\Routing\RouterInterface;
 
-    use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\Image;
-    use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\HtmlText;
+    use ReaccionEstudio\ReaccionCMSBundle\PrintContent\Image;
+    use ReaccionEstudio\ReaccionCMSBundle\PrintContent\HtmlText;
 
     /**
      * ContentHelper class (Twig_Extension)

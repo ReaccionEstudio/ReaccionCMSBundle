@@ -1,13 +1,13 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\User;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\User;
 
 	use FOS\UserBundle\Model\UserInterface;
 	use FOS\UserBundle\Mailer\MailerInterface;
 	use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Custom FOS User bundle mailer service.

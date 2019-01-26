@@ -1,8 +1,8 @@
 # config/doctrine/Configuration.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration:
+ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration:
     type: entity
     table: config
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\ConfigurationRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\ConfigurationRepository
 
     id:
         id:

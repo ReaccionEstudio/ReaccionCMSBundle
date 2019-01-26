@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Page
  *
  * @ORM\Table(name="pages")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Page
@@ -117,14 +117,14 @@ class Page
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent", mappedBy="page")
+     * @ORM\OneToMany(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent", mappedBy="page")
      */
     private $content;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup", inversedBy="pages")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup", inversedBy="pages")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="translation_group_id", referencedColumnName="id", onDelete="SET NULL")
      * })
@@ -441,7 +441,7 @@ class Page
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
      */
     public function getTranslationGroup()
     {
@@ -449,11 +449,11 @@ class Page
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup
      *
      * @return self
      */
-    public function setTranslationGroup(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup = null)
+    public function setTranslationGroup(\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup $translationGroup = null)
     {
         $this->translationGroup = $translationGroup;
 

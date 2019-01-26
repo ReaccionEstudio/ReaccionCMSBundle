@@ -1,15 +1,11 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
+namespace ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
 
-class CommentRepository extends ServiceEntityRepository
+class CommentRepository extends EntityRepository
 {
-	public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, Comment::class);
-    }
+	
 }

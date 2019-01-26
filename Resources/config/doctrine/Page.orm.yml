@@ -1,18 +1,18 @@
 # config/doctrine/Page.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
+ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
     type: entity
     table: pages
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\PageRepository
 
     oneToMany:
         content:
-            targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent
+            targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent
             mappedBy: page
     
     manyToOne:
 
         translationGroup:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup
           inversedBy: pages
           joinColumn:
             name: translation_group_id

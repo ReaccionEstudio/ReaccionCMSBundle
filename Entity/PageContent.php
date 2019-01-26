@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PageContent
  *
  * @ORM\Table(name="pages_content")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\PageContentRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\PageContentRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class PageContent
@@ -87,9 +87,9 @@ class PageContent
     private $updatedAt;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\Page
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page", inversedBy="content")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Page", inversedBy="content")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="page_id", referencedColumnName="id", onDelete="CASCADE")
      * })
@@ -298,7 +298,7 @@ class PageContent
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\Page
      */
     public function getPage()
     {
@@ -306,11 +306,11 @@ class PageContent
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page $page
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\Page $page
      *
      * @return self
      */
-    public function setPage(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page $page)
+    public function setPage(\ReaccionEstudio\ReaccionCMSBundle\Entity\Page $page)
     {
         $this->page = $page;
 

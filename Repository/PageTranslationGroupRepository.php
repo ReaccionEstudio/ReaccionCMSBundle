@@ -1,15 +1,10 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
+namespace ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup;
+use Doctrine\ORM\EntityRepository;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\PageTranslationGroup;
 
-class PageTranslationGroupRepository extends ServiceEntityRepository
+class PageTranslationGroupRepository extends EntityRepository
 {
-	public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, PageTranslationGroup::class);
-    }
 }

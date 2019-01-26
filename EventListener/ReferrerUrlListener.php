@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\EventListener;
+	namespace ReaccionEstudio\ReaccionCMSBundle\EventListener;
 
 	use Symfony\Component\HttpFoundation\Response;
 	use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
+	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 	use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
     /**

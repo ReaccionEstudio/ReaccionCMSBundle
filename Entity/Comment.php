@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Comment
  *
  * @ORM\Table(name="comments")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\CommentRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\CommentRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Comment
@@ -44,9 +44,9 @@ class Comment
     private $updatedAt;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Entry")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="entry_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * })
@@ -54,9 +54,9 @@ class Comment
     private $entry;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\User
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -64,9 +64,9 @@ class Comment
     private $user;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Comment")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * })
@@ -74,9 +74,9 @@ class Comment
     private $reply;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Comment")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="root_id", referencedColumnName="id", onDelete="CASCADE")
      * })
@@ -180,7 +180,7 @@ class Comment
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
      */
     public function getEntry()
     {
@@ -188,11 +188,11 @@ class Comment
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry $entry
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\Entry $entry
      *
      * @return self
      */
-    public function setEntry(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry $entry)
+    public function setEntry(\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry $entry)
     {
         $this->entry = $entry;
 
@@ -200,7 +200,7 @@ class Comment
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\User
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\User
      */
     public function getUser()
     {
@@ -208,11 +208,11 @@ class Comment
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\User $user
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\User $user
      *
      * @return self
      */
-    public function setUser(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\User $user)
+    public function setUser(\ReaccionEstudio\ReaccionCMSBundle\Entity\User $user)
     {
         $this->user = $user;
 
@@ -220,7 +220,7 @@ class Comment
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
      */
     public function getReply()
     {
@@ -228,11 +228,11 @@ class Comment
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $reply
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $reply
      *
      * @return self
      */
-    public function setReply(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $reply)
+    public function setReply(\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $reply)
     {
         $this->reply = $reply;
 
@@ -240,7 +240,7 @@ class Comment
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
      */
     public function getRoot()
     {
@@ -248,11 +248,11 @@ class Comment
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $root
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $root
      *
      * @return self
      */
-    public function setRoot(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $root)
+    public function setRoot(\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment $root)
     {
         $this->root = $root;
 

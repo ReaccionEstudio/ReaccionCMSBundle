@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 	/**
 	 * Convert comments list as array
@@ -162,8 +162,8 @@
 					u.id AS creatorId,
 					u.email AS creatorEmail,
 					u.nickname AS creatorNickname
-					FROM  App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment c 
-					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+					FROM  ReaccionEstudio\ReaccionCMSBundle\Entity\Comment c 
+					LEFT JOIN ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
 					WITH c.user = u.id
 					WHERE c.entry = :entry 
 					AND c.reply IS NULL
@@ -206,10 +206,10 @@
 					u.email AS creatorEmail,
 					u.nickname AS creatorNickname, 
 					cp.id AS parent_id
-					FROM  App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment c 
-					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
+					FROM  ReaccionEstudio\ReaccionCMSBundle\Entity\Comment c 
+					LEFT JOIN ReaccionEstudio\ReaccionCMSBundle\Entity\User u 
 					WITH c.user = u.id 
-					LEFT JOIN App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment cp 
+					LEFT JOIN ReaccionEstudio\ReaccionCMSBundle\Entity\Comment cp 
 					WITH c.reply = cp.id 
 					WHERE c.entry = :entry 
 					AND c.root IN (:rootValues)

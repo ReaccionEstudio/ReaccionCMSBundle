@@ -1,14 +1,14 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Utils;
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\HttpFoundation\Session\Session;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\EncryptorInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	class MailerService
 	{

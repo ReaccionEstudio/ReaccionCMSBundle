@@ -1,15 +1,10 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Repository;
+namespace ReaccionEstudio\ReaccionCMSBundle\Repository;
 
-use App\ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
 
-class PageContentRepository extends ServiceEntityRepository
+class PageContentRepository extends EntityRepository
 {
-	public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, PageContent::class);
-    }
 }

@@ -1,8 +1,8 @@
 # config/doctrine/Comment.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
+ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
     type: entity
     table: comments
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\CommentRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\CommentRepository
 
     id:
         id:
@@ -12,7 +12,7 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
     manyToOne:
 
         entry:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\Entry
           joinColumn:
             name: entry_id
             referencedColumnName: id
@@ -20,20 +20,20 @@ App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment:
             nullable: false
 
         user:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\User
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\User
           joinColumn:
             name: user_id
             referencedColumnName: id
 
         reply:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
           joinColumn:
             name: parent_id
             referencedColumnName: id
             onDelete: CASCADE
 
         root:
-          targetEntity: App\ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
+          targetEntity: ReaccionEstudio\ReaccionCMSBundle\Entity\Comment
           joinColumn:
             name: root_id
             referencedColumnName: id

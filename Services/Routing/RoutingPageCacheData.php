@@ -1,8 +1,8 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
 
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
 
 	/**
 	 * Get page cache data required for the routing service

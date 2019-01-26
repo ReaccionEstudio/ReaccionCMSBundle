@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Config;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Config;
 
 	interface ConfigServiceInterface
 	{

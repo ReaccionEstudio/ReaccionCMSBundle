@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
 
 	/**
 	 * Formats and sanitizes the comment content.

@@ -1,16 +1,16 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageCacheData;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageViewPathAdapter;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
+	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageCacheData;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageViewPathAdapter;
 
 	/**
 	 * ReaccionCMSBundle routing service.

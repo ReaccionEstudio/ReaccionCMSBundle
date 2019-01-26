@@ -1,10 +1,10 @@
 <?php 
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Page;
+	namespace ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Page;
 
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewContentCollection;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
+	use ReaccionEstudio\ReaccionCMSBundle\PageView\PageViewContentCollection;
 
 	/**
 	 * Page data transformer

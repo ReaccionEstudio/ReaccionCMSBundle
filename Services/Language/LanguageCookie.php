@@ -1,9 +1,9 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
 	use Cocur\Slugify\Slugify;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 	/**
 	 * Manages the language cookie

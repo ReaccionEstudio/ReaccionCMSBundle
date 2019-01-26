@@ -7,26 +7,26 @@
     <parameters>
     	
     	<parameter key="reaccion_cms.version">0.1</parameter>
-    	<parameter key="reaccion_cms.routing.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingService</parameter>
-        <parameter key="reaccion_cms.theme.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
-        <parameter key="reaccion_cms.config.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
-        <parameter key="reaccion_cms.menu.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService</parameter>
-        <parameter key="reaccion_cms.cache.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService</parameter>
-        <parameter key="reaccion_cms.entry.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService</parameter>
-        <parameter key="reaccion_cms.user.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserService</parameter>
-        <parameter key="reaccion_cms.authentication.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
-        <parameter key="reaccion_cms.comment.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
-        <parameter key="reaccion_cms.referrer_url_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
-        <parameter key="reaccion_cms.logger.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerService</parameter>
-        <parameter key="reaccion_cms.language.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
-        <parameter key="reaccion_cms.mailer.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
-        <parameter key="reaccion_cms.email_template.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>
-        <parameter key="reaccion_cms.user_mailer_service.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserMailerService</parameter>
-        <parameter key="reaccion_cms.encryptor.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\Encryptor</parameter>
-        <parameter key="reaccion_cms.language_page_translation_group_redirection.class">App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguagePageTranslationGroupRedirection</parameter>
+    	<parameter key="reaccion_cms.routing.class">ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingService</parameter>
+        <parameter key="reaccion_cms.theme.class">ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
+        <parameter key="reaccion_cms.config.class">ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
+        <parameter key="reaccion_cms.menu.class">ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService</parameter>
+        <parameter key="reaccion_cms.cache.class">ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService</parameter>
+        <parameter key="reaccion_cms.entry.class">ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService</parameter>
+        <parameter key="reaccion_cms.user.class">ReaccionEstudio\ReaccionCMSBundle\Services\User\UserService</parameter>
+        <parameter key="reaccion_cms.authentication.class">ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
+        <parameter key="reaccion_cms.comment.class">ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
+        <parameter key="reaccion_cms.referrer_url_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
+        <parameter key="reaccion_cms.logger.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerService</parameter>
+        <parameter key="reaccion_cms.language.class">ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
+        <parameter key="reaccion_cms.mailer.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
+        <parameter key="reaccion_cms.email_template.class">ReaccionEstudio\ReaccionCMSBundle\Services\Email\EmailTemplateService</parameter>
+        <parameter key="reaccion_cms.user_mailer_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\User\UserMailerService</parameter>
+        <parameter key="reaccion_cms.encryptor.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\Encryptor</parameter>
+        <parameter key="reaccion_cms.language_page_translation_group_redirection.class">ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguagePageTranslationGroupRedirection</parameter>
 
         <!-- listeners -->
-        <parameter key="reaccion_cms.language_listener.class">App\ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
+        <parameter key="reaccion_cms.language_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
 
         <!-- fos user bundle parameters -->
         <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
@@ -171,7 +171,7 @@
         </service>
 
         <!-- user resetting password controller -->
-        <service id="reaccion_cms.resetting.controller" class="App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingServiceController" public="true">
+        <service id="reaccion_cms.resetting.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingServiceController" public="true">
             <argument type="service" id="event_dispatcher" />
             <argument type="service" id="fos_user.resetting.form.factory" />
             <argument type="service" id="fos_user.user_manager" />
@@ -189,6 +189,49 @@
             <argument>%fos_user.resetting.form.name%</argument>
             <argument>%fos_user.resetting.form.type%</argument>
             <argument>%fos_user.resetting.form.validation_groups%</argument>
+        </service>
+
+        <!-- twig extensions -->
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\ConfigHelper" public="false">
+            <argument type="service" id="reaccion_cms.config" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\ContentHelper" public="false">
+            <argument type="service" id="router" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\FlashMessagesHelper" public="false">
+            <argument type="service" id="session" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\MenuHelper" public="false">
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="reaccion_cms.menu" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\PaginationHelper" public="false">
+            <argument type="service" id="reaccion_cms.config" />
+            <argument type="service" id="translator" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\SeoHelper" public="false">
+            <argument type="service" id="reaccion_cms.config" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\WidgetsHelper" public="false">
+            <argument type="service" id="reaccion_cms.language" />
+            <tag name="twig.extension" />
+        </service>
+        
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\UserHelper" public="false">
+            <tag name="twig.extension" />
         </service>
 
     </services>

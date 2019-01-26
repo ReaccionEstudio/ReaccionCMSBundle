@@ -1,8 +1,8 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\PrintContent;
+	namespace ReaccionEstudio\ReaccionCMSBundle\PrintContent;
 
-	use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\PrintContentInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\PrintContent\PrintContentInterface;
 
 	class HtmlText implements PrintContentInterface
 	{

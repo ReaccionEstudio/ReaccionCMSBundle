@@ -1,8 +1,8 @@
 # config/doctrine/User.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\User:
+ReaccionEstudio\ReaccionCMSBundle\Entity\User:
     type:  entity
     table: user
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\UserRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\UserRepository
     
     id:
         id:

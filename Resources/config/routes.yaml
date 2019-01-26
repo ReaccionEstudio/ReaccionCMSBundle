@@ -10,26 +10,26 @@ fos_js_routing:
 # main route
 index:
     path: /
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
 
 # blog
 blog:
     path: /blog/{page}
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::index
     defaults: { page: 1 }
     requirements:
       page: \d+
 
 blog_category:
     path: /blog/category/{category}/{page}
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::category
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::category
     defaults: { page: 1 }
     requirements:
       page: \d+
 
 blog_tag:
     path: /blog/tag/{tag}/{page}
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::tag
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::tag
     defaults: { page: 1 }
     requirements:
       page: \d+
@@ -37,45 +37,45 @@ blog_tag:
 # comments
 post_comment:
     path: /entry/{entry}/comment/add
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::post
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::post
 
 post_comment_reply:
     path: /entry/comment/{comment}/update
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::postReply
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::postReply
     options:
         expose: true
 
 update_comment:
     path: /entry/comment/{comment}/update
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::update
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::update
     options:
         expose: true
 
 remove_comment:
     path: /entry/comment/{comment}/remove
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
 
 # users
 user_register:
     path: /register
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\RegistrationController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\RegistrationController::index
 
 user_login:
     path: /login
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\LoginController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\LoginController::index
 
 user_resetting:
     path: /reset-password
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::index
 
 user_resetting_check_email:
     path: /reset-password/check
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::checkEmail
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::checkEmail
 
 # languages
 change_language:
     path: /change_language/{language}
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
     options:
         expose: true
 
@@ -85,11 +85,11 @@ fos_user:
 
 fos_user_resetting_reset:
     path: /reset-password/reset/{token}
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset
 
 # pages
 index_slug:
     path: /{slug}
-    controller: App\ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
+    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
     requirements:
       slug:  "^(?!admin).+"

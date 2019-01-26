@@ -1,8 +1,8 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry;
+	namespace ReaccionEstudio\ReaccionCMSBundle\DataTransformer\Entry;
 
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 
 	final class EntryToPageContentDataTransformer
 	{

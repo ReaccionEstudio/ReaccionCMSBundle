@@ -1,8 +1,8 @@
 # config/doctrine/Menu.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu:
+ReaccionEstudio\ReaccionCMSBundle\Entity\Menu:
     type: entity
     table: menu
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\MenuRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\MenuRepository
 
     id:
         id:

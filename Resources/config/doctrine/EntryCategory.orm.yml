@@ -1,8 +1,8 @@
 # config/doctrine/EntryCategory.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory:
+ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory:
     type: entity
     table: entries_categories
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\EntryCategoryRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\EntryCategoryRepository
 
     id:
         id:

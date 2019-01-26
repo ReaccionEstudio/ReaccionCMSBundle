@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\EventListener;
+	namespace ReaccionEstudio\ReaccionCMSBundle\EventListener;
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-    use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
+    use ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
 
     /**
      * Language|Locale listener

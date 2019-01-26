@@ -1,12 +1,12 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Email;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Email;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Email template service.

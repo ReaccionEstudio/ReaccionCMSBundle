@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
 
 	interface LoggerServiceInterface
 	{

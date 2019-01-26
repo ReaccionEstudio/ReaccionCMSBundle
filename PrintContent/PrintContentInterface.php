@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\PrintContent;
+	namespace ReaccionEstudio\ReaccionCMSBundle\PrintContent;
 
 	interface PrintContentInterface
 	{

@@ -1,13 +1,13 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\User;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\User;
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Bundle\FrameworkBundle\Routing\Router;
 	use Symfony\Component\HttpFoundation\Session\Session;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\Translation\TranslatorInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\User\UserRedirectionEvent;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\User\UserRedirectionEvent;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 
 	/**

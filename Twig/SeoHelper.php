@@ -1,9 +1,9 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
+namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
-use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 /**
  * SeoHelper class (Twig_Extension)

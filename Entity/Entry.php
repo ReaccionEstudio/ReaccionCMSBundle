@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Entry
  *
  * @ORM\Table(name="entries")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\EntryRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\EntryRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Entry
@@ -94,9 +94,9 @@ class Entry
     private $updatedAt;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\Media
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Media")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="default_image_id", referencedColumnName="id", onDelete="SET NULL")
      * })
@@ -106,7 +106,7 @@ class Entry
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory")
+     * @ORM\ManyToMany(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory")
      * @ORM\JoinTable(name="entries_rel_categories",
      *   joinColumns={
      *     @ORM\JoinColumn(name="entry_id", referencedColumnName="id", onDelete="CASCADE")
@@ -348,7 +348,7 @@ class Entry
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\Media
      */
     public function getDefaultImage()
     {
@@ -356,11 +356,11 @@ class Entry
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media $defaultImage
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\Media $defaultImage
      *
      * @return self
      */
-    public function setDefaultImage(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Media $defaultImage)
+    public function setDefaultImage(\ReaccionEstudio\ReaccionCMSBundle\Entity\Media $defaultImage)
     {
         $this->defaultImage = $defaultImage;
 

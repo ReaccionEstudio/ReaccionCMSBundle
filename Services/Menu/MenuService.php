@@ -1,15 +1,15 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Menu;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Menu;
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Menu;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent;
+	use ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
+	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
 
 	use Symfony\Component\HttpFoundation\RequestStack;
 

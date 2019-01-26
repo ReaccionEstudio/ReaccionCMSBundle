@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Cache;
 
 	use Symfony\Component\Cache\Adapter\ApcuAdapter;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Cache service.

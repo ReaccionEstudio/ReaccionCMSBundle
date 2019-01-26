@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Entity;
+namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * MenuContent
  *
  * @ORM\Table(name="menu_content")
- * @ORM\Entity(repositoryClass="App\ReaccionEstudio\ReaccionCMSBundle\Repository\MenuContentRepository")
+ * @ORM\Entity(repositoryClass="ReaccionEstudio\ReaccionCMSBundle\Repository\MenuContentRepository")
  */
 class MenuContent
 {
@@ -64,9 +64,9 @@ class MenuContent
     private $enabled;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      * })
@@ -74,9 +74,9 @@ class MenuContent
     private $parent;
 
     /**
-     * @var \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
+     * @var \ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
      *
-     * @ORM\ManyToOne(targetEntity="App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu")
+     * @ORM\ManyToOne(targetEntity="ReaccionEstudio\ReaccionCMSBundle\Entity\Menu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id", onDelete="CASCADE")
      * })
@@ -224,7 +224,7 @@ class MenuContent
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent
      */
     public function getParent()
     {
@@ -232,11 +232,11 @@ class MenuContent
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent $parent
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent $parent
      *
      * @return self
      */
-    public function setParent(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent $parent)
+    public function setParent(\ReaccionEstudio\ReaccionCMSBundle\Entity\MenuContent $parent)
     {
         $this->parent = $parent;
 
@@ -244,7 +244,7 @@ class MenuContent
     }
 
     /**
-     * @return \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
+     * @return \ReaccionEstudio\ReaccionCMSBundle\Entity\Menu
      */
     public function getMenu()
     {
@@ -252,11 +252,11 @@ class MenuContent
     }
 
     /**
-     * @param \App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu $menu
+     * @param \ReaccionEstudio\ReaccionCMSBundle\Entity\Menu $menu
      *
      * @return self
      */
-    public function setMenu(\App\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu $menu)
+    public function setMenu(\ReaccionEstudio\ReaccionCMSBundle\Entity\Menu $menu)
     {
         $this->menu = $menu;
 

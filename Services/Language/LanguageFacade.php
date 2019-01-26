@@ -1,8 +1,8 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 	
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
 
 	/**
 	 * Language facade class.

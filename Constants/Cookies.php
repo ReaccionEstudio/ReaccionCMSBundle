@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Constants;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Constants;
 
 	/**
 	 * Cookies constants

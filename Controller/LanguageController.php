@@ -1,12 +1,12 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller;
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
+	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 
 	class LanguageController extends Controller
 	{

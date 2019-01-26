@@ -1,11 +1,11 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\PrintContent;
+	namespace ReaccionEstudio\ReaccionCMSBundle\PrintContent;
 
 	use Symfony\Component\Routing\RouterInterface;
 	use Symfony\Component\DependencyInjection\ContainerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\PrintContent\PrintContentInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
+	use ReaccionEstudio\ReaccionCMSBundle\PrintContent\PrintContentInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
 
 	class Image implements PrintContentInterface
 	{

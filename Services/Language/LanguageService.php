@@ -1,15 +1,15 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Language;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Language;
 
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\User;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 	use Symfony\Component\HttpFoundation\Session\SessionInterface;
-	use App\ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService;
+	use ReaccionEstudio\ReaccionCMSAdminBundle\Constants\Languages;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageCookie;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageFacade;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService;
 
 	/**
 	 * Language service.

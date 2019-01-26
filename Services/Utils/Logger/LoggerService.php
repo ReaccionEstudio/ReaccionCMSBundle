@@ -1,9 +1,9 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger;
 
 	use Psr\Log\LoggerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 	/**
 	 * Logger service - Handles application logs

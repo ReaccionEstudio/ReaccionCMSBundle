@@ -1,9 +1,9 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Controller;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller;
 
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use Symfony\Component\HttpFoundation\Request;
 
 	class EntriesController extends Controller

@@ -1,10 +1,10 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\User;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\User;
 	
 	use Symfony\Bundle\FrameworkBundle\Routing\Router;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Constants\UserRedirections;
+	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
+	use ReaccionEstudio\ReaccionCMSBundle\Constants\UserRedirections;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 
 	/**

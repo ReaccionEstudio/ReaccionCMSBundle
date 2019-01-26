@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Cache;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Cache;
 
 	interface CacheServiceInterface
 	{

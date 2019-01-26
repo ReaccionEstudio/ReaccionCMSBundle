@@ -1,11 +1,11 @@
 <?php
 	
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Tests\Services\Email;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Tests\Services\Email;
 	
 	use PHPUnit\Framework\TestCase;
 	use Doctrine\Common\Collections\ArrayCollection;
 	use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate;
 
 	/**
 	 * Email template service test

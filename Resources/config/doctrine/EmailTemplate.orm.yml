@@ -1,8 +1,8 @@
 # config/doctrine/EmailTemplate.orm.yml
-App\ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate:
+ReaccionEstudio\ReaccionCMSBundle\Entity\EmailTemplate:
     type: entity
     table: email_templates
-    repositoryClass: App\ReaccionEstudio\ReaccionCMSBundle\Repository\EmailTemplateRepository
+    repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\EmailTemplateRepository
 
     id:
         id:

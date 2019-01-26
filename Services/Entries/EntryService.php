@@ -1,13 +1,13 @@
 <?php
 
-	namespace App\ReaccionEstudio\ReaccionCMSBundle\Services\Entries;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Entries;
 
 	use Knp\Component\Pager\Paginator;
 	use Doctrine\ORM\EntityManagerInterface;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory;
-	use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 	/**
 	 * Entry service.

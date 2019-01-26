@@ -1,10 +1,10 @@
 <?php
 
-namespace App\ReaccionEstudio\ReaccionCMSBundle\Twig;
+namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
 use Symfony\Component\Translation\TranslatorInterface;
-use App\ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 
 /**
  * PaginationHelper class (Twig_Extension)
