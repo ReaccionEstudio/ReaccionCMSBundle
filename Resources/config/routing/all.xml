@@ -4,10 +4,16 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <route id="logout" path="/logout" methods="GET"></route>
+
+    <import resource="@FOSJsRoutingBundle/Resources/config/routing/routing.xml" />
+
+    <import resource="@ReaccionCMSBundle/Resources/config/routing/entries.xml" />
+
     <import resource="@ReaccionCMSBundle/Resources/config/routing/user.xml" />
     
     <import resource="@ReaccionCMSBundle/Resources/config/routing/languages.xml" />
-    
+
     <import resource="@ReaccionCMSBundle/Resources/config/routing/pages.xml" />
 
 </routes>

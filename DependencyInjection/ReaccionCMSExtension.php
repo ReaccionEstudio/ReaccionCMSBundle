@@ -23,6 +23,7 @@ class ReaccionCMSExtension extends Extension
 		$loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('user.xml');
         $loader->load('pages.xml');
+        $loader->load('entries.xml');
         $loader->load('services.xml');
         $loader->load('languages.xml');
         $loader->load('event_listeners.xml');

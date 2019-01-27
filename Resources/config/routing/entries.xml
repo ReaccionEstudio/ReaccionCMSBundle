@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="blog" path="/blog/{page}" methods="GET">
+        <default key="_controller">reaccion_cms.entries.controller:index</default>
+        <default key="page">1</default>
+        <requirement key="page">\d+</requirement>
+    </route>
+
+    <route id="blog_category" path="/blog/category/{category}/{page}" methods="GET">
+        <default key="_controller">reaccion_cms.entries.controller:category</default>
+        <default key="page">1</default>
+        <requirement key="page">\d+</requirement>
+    </route>
+
+    <route id="blog_tag" path="/blog/tag/{tag}/{page}" methods="GET">
+        <default key="_controller">reaccion_cms.entries.controller:tag</default>
+        <default key="page">1</default>
+        <requirement key="page">\d+</requirement>
+    </route>
+
+</routes>

@@ -20,4 +20,10 @@
         <default key="_controller">reaccion_cms.resetting.controller:checkEmail</default>
     </route>
 
+    <import resource="@FOSUserBundle/Resources/config/routing/all.xml" />
+
+    <route id="fos_user_resetting_reset" path="/reset-password/reset/{token}" methods="GET POST">
+        <default key="_controller">reaccion_cms.resetting.controller:reset</default>
+    </route>
+
 </routes>

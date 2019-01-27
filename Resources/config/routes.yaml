@@ -1,33 +1,3 @@
-# lougout path
-logout:
-    path: /logout
-
-# fos js routing
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-# blog
-blog:
-    path: /blog/{page}
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::index
-    defaults: { page: 1 }
-    requirements:
-      page: \d+
-
-blog_category:
-    path: /blog/category/{category}/{page}
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::category
-    defaults: { page: 1 }
-    requirements:
-      page: \d+
-
-blog_tag:
-    path: /blog/tag/{tag}/{page}
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\EntriesController::tag
-    defaults: { page: 1 }
-    requirements:
-      page: \d+
-
 # comments
 post_comment:
     path: /entry/{entry}/comment/add
@@ -48,18 +18,3 @@ update_comment:
 remove_comment:
     path: /entry/comment/{comment}/remove
     controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
-
-# languages
-#change_language:
-#    path: /change_language/{language}
-#    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
-#    options:
-#        expose: true
-
-# fos user
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
-fos_user_resetting_reset:
-    path: /reset-password/reset/{token}
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController::reset

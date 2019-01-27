@@ -1,10 +1,10 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\Controller;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Entries;
 
-	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use Symfony\Component\HttpFoundation\Request;
+	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 	class EntriesController extends Controller
 	{
