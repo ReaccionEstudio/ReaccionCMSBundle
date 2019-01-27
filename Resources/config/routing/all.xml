@@ -10,6 +10,8 @@
 
     <import resource="@ReaccionCMSBundle/Resources/config/routing/entries.xml" />
 
+    <import resource="@ReaccionCMSBundle/Resources/config/routing/comments.xml" />
+
     <import resource="@ReaccionCMSBundle/Resources/config/routing/user.xml" />
     
     <import resource="@ReaccionCMSBundle/Resources/config/routing/languages.xml" />

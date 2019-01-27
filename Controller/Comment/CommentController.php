@@ -1,6 +1,6 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\Controller;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Comment;
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\JsonResponse;

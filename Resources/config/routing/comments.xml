@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="post_comment" path="/entry/{entry}/comment/add" methods="POST">
+        <default key="_controller">reaccion_cms.comment.controller:post</default>
+    </route>
+    
+    <route id="post_comment_reply" path="/entry/comment/{comment}/update" methods="POST">
+        <default key="_controller">reaccion_cms.comment.controller:postReply</default>
+        <option key="expose">true</option>
+    </route>
+
+    <route id="update_comment" path="/entry/comment/{comment}/update" methods="POST">
+        <default key="_controller">reaccion_cms.comment.controller:update</default>
+        <option key="expose">true</option>
+    </route>
+
+    <route id="remove_comment" path="/entry/comment/{comment}/remove" methods="GET">
+        <default key="_controller">reaccion_cms.comment.controller:remove</default>
+    </route>
+
+</routes>
