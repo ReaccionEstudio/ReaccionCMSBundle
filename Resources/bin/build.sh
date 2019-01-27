@@ -1,20 +1,22 @@
 # PATHS
 __DIR__="`dirname \"$0\"`"
 SF_PATH=${__DIR__}/../../../../../
-REACCION_ADMIN_BUNDLES_TEMPLATES_PATH=./src/ReaccionEstudio/ReaccionCMSAdminBundle/Resources/views/bundles
-REACCION_TEMPLATES_PATH=./src/ReaccionEstudio/ReaccionCMSBundle/Resources/views
-BUNDLES_TEMPLATES_PATH=./templates
+REACCION_TEMPLATES_PATH=${SF_PATH}/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views
+BUNDLES_TEMPLATES_PATH=${SF_PATH}/templates
 
 # OVERRIDE THIRD-PARTY BUNDLE VIEWS
 echo "Removing ${BUNDLES_TEMPLATES_PATH}/bundles folder ..."
 
 # Removing ReaccionCMSBundle
-rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
+if [ -d "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle" ]; then
+	rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle
+fi
+
+mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle
 mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
-rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes
 mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes
 
-# copying ReaccionCMS/Resources/views/emailTemplates
+# Copying ReaccionCMS/Resources/views/emailTemplates
 echo "Copying ${REACCION_TEMPLATES_PATH}/emailTemplates in ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates ..."
 cp -R ${REACCION_TEMPLATES_PATH}/emailTemplates/* ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
 
