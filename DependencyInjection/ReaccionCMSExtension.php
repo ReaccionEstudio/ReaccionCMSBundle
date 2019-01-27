@@ -24,6 +24,7 @@ class ReaccionCMSExtension extends Extension
         $loader->load('user.xml');
         $loader->load('pages.xml');
         $loader->load('services.xml');
+        $loader->load('languages.xml');
         $loader->load('event_listeners.xml');
         $loader->load('twig_extensions.xml');
 	}

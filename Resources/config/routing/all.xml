@@ -6,6 +6,8 @@
 
     <import resource="@ReaccionCMSBundle/Resources/config/routing/user.xml" />
     
+    <import resource="@ReaccionCMSBundle/Resources/config/routing/languages.xml" />
+    
     <import resource="@ReaccionCMSBundle/Resources/config/routing/pages.xml" />
 
 </routes>

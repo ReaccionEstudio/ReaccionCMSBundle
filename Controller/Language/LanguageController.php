@@ -1,6 +1,6 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\Controller;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Language;
 
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\Translation\TranslatorInterface;
@@ -10,14 +10,24 @@
 
 	class LanguageController extends Controller
 	{
-		public function index(String $language="", Request $request, TranslatorInterface $translator)
+		/**
+		 * @var TranslatorInterface
+		 */
+		private $translator;
+
+		public function __construct(TranslatorInterface $translator)
+		{
+			$this->translator = $translator;
+		}
+
+		public function index(String $language="", Request $request)
 		{
 			$result = $this->get("reaccion_cms.language")->updateLanguage($language);
 
 			if( ! $result)
 			{
 				// change_language
-				$this->addFlash('language_switch_error', $translator->trans('change_language.error'));
+				$this->addFlash('language_switch_error', $this->translator->trans('change_language.error'));
 			}
 
 			// get reference

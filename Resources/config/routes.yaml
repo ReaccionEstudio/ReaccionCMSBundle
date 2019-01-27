@@ -6,12 +6,6 @@ logout:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-
-# main route
-index:
-    path: /
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController::index
-
 # blog
 blog:
     path: /blog/{page}
@@ -56,11 +50,11 @@ remove_comment:
     controller: ReaccionEstudio\ReaccionCMSBundle\Controller\CommentController::remove
 
 # languages
-change_language:
-    path: /change_language/{language}
-    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
-    options:
-        expose: true
+#change_language:
+#    path: /change_language/{language}
+#    controller: ReaccionEstudio\ReaccionCMSBundle\Controller\LanguageController::index
+#    options:
+#        expose: true
 
 # fos user
 fos_user:
