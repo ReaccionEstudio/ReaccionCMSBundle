@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="reaccion_cms.comment.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\Language\Comment\CommentController" public="true"></service>
+        <service id="reaccion_cms.comment.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\Comment\CommentController" public="true"></service>
 
     </services>
 
