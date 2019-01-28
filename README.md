@@ -13,7 +13,7 @@ Enable the bundle in **config/bundles.php** file:
 
     <?php
     # config/bundles.php
-	
+    
     return [
         // ...
         ReaccionEstudio\ReaccionCMSBundle\ReaccionCMSBundle::class => ['all' => true],
@@ -71,7 +71,7 @@ Add asset entry in the **webpack.config.js** file with the following options:
 Install all required Javascript vendors:
 
     npm install
-	npm install node-sass@4.10.0 --save
+    npm install node-sass@4.10.0 --save
     npm install jquery@3.3.1 --save
     npm install popper.js@1.14.4 --save
     npm install sass-loader@7.1.0 --save
@@ -81,3 +81,16 @@ Install all required Javascript vendors:
 Build assets:
 
 `sh vendor/reaccionestudio/reaccion-cms-bundle/Resources/bin/build.sh true`
+
+Generate your database url in the **.env** file
+
+`DATABASE_URL=mysql://username:password@host:port/database_name`
+
+Create database schema
+
+`php bin/console doctrine:schema:update --force`
+
+Import default data from **install.sql** file in your database
+
+`vendor/reaccionestudio/reaccion-cms-bundle/Resources/init_data/install.sql`
+
