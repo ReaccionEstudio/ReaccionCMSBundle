@@ -32,15 +32,16 @@ Load the Routes of the Bundle:
         resource: "@ReaccionCMSBundle/Resources/config/routing/all.xml"
         prefix:   /
 
-Add twig path alias:
+Add new twig config parameters:
 
     # config/packages/twig.yaml
     twig:
-        default_path: '%kernel.project_dir%/templates'
-        debug: '%kernel.debug%'
-        strict_variables: '%kernel.debug%'
+
+        # ...
         paths:
           '%kernel.project_dir%/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views' : ReaccionCMSBundle
+        form_themes:
+            - 'bootstrap_4_layout.html.twig'
 
 Create **assets/js/front_app.js**:
 
