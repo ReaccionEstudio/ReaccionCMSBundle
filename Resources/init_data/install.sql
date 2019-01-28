@@ -20,5 +20,5 @@ INSERT INTO config (name,value,type,required, groups) VALUES
 ;
 
 # Email templates
-INSERT INTO reaccioncms_dev.email_templates (name,`type`,slug,message,subject,fromname,fromemail,`language`,template_file,plain_text,enabled,created_at,updated_at,message_params) VALUES 
+INSERT INTO email_templates (name,`type`,slug,message,subject,fromname,fromemail,`language`,template_file,plain_text,enabled,created_at,updated_at,message_params) VALUES 
 ('Test email','reaccion-cms','test-email','<p>Hi there,</p><p>Your email settings are valid and ReaccionCMS has been connected successfully with the SMTP server.</p><p>King regards!</p>','ReaccionCMS test email','Reacción CMS','alberto@albertolabs.com','en','default.html.twig',0,1,'2019-01-08 01:11:26.000','2019-01-11 19:18:28.000',NULL);
