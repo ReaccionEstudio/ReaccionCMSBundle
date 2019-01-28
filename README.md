@@ -1,7 +1,9 @@
+
 ReaccionCMSBundle
 ==================
 
 Currently in development.
+Tested on *Symfony 4.1.10*
 
 # Installation
 
@@ -42,6 +44,52 @@ Add new twig config parameters:
           '%kernel.project_dir%/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views' : ReaccionCMSBundle
         form_themes:
             - 'bootstrap_4_layout.html.twig'
+
+Update **config/packages/security.xml** file:
+
+    security:
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders: 
+        ReaccionEstudio\ReaccionCMSBundle\Entity\User: sha512
+
+    role_hierarchy:
+
+        ROLE_ADMIN: [ ROLE_USER, ROLE_EDITOR ]
+        ROLE_EDITOR: [ ROLE_USER ]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            user_checker: security.user_checker
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+
+            logout:
+                path: /logout
+            anonymous:    true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/profile, roles: ROLE_USER }
+
 
 Create **assets/js/front_app.js**:
 
