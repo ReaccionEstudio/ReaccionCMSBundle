@@ -24,15 +24,9 @@
 
 {% endmacro %}
 
-<nav class="my-2 my-md-0 mr-md-3 navbar navbar-expand-lg navbar-light">
+<!-- run macro -->
+{% from _self import listMenu %}
 
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-	    <ul class="navbar-nav mr-auto">
-
-	    	<!-- run macro -->
-			{% from _self import listMenu %}
-
-	    	{% for menu_item in menu %}
-		   		{{ listMenu(menu_item) }}
-	    	{% endfor %}
+{% for menu_item in menu %}
+		{{ listMenu(menu_item) }}
+{% endfor %}

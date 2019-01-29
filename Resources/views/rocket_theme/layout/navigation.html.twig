@@ -2,7 +2,15 @@
 
   	<h5 class="my-0 mr-md-auto font-weight-normal">{{ getSiteName() }}</h5>
 
-	{{ printMenu('navigation') | raw }}
-	{% embed '@ReaccionCMSBundle/rocket_theme/layout/user_menu.html.twig' %}{% endembed %}
+	<nav class="my-2 my-md-0 mr-md-3 navbar navbar-expand-lg navbar-light">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+
+				{{ printMenu('navigation') | raw }}
+				{% embed '@ReaccionCMSBundle/rocket_theme/layout/user_menu.html.twig' %}{% endembed %}
+				
+			</ul>
+		</div>
+	</nav>
 
 </div>
