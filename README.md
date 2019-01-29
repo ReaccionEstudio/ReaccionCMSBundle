@@ -7,6 +7,8 @@ Tested on *Symfony 4.1.10*
 
 # Installation
 
+(Symfony recipe coming soon)
+
 Install the package with composer
 
 `composer require reaccionestudio/reaccion-cms-bundle`
