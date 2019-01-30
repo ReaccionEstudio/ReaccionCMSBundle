@@ -89,7 +89,6 @@ Update **config/packages/security.xml** file:
         
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/profile, roles: ROLE_USER }
 
 
 Create **assets/js/front_app.js**:
