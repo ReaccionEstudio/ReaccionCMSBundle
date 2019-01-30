@@ -87,7 +87,6 @@ Update **config/packages/security.xml** file:
     # Note: Only the *first* access control that matches will be used
     access_control:
         
-        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/profile, roles: ROLE_USER }
