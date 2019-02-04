@@ -1,6 +1,6 @@
 # PATHS
 __DIR__="`dirname \"$0\"`"
-SF_PATH=${__DIR__}/../../../../../
+SF_PATH=${__DIR__}/..
 REACCION_TEMPLATES_PATH=${SF_PATH}/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views
 BUNDLES_TEMPLATES_PATH=${SF_PATH}/templates
 
@@ -35,7 +35,7 @@ if [ "$1" ]; then
 
 	# Run Webpack encore
 	echo "Compiling assets ..."
-	yarn encore dev
+	node_modules/@symfony/webpack-encore/bin/encore.js $1
 
 fi
 
