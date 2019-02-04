@@ -25,6 +25,7 @@
         <parameter key="reaccion_cms.encryptor.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\Encryptor</parameter>
         <parameter key="reaccion_cms.language_page_translation_group_redirection.class">ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguagePageTranslationGroupRedirection</parameter>
         <parameter key="reaccion_cms.page_cache_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\Page\PageCacheService</parameter>
+        <parameter key="reaccion_cms.menu_content_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuContentService</parameter>
 
         <!-- listeners -->
         <parameter key="reaccion_cms.language_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
@@ -60,11 +61,16 @@
         
         <service id="reaccion_cms.menu" class="%reaccion_cms.menu.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="reaccion_cms_admin.menu_content" />
+            <argument type="service" id="reaccion_cms.menu_content" />
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.theme" />
             <argument type="service" id="reaccion_cms.cache" />
             <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="reaccion_cms.menu_content" class="%reaccion_cms.menu_content_service.class%" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="reaccion_cms.logger" />
         </service>
         
         <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true">

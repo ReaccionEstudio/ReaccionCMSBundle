@@ -25,4 +25,16 @@ class PageRepository extends EntityRepository
 
     	return ($result['total']) ?? 0;
 	}
+
+	/**
+	 * Get all Page entities
+	 *
+	 * @param 	Array 		$params 		Query filter parameters
+	 * @return 	Array 		[type]			Array page entities
+	 */
+	public function getPages(Array $params = ['language' => 'en', 'isEnabled' => true]) : Array
+	{
+		$em = $this->getEntityManager();
+		return $em->getRepository(Page::class)->findBy($params, ['id' => 'ASC']);
+	}
 }

@@ -9,7 +9,7 @@
 	use ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
-	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Menu\MenuContentService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuContentService;
 
 	use Symfony\Component\HttpFoundation\RequestStack;
 
