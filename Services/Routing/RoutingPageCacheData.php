@@ -2,7 +2,7 @@
 
 	namespace ReaccionEstudio\ReaccionCMSBundle\Services\Routing;
 
-	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Page\PageCacheService;
 
 	/**
 	 * Get page cache data required for the routing service

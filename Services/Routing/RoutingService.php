@@ -5,9 +5,10 @@
 	use Doctrine\ORM\EntityManagerInterface;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
+	use ReaccionEstudio\ReaccionCMSBundle\Constants\ReaccionCMS;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService;
+	use ReaccionEstudio\ReaccionCMSBundle\Services\Page\PageCacheService;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeConfigService;
-	use ReaccionEstudio\ReaccionCMSAdminBundle\Services\Cache\PageCacheService;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheServiceInterface;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageCacheData;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingPageViewPathAdapter;
@@ -73,19 +74,21 @@
 			
 			if( ! $page)
 			{	
-				return $this->loadErrorPage(404, $slug);
+				$totalExistingPages = $this->em->getRepository(Page::class)->getTotalPages();
+
+				if($totalExistingPages > 0)
+				{
+					return $this->loadErrorPage(404, $slug);
+				}
+				else if($totalExistingPages == 0)
+				{
+					return $this->loadWelcomeCMSPage();
+				}
 			}
 			
 			// Get Twig view path
 			$pageEntity = ( new RoutingPageViewPathAdapter($page) )->getPageEntity();
 			$viewFile = $this->theme->getPageViewPath($pageEntity);
-			
-			// If there isn't a twig view file path, we load the default ReaccionCMS home page
-			if( ! strlen($viewFile) )
-			{
-				$viewFile = "@ReaccionCMSBundle/index.html.twig";
-				$page 	  = ['cmsVersion' => 0.1];
-			}
 
 			return $this->twig->render($viewFile, $page);
 		}
@@ -114,5 +117,17 @@
 			}
 
 			return '';
+		}
+
+		/**
+		 * Load the CMS welcome page
+		 *
+		 * @return String 	[type]  HTML page view to render
+		 */
+		private function loadWelcomeCMSPage()
+		{
+			$viewFile = "@ReaccionCMSBundle/index.html.twig";
+			$page 	  = [ 'cmsVersion' => ReaccionCMS::VERSION ];
+			return $this->twig->render($viewFile, $page);
 		}
 	}
