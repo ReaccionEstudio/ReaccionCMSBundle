@@ -270,6 +270,19 @@
 
 			if( ! $mainPage) 
 			{
+				// If main page for given language does not exists, it loads the first main page
+				$mainPageSlug = $this->em->getRepository(Page::class)->getFirstMainPageSlug();
+				$mainPage = $this->em->getRepository(Page::class)->findOneBy(
+					[
+						'mainPage' => true,
+						'isEnabled' => true,
+						'slug' => $mainPageSlug
+					]
+				);
+			}
+
+			if( ! $mainPage) 
+			{
 				// TODO: create custom exception
 				$this->logger->addInfo("Main page for language '" . $language . "' was not found.");
 				return [];

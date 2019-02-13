@@ -27,6 +27,27 @@ class PageRepository extends EntityRepository
 	}
 
 	/**
+	 * Get first main page slug
+	 *
+	 * @return String 	[type] 	Main page slug
+	 */
+	public function getFirstMainPageSlug()
+	{
+		$em = $this->getEntityManager();
+
+    	$dql = "SELECT p.slug 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Page p 
+                WHERE p.isEnabled = 1 
+                AND p.mainPage = 1
+                ORDER BY p.id ASC 
+                ";
+
+        $query  = $em->createQuery($dql)->setMaxResults(1);
+    	$result = $query->getOneOrNullResult();
+    	return ($result['slug']) ?? null;
+	}
+
+	/**
 	 * Get all Page entities
 	 *
 	 * @param 	Array 		$params 		Query filter parameters
