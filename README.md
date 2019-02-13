@@ -116,14 +116,24 @@ Add asset entry in the **webpack.config.js** file with the following options:
     
     .disableSingleRuntimeChunk()
 
-Install all required Javascript vendors:
+Create package.json file in your Symfony root folder:
 
-    npm install
-    npm install node-sass@4.10.0 --save
-    npm install jquery@3.3.1 --save
-    npm install popper.js@1.14.4 --save
-    npm install sass-loader@7.1.0 --save
-    npm install bootstrap@4.2.1 --save
+{
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.22.2",
+        "jquery": "^3.3.1",
+        "node-sass": "^4.10.0",
+        "popper.js": "^1.14.4",
+        "sass-loader": "^7.1.0",
+        "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^11.2.0",
+        "ajv": "^6.6.1",
+        "bootstrap": "^4.2.1"
+    }
+}
+
 
 
 Build assets:
