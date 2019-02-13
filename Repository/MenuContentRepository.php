@@ -28,6 +28,6 @@ class MenuContentRepository extends EntityRepository
 
         $query  = $em->createQuery($dql)->setParameter('pageId', $pageId);
 
-    	return $query->getSingleResult();
+    	return $query->getOneOrNullResult();
     }
 }

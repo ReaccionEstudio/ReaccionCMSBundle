@@ -33,7 +33,7 @@ class UserRepository extends EntityRepository
         			 ->setParameter('username', $username)
         			 ->setParameter('email', $email);
 
-    	return $query->getSingleResult();
+    	return $query->getOneOrNullResult();
     }
 
     /**

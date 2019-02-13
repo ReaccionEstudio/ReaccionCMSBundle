@@ -21,7 +21,7 @@ class PageRepository extends EntityRepository
                 WHERE p.isEnabled = 1";
 
         $query  = $em->createQuery($dql);
-    	$result = $query->getSingleResult();
+    	$result = $query->getOneOrNullResult();
 
     	return ($result['total']) ?? 0;
 	}
