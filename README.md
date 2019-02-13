@@ -117,7 +117,7 @@ Add asset entry in the **webpack.config.js** file with the following options:
     
     .disableSingleRuntimeChunk()
 
-Create package.json file in your Symfony root folder:
+Create you **package.json** file in the Symfony root folder with the following content:
 
     {
         "devDependencies": {
