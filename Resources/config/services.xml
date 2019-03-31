@@ -166,6 +166,7 @@
         <service id="reaccion_cms.language_page_translation_group_redirection" class="%reaccion_cms.language_page_translation_group_redirection.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="router" />
+            <argument type="service" id="reaccion_cms.language" />
         </service>
 
         <service id="reaccion_cms.page_cache_service" class="%reaccion_cms.page_cache_service.class%" public="true">

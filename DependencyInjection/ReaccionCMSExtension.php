@@ -18,13 +18,14 @@ class ReaccionCMSExtension extends Extension
      */
 	public function load(array $configs, ContainerBuilder $container)
 	{
-		$processor = new Processor();
+		// $processor = new Processor();
 
 		$loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('user.xml');
         $loader->load('pages.xml');
         $loader->load('entries.xml');
         $loader->load('services.xml');
+        $loader->load('models.xml');
         $loader->load('comments.xml');
         $loader->load('languages.xml');
         $loader->load('event_listeners.xml');

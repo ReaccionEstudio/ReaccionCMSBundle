@@ -1,32 +1,10 @@
 <?php
 namespace ReaccionEstudio\ReaccionCMSBundle\Model;
 
-use ReaccionEstudio\ReaccionCMSBundle\Model\ModelInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\Language;
+use ReaccionEstudio\ReaccionCMSBundle\Model\AbstractModel;
 
-class LanguageModel implements ModelInterface
+class LanguageModel extends AbstractModel
 {
-    public function create()
-    {
-
-    }
-
-    public function get($id)
-    {
-
-    }
-
-    public function findAll()
-    {
-
-    }
-
-    public function update($entity)
-    {
-
-    }
-
-    public function remove($entity)
-    {
-
-    }
+    protected $class = Language::class;
 }
