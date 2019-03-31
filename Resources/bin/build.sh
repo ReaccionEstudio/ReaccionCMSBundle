@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # PATHS
-__DIR__="`dirname \"$0\"`"
-SF_PATH=${__DIR__}/../../../..
+SF_PATH=$PWD
 REACCION_TEMPLATES_PATH=${SF_PATH}/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views
 BUNDLES_TEMPLATES_PATH=${SF_PATH}/templates
 
