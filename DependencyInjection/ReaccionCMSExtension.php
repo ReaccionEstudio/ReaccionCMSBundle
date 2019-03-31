@@ -25,7 +25,7 @@ class ReaccionCMSExtension extends Extension
         $loader->load('pages.xml');
         $loader->load('entries.xml');
         $loader->load('services.xml');
-        $loader->load('models.xml');
+        $loader->load('managers.xml');
         $loader->load('comments.xml');
         $loader->load('languages.xml');
         $loader->load('event_listeners.xml');

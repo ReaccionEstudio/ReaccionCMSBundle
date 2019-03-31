@@ -1,42 +1,14 @@
 <?php
 
-namespace ReaccionEstudio\ReaccionCMSBundle\Model;
+namespace ReaccionEstudio\ReaccionCMSBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-abstract class AbstractModel
+abstract class AbstractManager
 {
     /**
-     * @return mixed
+     * @var
      */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * @param mixed $class
-     */
-    public function setClass($class): void
-    {
-        $this->class = $class;
-    }
-
-    /**
-     * @return EntityManagerInterface
-     */
-    public function getEm(): EntityManagerInterface
-    {
-        return $this->em;
-    }
-
-    /**
-     * @param EntityManagerInterface $em
-     */
-    public function setEm(EntityManagerInterface $em): void
-    {
-        $this->em = $em;
-    }
     protected $class;
 
     /**
@@ -47,7 +19,7 @@ abstract class AbstractModel
     protected $em;
 
     /**
-     * AbstractModel constructor.
+     * AbstractManager constructor.
      */
     public function __construct(EntityManagerInterface $em)
     {
@@ -71,9 +43,17 @@ abstract class AbstractModel
     /**
      * @return mixed
      */
-    public function findAll()
+    public function findBy(Array $filters = array(), Array $order = array() )
     {
-        return $this->getRepo()->findAll();
+        return $this->getRepo()->findBy($filters, $order);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function findAll(Array $order = Array())
+    {
+        return $this->getRepo()->findBy(array(), $order);
     }
 
     /**
