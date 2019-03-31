@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # PATHS
 __DIR__="`dirname \"$0\"`"
 SF_PATH=${__DIR__}/../../../..
