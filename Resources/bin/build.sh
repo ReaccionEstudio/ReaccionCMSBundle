@@ -1,20 +1,29 @@
 # PATHS
 __DIR__="`dirname \"$0\"`"
-SF_PATH=${__DIR__}/../../../../..
+SF_PATH=${__DIR__}/../../../..
 REACCION_TEMPLATES_PATH=${SF_PATH}/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views
 BUNDLES_TEMPLATES_PATH=${SF_PATH}/templates
 
 # OVERRIDE THIRD-PARTY BUNDLE VIEWS
-echo "Removing ${BUNDLES_TEMPLATES_PATH}/bundles folder ..."
 
-# Removing ReaccionCMSBundle
-if [ -d "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle" ]; then
-	rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle
+# Removing ReaccionCMSBundle/emailTemplates
+if [ -d "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates" ]; then
+    echo "Removing ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates folder ..."
+	rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
 fi
 
-mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle
-mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
-mkdir ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes
+# Removing ReaccionCMSBundle/themes/rocket_theme
+if [ -d "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme" ]; then
+    rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme
+fi
+
+# Creating ReaccionCMSBundle/themes/rocket_theme
+if [ ! -f "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme" ]; then
+    mkdir -p ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme
+fi
+
+# Creating required folders
+mkdir -p ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
 
 # Copying ReaccionCMS/Resources/views/emailTemplates
 echo "Copying ${REACCION_TEMPLATES_PATH}/emailTemplates in ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates ..."
