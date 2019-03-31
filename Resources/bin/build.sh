@@ -1,6 +1,6 @@
 # PATHS
 __DIR__="`dirname \"$0\"`"
-SF_PATH=${__DIR__}/..
+SF_PATH=${__DIR__}/../../../../..
 REACCION_TEMPLATES_PATH=${SF_PATH}/vendor/reaccionestudio/reaccion-cms-bundle/Resources/views
 BUNDLES_TEMPLATES_PATH=${SF_PATH}/templates
 
@@ -29,7 +29,7 @@ php ${SF_PATH}/bin/console fos:js-routing:dump --format=json --target=public/js/
 
 # install assets
 echo "Installing assets ..."
-php ${SF_PATH}/bin/console assets:install --symlink 
+php ${SF_PATH}/bin/console assets:install --symlink
 
 if [ "$1" ]; then
 
