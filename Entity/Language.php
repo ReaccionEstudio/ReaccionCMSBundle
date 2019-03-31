@@ -43,6 +43,13 @@ class Language
     private $enabled;
 
     /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="main", type="boolean", nullable=true)
+     */
+    private $main = null;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
@@ -129,4 +136,19 @@ class Language
         $this->position = $position;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function getMain(): ?bool
+    {
+        return $this->main;
+    }
+
+    /**
+     * @param int|null $default
+     */
+    public function setMain(?int $main): void
+    {
+        $this->main = $main;
+    }
 }

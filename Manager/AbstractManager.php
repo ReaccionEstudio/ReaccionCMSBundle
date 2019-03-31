@@ -3,6 +3,7 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService;
 
 abstract class AbstractManager
 {
@@ -19,11 +20,19 @@ abstract class AbstractManager
     protected $em;
 
     /**
-     * AbstractManager constructor.
+     * @var ConfigService
      */
-    public function __construct(EntityManagerInterface $em)
+    protected $configService;
+
+    /**
+     * AbstractManager constructor.
+     * @param EntityManagerInterface $em
+     * @param ConfigService $configService
+     */
+    public function __construct(EntityManagerInterface $em, ConfigService $configService)
     {
         $this->em = $em;
+        $this->configService = $configService;
     }
 
     /**

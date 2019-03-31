@@ -13,6 +13,7 @@
 
         <service id="reaccion_cms.manager.abstract" class="%reaccion_cms.manager.abstract.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="reaccion_cms.config" />
         </service>
 
         <service id="reaccion_cms.manager.language" class="%reaccion_cms.manager.language.class%" parent="reaccion_cms.manager.abstract" public="true">

@@ -23,6 +23,11 @@ ReaccionEstudio\ReaccionCMSBundle\Entity\Language:
     enabled:
       type: boolean
 
+    main:
+      type: boolean
+      nullable: true
+      unique: true
+
     position:
       type: integer
       nullable: true
