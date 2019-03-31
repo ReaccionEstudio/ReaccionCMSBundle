@@ -137,9 +137,15 @@ Create you **package.json** file in the Symfony root folder with the following c
 
 
 
-Build assets:
+Build environment assets:
 
-`sh vendor/reaccionestudio/reaccion-cms-bundle/Resources/bin/build.sh true`
+For development:
+
+`sh vendor/reaccionestudio/reaccion-cms-bundle/Resources/bin/build.sh dev`
+
+For production:
+
+`sh vendor/reaccionestudio/reaccion-cms-bundle/Resources/bin/build.sh dev`
 
 Generate your database url in the **.env** file
 
