@@ -25,3 +25,4 @@ ReaccionEstudio\ReaccionCMSBundle\Entity\Language:
 
     position:
       type: integer
+      nullable: true

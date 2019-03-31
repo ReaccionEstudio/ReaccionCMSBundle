@@ -75,6 +75,7 @@ abstract class AbstractManager
         catch(\Exception $e)
         {
             // TODO: log error
+            throw $e;
             return false;
         }
     }
