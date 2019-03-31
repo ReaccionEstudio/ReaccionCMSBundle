@@ -145,7 +145,7 @@ For development:
 
 For production:
 
-`sh vendor/reaccionestudio/reaccion-cms-bundle/Resources/bin/build.sh dev`
+`sh vendor/reaccionestudio/reaccion-cms-bundle/Resources/bin/build.sh prod`
 
 Generate your database url in the **.env** file
 
