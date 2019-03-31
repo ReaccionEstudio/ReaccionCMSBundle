@@ -26,7 +26,10 @@ abstract class AbstractManager
         $this->em = $em;
     }
 
-    public function create() : Language
+    /**
+     * @return Language
+     */
+    public function create()
     {
         return new $this->class();
     }
@@ -58,19 +61,21 @@ abstract class AbstractManager
 
     /**
      * @param $entity
-     * @throws \Exception
+     * @return bool
      */
-    public function save($entity)
+    public function save($entity) : bool
     {
         try
         {
             $this->em->persist($entity);
             $this->em->flush();
+
+            return true;
         }
         catch(\Exception $e)
         {
             // TODO: log error
-            throw $e;
+            return false;
         }
     }
 
