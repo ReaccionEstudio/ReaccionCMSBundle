@@ -20,14 +20,14 @@ class LanguageManager extends AbstractManager
      * @param $entity
      * @return bool
      */
-    public function save(Language $entity) : bool
+    public function save($entity) : bool
     {
         try
         {
             // check if main field needs to be resetted in all entities
             if($entity->getMain())
             {
-
+                $this->resetMainFieldInAllEntities();
             }
 
             $this->em->persist($entity);
@@ -52,8 +52,11 @@ class LanguageManager extends AbstractManager
         return $this->configService->set(Configuration::DEFAULT_LANGUAGE_PARAM, $value);
     }
 
+    /**
+     * @return mixed
+     */
     public function resetMainFieldInAllEntities()
     {
-        // TODO: create rep method
+        return $this->getRepo()->resetMainFieldInAllEntities();
     }
 }
