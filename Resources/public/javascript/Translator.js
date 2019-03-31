@@ -1,4 +1,4 @@
-import Translations from "./translations/Messages.js";
+import Translations from "./Translations/Messages.js";
 
 /**
  * Translator class
