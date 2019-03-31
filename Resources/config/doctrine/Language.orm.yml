@@ -1,0 +1,27 @@
+# config/doctrine/Language.orm.yml
+ReaccionEstudio\ReaccionCMSBundle\Entity\Language:
+  type: entity
+  table: languages
+  repositoryClass: ReaccionEstudio\ReaccionCMSBundle\Repository\LanguageRepository
+
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+
+  fields:
+
+    name:
+      type: string
+      length: 255
+
+    flag:
+      type: string
+      length: 50
+      nullable: true
+
+    enabled:
+      type: boolean
+
+    position:
+      type: integer
