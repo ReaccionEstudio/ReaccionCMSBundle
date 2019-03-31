@@ -17,11 +17,6 @@ if [ -d "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme" ]; the
     rm -R ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme
 fi
 
-# Creating ReaccionCMSBundle/themes/rocket_theme
-if [ ! -f "${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme" ]; then
-    mkdir -p ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme
-fi
-
 # Creating required folders
 mkdir -p ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
 
@@ -31,7 +26,7 @@ cp -R ${REACCION_TEMPLATES_PATH}/emailTemplates/* ${BUNDLES_TEMPLATES_PATH}/Reac
 
 # copying ReaccionCMS/Resources/views/rocket_theme
 echo "Copying ${REACCION_TEMPLATES_PATH}/themes/rocket_theme in ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/rocket_theme ..."
-cp -R ${REACCION_TEMPLATES_PATH}/rocket_theme ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme
+cp -R ${REACCION_TEMPLATES_PATH}/rocket_theme/ ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme/
 
 # Generate fos js routing file
 php ${SF_PATH}/bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
