@@ -19,6 +19,7 @@ fi
 
 # Creating required folders
 mkdir -p ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates
+mkdir -p ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes
 
 # Copying ReaccionCMS/Resources/views/emailTemplates
 echo "Copying ${REACCION_TEMPLATES_PATH}/emailTemplates in ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/emailTemplates ..."
