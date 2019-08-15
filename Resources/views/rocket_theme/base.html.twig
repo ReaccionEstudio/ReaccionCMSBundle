@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% if seo is defined %}{{ getTitle(seo) }}{% else %}{{ getSiteName() }}{% endif %}</title>
+    <title>{% if seo is defined %}{{ getTitle(seo) }}{% else %}{{ getConfig('site_name') }}{% endif %}</title>
 
     <link rel="icon" href="favicon.ico" />
     <link href="{{ asset('build/front_app.css') }}" rel="stylesheet" />

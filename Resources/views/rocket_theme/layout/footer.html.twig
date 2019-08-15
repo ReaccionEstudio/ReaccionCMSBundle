@@ -4,7 +4,9 @@
       <small class="d-block mb-3 text-muted">ReaccionCMS - © 2018</small>
     </div>
     <div class="col-12 col-md text-right">
-    	{% embed '@ReaccionCMSBundle/widgets/language_picker.html.twig' %}{% endembed %}
+        {% if getConfig('show_languages_switcher') %}
+    	    {% embed '@ReaccionCMSBundle/widgets/language_picker.html.twig' %}{% endembed %}
+        {% endif %}
     </div>
   </div>
 </footer>

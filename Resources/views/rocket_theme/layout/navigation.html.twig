@@ -1,13 +1,16 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 
-  	<h5 class="my-0 mr-md-auto font-weight-normal">{{ getSiteName() }}</h5>
+  	<h5 class="my-0 mr-md-auto font-weight-normal">{{ getConfig('site_name') }}</h5>
 
 	<nav class="my-2 my-md-0 mr-md-3 navbar navbar-expand-lg navbar-light">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
 
 				{{ printMenu('navigation') | raw }}
-				{% embed '@ReaccionCMSBundle/rocket_theme/layout/user_menu.html.twig' %}{% endembed %}
+
+                {% if getConfig('user_registration') %}
+				    {% embed '@ReaccionCMSBundle/rocket_theme/layout/user_menu.html.twig' %}{% endembed %}
+                {% endif %}
 				
 			</ul>
 		</div>

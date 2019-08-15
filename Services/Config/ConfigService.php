@@ -53,7 +53,7 @@
 		 * @param String 	$loadFromCache 	Indicates if the config entity has to be loaded from cache
 		 * @param String 	[type] 			Configuration entity value
 		 */
-		public function get(String $key, Bool $loadFromCache = true) :  String
+		public function get(String $key, Bool $loadFromCache = true)
 		{
 			$cacheKey 	= $this->getCacheKey($key);
 			$cachedItem = $this->cache->getItem($cacheKey);
@@ -66,17 +66,22 @@
 			else
 			{
 				// generate cache
-				$keyValue = $this->getConfigFromDatabase($key);
+				$config = $this->getConfigFromDatabase($key);
 
-				if(strlen($keyValue) && $loadFromCache)
+				if( ! empty($config) && $loadFromCache)
 				{
+                    $keyValue = [
+				        'type' => $config->getType(),
+                        'value' => $config->getValue()
+                    ];
+
 					// Save config value in cache
 					$cachedItem->set($keyValue);
 					$this->cache->save($cachedItem);
 				}
 			}
 
-			return $keyValue;
+			return $this->getConfigValueWithType($keyValue);
 		}
 
 		/**
@@ -184,19 +189,32 @@
 		 * @param String 	$key 	Configuration entity name
 		 * @param String 	[type] 	Configuration entity value
 		 */
-		private function getConfigFromDatabase(String $key) : String
+		private function getConfigFromDatabase(String $key)
 		{
-			if(empty($key)) return '';
+			if(empty($key)) return null;
 
 			try
 			{
-				$config = $this->em->getRepository(Configuration::class)->findOneBy([ 'name' => $key ]);
-				return ( ! empty($config) ) ? $config->getValue() : '';
+				return $this->em->getRepository(Configuration::class)->findOneBy([ 'name' => $key ]);
 			}
 			catch(\Exception $e)
 			{
 				// TODO: log error
-				return '';
+				return null;
 			}
 		}
+
+        /**
+         * @param Configuration $config
+         * @return bool|string
+         */
+		private function getConfigValueWithType(array $config)
+        {
+            if($config['type'] == 'boolean')
+            {
+                return (bool) $config['value'];
+            }
+
+            return $config['value'];
+        }
 	}

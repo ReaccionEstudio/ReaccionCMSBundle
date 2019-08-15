@@ -2,7 +2,8 @@
 
 	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 
-	use Symfony\Component\HttpFoundation\Request;
+	use Symfony\Component\Finder\Exception\AccessDeniedException;
+    use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,8 +34,16 @@
 		 */
 		public function index(Request $request)
 		{
-			$sitename = $this->get("reaccion_cms.config")->get("site_name");
-			$seo = [
+		    $configService = $this->get("reaccion_cms.config");
+            $isRegistrarionEnabled = $configService->get("user_registration");
+
+            if($isRegistrarionEnabled === false)
+            {
+                throw new AccessDeniedException();
+            }
+
+            $sitename = $configService->get("site_name");
+            $seo = [
 				'title' => $this->translator->trans("user_register.seo_title", ['%sitename%' => $sitename])
 			];
 
