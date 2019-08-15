@@ -25,7 +25,8 @@
             return array(
                 new \Twig_SimpleFunction('printContent', array($this, 'printContent')),
                 new \Twig_SimpleFunction('getArrayTags', array($this, 'getArrayTags')),
-                new \Twig_SimpleFunction('getSerializedVar', array($this, 'getSerializedVar'))
+                new \Twig_SimpleFunction('getSerializedVar', array($this, 'getSerializedVar')),
+                new \Twig_SimpleFunction('substrSentence', array($this, 'substrSentence'))
             );
         }
 
@@ -102,6 +103,31 @@
             }
 
             return '';
+        }
+
+        /**
+         * Slice a sentence without breaking words
+         *
+         * @param $sentence
+         * @param int $maxLength
+         * @param string $endCharacters
+         * @return string
+         */
+        public function substrSentence($sentence, $maxLength=100, $endCharacters=' [...]')
+        {
+            if(strlen($sentence) > $maxLength)
+            {
+                if(preg_match('/\s/', $sentence))
+                {
+                    $sentence = substr($sentence,0,strrpos(substr($sentence,0, $maxLength),' ')) . $endCharacters;
+                }
+                else
+                {
+                    $sentence = substr($sentence, 0, $maxLength) . $endCharacters;
+                }
+            }
+
+            return $sentence;
         }
 
     	public function getName() : String
