@@ -16,7 +16,9 @@ INSERT INTO config (name,value,type,required, groups) VALUES
 	('mailer_username', '','text',1, 'mailer'),
 	('mailer_password', '','password',1, 'mailer'),
 	('mailer_authentication', '','text',1, 'mailer'),
-	('email_templates_path', 'templates/ReaccionCMSBundle/emailTemplates/','text',1, null)
+	('email_templates_path', 'templates/ReaccionCMSBundle/emailTemplates/','text',1, null),
+	('show_languages_switcher', 1,'boolean',1, 'frontend'),
+	('user_registration', 1,'boolean',1, 'frontend')
 ;
 
 # Email templates
