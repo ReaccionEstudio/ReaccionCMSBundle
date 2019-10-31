@@ -29,12 +29,12 @@ cp -R ${REACCION_TEMPLATES_PATH}/emailTemplates/* ${BUNDLES_TEMPLATES_PATH}/Reac
 echo "Copying ${REACCION_TEMPLATES_PATH}/themes/rocket_theme in ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/rocket_theme ..."
 cp -R ${REACCION_TEMPLATES_PATH}/rocket_theme/ ${BUNDLES_TEMPLATES_PATH}/ReaccionCMSBundle/themes/rocket_theme/
 
-# Generate fos js routing file
-php ${SF_PATH}/bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
-
 # install assets
 echo "Installing assets ..."
 php ${SF_PATH}/bin/console assets:install --symlink
+
+# Generate fos js routing file
+php ${SF_PATH}/bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 
 if [ "$1" ]; then
 

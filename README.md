@@ -98,24 +98,35 @@ Create **assets/js/front_app.js**:
     
     // JS
     require('bootstrap');
-    require('../../public/bundles/reaccioncms/javascript/Main.js');
+    require('@root/public/bundles/reaccioncms/javascript/Main.js');
     
     // SCSS
-    require('../../public/bundles/reaccioncms/stylesheet/global.scss');
+    require('@root/public/bundles/reaccioncms/stylesheet/global.scss');
 
 Add asset entry in the **webpack.config.js** file with the following options:
 
     # webpack.config.js
+    var Encore = require('@symfony/webpack-encore');
+    const path = require('path');
+    
+    const ROOT_PATH = path.resolve(__dirname, './');
+    const ALIASES = {
+        '@root' : ROOT_PATH,
+        '@vendor' : ROOT_PATH + '/vendor'
+    };
+    
     // ...
-    .addEntry('front_app', './assets/js/front_app.js')
-    
-    .autoProvidejQuery()
-    .autoProvideVariables({ Popper: ['popper.js', 'default'] })
-    
-    // enables Sass/SCSS support
-    .enableSassLoader()
-    
-    .disableSingleRuntimeChunk()
+    Encore 
+        .addAliases(ALIASES)
+        .addEntry('front_app', './assets/js/front_app.js')
+        
+        .autoProvidejQuery()
+        .autoProvideVariables({ Popper: ['popper.js', 'default'] })
+        
+        // enables Sass/SCSS support
+        .enableSassLoader()
+        
+        .disableSingleRuntimeChunk()
 
 Create you **package.json** file in the Symfony root folder with the following content:
 
@@ -126,15 +137,20 @@ Create you **package.json** file in the Symfony root folder with the following c
             "node-sass": "^4.10.0",
             "popper.js": "^1.14.4",
             "sass-loader": "^7.1.0",
-            "webpack-notifier": "^1.6.0"
+            "webpack-notifier": "^1.6.0",
+            "path": "^0.12.7"
       },
       "dependencies": {
             "@ckeditor/ckeditor5-build-classic": "^11.2.0",
             "ajv": "^6.6.1",
             "bootstrap": "^4.2.1"
-        }
+      },
+      "scripts": {
+         "dev": "encore dev",
+         "watch": "encore dev --watch",
+         "build": "encore production --progress"
+      }
     }
-
 
 
 Build environment assets:
