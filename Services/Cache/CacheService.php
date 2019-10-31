@@ -57,6 +57,7 @@
 			catch(\Exception $e)
 			{
 				$this->logger->logException($e, 'Error setting cache item.');
+
 				return false;
 			}
 		}

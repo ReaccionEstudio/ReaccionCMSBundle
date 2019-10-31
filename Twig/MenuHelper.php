@@ -2,12 +2,11 @@
 
     namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
-    use Services\Managers\ManagerPermissions;
     use Symfony\Component\HttpFoundation\RequestStack;
     use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
     use ReaccionEstudio\ReaccionCMSBundle\Helpers\HtmlAttributesHelper;
-    use ReaccionEstudio\ReaccionCMSBundle\Helpers\CacheHelper;
     use ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService;
+    use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Menu\MenuService AS MenuUtils;
 
     /**
      * MenuHelper class (Twig_Extension)
@@ -38,15 +37,29 @@
         private $menuService;
 
         /**
-         * Constructor
+         * @var MenuUtils
          *
-         * @param Router     $router     Symfony router
+         * Menu Utils service
          */
-        public function __construct(UrlGeneratorInterface $generator, RequestStack $request, MenuService $menuService)
+        private $menuUtils;
+
+        /**
+         * MenuHelper constructor.
+         * @param UrlGeneratorInterface $generator
+         * @param RequestStack $request
+         * @param MenuService $menuService
+         * @param MenuUtils $menuUtils
+         */
+        public function __construct(
+            UrlGeneratorInterface $generator,
+            RequestStack $request,
+            MenuService $menuService,
+            MenuUtils $menuUtils)
         {
             $this->generator    = $generator;
             $this->request      = $request;
             $this->menuService  = $menuService;
+            $this->menuUtils    = $menuUtils;
         }
 
     	public function getFunctions() : Array
@@ -66,7 +79,7 @@
          * @param  String   $slug       Menu slug
          * @return String   [type]      Menu HTML
          */
-        public function printMenu(String $slug = "navigation") : String
+        public function printMenu(string $slug = "navigation") : string
         {
             return $this->menuService->getMenu($slug);
         }
@@ -74,12 +87,11 @@
         /**
          * Get <a> HTML element attributes for menu links
          *
-         * @param   Array    $menuItem        Array with menu item data
-         * @return  String   $stringAttrs     Attributes as string
+         * @param   array    $menuItem        Array with menu item data
+         * @return  string   $stringAttrs     Attributes as string
          */
-        public function getMenuLinkAttrs(Array $menuItem) : String
+        public function getMenuLinkAttrs(array $menuItem) : string
         {
-            $stringAttrs = '';
             $attrs = ['href' => '#', 'data-slug' => $menuItem['value'] ];
 
             if($menuItem['type'] == "page" )
@@ -115,53 +127,36 @@
         /** 
          * Check if menu item is the same that the current route
          *
-         * @param   Array    $menuItem        Array with menu item data
+         * @param   array    $menuItem        Array with menu item data
          * @return  Boolean  true|false       Return if menu route is active
          */
-        public function isMenuItemRouteActive(Array $menuItem) : bool
+        public function isMenuItemRouteActive(array $menuItem) : bool
         {
-            $currentSlug = $this->request->getCurrentRequest()->get('slug');
-
-            if($currentSlug == $menuItem['value']) 
-            {
-                return true;
-            }
-
-            return false;
+            return $this->menuUtils->isMenuItemRouteActive($menuItem);
         }
 
         /**
          * Get active routeSlug value
          *
-         * @param  String   $type   Page type
-         * @return String   $slug   Active routeSlug value
+         * @param  string   $type   Page type
+         * @return string   $slug   Active routeSlug value
          */
-        public function getActiveRoute($type="") : String
+        public function getActiveRoute(?string $type="") : string
         {
-            $slug = $this->request->getCurrentRequest()->get('slug');
-
-            if($this->isBlogActive() || $type == "entry")
-            {
-                return "/blog";
-            }
-
-            return ($slug) ? $slug : "";
+            return $this->menuUtils->getActiveRoute($type);
         }
 
         /**
          * Check if blog route is active
          *
-         * @return Boolean  true|false  
+         * @return boolean  true|false
          */
-        public function isBlogActive() : Bool
+        public function isBlogActive() : bool
         {
-            $currentRoute = $this->request->getCurrentRequest()->get('_route');
-
-            if($currentRoute == "blog") return true;
-            return false;
+            return $this->menuUtils->isBlogActive();
         }
 
-    	public function getName() : String
+    	public function getName() : string
         {
             return 'MenuHelper';
         }

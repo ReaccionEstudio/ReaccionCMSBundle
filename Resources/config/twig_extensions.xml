@@ -26,6 +26,7 @@
             <argument type="service" id="router" />
             <argument type="service" id="request_stack" />
             <argument type="service" id="reaccion_cms.menu" />
+            <argument type="service" id="reaccion_cms.menu.utils" />
             <tag name="twig.extension" />
         </service>
 
@@ -46,6 +47,11 @@
         </service>
         
         <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\UserHelper" public="false">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="ReaccionEstudio\ReaccionCMSBundle\Twig\AppContextExtension" public="false">
+            <argument type="service" id="reaccion_cms.appcontext_service" />
             <tag name="twig.extension" />
         </service>
 

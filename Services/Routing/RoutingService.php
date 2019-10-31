@@ -51,7 +51,12 @@
 		/**
 		 * Constructor
 		 */
-		public function __construct(EntityManagerInterface $em, ThemeService $theme, PageCacheService $pageCache, \Twig_Environment $twig, CacheServiceInterface $cacheService)
+		public function __construct(
+		    EntityManagerInterface $em,
+            ThemeService $theme,
+            PageCacheService $pageCache,
+            \Twig_Environment $twig,
+            CacheServiceInterface $cacheService)
 		{
 			$this->em 		 = $em;
 			$this->twig 	 = $twig;
@@ -66,7 +71,7 @@
 		 * @param  String 	$slug 	Route slug
 		 * @return String 	[type]  HTML page view to render
 		 */
-		public function load(String $slug="") : String
+		public function load(string $slug="") : string
 		{
 			// get page data from cache
 			$routingPageCacheData = new RoutingPageCacheData($slug, $this->pageCache);
@@ -100,7 +105,7 @@
 		 * @param  String 	$slug 			Slug
 		 * @return String 	[type] 			View rendered as HTML
 		 */
-		public function loadErrorPage(Int $errorNumber, String $slug) : String
+		public function loadErrorPage(int $errorNumber, string $slug) : string
 		{
 			$fullTemplatePath = $this->theme->getFullTemplatePath();
 			

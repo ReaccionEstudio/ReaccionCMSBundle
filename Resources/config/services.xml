@@ -26,6 +26,8 @@
         <parameter key="reaccion_cms.language_page_translation_group_redirection.class">ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguagePageTranslationGroupRedirection</parameter>
         <parameter key="reaccion_cms.page_cache_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\Page\PageCacheService</parameter>
         <parameter key="reaccion_cms.menu_content_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuContentService</parameter>
+        <parameter key="reaccion_cms.context_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\AppContext\AppContextService</parameter>
+        <parameter key="reaccion_cms.menu_utils.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Menu\MenuService</parameter>
 
         <!-- listeners -->
         <parameter key="reaccion_cms.language_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
@@ -176,6 +178,16 @@
             <argument type="service" id="reaccion_cms.config" />
             <argument type="service" id="reaccion_cms.logger" />
             <argument type="service" id="reaccion_cms.language" />
+        </service>
+
+        <service id="reaccion_cms.appcontext_service" class="%reaccion_cms.context_service.class%" public="true">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="parameter_bag" />
+            <argument type="service" id="reaccion_cms.menu.utils" />
+        </service>
+
+        <service id="reaccion_cms.menu.utils" class="%reaccion_cms.menu_utils.class%" public="true">
+            <argument type="service" id="request_stack" />
         </service>
 
         <!-- event listeners -->

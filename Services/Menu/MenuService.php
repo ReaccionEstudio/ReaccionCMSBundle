@@ -78,11 +78,11 @@
 		/**
 		 * Get menu HTML
 		 *
-		 * @param  String 		$slug			Menu slug
-		 * @param  String 		$language		Menu language
-		 * @return String 		[type] 			Menu HTML value
+		 * @param  string 		$slug			Menu slug
+		 * @param  string 		$language		Menu language
+		 * @return string 		[type] 			Menu HTML value
 		 */
-		public function getMenu(String $slug = 'navigation', String $language = "" ) : String
+		public function getMenu(string $slug = 'navigation', string $language = "" ) : String
 		{
 			// get current app language
 			$language = (strlen($language)) ? $language : $this->request->getLocale();
@@ -106,11 +106,11 @@
 		 * Update menu html value for cache
 		 *
 		 * @param  Menu 		$menu 			Menu entity
-		 * @param  String 		$slug			Menu slug
-		 * @param  String 		$language		Menu language
-		 * @return String 		$menuHtml 		Menu HTML value
+		 * @param  string 		$slug			Menu slug
+		 * @param  string 		$language		Menu language
+		 * @return string 		$menuHtml 		Menu HTML value
 		 */
-		public function saveMenuHtmlInCache(String $slug, String $language, String $cacheKey = "") : String
+		public function saveMenuHtmlInCache(string $slug, string $language, string $cacheKey = "") : String
 		{
 			$cacheKey = ( ! strlen($cacheKey) ) ? $this->getCacheKey($slug, $language) : $cacheKey;
 
@@ -139,7 +139,7 @@
 		 * Build menu html
 		 *
 		 * @param  Menu 	$menu 		Menu entity
-		 * @return String 	[type] 		Menu Html
+		 * @return string 	[type] 		Menu Html
 		 */
 		private function buildMenuHtml(Menu $menu) : String
 		{
@@ -156,11 +156,11 @@
 		/**
 		 * Get cache key for menu slug
 		 *
-		 * @param 	String 	$slug 		Menu slug
-		 * @param  	String 	$lang 		Menu language
-		 * @return  String 	[type] 		Menu cache key
+		 * @param 	string 	$slug 		Menu slug
+		 * @param  	string 	$lang 		Menu language
+		 * @return  string 	[type] 		Menu cache key
 		 */
-		public function getCacheKey(String $slug, String $lang)
+		public function getCacheKey(string $slug, string $lang)
 		{
 			$suffix = "_" .  $lang . "_menu";
 			return (new CacheHelper())->convertSlugToCacheKey($slug, $suffix);
@@ -172,7 +172,7 @@
 	     * @param  Integer 			$pageId 	Page Id
      	 * @return Menu|null		[type] 		Menu entity
 	     */
-	    public function getPageMenu(Int $pageId)
+	    public function getPageMenu(int $pageId)
 	    {
 	    	return $this->em->getRepository(MenuContent::class)->getPageMenu($pageId);
 	    }
