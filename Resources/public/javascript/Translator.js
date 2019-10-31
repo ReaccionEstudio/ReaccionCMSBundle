@@ -1,4 +1,5 @@
 import Translations from "./Translations/Messages.js";
+import {APP_CONTEXT} from './AppContext/AppContext';
 
 /**
  * Translator class
@@ -6,36 +7,27 @@ import Translations from "./Translations/Messages.js";
  * @author  Alberto Vian - alberto@reaccionestudio.com
  * @website reaccionestudio.com
  */
-class Translator
-{
-	/**
-	 * Constructor
-	 */
-	constructor()
-	{
-		if(typeof appLanguage == "undefined)")
-		{
-			throw new Error("Error, appLanguage variable not found.")
-		}
+class Translator {
+    /**
+     * Constructor
+     */
+    constructor() {
+        this.language = APP_CONTEXT.app.language;
+    }
 
-		this.language = appLanguage;
-	}
+    /**
+     * Get the translation for specified key
+     *
+     * @param  String    key    Translation key
+     * @return String    [type]    Translation value
+     */
+    trans(key) {
+        if (Translations[this.language] && Translations[this.language][key]) {
+            return Translations[this.language][key];
+        }
 
-	/**
-	 * Get the translation for specified key
-	 *
-	 * @param  String 	key 	Translation key
-	 * @return String 	[type]	Translation value
-	 */
-	trans(key)
-	{
-		if(Translations[this.language] && Translations[this.language][key])
-		{
-			return Translations[this.language][key];	
-		}
-
-		return '';
-	}
+        return '';
+    }
 }
 
 export default Translator;

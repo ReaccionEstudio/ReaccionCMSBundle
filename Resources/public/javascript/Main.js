@@ -7,7 +7,7 @@ import FlashMessages from './FlashMessages.js';
 import Comment from './Comment.js';
 import CommonEvents from './CommonEvents.js';
 
-let menu = new Menu(routeSlug);
+let menu = new Menu();
 	menu.events();
 
 let flashMessages = new FlashMessages();
