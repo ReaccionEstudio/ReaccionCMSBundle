@@ -143,7 +143,7 @@ Create you **package.json** file in the Symfony root folder with the following c
       "dependencies": {
             "@ckeditor/ckeditor5-build-classic": "^11.2.0",
             "ajv": "^6.6.1",
-            "bootstrap": "^4.2.1"
+            "bootstrap": "^4.3.1"
       },
       "scripts": {
          "dev": "encore dev",
