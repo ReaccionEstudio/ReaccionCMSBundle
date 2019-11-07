@@ -13,6 +13,20 @@ use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 class ConfigHelper extends \Twig_Extension
 {
     /**
+     * List of allowed config keys to load using Twig
+     */
+    CONST ALLOWED_KEYS = [
+        'site_name',
+        'show_languages_switcher',
+        'user_registration'
+    ];
+
+    /**
+     * @var ConfigServiceInterface
+     */
+    private $config;
+
+    /**
      * Constructor
      *
      * @param ConfigServiceInterface     $config     Configuration service
@@ -25,18 +39,24 @@ class ConfigHelper extends \Twig_Extension
 	public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('getSiteName', array($this, 'getSiteName'))
+            new \Twig_SimpleFunction('getConfig', array($this, 'getConfig'))
         );
     }
 
     /**
-     * Get site_name config value
+     * Get config param value
      *
-     * @return  String   $title     Site name
+     * @param string $key
+     * @return String
      */
-    public function getSiteName() : String
+    public function getConfig(string $key) : ?String
     {
-        return $this->config->get("site_name");
+        if(in_array($key, self::ALLOWED_KEYS))
+        {
+            return $this->config->get($key);
+        }
+
+        return null;
     }
 
 	public function getName()
