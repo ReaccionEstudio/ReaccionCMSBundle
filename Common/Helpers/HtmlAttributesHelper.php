@@ -1,7 +1,11 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\Helpers;
+	namespace ReaccionEstudio\ReaccionCMSBundle\Common\Helpers;
 
+    /**
+     * Class HtmlAttributesHelper
+     * @package ReaccionEstudio\ReaccionCMSBundle\Common\Helpers
+     */
 	final class HtmlAttributesHelper
 	{
 		/**

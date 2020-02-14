@@ -11,7 +11,6 @@
         <parameter key="reaccion_cms.theme.class">ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
         <parameter key="reaccion_cms.config.class">ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
         <parameter key="reaccion_cms.menu.class">ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService</parameter>
-        <parameter key="reaccion_cms.cache.class">ReaccionEstudio\ReaccionCMSBundle\Services\Cache\CacheService</parameter>
         <parameter key="reaccion_cms.entry.class">ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService</parameter>
         <parameter key="reaccion_cms.user.class">ReaccionEstudio\ReaccionCMSBundle\Services\User\UserService</parameter>
         <parameter key="reaccion_cms.authentication.class">ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
@@ -24,7 +23,6 @@
         <parameter key="reaccion_cms.user_mailer_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\User\UserMailerService</parameter>
         <parameter key="reaccion_cms.encryptor.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Encryptor\Encryptor</parameter>
         <parameter key="reaccion_cms.language_page_translation_group_redirection.class">ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguagePageTranslationGroupRedirection</parameter>
-        <parameter key="reaccion_cms.page_cache_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\Page\PageCacheService</parameter>
         <parameter key="reaccion_cms.menu_content_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuContentService</parameter>
         <parameter key="reaccion_cms.context_service.class">ReaccionEstudio\ReaccionCMSBundle\Services\AppContext\AppContextService</parameter>
         <parameter key="reaccion_cms.menu_utils.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Menu\MenuService</parameter>
@@ -44,9 +42,7 @@
     	<service id="reaccion_cms.routing" class="%reaccion_cms.routing.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.theme" />
-            <argument type="service" id="reaccion_cms.page_cache_service" />
             <argument type="service" id="twig" />
-            <argument type="service" id="reaccion_cms.cache" />
         </service>
     	
     	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">
@@ -66,7 +62,6 @@
             <argument type="service" id="reaccion_cms.menu_content" />
             <argument type="service" id="twig" />
             <argument type="service" id="reaccion_cms.theme" />
-            <argument type="service" id="reaccion_cms.cache" />
             <argument type="service" id="request_stack" />
         </service>
 
@@ -75,10 +70,6 @@
             <argument type="service" id="reaccion_cms.logger" />
         </service>
         
-        <service id="reaccion_cms.cache" class="%reaccion_cms.cache.class%" public="true">
-            <argument type="service" id="reaccion_cms.logger" />
-        </service>
-
         <service id="reaccion_cms.entries" class="%reaccion_cms.entry.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="knp_paginator" />
@@ -104,7 +95,6 @@
             <argument type="service" id="translator" />
             <argument type="service" id="request_stack" />
             <argument type="service" id="reaccion_cms.config" />
-            <argument type="service" id="reaccion_cms.page_cache_service" />
             <argument type="service" id="reaccion_cms.logger" />
         </service>
 
@@ -168,16 +158,6 @@
         <service id="reaccion_cms.language_page_translation_group_redirection" class="%reaccion_cms.language_page_translation_group_redirection.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="router" />
-        </service>
-
-        <service id="reaccion_cms.page_cache_service" class="%reaccion_cms.page_cache_service.class%" public="true">
-            <argument type="service" id="reaccion_cms.cache" />
-            <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="reaccion_cms.entries" />
-            <argument type="service" id="request_stack" />
-            <argument type="service" id="reaccion_cms.config" />
-            <argument type="service" id="reaccion_cms.logger" />
-            <argument type="service" id="reaccion_cms.language" />
         </service>
 
         <service id="reaccion_cms.appcontext_service" class="%reaccion_cms.context_service.class%" public="true">
