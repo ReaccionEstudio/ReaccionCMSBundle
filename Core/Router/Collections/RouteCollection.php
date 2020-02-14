@@ -1,6 +1,6 @@
 <?php
 
-namespace ReaccionEstudio\ReaccionCMSBundle\Core\Components\Router;
+namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router\Collection;
 
 use Traversable;
 

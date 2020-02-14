@@ -1,6 +1,6 @@
 <?php
 
-namespace ReaccionEstudio\ReaccionCMSBundle\Core\Components\Router;
+namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -12,11 +12,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
  */
 class RouteCollectionBuilder
 {
-    /**
-     * Routes filename
-     */
-    const ROUTES_FILENAME = 'reaccion_cms_routes.data';
-
     /**
      * @var RouteCollection
      */
