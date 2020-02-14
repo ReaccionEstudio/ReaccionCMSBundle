@@ -3,8 +3,8 @@
 	namespace ReaccionEstudio\ReaccionCMSBundle\Services\User;
 	
 	use Symfony\Bundle\FrameworkBundle\Routing\Router;
-	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
-	use ReaccionEstudio\ReaccionCMSBundle\Constants\UserRedirections;
+	use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\Cookies;
+	use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\UserRedirections;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 
 	/**

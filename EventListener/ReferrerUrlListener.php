@@ -1,35 +1,32 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\EventListener;
+namespace ReaccionEstudio\ReaccionCMSBundle\EventListener;
 
-	use Symfony\Component\HttpFoundation\Response;
-	use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
-	use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\Cookies;
 
-    /**
-     * Referrer url listener
-     *
-     * @author Alberto Vian <alberto@reaccionestudio.com>
-     */
-	class ReferrerUrlListener
-	{
-	    public function onKernelResponse(FilterResponseEvent $event)
-	    {
-	    	$response = $event->getResponse();
-    		$request  = $event->getRequest();
-    		
-    		// current route
-    		$route   = $request->attributes->get('_route');
-            $referer = $request->headers->get('referer');
+/**
+ * Referrer url listener
+ *
+ * @author Alberto Vian <alberto@reaccionestudio.com>
+ */
+class ReferrerUrlListener
+{
+    public function onKernelResponse(FilterResponseEvent $event)
+    {
+        $response = $event->getResponse();
+        $request = $event->getRequest();
 
-            if($route == "user_login" || $route == "user_register" || preg_match("/login/", $referer))
-            {
-                return;
-            }
+        // current route
+        $route = $request->attributes->get('_route');
+        $referer = $request->headers->get('referer');
 
-    		if($referer == null) return;
+        if ($route == "user_login" || $route == "user_register" || preg_match("/login/", $referer)) {
+            return;
+        }
 
-    		setcookie(Cookies::REFERRER_URL_COOKIE_NAME, $referer, 0, "/");
-	    }
-	}
+        if ($referer == null) return;
+
+        setcookie(Cookies::REFERRER_URL_COOKIE_NAME, $referer, 0, "/");
+    }
+}
