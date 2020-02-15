@@ -220,7 +220,7 @@ class PageContent
     /**
      * @return bool
      */
-    public function isIsEnabled()
+    public function isEnabled()
     {
         return $this->isEnabled;
     }
