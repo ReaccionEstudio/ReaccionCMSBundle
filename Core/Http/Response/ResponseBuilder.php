@@ -4,15 +4,14 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Core\Http\Response;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-use ReaccionEstudio\ReaccionCMSBundle\Core\Controller\BaseController;
-use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Collections\PageContentCollection;
-use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Seo;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Router;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Seo;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug\Slug;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\Route;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Page as PageEntity;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\FileLoader;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Collections\PageContentCollection;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\NotFoundRouteDataException;
 
 /**

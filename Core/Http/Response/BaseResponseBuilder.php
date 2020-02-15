@@ -2,9 +2,8 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Http\Response;
 
-use ReaccionEstudio\ReaccionCMSBundle\Core\Controller\BaseController;
-use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Router;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\Route;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Page as PageEntity;
 
