@@ -2,9 +2,13 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router;
 
-use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Slug;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManagerInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug\Slug;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\Route;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\RoutesCollection;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * Class Router
@@ -18,12 +22,39 @@ class Router
     private $loader;
 
     /**
+     * @var ArrayCollection $routes Collection with all routes
+     */
+    private $routes;
+
+    /**
+     * @var ParameterBagInterface $parameterBag
+     */
+    private $parameterBag;
+
+    /**
+     * @var EntityManagerInterface $em
+     */
+    private $em;
+
+    /**
      * Router constructor.
      * @param LoaderInterface $loader
      */
-    public function __construct(LoaderInterface $loader)
+    public function __construct(EntityManagerInterface $em, ParameterBagInterface $parameterBag)
     {
-        $this->loader = $loader;
+        $this->routes = new RoutesCollection();
+        $this->parameterBag = $parameterBag;
+        $this->em = $em;
+    }
+
+    /**
+     * @param string $loader
+     */
+    public function setLoader(string $loader): self
+    {
+        $this->loader = new $loader($this->em, $this->parameterBag);
+        $this->loadRoutes();
+        return $this;
     }
 
     /**
@@ -31,8 +62,33 @@ class Router
      * @param Slug $slug
      * @return Route
      */
-    public function findRoute(Slug $slug) : Route
+    public function find(Slug $slug) : Route
     {
 
+    }
+
+    /**
+     * Load main route
+     */
+    public function main()
+    {
+
+    }
+
+    /**
+     * Save routes schema in a single data storage
+     */
+    public function updateSchema()
+    {
+
+    }
+
+    /**
+     * Load all defined routes from using given loader
+     */
+    public function loadRoutes()
+    {
+        $routeLoader = new RouteLoader($this->loader);
+        $routeLoader->loadRoutes();
     }
 }

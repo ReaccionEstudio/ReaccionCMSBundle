@@ -22,12 +22,21 @@ class Slug
      */
     public function __construct(string $value)
     {
-        if(null === $value || !strlen($value)) {
-            throw new EmptyObjectValueException(self::class);
-        }
+        $this->valueIsNotEmpty($value);
 
         $slugify = new Slugify();
         $this->value = $slugify->slugify($value);
+    }
+
+    /**
+     * @param string $value
+     * @throws EmptyObjectValueException
+     */
+    private function valueIsNotEmpty(string $value)
+    {
+        if(null === $value || !strlen($value)) {
+            throw new EmptyObjectValueException(self::class);
+        }
     }
 
     /**

@@ -3,27 +3,18 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader;
 
 /**
- * LoaderInterface is the interface implemented by loader classes.
+ * LoaderInterface is the interface implemented by route loader classes.
  */
 interface LoaderInterface
 {
     /**
-     * Loads a resource.
-     *
-     * @param mixed       $resource The resource
-     * @param string|null $type     The resource type or null if unknown
-     *
-     * @throws \Exception If something went wrong
+     * Loads defined routes.
      */
-    public function load($resource, $type = null);
+    public function load() : LoaderInterface;
 
     /**
-     * Returns whether this class supports the given resource.
-     *
-     * @param mixed       $resource A resource
-     * @param string|null $type     The resource type or null if unknown
-     *
-     * @return bool True if this class supports the given resource, false otherwise
+     * Get loaded routes
+     * @return array
      */
-    public function supports($resource, $type = null);
+    public function getRoutes(): array;
 }

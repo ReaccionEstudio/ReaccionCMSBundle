@@ -7,6 +7,7 @@
     <services>
 
         <service id="reaccion_cms.index.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController" public="true">
+            <argument type="service" id="reaccion_cms.router" />
         </service>
 
     </services>

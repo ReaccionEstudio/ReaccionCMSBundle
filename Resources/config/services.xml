@@ -7,7 +7,7 @@
     <parameters>
     	
     	<parameter key="reaccion_cms.version">0.1</parameter>
-    	<parameter key="reaccion_cms.routing.class">ReaccionEstudio\ReaccionCMSBundle\Services\Routing\RoutingService</parameter>
+    	<parameter key="reaccion_cms.router.class">ReaccionEstudio\ReaccionCMSBundle\Core\Router\Router</parameter>
         <parameter key="reaccion_cms.theme.class">ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
         <parameter key="reaccion_cms.config.class">ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigService</parameter>
         <parameter key="reaccion_cms.menu.class">ReaccionEstudio\ReaccionCMSBundle\Services\Menu\MenuService</parameter>
@@ -34,15 +34,18 @@
         <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
         <parameter key="fos_user.registration.confirmation.template">@FOSUser/Registration/email.txt.twig</parameter>
 
+        <!-- config parameter -->
+        <parameter key="reaccion_cms_routes.filename">reaccion_cms_routes.json</parameter>
+        <parameter key="reaccion_cms_routes.file_path">%kernel.project_dir%/config/routes/%reaccion_cms_routes.filename%</parameter>
+
     </parameters>
 
     <services>
     	
         <!-- services -->
-    	<service id="reaccion_cms.routing" class="%reaccion_cms.routing.class%" public="true">
+    	<service id="reaccion_cms.router" class="%reaccion_cms.router.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="reaccion_cms.theme" />
-            <argument type="service" id="twig" />
+            <argument type="service" id="parameter_bag" />
         </service>
     	
     	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">

@@ -1,8 +1,6 @@
 <?php
 
-namespace ReaccionEstudio\ReaccionCMSBundle\Core\Components\Router\Loader;
-
-use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
+namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader;
 
 /**
  * Class DoctrineLoader
@@ -11,28 +9,21 @@ use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
 class DoctrineLoader implements LoaderInterface
 {
     /**
-     * Loads a resource.
-     *
-     * @param mixed $resource The resource
-     * @param string|null $type The resource type or null if unknown
-     *
-     * @throws \Exception If something went wrong
+     * Loads routes from a system file.
      */
-    public function load($resource, $type = null)
+    public function load() : LoaderInterface
     {
         // TODO: Implement load() method.
+        return $this;
     }
 
     /**
-     * Returns whether this class supports the given resource.
-     *
-     * @param mixed $resource A resource
-     * @param string|null $type The resource type or null if unknown
-     *
-     * @return bool True if this class supports the given resource, false otherwise
+     * Get loaded routes
+     * @return array
      */
-    public function supports($resource, $type = null)
+    public function getRoutes(): array
     {
-        // TODO: Implement supports() method.
+        // TODO: Implement getRoutes() method.
+        return [];
     }
 }

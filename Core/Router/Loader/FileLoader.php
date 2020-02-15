@@ -1,8 +1,10 @@
 <?php
 
-namespace ReaccionEstudio\ReaccionCMSBundle\Core\Components\Router\Loader;
+namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader;
 
-use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\CannotLoadRoutesException;
 
 /**
  * Class FileLoader
@@ -11,33 +13,68 @@ use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
 class FileLoader implements LoaderInterface
 {
     /**
-     * Routes filename
+     * @var array $routes
      */
-    const ROUTES_FILENAME = 'reaccion_cms_routes.data';
+    private $routes;
 
     /**
-     * Loads a resource.
-     *
-     * @param mixed $resource The resource
-     * @param string|null $type The resource type or null if unknown
-     *
-     * @throws \Exception If something went wrong
+     * @var ParameterBagInterface
      */
-    public function load($resource, $type = null)
+    private $parameterBag;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    /**
+     * FileLoader constructor.
+     * @param EntityManagerInterface $em
+     * @param ParameterBagInterface $parameterBag
+     */
+    public function __construct(EntityManagerInterface $em, ParameterBagInterface $parameterBag)
     {
-        // TODO: Implement load() method.
+        $this->parameterBag = $parameterBag;
+        $this->em = $em;
+        $this->routes = [];
     }
 
     /**
-     * Returns whether this class supports the given resource.
-     *
-     * @param mixed $resource A resource
-     * @param string|null $type The resource type or null if unknown
-     *
-     * @return bool True if this class supports the given resource, false otherwise
+     * Loads routes from a system file.
      */
-    public function supports($resource, $type = null)
+    public function load() : LoaderInterface
     {
-        // TODO: Implement supports() method.
+        // Get routes file path
+        $filepath = $this->parameterBag->get('reaccion_cms_routes.file_path');
+
+        // Create file if not exists
+        $this->createIfFileNotExist($filepath);
+
+        // Get data
+        try {
+            $this->routes = json_decode(file_get_contents($filepath), true);
+        } catch(\Exception $e) {
+            throw new CannotLoadRoutesException($e);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoutes(): array
+    {
+        return $this->routes;
+    }
+
+    /**
+     * @param string $filePath
+     */
+    private function createIfFileNotExist(string $filePath) : void
+    {
+        if(false === file_exists($filePath)) {
+            file_put_contents($filePath, '{}');
+        }
     }
 }
