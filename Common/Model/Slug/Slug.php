@@ -2,6 +2,9 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug;
 
+use Cocur\Slugify\Slugify;
+use ReaccionEstudio\ReaccionCMSBundle\Common\Exceptions\EmptyObjectValueException;
+
 /**
  * Class Slug
  * @package ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug
@@ -19,7 +22,12 @@ class Slug
      */
     public function __construct(string $value)
     {
-        $this->value = $value;
+        if(null === $value || !strlen($value)) {
+            throw new EmptyObjectValueException(self::class);
+        }
+
+        $slugify = new Slugify();
+        $this->value = $slugify->slugify($value);
     }
 
     /**
