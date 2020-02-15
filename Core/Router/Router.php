@@ -22,7 +22,7 @@ class Router
     private $loader;
 
     /**
-     * @var ArrayCollection $routes Collection with all routes
+     * @var RoutesCollection $routes Collection with all routes
      */
     private $routes;
 
@@ -72,7 +72,7 @@ class Router
      */
     public function main()
     {
-
+        dump($this->routes);die;
     }
 
     /**
@@ -89,6 +89,6 @@ class Router
     public function loadRoutes()
     {
         $routeLoader = new RouteLoader($this->loader);
-        $routeLoader->loadRoutes();
+        $this->routes = $routeLoader->loadRoutes();
     }
 }

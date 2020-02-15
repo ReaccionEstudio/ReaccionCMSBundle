@@ -17,29 +17,23 @@ class RouteLoader
     private $loader;
 
     /**
-     * @var RoutesCollection $routes Routes
-     */
-    private $routes;
-
-    /**
      * Router constructor.
      * @param LoaderInterface $loader
      */
     public function __construct(LoaderInterface $loader)
     {
         $this->loader = $loader;
-        $this->routes = new RoutesCollection();
     }
 
     /**
      * Load defined routes
      */
-    public function loadRoutes()
+    public function loadRoutes() : ?RoutesCollection
     {
         // Load routes
         $routes = $this->loader->load()->getRoutes();
 
         // Create RoutesCollection
-        var_dump($routes);
+        return RouteCollectionFactory::createCollection($routes);
     }
 }
