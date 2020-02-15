@@ -18,10 +18,9 @@ abstract class BaseResponseBuilder
      * Build ReaccionCMS controller response
      *
      * @param string $slug
-     * @param BaseController $controller
      * @return mixed
      */
-    final public function build(string $slug = '', BaseController $controller)
+    final public function build(string $slug = '')
     {
         $route = $this->getRoute($slug);
         $data = $this->getData($route);

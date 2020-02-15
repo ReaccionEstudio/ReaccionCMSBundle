@@ -25,7 +25,7 @@ class BaseController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $responseBuilder = new ResponseBuilder($router, $em);
-        $responseBuilder->build($slug, $this);
+        $responseBuilder->build($slug);
 
         // TODO: create template view loader
         $view = 'ReaccionCMSBundle/themes/rocket_theme/' . $responseBuilder->getPage()->getTemplate();
