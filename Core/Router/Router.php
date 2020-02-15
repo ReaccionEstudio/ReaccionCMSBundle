@@ -2,19 +2,19 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Router;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug\Slug;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\Route;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\RoutesCollection;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\NotFoundRouteException;
 
 /**
  * Class Router
  * @package ReaccionEstudio\ReaccionCMSBundle\Core\Router
  */
-class Router
+class Router implements RouterInterface
 {
     /**
      * @var LoaderInterface $loader Loader
@@ -49,8 +49,9 @@ class Router
 
     /**
      * @param string $loader
+     * @return RouterInterface
      */
-    public function setLoader(string $loader): self
+    public function setLoader(string $loader): RouterInterface
     {
         $this->loader = new $loader($this->em, $this->parameterBag);
         $this->loadRoutes();
@@ -69,16 +70,24 @@ class Router
 
     /**
      * Load main route
+     *
+     * @return Route
+     * @throws NotFoundRouteException
      */
-    public function main()
+    public function main() : Route
     {
-        dump($this->routes);die;
+        if(null === $this->routes->getMainRoute()) {
+            throw new NotFoundRouteException('Main route was not found.');
+        }
+
+        return $this->routes->getMainRoute();
     }
 
     /**
      * Save routes schema in a single data storage
+     * @return bool
      */
-    public function updateSchema()
+    public function updateSchema() : bool
     {
 
     }
@@ -86,9 +95,17 @@ class Router
     /**
      * Load all defined routes from using given loader
      */
-    public function loadRoutes()
+    public function loadRoutes() : void
     {
         $routeLoader = new RouteLoader($this->loader);
         $this->routes = $routeLoader->loadRoutes();
+    }
+
+    /**
+     * @return RoutesCollection
+     */
+    public function getRoutes(): RoutesCollection
+    {
+        return $this->routes;
     }
 }

@@ -27,6 +27,9 @@ class RouteCollectionFactory
             $isMainPage = ($routeData['main_page'] === '1') ? true : false;
 
             $route = new Route();
+
+            $route->setId($routeData['id']);
+            $route->setType($routeData['type']);
             $route->setName($routeData['name']);
             $route->setSlug($routeData['slug']);
             $route->setLanguage($routeData['language']);
