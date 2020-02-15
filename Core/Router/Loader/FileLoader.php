@@ -2,8 +2,7 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Components\Router\Loader;
 
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\Config\Loader\LoaderResolverInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
 
 /**
  * Class FileLoader
@@ -40,23 +39,5 @@ class FileLoader implements LoaderInterface
     public function supports($resource, $type = null)
     {
         // TODO: Implement supports() method.
-    }
-
-    /**
-     * Gets the loader resolver.
-     *
-     * @return LoaderResolverInterface A LoaderResolverInterface instance
-     */
-    public function getResolver()
-    {
-        // TODO: Implement getResolver() method.
-    }
-
-    /**
-     * Sets the loader resolver.
-     */
-    public function setResolver(LoaderResolverInterface $resolver)
-    {
-        // TODO: Implement setResolver() method.
     }
 }
