@@ -84,12 +84,14 @@ class Router implements RouterInterface
     }
 
     /**
-     * Save routes schema in a single data storage
+     * Update routes schema in a single data storage
+     *
      * @return bool
      */
     public function updateSchema() : bool
     {
-
+        $routerSchemaUpdater = new RouterSchemaUpdater($this->em, $this->parameterBag);
+        return $routerSchemaUpdater->update();
     }
 
     /**

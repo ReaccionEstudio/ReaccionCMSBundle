@@ -3,6 +3,7 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Controller;
 
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\FileLoader;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Http\Response\ResponseBuilder;
@@ -23,6 +24,11 @@ class BaseController extends Controller
     {
         $router = $this->get('reaccion_cms.router');
         $em = $this->getDoctrine()->getManager();
+
+        /*
+        $router->setLoader(FileLoader::class)->updateSchema();
+        die;
+        */
 
         $responseBuilder = new ResponseBuilder($router, $em);
         $responseBuilder->build($slug);

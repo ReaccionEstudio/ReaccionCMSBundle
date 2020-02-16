@@ -9,8 +9,10 @@ interface LoaderInterface
 {
     /**
      * Loads defined routes.
+     *
+     * @return LoaderInterface
      */
-    public function load() : LoaderInterface;
+    public function load(): LoaderInterface;
 
     /**
      * Get loaded routes

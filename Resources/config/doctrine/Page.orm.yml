@@ -33,7 +33,7 @@ ReaccionEstudio\ReaccionCMSBundle\Entity\Page:
             type: string
             length: 255
         
-        isEnabled:
+        enabled:
             type: boolean
 
         type:

@@ -24,7 +24,7 @@ class RouteCollectionFactory
         }
 
         foreach($routes as $routeData) {
-            $isMainPage = ($routeData['main_page'] === '1') ? true : false;
+            $isMainPage = (true === $routeData['main_page']) ? true : false;
 
             $route = new Route();
 

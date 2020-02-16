@@ -42,7 +42,7 @@ class Page
      *
      * @ORM\Column(name="is_enabled", type="boolean")
      */
-    private $isEnabled = true;
+    private $enabled = true;
 
     /**
      * @var string|null
@@ -203,9 +203,9 @@ class Page
     /**
      * @return bool
      */
-    public function isIsEnabled()
+    public function isEnabled()
     {
-        return $this->isEnabled;
+        return $this->enabled;
     }
 
     /**
@@ -213,9 +213,9 @@ class Page
      *
      * @return self
      */
-    public function setIsEnabled($isEnabled)
+    public function setEnabled($enabled)
     {
-        $this->isEnabled = $isEnabled;
+        $this->enabled = $enabled;
 
         return $this;
     }
