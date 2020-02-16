@@ -32,7 +32,7 @@ class ContentRender
      */
     public function render(array $content, string $key, array $props = []): string
     {
-        if (false === isset($viewContent[$key])) {
+        if (false === isset($content[$key])) {
             return '';
         }
 

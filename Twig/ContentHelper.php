@@ -32,7 +32,7 @@ class ContentHelper extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('printContent', array($this, 'printContent')),
+            new \Twig_SimpleFunction('printContent', array($this, 'printContent'), array('is_safe' => ['html'])),
             new \Twig_SimpleFunction('getArrayTags', array($this, 'getArrayTags')),
             new \Twig_SimpleFunction('getSerializedVar', array($this, 'getSerializedVar')),
             new \Twig_SimpleFunction('substrSentence', array($this, 'substrSentence'))
