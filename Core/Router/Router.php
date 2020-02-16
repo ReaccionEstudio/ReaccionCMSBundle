@@ -66,8 +66,10 @@ class Router implements RouterInterface
      */
     public function find(Slug $slug) : Route
     {
+        $errorMssg = 'There aren\'t routes defined';
+
         if($this->routes->isEmpty()) {
-            throw new NotFoundRouteException('There aren\'t routes defined');
+            throw new NotFoundRouteException($errorMssg);
         }
 
         foreach($this->routes as $route) {
@@ -77,7 +79,7 @@ class Router implements RouterInterface
             }
         }
 
-        throw new NotFoundRouteException('There aren\'t routes defined');
+        throw new NotFoundRouteException($errorMssg);
     }
 
     /**
