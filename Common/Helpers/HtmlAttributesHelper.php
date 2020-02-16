@@ -1,43 +1,27 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\Common\Helpers;
+namespace ReaccionEstudio\ReaccionCMSBundle\Common\Helpers;
 
+/**
+ * Class HtmlAttributesHelper
+ * @package ReaccionEstudio\ReaccionCMSBundle\Common\Helpers
+ */
+class HtmlAttributesHelper
+{
     /**
-     * Class HtmlAttributesHelper
-     * @package ReaccionEstudio\ReaccionCMSBundle\Common\Helpers
+     * Convert array with attributes to string
+     *
+     * @param array $attrs
      */
-	final class HtmlAttributesHelper
-	{
-		/**
-		 * @var Array
-		 *
-		 * Array with attributes
-		 */
-		private $attrs;
+    public static function toString(array $attrs): String
+    {
+        $attributes = "";
 
-		/**
-		 * Constructor
-		 */
-		public function __construct(Array $attrs)
-		{
-			$this->attrs = $attrs;
-		}
+        foreach ($attrs as $key => $value) {
+            if (empty($value)) continue;
+            $attributes .= ' ' . $key . '="' . $value . '"';
+        }
 
-		/**
-		 * Convert array with attributes to string
-		 *
-		 * @return String 	$attributes 	Attributes as string
-		 */
-		public function getAttributesAsString() : String
-		{
-			$attributes = "";
-
-			foreach($this->attrs as $key => $value)
-			{
-				if(empty($value)) continue;
-				$attributes .= ' ' . $key . '="' . $value . '"';
-			}
-
-			return $attributes;
-		}
-	}
+        return $attributes;
+    }
+}
