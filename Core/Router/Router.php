@@ -66,7 +66,18 @@ class Router implements RouterInterface
      */
     public function find(Slug $slug) : Route
     {
+        if($this->routes->isEmpty()) {
+            throw new NotFoundRouteException('There aren\'t routes defined');
+        }
 
+        foreach($this->routes as $route) {
+            /** @var Route $route */
+            if($route->getSlug() === $slug->__toString()) {
+                return $route;
+            }
+        }
+
+        throw new NotFoundRouteException('There aren\'t routes defined');
     }
 
     /**
