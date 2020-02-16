@@ -9,6 +9,7 @@ use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\LoaderInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Model\RoutesCollection;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\NotFoundRouteException;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Router\SchemaUpdater\FileRouterSchemaUpdater;
 
 /**
  * Class Router
@@ -90,7 +91,8 @@ class Router implements RouterInterface
      */
     public function updateSchema() : bool
     {
-        $routerSchemaUpdater = new RouterSchemaUpdater($this->em, $this->parameterBag);
+        $fileRouterSchemaUpdater = new FileRouterSchemaUpdater($this->em, $this->parameterBag);
+        $routerSchemaUpdater = new RouterSchemaUpdater($fileRouterSchemaUpdater);
         return $routerSchemaUpdater->update();
     }
 

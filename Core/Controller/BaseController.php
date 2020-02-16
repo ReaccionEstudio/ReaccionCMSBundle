@@ -25,11 +25,6 @@ class BaseController extends Controller
         $router = $this->get('reaccion_cms.router');
         $em = $this->getDoctrine()->getManager();
 
-        /*
-        $router->setLoader(FileLoader::class)->updateSchema();
-        die;
-        */
-
         $responseBuilder = new ResponseBuilder($router, $em);
         $responseBuilder->build($slug);
 
