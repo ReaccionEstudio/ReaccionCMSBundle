@@ -55,7 +55,7 @@
 			if($addPageSlugs)
 			{
 				// get all pages
-				$pageFilters = [ 'language' => $menu->getLanguage(), 'isEnabled' => true ];
+				$pageFilters = [ 'language' => $menu->getLanguage(), 'enabled' => true ];
 				$pages 		 = $this->em->getRepository(Page::class)->getPages($pageFilters);
 
 				// create new array to store page slugs

@@ -8,4 +8,6 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Common\Constants;
 class ReaccionCMS
 {
     const VERSION = "0.1.4-alpha";
+
+    const DEFAULT_LANG = 'en';
 }
