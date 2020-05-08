@@ -2,24 +2,23 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Routing\Router;
 use ReaccionEstudio\ReaccionCMSBundle\Core\View\Content\ContentRender;
 
 /**
  * ContentHelper class (Twig_Extension)
- *
  * @author Alberto Vian <alberto@reaccionestudio.com>
  */
 class ContentHelper extends \Twig_Extension
 {
     /**
-     * @var RouterInterface $router
+     * @var Router $router
      */
     private $router;
 
     /**
      * ContentHelper constructor.
-     * @param RouterInterface $router
+     * @param Router $router
      */
     public function __construct(Router $router)
     {
@@ -47,7 +46,7 @@ class ContentHelper extends \Twig_Extension
      * @param   array $props Define content properties
      * @return  string                  Content as HTML
      */
-    public function printContent(array $content, string $key, array $props = []): String
+    public function printContent(array $content, string $key, array $props = []): string
     {
         $contentRender = new ContentRender($this->router);
         return $contentRender->render($content, $key, $props);
@@ -55,11 +54,8 @@ class ContentHelper extends \Twig_Extension
 
     /**
      * Get tags as array
-     *
-     * @param   Doctrine Entity     $entity     Doctrine entity
-     * @return  Array               [type]      Tags list array
      */
-    public function getArrayTags($entity): Array
+    public function getArrayTags($entity): array
     {
         if (method_exists($entity, 'getTags')) {
             $tags = $entity->getTags();
@@ -77,11 +73,11 @@ class ContentHelper extends \Twig_Extension
     /**
      * Get serialized variable value
      *
-     * @param  any $serializedObject Serialized object
-     * @param  String $key Serialized object key
-     * @return any       [type]              Variable value
+     * @param $serializedObject
+     * @param string $key
+     * @return string
      */
-    public function getSerializedVar($serializedObject, String $key)
+    public function getSerializedVar($serializedObject, string $key)
     {
         $unserializedArray = unserialize($serializedObject);
 
@@ -114,9 +110,9 @@ class ContentHelper extends \Twig_Extension
     }
 
     /**
-     * @return String
+     * @return string
      */
-    public function getName(): String
+    public function getName(): string
     {
         return 'ContentHelper';
     }

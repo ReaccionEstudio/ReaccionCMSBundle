@@ -12,12 +12,12 @@ use ReaccionEstudio\ReaccionCMSBundle\Common\Helpers\HtmlAttributesHelper;
 class Image implements ContentRenderInterface
 {
     /**
-     * Constructor
-     *
-     * @param String $contentValue Content value
-     * @param array $properties Image properties
+     * Image constructor.
+     * @param RouterInterface $router
+     * @param string $contentValue
+     * @param array $properties
      */
-    public function __construct(RouterInterface $router, String $contentValue, Array $properties = [])
+    public function __construct(RouterInterface $router, string $contentValue, array $properties = [])
     {
         $this->router = $router;
         $this->contentValue = $contentValue;
@@ -39,21 +39,34 @@ class Image implements ContentRenderInterface
         $this->attrs['src'] = $imageUrl;
         $this->attrs['alt'] = basename($this->contentValue);
 
+        // merge properties
+        $this->mergeProperties();
+
         // get attributes as string
         $stringAttrs = HtmlAttributesHelper::toString($this->attrs);
 
         // generate HTML img element
-        $imageHtmlElement = '<img ' . $stringAttrs . ' />';
+        return '<img ' . $stringAttrs . ' />';
+    }
 
-        return $imageHtmlElement;
+    /**
+     * @return void
+     */
+    private function mergeProperties() : void
+    {
+        if(isset($this->properties['title'])) {
+            $this->attrs['title'] = $this->properties['title'];
+        }
+
+        if(isset($this->properties['style'])) {
+            $this->attrs['style'] = $this->properties['style'];
+        }
     }
 
     /**
      * Get app base url
-     *
-     * @return String    $appUrl    App base url
      */
-    private function getAppUrl(): String
+    private function getAppUrl(): string
     {
         $context = $this->router->getContext();
         $port = $context->getHttpPort();

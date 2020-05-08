@@ -11,13 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Routing\Router;
 class ContentRender
 {
     /**
-     * @var RouterInterface
+     * @var Router
      */
     private $router;
 
     /**
      * ContentRender constructor.
-     * @param RouterInterface $router
+     * @param Router $router
      */
     public function __construct(Router $router)
     {
@@ -48,7 +48,7 @@ class ContentRender
 
             case 'img':
             case 'image':
-                $image = new Image($this->router, $contentValue);
+                $image = new Image($this->router, $contentValue, $props);
                 $htmlContent = $image->getValue();
                 break;
         }
