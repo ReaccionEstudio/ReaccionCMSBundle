@@ -24,3 +24,7 @@ INSERT INTO config (name,value,type,required, groups) VALUES
 # Email templates
 INSERT INTO email_templates (name,`type`,slug,message,subject,fromname,fromemail,`language`,template_file,plain_text,enabled,created_at,updated_at,message_params) VALUES 
 ('Test email','reaccion-cms','test-email','<p>Hi there,</p><p>Your email settings are valid and ReaccionCMS has been connected successfully with the SMTP server.</p><p>King regards!</p>','ReaccionCMS test email','Reacción CMS','alberto@albertolabs.com','en','default.html.twig',0,1,'2019-01-08 01:11:26.000','2019-01-11 19:18:28.000',NULL);
+
+# Home page
+INSERT INTO `pages` (`id`,`translation_group_id`,`name`,`slug`,`enabled`,`type`,`main_page`,`language`,`template_view`,`options`,`seo_title`,`seo_description`,`seo_keywords`,`created_at`,`updated_at`)
+VALUES (1,NULL,'Home','home',1,NULL,1,'en','page.html.twig',NULL,NULL,NULL,NULL,now(),now());
