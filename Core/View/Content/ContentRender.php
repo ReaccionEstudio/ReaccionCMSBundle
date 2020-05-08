@@ -36,23 +36,30 @@ class ContentRender
             return '';
         }
 
-        $htmlContent = '';
         $content = $content[$key];
         $contentValue = $content['value'];
 
         switch ($content['type']) {
             case 'text_html':
-                $htmlText = new HtmlText($contentValue);
-                $htmlContent = $htmlText->getValue();
+                $contentRender = new HtmlTextContent($contentValue);
                 break;
 
             case 'img':
             case 'image':
-                $image = new Image($this->router, $contentValue, $props);
-                $htmlContent = $image->getValue();
+                $contentRender = new ImageContent($contentValue, $props);
+                $contentRender->setRouter($this->router);
+                break;
+
+            case 'video':
+                $contentRender = new VideoContent($contentValue, $props);
+                $contentRender->setRouter($this->router);
                 break;
         }
 
-        return $htmlContent;
+        if(empty($contentRender)) {
+            return '';
+        }
+
+        return $contentRender->getValue();
     }
 }

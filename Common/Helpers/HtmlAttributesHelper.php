@@ -18,7 +18,6 @@ class HtmlAttributesHelper
         $attributes = "";
 
         foreach ($attrs as $key => $value) {
-            if (empty($value)) continue;
             $attributes .= ' ' . $key . '="' . $value . '"';
         }
 
