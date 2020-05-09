@@ -11,6 +11,10 @@
     <route id="user_register" path="/register" methods="GET POST">
         <default key="_controller">reaccion_cms.registration.controller:index</default>
     </route>
+
+    <route id="user_settings" path="/settings" methods="GET POST">
+        <default key="_controller">reaccion_cms.setting.controller:index</default>
+    </route>
     
     <route id="user_resetting" path="/reset-password" methods="GET POST">
         <default key="_controller">reaccion_cms.resetting.controller:index</default>

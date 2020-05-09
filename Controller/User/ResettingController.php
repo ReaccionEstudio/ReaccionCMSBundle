@@ -10,7 +10,7 @@
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
-	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserLoginType;
+	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserSettingsType;
 	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 	use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;

@@ -20,6 +20,10 @@
             <argument type="service" id="fos_user.util.token_generator" />
         </service>
 
+        <service id="reaccion_cms.setting.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\UserSetting\UserSettingController" public="true">
+        </service>
+
+
         <!-- user resetting password controller -->
         <!-- TODO: replace the 'reaccion_cms.resetting.controller' service with this one -->
         <service id="reaccion_cms.resetting_service.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingServiceController" public="true">

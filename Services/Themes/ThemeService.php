@@ -35,42 +35,42 @@ class ThemeService
     private $em;
 
     /**
-     * @var String
+     * @var string
      *
      * Kernel project directory
      */
     private $projectDir;
 
     /**
-     * @var String
+     * @var string
      *
      * Full template path
      */
     private $fullTemplatePath = "";
 
     /**
-     * @var String
+     * @var string
      *
      * Full template view file path
      */
     private $fullTemplateViewPath = "";
 
     /**
-     * @var String
+     * @var string
      *
      * Current theme
      */
     private $currentTheme = "";
 
     /**
-     * @var String
+     * @var string
      *
      * Themes path
      */
     private $themesPath = "";
 
     /**
-     * @var String
+     * @var string
      *
      * Template view filename
      */
@@ -79,7 +79,7 @@ class ThemeService
     /**
      * Constructor
      */
-    public function __construct(EntityManagerInterface $em, ConfigServiceInterface $configService, String $projectDir = "")
+    public function __construct(EntityManagerInterface $em, ConfigServiceInterface $configService, string $projectDir = "")
     {
         $this->em = $em;
         $this->configService = $configService;
@@ -94,9 +94,9 @@ class ThemeService
      * Get full view path for Page entity
      *
      * @param  Page $entity Current Page entity
-     * @return String        [type]        View file path for Twig
+     * @return string        [type]        View file path for Twig
      */
-    public function getPageViewPath(Page $page): String
+    public function getPageViewPath(Page $page): string
     {
         // check if view file exists
         if (!$this->viewFileExists($page)) {
@@ -111,9 +111,9 @@ class ThemeService
     /**
      * Get fullTemplateViewPath var value
      *
-     * @return String    $fullTemplateViewPath    View file path for Twig
+     * @return string    $fullTemplateViewPath    View file path for Twig
      */
-    public function getFullTemplateViewPath(): String
+    public function getFullTemplateViewPath(): string
     {
         return $this->fullTemplateViewPath;
     }
@@ -121,9 +121,9 @@ class ThemeService
     /**
      * Get fullTemplatePath var value
      *
-     * @return String    $fullTemplatePath    Current template path
+     * @return string    $fullTemplatePath    Current template path
      */
-    public function getFullTemplatePath(): String
+    public function getFullTemplatePath(): string
     {
         return $this->fullTemplatePath;
     }
@@ -131,10 +131,10 @@ class ThemeService
     /**
      * Generate relative view path for Twig
      *
-     * @param  String $baseFilename Template filename
-     * @return String    $path            Twig view relative path
+     * @param  string $baseFilename Template filename
+     * @return string    $path            Twig view relative path
      */
-    public function generateRelativeTwigViewPath(String $baseFilename): String
+    public function generateRelativeTwigViewPath(String $baseFilename): string
     {
         $path = $this->themesPath;
         $path = str_replace("templates/", "", $path);
@@ -146,8 +146,8 @@ class ThemeService
     /**
      * Get theme config parameters
      *
-     * @param  String $key Config parameter key
-     * @return String    [type]    Config parameter value
+     * @param  string $key Config parameter key
+     * @return string    [type]    Config parameter value
      */
     public function getConfig(String $configKey = "")
     {
@@ -165,11 +165,11 @@ class ThemeService
     /**
      * Get config view parameter value
      *
-     * @param  String $key Config parameter key
+     * @param  string $key Config parameter key
      * @param  Boolean $generateRelativeTwigViewPath Get relative twig view path
-     * @return String    $view                                View path
+     * @return string    $view                                View path
      */
-    public function getConfigView(string $key = '', Bool $generateRelativeTwigViewPath = false): String
+    public function getConfigView(string $key = '', bool $generateRelativeTwigViewPath = false): string
     {
         $view = '';
         $configViews = $this->getConfig("views");

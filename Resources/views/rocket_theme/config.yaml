@@ -21,5 +21,6 @@ theme_config:
     resetting: 'user/resetting.html.twig'
     resetting_check: 'user/resetting_check.html.twig'
     resetting_reset: 'user/resetting_reset.html.twig'
+    user_settings: 'user/settings.html.twig'
     404_error: '404_error.html.twig'
     500_error: '500_error.html.twig'

@@ -7,7 +7,7 @@
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
-	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserLoginType;
+	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserSettingsType;
 	use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 	use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -48,7 +48,7 @@
 			$seo = ['title' => $this->translator->trans("signin.title") ];
 
 			// form
-			$form = $this->createForm(UserLoginType::class);
+			$form = $this->createForm(UserSettingsType::class);
 			$form->handleRequest($request);
 
 			if ($form->isSubmitted() && $form->isValid()) 

@@ -28,7 +28,7 @@ class User extends BaseUser
     {
         parent::__construct();
 
-         // Default values
+        // Default values
         $this->language = 'en';
     }
 
@@ -45,7 +45,7 @@ class User extends BaseUser
      *
      * @return self
      */
-    public function setLanguage($language="en")
+    public function setLanguage($language = "en")
     {
         $this->language = $language;
 
@@ -57,8 +57,7 @@ class User extends BaseUser
      */
     public function getNickname()
     {
-        if( empty($this->nickname) ) 
-        {
+        if (empty($this->nickname)) {
             $this->nickname = $this->getUsername();
         }
 

@@ -58,6 +58,13 @@ user:
   logout: 'Log out'
   go_to_admin_panel: 'Go to admin panel'
 
+user_settings:
+  profile_tab: 'Profile'
+  account_tab: 'My account'
+  nickname: 'Name / Alias'
+  password: 'Password'
+  submit: 'Save changes'
+
 # entries comments
 entries_comments:
   post_comment_title: 'Post a comment'

@@ -45,6 +45,13 @@ user:
   logout: 'Salir'
   go_to_admin_panel: 'Ir al panel de administración'
 
+user_settings:
+  profile_tab: 'Perfil'
+  account_tab: 'Mi cuenta'
+  nickname: 'Nombre / Nick'
+  password: 'Contraseña'
+  submit: 'Actualizar'
+
 # entries comments
 entries_comments:
   post_comment_title: 'Escribir un comentario'

@@ -1,0 +1,30 @@
+{% extends '@ReaccionCMSBundle/rocket_theme/base.html.twig' %}
+
+{% block body %}
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">{{ 'user_settings.profile_tab'|trans }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="false">{{ 'user_settings.account_tab'|trans }}</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-4 px-2 py-4">
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile">
+            <div class="col-8 mx-auto">
+                {{ form_start(profileForm) }}
+                    {{ form_widget(profileForm) }}
+                {{ form_end(profileForm) }}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account">
+            <div class="col-8 mx-auto">
+                {{ form_start(settingsForm) }}
+                    {{ form_widget(settingsForm) }}
+                {{ form_end(settingsForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
