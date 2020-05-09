@@ -5,23 +5,23 @@
 	{% if name is not empty %}
 	<h1>{{ name }}</h1>
 	<div class="text-muted">
-	{% if content.entry.value.categories is defined and content.entry.value.categories is not empty %}
-		{% for category in content.entry.value.categories %}
+	{% if entry.categories is defined and entry.categories is not empty %}
+		{% for category in entry.categories %}
 			<a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}">{{ category.name }}</a>
 		{% endfor %}
 		- 
 	{% endif %}
 
-	{{ 'blog.created_at' | trans({ '%datetime%' : content.entry.value.createdAt | date('d/m/Y H:i') }) }}
+	{{ 'blog.created_at' | trans({ '%datetime%' : entry.createdAt | date('d/m/Y H:i') }) }}
 	</div>
 	{% endif %} 
 
-	{% if content.entry is defined %}
-	<div id="entry_detail" class="pt-3">{{ content.entry.value.content | raw }}</div>
+	{% if entry is defined %}
+	<div id="entry_detail" class="pt-3">{{ entry.content | raw }}</div>
 	{% endif %}
 
-	{% if content.entry.value.tags is defined and content.entry.value.tags is not empty %}
-		{% for tag in getArrayTags(content.entry.value) %}
+	{% if entry.tags is defined and entry.tags is not empty %}
+		{% for tag in getArrayTags(entry) %}
 			<a href="{{ url('blog_tag', {'tag' : tag }) }}" title="{{ tag }}" class="">#{{ tag }}</a>
 		{% endfor %}
 	{% endif %}
