@@ -23,7 +23,7 @@
 			$newCommentId = $this->get("reaccion_cms.comment")->post($entry, $comment, $this->getUser(), $parentComment);
 
 			// generate redirection url
-			$redirectionUrl = $this->get("router")->generate("index_slug", [ 'slug' => $entry->getSlug() ]);
+			$redirectionUrl = $this->get("router")->generate("blog_show", [ 'slug' => $entry->getSlug() ]);
 			$redirectionUrl .= "#post_comment";
 
 			return new RedirectResponse($redirectionUrl);
@@ -49,7 +49,7 @@
 			$newCommentId = $this->get("reaccion_cms.comment")->post($entry, $commentContent, $this->getUser(), $parentComment);
 
 			// generate redirection url
-			$redirectionUrl = $this->get("router")->generate("index_slug", [ 'slug' => $entry->getSlug() ]);
+			$redirectionUrl = $this->get("router")->generate("blog_show", [ 'slug' => $entry->getSlug() ]);
 			$redirectionUrl .= "#post_comment";
 
 			return new RedirectResponse($redirectionUrl);
