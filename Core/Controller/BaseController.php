@@ -2,10 +2,9 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Controller;
 
-use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
-use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Loader\FileLoader;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Http\Response\ResponseBuilder;
 
 /**

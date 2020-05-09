@@ -22,4 +22,9 @@
         <requirement key="page">\d+</requirement>
     </route>
 
+    <route id="blog_show" path="/blog/{slug}" methods="GET">
+        <default key="_controller">reaccion_cms.entries.controller:show</default>
+        <requirement key="slug">\S+</requirement>
+    </route>
+
 </routes>

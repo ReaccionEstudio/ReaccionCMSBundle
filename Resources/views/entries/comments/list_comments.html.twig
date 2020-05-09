@@ -1,6 +1,6 @@
 <div id="comments">
 
-	{% set totalComments = getSerializedVar(options, 'totalComments') %}
+	{% set totalComments = {'total':1} %}
 
 	<h4><strong>{{ 'entries_comments.list_title' | transchoice(totalComments.total, { "%num%" : totalComments.total }) }}</strong></h4>
 

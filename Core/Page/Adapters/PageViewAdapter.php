@@ -3,13 +3,14 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters;
 
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
+use ReaccionEstudio\ReaccionCMSBundle\Core\View\ViewAdapter;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\PageContent;
 
 /**
  * Class PageViewAdapter
  * @package ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters
  */
-class PageViewAdapter
+class PageViewAdapter implements ViewAdapter
 {
     /**
      * @var Page $page

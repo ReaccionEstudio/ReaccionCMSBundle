@@ -6,7 +6,13 @@ ul#entries_categories li{
 	padding-bottom: 5px;
 }
 div#entry_detail{
-	line-height: 30px;	
+    &{
+        line-height: 30px;
+    }
+
+    img{
+        max-width: 100%;
+    }
 }
 
 li a.blog-category-link.active{

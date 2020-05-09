@@ -1,79 +1,79 @@
 {% extends '@ReaccionCMSBundle/rocket_theme/base.html.twig' %}
 
 {% block body %}
-	
-	{% if name is not empty %}
-	<h1>
-		<a href="{{ url('blog') }}" title="{{ name }}">{{ name }}</a>
-		{% if currentCategory is defined and currentCategory is not empty %}<small>/ {{ currentCategory.name }}</small>{% endif %}
-		{% if currentTag is defined %}<small>/ #{{ currentTag }}</small>{% endif %}
-	</h1>
-	{% endif %}
-	
-	<div class="row pt-3">
 
-		{% if entries is defined %}
-		<div class="col-sm-8">
+    {% if name is not empty %}
+        <h1>
+            <a href="{{ url('blog') }}" title="{{ name }}">{{ name }}</a>
+            {% if currentCategory is defined and currentCategory is not empty %}<small>/ {{ currentCategory.name }}</small>{% endif %}
+            {% if currentTag is defined %}<small>/ #{{ currentTag }}</small>{% endif %}
+        </h1>
+    {% endif %}
 
-			{% for entry in entries %}
-			<div class="row mb-3">
-			  <div class="col-sm-12">
-			    <div class="card">
-			      <div class="card-body">
-			        <h5 class="card-title">
-			        	<a href="{{ url('index_slug', { 'slug' : entry.slug }) }}" title="{{ entry.name }}">{{ entry.name }}</a>
-			        </h5>
-			        {% if entry.resume is not empty %}
-			        <p class="card-text">
-			        	{{ entry.resume }}
-				        <a href="{{ url('index_slug', { 'slug' : entry.slug }) }}" title="{{ 'blog.read_more' | trans }}: {{ entry.name }}" class="badge badge-secondary ml-1">{{ 'blog.read_more' | trans }}</a>
-			        </p>
-			        {% endif %}
+    <div class="row pt-3">
 
-			        {% if entry.tags is defined and entry.tags is not empty %}
-						{% for tag in getArrayTags(entry) %}
-							<a href="{{ url('blog_tag', {'tag' : tag }) }}" title="{{ tag }}" class=""><small>#{{ tag }}</small></a>
-						{% endfor %}
-					{% endif %}
+        {% if entries is defined %}
+            <div class="col-sm-8">
 
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			{% endfor %}
+                {% for entry in entries %}
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{{ url('blog_show', { 'slug' : entry.slug }) }}" title="{{ entry.name }}">{{ entry.name }}</a>
+                                    </h5>
+                                    {% if entry.resume is not empty %}
+                                        <p class="card-text">
+                                            {{ entry.resume }}
+                                            <a href="{{ url('blog_show', { 'slug' : entry.slug }) }}" title="{{ 'blog.read_more' | trans }}: {{ entry.name }}" class="badge badge-secondary ml-1">{{ 'blog.read_more' | trans }}</a>
+                                        </p>
+                                    {% endif %}
 
-			<!-- pagination -->
-			{{ knp_pagination_render(entries) }}
-			<!-- end pagination -->
+                                    {% if entry.tags is defined and entry.tags is not empty %}
+                                        {% for tag in getArrayTags(entry) %}
+                                            <a href="{{ url('blog_tag', {'tag' : tag }) }}" title="{{ tag }}" class=""><small>#{{ tag }}</small></a>
+                                        {% endfor %}
+                                    {% endif %}
 
-		</div>
-		{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
 
-		<div class="col-sm-4">
+                <!-- pagination -->
+                {{ knp_pagination_render(entries) }}
+                <!-- end pagination -->
 
-			{% if categories is defined %}
-			<div class="row">
-			  	<div class="col-sm-12">
-			  		<div class="card">
-				    	<div class="card-body">
+            </div>
+        {% endif %}
 
-				    		<h5>{{ 'blog.categories' | trans }}</h5>
+        <div class="col-sm-4">
 
-				    		<ul id="entries_categories" class="pl-3">
-					    		{% for category in categories %}
-					    		<li>
-					    			<a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}" class="blog-category-link {% if currentCategory is defined and currentCategory is not empty and currentCategory.slug == category.slug %}active{% endif %}">{{ category.name }}</a>
-					    		</li>
-					    		{% endfor %}
-				    		</ul>
-				      	</div>
-				    </div>
-				</div>
-			</div>
-			{% endif %}
+            {% if categories is defined %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
 
-		</div>
+                                <h5>{{ 'blog.categories' | trans }}</h5>
 
-	</div>
+                                <ul id="entries_categories" class="pl-3">
+                                    {% for category in categories %}
+                                        <li>
+                                            <a href="{{ url('blog_category', { 'category' : category.slug }) }}" title="{{ category.name }}" class="blog-category-link {% if currentCategory is defined and currentCategory is not empty and currentCategory.slug == category.slug %}active{% endif %}">{{ category.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
 
 {% endblock %}
