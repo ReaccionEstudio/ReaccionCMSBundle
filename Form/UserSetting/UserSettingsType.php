@@ -2,6 +2,7 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Form\UserSetting;
 
+use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,8 +18,7 @@ class UserSettingsType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'user_login.email',
-                'required' => true,
-                'mapped' => false
+                'required' => true
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -37,6 +37,8 @@ class UserSettingsType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array());
+        $resolver->setDefaults([
+            'data_class' => User::class
+        ]);
     }
 }
