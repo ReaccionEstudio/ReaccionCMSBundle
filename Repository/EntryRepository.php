@@ -10,13 +10,14 @@ class EntryRepository extends EntityRepository
     /**
      * Get entry entities
      *
-     * @param 	Array 	$filters 	Query filters
-     * @return 	Array 	[type]		Query result
+     * @param 	array 	$filters 	Query filters
+     * @return 	array 	[type]		Query result
      */
-    public function getEntries(Array $filters = [])
+    public function getEntries(array $filters = [])
     {
-    	$defaultFilters = ['language' => 'en'];
-    	$filters = array_merge($defaultFilters, $filters);
+        if(!isset($filters['language'])) {
+            $filters['language'] = 'en';
+        }
 
     	// query builder
     	$qb = $this->createQueryBuilder('e')

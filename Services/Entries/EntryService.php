@@ -49,15 +49,16 @@ class EntryService
 
     /**
      * Get entries for current page language
-     *
-     * @param  String $language Page language
-     * @param  Integer $page Pagination page number
-     * @return SlidingPagination    $entries    All entries
+     * @param string $language
+     * @param int $page
+     * @return SlidingPagination
      */
-    public function getEntries(string $language = "en", Int $page = 1): SlidingPagination
+    public function getEntries(string $language = "en", int $page = 1): SlidingPagination
     {
+        // TODO: KISS
         // get entries
-        $entries = $this->em->getRepository(Entry::class)->getEntries();
+        $filters = ['language' => $language];
+        $entries = $this->em->getRepository(Entry::class)->getEntries($filters);
 
         // load pagination limit parameter from config
         $limit = ($this->config->get("entries_list_pagination_limit") > 0)
