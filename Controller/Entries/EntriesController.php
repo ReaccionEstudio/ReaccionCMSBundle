@@ -81,7 +81,6 @@ class EntriesController extends Controller
     {
         $currentCategoryEntity = null;
         $em = $this->getDoctrine()->getManager();
-        $entriesService = $this->get("reaccion_cms.entries");
         $view = $this->get("reaccion_cms.theme")->getConfigView("entries", true);
 
         // get categories
@@ -127,7 +126,6 @@ class EntriesController extends Controller
     {
         $currentCategoryEntity = null;
         $em = $this->getDoctrine()->getManager();
-        $entriesService = $this->get("reaccion_cms.entries");
         $view = $this->get("reaccion_cms.theme")->getConfigView("entries", true);
 
         // get categories
