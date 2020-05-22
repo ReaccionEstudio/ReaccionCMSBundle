@@ -98,13 +98,14 @@ class EntriesController extends Controller
         $entriesFilters = ['categories' => [$category]];
         $entries = $em->getRepository(Entry::class)->getEntries($entriesFilters);
 
+        // load pagination limit parameter from config
+        $config = $this->get("reaccion_cms.config");
+        $limit = ($config->get("entries_list_pagination_limit") > 0)
+            ? $config->get("entries_list_pagination_limit")
+            : 10;
+
         // entries pagination
-        $paginator = $this->get('knp_paginator');
-        $entries = $paginator->paginate(
-            $entries,
-            $page,
-            $this->getParameter("pagination_page_limit")
-        );
+        $entries = $this->get('knp_paginator')->paginate($entries, $page, $limit);
 
         // view vars
         $vars = [
