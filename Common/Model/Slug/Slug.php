@@ -3,13 +3,13 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug;
 
 use Cocur\Slugify\Slugify;
-use ReaccionEstudio\ReaccionCMSBundle\Common\Exceptions\EmptyObjectValueException;
+use Psr\Log\InvalidArgumentException;
 
 /**
  * Class Slug
  * @package ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug
  */
-class Slug
+final class Slug
 {
     /**
      * @var string $value Slug value
@@ -19,6 +19,7 @@ class Slug
     /**
      * Slug constructor.
      * @param string $value
+     * @throws \ReaccionEstudio\ReaccionCMSBundle\Common\Exceptions\EmptyObjectValueException
      */
     public function __construct(string $value)
     {
@@ -30,12 +31,11 @@ class Slug
 
     /**
      * @param string $value
-     * @throws EmptyObjectValueException
      */
     private function valueIsNotEmpty(string $value)
     {
         if(null === $value || !strlen($value)) {
-            throw new EmptyObjectValueException(self::class);
+            throw new InvalidArgumentException(self::class);
         }
     }
 

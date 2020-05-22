@@ -4,6 +4,7 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug\Slug;
 
 /**
  * Entry
@@ -178,12 +179,11 @@ class Entry
      * @param string $slug
      *
      * @return self
+     * @throws \ReaccionEstudio\ReaccionCMSBundle\Common\Exceptions\EmptyObjectValueException
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug)
     {
-        $slugify = new Slugify();
-        $this->slug = $slugify->slugify($slug);
-
+        $this->slug = new Slug($slug);
         return $this;
     }
 
