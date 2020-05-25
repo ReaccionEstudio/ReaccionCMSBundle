@@ -3,9 +3,7 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Services\Config;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Cache\Adapter\ApcuAdapter;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Configuration;
-use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
 
 /**
@@ -15,13 +13,6 @@ use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterfa
  */
 class ConfigService implements ConfigServiceInterface
 {
-    /**
-     * @var ApcuAdapter
-     *
-     * APCu adapter
-     */
-    private $cache;
-
     /**
      * @var EntityManagerInterface
      *
@@ -43,7 +34,6 @@ class ConfigService implements ConfigServiceInterface
     {
         $this->em = $em;
         $this->logger = $logger;
-        $this->cache = new ApcuAdapter();
     }
 
     /**
@@ -94,52 +84,11 @@ class ConfigService implements ConfigServiceInterface
 
             $this->logger->addInfo("Config key '" . $key . "' value updated.");
 
-            // update cache
-            $this->updateConfigCacheValue($key, $value);
-
             return true;
         } catch (\Doctrine\DBAL\DBALException $e) {
             $this->logger->logException($e, "Error in ConfigService::set() method.");
             return false;
         }
-    }
-
-    /**
-     * Update config cache value if param is already in the cache storage
-     *
-     * @param  String $key Configuration entity name
-     * @param  Any        [type]    Parameter value
-     * @return Boolean    true|false    Update result
-     */
-    private function updateConfigCacheValue(String $key, $value): Bool
-    {
-        $cacheKey = $this->getCacheKey($key);
-
-        try {
-            $cachedItem = $this->cache->getItem($cacheKey);
-
-            if (!$cachedItem->isHit()) return true;
-
-            // Save config value in cache
-            $cachedItem->set($value);
-            $this->cache->save($cachedItem);
-
-            return true;
-        } catch (\Exception $e) {
-            $this->logger->logException($e, "Error in ConfigService::updateConfigCacheValue() method.");
-            return false;
-        }
-    }
-
-    /**
-     * Get cache key name for config parameter keys
-     *
-     * @param String $key Configuration entity name
-     * @return String    [type]    Configuration cache key
-     */
-    private function getCacheKey(String $key)
-    {
-        return "config." . $key;
     }
 
     /**
