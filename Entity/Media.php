@@ -373,4 +373,9 @@ class Media
     {
         $this->createdAt = new \Datetime();
     }
+
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
 }

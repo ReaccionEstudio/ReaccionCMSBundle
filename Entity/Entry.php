@@ -2,7 +2,6 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Entity;
 
-use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Model\Slug\Slug;
 
@@ -360,7 +359,7 @@ class Entry
      *
      * @return self
      */
-    public function setDefaultImage(\ReaccionEstudio\ReaccionCMSBundle\Entity\Media $defaultImage)
+    public function setDefaultImage(?Media $defaultImage)
     {
         $this->defaultImage = $defaultImage;
 
