@@ -1,49 +1,43 @@
 <?php
 
-	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Language;
+namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Language;
 
-	use Symfony\Component\HttpFoundation\Request;
-	use Symfony\Component\Translation\TranslatorInterface;
-	use Symfony\Component\HttpFoundation\RedirectResponse;
-	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-	use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-	class LanguageController extends Controller
-	{
-		/**
-		 * @var TranslatorInterface
-		 */
-		private $translator;
+class LanguageController extends Controller
+{
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
 
-		public function __construct(TranslatorInterface $translator)
-		{
-			$this->translator = $translator;
-		}
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
 
-		public function index(String $language="", Request $request)
-		{
-			$result = $this->get("reaccion_cms.language")->updateLanguage($language);
+    public function index(String $language = "", Request $request)
+    {
+        $result = $this->get("reaccion_cms.language")->updateLanguage($language);
 
-			if( ! $result)
-			{
-				// change_language
-				$this->addFlash('language_switch_error', $this->translator->trans('change_language.error'));
-			}
+        if (!$result) {
+            // change_language
+            $this->addFlash('language_switch_error', $this->translator->trans('change_language.error'));
+        }
 
-			// get reference
-			$refererUrl = $request->headers->get('referer');
-			
-			if( preg_match('/\/admin\//', $refererUrl) )
-			{
-				return $this->get("reaccion_cms.user")->redirect('user_updated_language');
-			}
-			else
-			{
-				$refererRoute = $request->query->get("appRoute");
-				$refererRouteSlug = $request->query->get("appRouteSlug");
+        // get reference
+        $refererUrl = $request->headers->get('referer');
 
-				// Check if page translation exists in the current page translation group
-				return $this->get("reaccion_cms.language_page_translation_group_redirection")->redirectByTranslationGroup($language, $refererUrl, $refererRoute, $refererRouteSlug);
-			}
-		}
-	}
+        if (preg_match('/\/admin\//', $refererUrl)) {
+            return $this->get("reaccion_cms.user")->redirect('user_updated_language');
+        } else {
+            $refererRoute = $request->query->get("appRoute");
+            $refererRouteSlug = $request->query->get("appRouteSlug");
+
+            // Check if page translation exists in the current page translation group
+            return $this->get("reaccion_cms.language_page_translation_group_redirection")->redirectByTranslationGroup($language, $refererUrl, $refererRoute, $refererRouteSlug);
+        }
+    }
+}

@@ -48,7 +48,7 @@ class EntryRepository extends EntityRepository
      *
      * @param  Entry    $entry          Entry entity
      * @param  String   $language       Entry language
-     * @return Array    [type]          Query result
+     * @return array    [type]          Query result
      */
     public function getPreviousAndNextEntries(Entry $entry, String $language="en")
     {
