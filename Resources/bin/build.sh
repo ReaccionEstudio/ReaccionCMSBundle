@@ -28,7 +28,7 @@ if [ "$2" ]; then
 
 	# Run Webpack encore
 	echo "Compiling assets ..."
-	node_modules/@symfony/webpack-encore/bin/encore.js $2
+	node_modules/@symfony/webpack-encore/bin/encore.js $2 --progress
 
 fi
 
