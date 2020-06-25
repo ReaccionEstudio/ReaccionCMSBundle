@@ -58,9 +58,6 @@ final class PageFinder
         }
 
         $pageComposer = new PageComposer($pageEntity);
-        $page = $pageComposer->compose();
-
-        $pageAdapter = new PageViewAdapter($page);
-        return $pageAdapter->toArray();
+        return $pageComposer->compose();
     }
 }
