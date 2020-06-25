@@ -4,8 +4,8 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Core\Page\Find;
 
 use Doctrine\ORM\EntityManagerInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Composer\PageComposer;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\NotFoundRouteException;
-use ReaccionEstudio\ReaccionCMSBundle\Entity\Page;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Page as PageEntity;
 
 /**
