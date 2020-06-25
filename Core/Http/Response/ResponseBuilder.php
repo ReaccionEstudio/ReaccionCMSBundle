@@ -70,7 +70,7 @@ class ResponseBuilder extends BaseResponseBuilder
                 $this->route = $this->router->main();
             }
         } catch (NotFoundRouteException $e) {
-            throw new NotFoundHttpException();
+            throw new NotFoundRouteException($slug);
         }
 
         return $this->route;

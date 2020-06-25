@@ -2,6 +2,8 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Controller;
 
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Find\PageFinder;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
@@ -19,7 +21,7 @@ class BaseController extends Controller
      * @param string $slug
      * @return Response
      */
-    public function load(string $slug = '') : Response
+    public function load(string $slug = ''): Response
     {
         $router = $this->get('reaccion_cms.router');
         $em = $this->getDoctrine()->getManager();
@@ -32,5 +34,28 @@ class BaseController extends Controller
         $pageAdapter = new PageViewAdapter($responseBuilder->getPage());
 
         return $this->render($view, $pageAdapter->toArray());
+    }
+
+    /**
+     * Get page object by id
+     *
+     * @param int $id
+     */
+    public function getPage(int $id) : Page
+    {
+        $pageFinder = new PageFinder($this->getDoctrine()->getManager());
+        return $pageFinder->find($id);
+    }
+
+    /**
+     * Get page object by slug
+     *
+     * @param string $slug
+     * @return Page
+     */
+    public function getPageBySlug(string $slug)
+    {
+        $pageFinder = new PageFinder($this->getDoctrine()->getManager());
+        return $pageFinder->findBySlug($slug);
     }
 }
