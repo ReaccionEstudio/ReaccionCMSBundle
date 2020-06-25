@@ -3,6 +3,7 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Core\Page\Find;
 
 use Doctrine\ORM\EntityManagerInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Composer\PageComposer;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\NotFoundRouteException;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Page as PageEntity;
@@ -29,7 +30,7 @@ final class PageFinder
     /**
      * @param int $id
      */
-    public function find(int $id)
+    public function find(int $id) : array
     {
         return $this->_find(['id' => $id], $id);
     }
@@ -37,7 +38,7 @@ final class PageFinder
     /**
      * @param string $slug
      */
-    public function findBySlug(string $slug)
+    public function findBySlug(string $slug) : array
     {
         return $this->_find(['slug' => $slug], $slug);
     }
@@ -48,7 +49,7 @@ final class PageFinder
      * @throws NotFoundRouteException
      * @throws \ReaccionEstudio\ReaccionCMSBundle\Core\Router\Exceptions\NotFoundRouteDataException
      */
-    private function _find(array $filter, string $value)
+    private function _find(array $filter, string $value) : array
     {
         $pageEntity = $this->em->getRepository(PageEntity::class)->findOneBy($filter);
 
@@ -57,6 +58,9 @@ final class PageFinder
         }
 
         $pageComposer = new PageComposer($pageEntity);
-        return $pageComposer->compose();
+        $page = $pageComposer->compose();
+
+        $pageAdapter = new PageViewAdapter($page);
+        return $pageAdapter->toArray();
     }
 }

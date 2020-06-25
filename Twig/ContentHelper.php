@@ -2,6 +2,9 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Collections\PageContentCollection;
+use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
 use Symfony\Component\Routing\Router;
 use ReaccionEstudio\ReaccionCMSBundle\Core\View\Content\ContentRender;
 
@@ -46,8 +49,13 @@ class ContentHelper extends \Twig_Extension
      * @param   array $props Define content properties
      * @return  string                  Content as HTML
      */
-    public function printContent(array $content, string $key, array $props = []): string
+    public function printContent($content, string $key, array $props = []): string
     {
+        if($content instanceof Page){
+            $pageView = new PageViewAdapter($content);
+            $content = $pageView->toArray();
+            $content = $content['content'];
+        }
         $contentRender = new ContentRender($this->router);
         return $contentRender->render($content, $key, $props);
     }
