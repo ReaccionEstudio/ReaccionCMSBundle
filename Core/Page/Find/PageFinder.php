@@ -50,7 +50,7 @@ final class PageFinder
      */
     private function _find(array $filter, string $value)
     {
-        $pageEntity = $this->em->getRepository(PageEntity::class)->findBy($filter);
+        $pageEntity = $this->em->getRepository(PageEntity::class)->findOneBy($filter);
 
         if(empty($pageEntity)){
             throw new NotFoundRouteException($value);
