@@ -28,7 +28,7 @@ class Seo
      */
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->title ?? '';
     }
 
     /**
@@ -44,7 +44,7 @@ class Seo
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->description ?? '';
     }
 
     /**
@@ -60,7 +60,7 @@ class Seo
      */
     public function getKeywords(): string
     {
-        return $this->keywords;
+        return $this->keywords ?? '';
     }
 
     /**
