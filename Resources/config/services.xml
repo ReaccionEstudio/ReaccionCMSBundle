@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-    	
+
     	<parameter key="reaccion_cms.version">0.1</parameter>
     	<parameter key="reaccion_cms.router.class">ReaccionEstudio\ReaccionCMSBundle\Core\Router\Router</parameter>
         <parameter key="reaccion_cms.theme.class">ReaccionEstudio\ReaccionCMSBundle\Services\Themes\ThemeService</parameter>
@@ -28,7 +28,7 @@
         <parameter key="reaccion_cms.menu_utils.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Menu\MenuService</parameter>
 
         <!-- listeners -->
-        <parameter key="reaccion_cms.language_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>
+<!--        <parameter key="reaccion_cms.language_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\LanguageListener</parameter>-->
 
         <!-- fos user bundle parameters -->
         <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
@@ -41,25 +41,25 @@
     </parameters>
 
     <services>
-    	
+
         <!-- services -->
     	<service id="reaccion_cms.router" class="%reaccion_cms.router.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="parameter_bag" />
         </service>
-    	
+
     	<service id="reaccion_cms.theme" class="%reaccion_cms.theme.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.config" />
             <argument>%kernel.project_dir%</argument>
         </service>
-        
+
         <service id="reaccion_cms.config" class="%reaccion_cms.config.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.logger" />
             <tag name="monolog.logger" channel="reaccion_cms" />
         </service>
-        
+
         <service id="reaccion_cms.menu" class="%reaccion_cms.menu.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.menu_content" />
@@ -72,7 +72,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="reaccion_cms.logger" />
         </service>
-        
+
         <service id="reaccion_cms.entries" class="%reaccion_cms.entry.class%" public="true">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="knp_paginator" />
