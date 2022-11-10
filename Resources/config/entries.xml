@@ -6,7 +6,11 @@
 
     <services>
 
-        <service id="reaccion_cms.entries.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\Entries\EntriesController" public="true"></service>
+        <service id="reaccion_cms.entries.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\Entries\EntriesController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface" />
+            </call>
+        </service>
 
     </services>
 

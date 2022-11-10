@@ -8,6 +8,9 @@
 
         <service id="reaccion_cms.index.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\IndexController" public="true">
             <argument type="service" id="reaccion_cms.router" />
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface" />
+            </call>
         </service>
 
     </services>

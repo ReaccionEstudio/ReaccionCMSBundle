@@ -5,22 +5,34 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-    	
+
         <service id="reaccion_cms.login.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\LoginController" public="true">
             <argument type="service" id="translator" />
             <argument type="service" id="security.encoder_factory" />
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface" />
+            </call>
         </service>
 
         <service id="reaccion_cms.registration.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\RegistrationController" public="true">
             <argument type="service" id="translator" />
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface" />
+            </call>
         </service>
 
         <service id="reaccion_cms.resetting.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\ResettingController" public="true">
             <argument type="service" id="translator" />
             <argument type="service" id="fos_user.util.token_generator" />
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface" />
+            </call>
         </service>
 
         <service id="reaccion_cms.setting.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\UserSetting\UserSettingController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface" />
+            </call>
         </service>
 
 
@@ -34,7 +46,7 @@
             <argument type="service" id="fos_user.mailer" />
             <argument>%fos_user.resetting.retry_ttl%</argument>
             <call method="setContainer">
-                <argument type="service" id="service_container" />
+                <argument type="service" id="Psr\Container\ContainerInterface" />
             </call>
         </service>
 
