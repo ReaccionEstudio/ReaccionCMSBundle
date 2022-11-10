@@ -18,14 +18,14 @@ Enable the bundle in **config/bundles.php** file:
 
     <?php
     # config/bundles.php
-    
+
     return [
         // ...
         ReaccionEstudio\ReaccionCMSBundle\ReaccionCMSBundle::class => ['all' => true],
     ];
-    
 
-Add required parameters in the **config/services.yaml** file
+
+Add required parameters in the **config/services.yaml** file.
 
     # config/services.yaml
     encryption_key: 'YOUR_ENCRIPTION_KEY'
@@ -53,7 +53,7 @@ Update **config/packages/security.xml** file:
     security:
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    encoders: 
+    encoders:
         ReaccionEstudio\ReaccionCMSBundle\Entity\User: sha512
 
     role_hierarchy:
@@ -87,7 +87,7 @@ Update **config/packages/security.xml** file:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        
+
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
@@ -95,11 +95,11 @@ Update **config/packages/security.xml** file:
 Create **assets/js/front_app.js**:
 
     const $ = require('jquery');
-    
+
     // JS
     require('bootstrap');
     require('@root/public/bundles/reaccioncms/javascript/Main.js');
-    
+
     // SCSS
     require('@root/public/bundles/reaccioncms/stylesheet/global.scss');
 
@@ -108,24 +108,24 @@ Add asset entry in the **webpack.config.js** file with the following options:
     # webpack.config.js
     var Encore = require('@symfony/webpack-encore');
     const path = require('path');
-    
+
     const ROOT_PATH = path.resolve(__dirname, './');
     const ALIASES = {
         '@root' : ROOT_PATH,
         '@vendor' : ROOT_PATH + '/vendor'
     };
-    
+
     // ...
-    Encore 
+    Encore
         .addAliases(ALIASES)
         .addEntry('front_app', './assets/js/front_app.js')
-        
+
         .autoProvidejQuery()
         .autoProvideVariables({ Popper: ['popper.js', 'default'] })
-        
+
         // enables Sass/SCSS support
         .enableSassLoader()
-        
+
         .disableSingleRuntimeChunk()
 
 Create you **package.json** file in the Symfony root folder with the following content:
