@@ -2,7 +2,6 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\Cookies;
 
 /**
