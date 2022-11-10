@@ -7,11 +7,11 @@
     <services>
 
         <service id="reaccion_cms.login.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\LoginController" public="true">
-            <argument type="service" id="translator" />
-            <argument type="service" id="security.encoder_factory" />
             <call method="setContainer">
                 <argument type="service" id="Psr\Container\ContainerInterface" />
             </call>
+            <argument type="service" id="translator" />
+            <argument type="service" id="security.encoder_factory" />
         </service>
 
         <service id="reaccion_cms.registration.controller" class="ReaccionEstudio\ReaccionCMSBundle\Controller\User\RegistrationController" public="true">
