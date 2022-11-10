@@ -15,7 +15,7 @@
         <parameter key="reaccion_cms.user.class">ReaccionEstudio\ReaccionCMSBundle\Services\User\UserService</parameter>
         <parameter key="reaccion_cms.authentication.class">ReaccionEstudio\ReaccionCMSBundle\Services\Authentication\AuthenticationService</parameter>
         <parameter key="reaccion_cms.comment.class">ReaccionEstudio\ReaccionCMSBundle\Services\Comment\CommentService</parameter>
-        <parameter key="reaccion_cms.referrer_url_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>
+<!--        <parameter key="reaccion_cms.referrer_url_listener.class">ReaccionEstudio\ReaccionCMSBundle\EventListener\ReferrerUrlListener</parameter>-->
         <parameter key="reaccion_cms.logger.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerService</parameter>
         <parameter key="reaccion_cms.language.class">ReaccionEstudio\ReaccionCMSBundle\Services\Language\LanguageService</parameter>
         <parameter key="reaccion_cms.mailer.class">ReaccionEstudio\ReaccionCMSBundle\Services\Utils\MailerService</parameter>
@@ -174,9 +174,9 @@
         </service>
 
         <!-- event listeners -->
-        <service id="reaccion_cms.referrer_url_listener" class="%reaccion_cms.referrer_url_listener.class%" public="true">
-            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
-        </service>
+<!--        <service id="reaccion_cms.referrer_url_listener" class="%reaccion_cms.referrer_url_listener.class%" public="true">-->
+<!--            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />-->
+<!--        </service>-->
 <!--        <service id="reaccion_cms.language_listener" class="%reaccion_cms.language_listener.class%" public="true">-->
 <!--            <argument type="service" id="reaccion_cms.language" />-->
 <!--            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="27" />-->

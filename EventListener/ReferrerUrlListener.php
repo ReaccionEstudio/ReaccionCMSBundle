@@ -12,6 +12,7 @@ use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\Cookies;
  */
 class ReferrerUrlListener
 {
+    /*
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $response = $event->getResponse();
@@ -29,4 +30,5 @@ class ReferrerUrlListener
 
         setcookie(Cookies::REFERRER_URL_COOKIE_NAME, $referer, 0, "/");
     }
+    */
 }
