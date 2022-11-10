@@ -10,7 +10,6 @@
         <service id="reaccion_cms.referrer_url_listener" class="%reaccion_cms.referrer_url_listener.class%" public="true">
             <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
         </service>
-
 <!--        <service id="reaccion_cms.language_listener" class="%reaccion_cms.language_listener.class%" public="true">-->
 <!--            <argument type="service" id="reaccion_cms.language" />-->
 <!--            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="27" />-->
