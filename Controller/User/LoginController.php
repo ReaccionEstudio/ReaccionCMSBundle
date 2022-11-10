@@ -6,7 +6,6 @@ use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserLoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class LoginController extends AbstractController

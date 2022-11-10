@@ -7,7 +7,6 @@ use ReaccionEstudio\ReaccionCMSBundle\Services\Entries\EntryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Class EntriesController

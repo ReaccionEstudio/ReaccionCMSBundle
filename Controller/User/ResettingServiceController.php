@@ -16,7 +16,6 @@
 	use FOS\UserBundle\Form\Factory\FactoryInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use FOS\UserBundle\Event\GetResponseNullableUserEvent;
-	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 	class ResettingServiceController extends AbstractController

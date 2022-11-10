@@ -9,7 +9,6 @@
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
-	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 	class CommentController extends AbstractController

@@ -7,7 +7,6 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserSettingsType;
 use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserRegisterType;
