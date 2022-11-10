@@ -18,15 +18,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
-    },
-    "extra": {
-        "symfony": {
-            "allow-contrib": false,
-            "require": "5.4.*",
-            "endpoint": [
-                "https://api.github.com/repos/ReaccionEstudio/ReaccionCMSRecipes/contents/index.json",
-                "flex://defaults"
-            ]
-        }
     }
 }
