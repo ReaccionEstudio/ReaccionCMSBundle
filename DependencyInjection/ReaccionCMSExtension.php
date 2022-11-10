@@ -31,7 +31,7 @@ class ReaccionCMSExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         foreach ($config as $key => $value) {
-            $container->setParameter($key, $value);
+            $container->setParameter('reaccion_cms.' . $key, $value);
         }
 	}
 }
