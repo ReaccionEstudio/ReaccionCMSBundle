@@ -28,17 +28,5 @@ class ReaccionCMSExtension extends Extension
         $loader->load('languages.xml');
         $loader->load('event_listeners.xml');
         $loader->load('twig_extensions.xml');
-
-        $fosUserConfig = Yaml::parse(
-            file_get_contents(__DIR__.'/../config/packages/fos_user.yaml')
-        );
-//        $processor->processConfiguration($fosUserConfig);
-        $configs = array_merge($fosUserConfig, $configs);
-
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-        foreach ($config as $key => $value) {
-            $container->setParameter('reaccion_cms.' . $key, $value);
-        }
 	}
 }
