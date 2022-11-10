@@ -5,12 +5,12 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Services\Comment;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Translation\TranslatorInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;
 use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Services\Utils\Logger\LoggerServiceInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Comments service.

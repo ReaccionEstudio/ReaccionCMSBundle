@@ -5,9 +5,9 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserSettingsType;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ResettingController extends AbstractController
 {

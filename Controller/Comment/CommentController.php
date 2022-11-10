@@ -4,8 +4,6 @@
 
 	use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Request;
-	use Symfony\Component\HttpFoundation\JsonResponse;
-	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\Comment;

@@ -6,11 +6,11 @@
 	use Symfony\Bundle\FrameworkBundle\Routing\Router;
 	use Symfony\Component\HttpFoundation\Session\Session;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use Symfony\Component\Translation\TranslatorInterface;
 	use ReaccionEstudio\ReaccionCMSBundle\Services\User\UserRedirectionEvent;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
+    use Symfony\Contracts\Translation\TranslatorInterface;
 
-	/**
+    /**
 	 * User service
      *
      * @author Alberto Vian <alberto@reaccionestudio.com>
@@ -58,7 +58,7 @@
 
 		/**
 		 * Check if username and email is available
-		 * 
+		 *
 		 * @param 	String 	$username 	Username
 		 * @param 	String 	$email 		Email
 		 * @return 	Boolean true|false  Signup process result

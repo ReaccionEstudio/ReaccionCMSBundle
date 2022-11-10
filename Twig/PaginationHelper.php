@@ -3,8 +3,8 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Twig;
 
 use Services\Managers\ManagerPermissions;
-use Symfony\Component\Translation\TranslatorInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Services\Config\ConfigServiceInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * PaginationHelper class (Twig_Extension)
@@ -64,7 +64,7 @@ class PaginationHelper extends \Twig_Extension
 
         if($page <= $middle)
         {
-            if($page <= 3) 
+            if($page <= 3)
             {
                 $init = 1;
                 $end  = ($totalPages < 3) ? $totalPages : 3;

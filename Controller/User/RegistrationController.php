@@ -5,7 +5,7 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use ReaccionEstudio\ReaccionCMSBundle\Constants\Cookies;
 use ReaccionEstudio\ReaccionCMSBundle\Form\Users\UserSettingsType;

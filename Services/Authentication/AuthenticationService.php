@@ -4,12 +4,12 @@
 
 	use Doctrine\ORM\EntityManagerInterface;
 	use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
-	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\Session\SessionInterface;
 	use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+    use Symfony\Contracts\Translation\TranslatorInterface;
 
-	/**
+    /**
 	 * Authentication service.
 	 *
 	 * @author Alberto Vian <alberto@reaccionestudio.com>
