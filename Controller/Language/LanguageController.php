@@ -2,11 +2,12 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Language;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class LanguageController extends Controller
+class LanguageController extends AbstractController
 {
     /**
      * @var TranslatorInterface

@@ -5,7 +5,8 @@
 	use FOS\UserBundle\FOSUserEvents;
 	use FOS\UserBundle\Event\FormEvent;
 	use FOS\UserBundle\Mailer\MailerInterface;
-	use Symfony\Component\HttpFoundation\Response;
+    use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+    use Symfony\Component\HttpFoundation\Response;
 	use Symfony\Component\HttpFoundation\Request;
 	use FOS\UserBundle\Model\UserManagerInterface;
 	use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -18,7 +19,7 @@
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-	class ResettingServiceController extends Controller
+	class ResettingServiceController extends AbstractController
 	{
 	    /**
 	     * Request reset user password: submit form and send email.
@@ -132,7 +133,7 @@
 
 	        $form->handleRequest($request);
 
-	        if ($form->isSubmitted() && $form->isValid()) 
+	        if ($form->isSubmitted() && $form->isValid())
 	        {
 	            $event = new FormEvent($form, $request);
 	            $eventDispatcher->dispatch(FOSUserEvents::RESETTING_RESET_SUCCESS, $event);

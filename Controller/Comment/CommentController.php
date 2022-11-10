@@ -2,7 +2,8 @@
 
 	namespace ReaccionEstudio\ReaccionCMSBundle\Controller\Comment;
 
-	use Symfony\Component\HttpFoundation\Request;
+	use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+    use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\JsonResponse;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -11,13 +12,13 @@
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-	class CommentController extends Controller
+	class CommentController extends AbstractController
 	{
 		/**
 		 * Post a new comment
 		 */
 		public function post(Request $request, Entry $entry)
-		{	
+		{
 			$comment = $request->request->get("comment");
 			$parentComment = 0;
 			$newCommentId = $this->get("reaccion_cms.comment")->post($entry, $comment, $this->getUser(), $parentComment);

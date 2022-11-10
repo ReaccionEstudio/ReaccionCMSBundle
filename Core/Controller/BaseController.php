@@ -4,8 +4,8 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Core\Controller;
 
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Find\PageFinder;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Model\Page;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Page\Adapters\PageViewAdapter;
 use ReaccionEstudio\ReaccionCMSBundle\Core\Http\Response\ResponseBuilder;
 
@@ -13,7 +13,7 @@ use ReaccionEstudio\ReaccionCMSBundle\Core\Http\Response\ResponseBuilder;
  * Class BaseController
  * @package ReaccionEstudio\ReaccionCMSBundle\Core\Controller
  */
-class BaseController extends Controller
+class BaseController extends AbstractController
 {
     /**
      * Render page by slug
