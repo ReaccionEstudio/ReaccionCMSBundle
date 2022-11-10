@@ -30,7 +30,7 @@ class ReaccionCMSExtension extends Extension
         $loader->load('twig_extensions.xml');
 
         $fosUserConfig = Yaml::parse(
-            file_get_contents(__DIR__.'/config/packages/fos_user.yaml')
+            file_get_contents(__DIR__.'/../config/packages/fos_user.yaml')
         );
 //        $processor->processConfiguration($fosUserConfig);
         $configs = array_merge($fosUserConfig, $configs);
