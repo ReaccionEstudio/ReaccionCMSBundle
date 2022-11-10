@@ -1,2 +1,3 @@
 reaccion_cms:
+    locale: 'en'
     encryption_key: 'InsertYourRandomKeyHere'
