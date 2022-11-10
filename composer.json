@@ -77,15 +77,5 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }
-    },
-    "extra": {
-        "symfony": {
-            "allow-contrib": false,
-            "require": "5.4.*",
-            "endpoint": [
-                "https://api.github.com/repos/ReaccionEstudio/ReaccionCMSRecipes/contents/index.json",
-                "flex://defaults"
-            ]
-        }
     }
 }
