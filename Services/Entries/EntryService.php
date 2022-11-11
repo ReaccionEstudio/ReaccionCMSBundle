@@ -4,6 +4,7 @@ namespace ReaccionEstudio\ReaccionCMSBundle\Services\Entries;
 
 use Knp\Component\Pager\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\Entry;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\EntryCategory;
@@ -40,7 +41,7 @@ class EntryService
     /**
      * Constructor
      */
-    public function __construct(EntityManagerInterface $em, Paginator $paginator, ConfigServiceInterface $config)
+    public function __construct(EntityManagerInterface $em, PaginatorInterface $paginator, ConfigServiceInterface $config)
     {
         $this->em = $em;
         $this->paginator = $paginator;
