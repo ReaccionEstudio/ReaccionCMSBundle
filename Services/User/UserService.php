@@ -46,7 +46,7 @@ class UserService
      *
      * Router service
      */
-    private RouterInterface $router;
+    private Router $router;
 
     private Request $request;
 
@@ -58,7 +58,7 @@ class UserService
         EntityManagerInterface $em,
         TranslatorInterface $translator,
         SessionInterface $session,
-        RouterInterface $router)
+        Router $router)
     {
         $this->request = $requestStack->getCurrentRequest();
         $this->em = $em;
