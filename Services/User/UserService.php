@@ -46,7 +46,7 @@ class UserService
      *
      * Router service
      */
-    private $router;
+    private RouterInterface $router;
 
     private Request $request;
 
