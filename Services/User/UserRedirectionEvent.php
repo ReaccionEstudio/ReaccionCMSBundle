@@ -83,7 +83,7 @@ final class UserRedirectionEvent
     {
         $redirectionData = UserRedirections::REDIRECTIONS_BY_EVENTS[$this->event];
 
-        if($this->event === 'user_login_successful' && $this->user && $this->user->isAdmin()){
+        if($this->event === 'user_login_successful' && $this->user && ($this->user->isAdmin() || $this->user->isEditor())){
             return new RedirectResponse($this->router->generate('reaccion_cms_admin_index'));
         }
 
@@ -92,13 +92,12 @@ final class UserRedirectionEvent
             return new RedirectResponse($routeUrl);
         } else if ($redirectionData['type'] === "referrer") {
             // Referrer redirection
-            $refererUrl = $this->request->headers->get('referer') ?? null;
+//            $refererUrl = $this->request->headers->get('referer') ?? null;
 
-            if (!$refererUrl) {
-                return new RedirectResponse($this->homepage);
-            }
-
-            return new RedirectResponse($refererUrl);
+//            if (!$refererUrl) {
+            return new RedirectResponse($this->homepage);
+//            }
+//            return new RedirectResponse($refererUrl);
         } else if ($redirectionData['type'] === "url") {
             return new RedirectResponse($redirectionData['value']);
         }
