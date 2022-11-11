@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 
 class LoginController extends AbstractController
 {
@@ -36,7 +37,7 @@ class LoginController extends AbstractController
     {
         // If user is already logged in, redirect to home
         if (!empty($this->getUser())) {
-            return $this->get("reaccion_cms.user")->redirect('login_route_user_already_logged');
+            return $this->get("reaccion_cms.user")->redirect('login_route_user_already_logged', $this->getUser());
         }
 
         $seo = ['title' => $this->translator->trans("signin.title")];
@@ -59,7 +60,7 @@ class LoginController extends AbstractController
 
                 if ($isValidPassword) {
                     $this->get("reaccion_cms.authentication")->setUser($user)->authenticate(true);
-                    return $this->get("reaccion_cms.user")->redirect('user_login_successful');
+                    return $this->get("reaccion_cms.user")->redirect('user_login_successful', $user);
                 } else {
                     $this->addFlash('signin_error', $this->translator->trans('signin.invalid_credentials'));
                 }

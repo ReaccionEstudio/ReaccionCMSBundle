@@ -53,11 +53,11 @@ class UserService
      * Constructor
      */
     public function __construct(
-        RequestStack $requestStack,
+        RequestStack           $requestStack,
         EntityManagerInterface $em,
-        TranslatorInterface $translator,
-        SessionInterface $session,
-        RouterInterface $router)
+        TranslatorInterface    $translator,
+        SessionInterface       $session,
+        RouterInterface        $router)
     {
         $this->request = $requestStack->getCurrentRequest();
         $this->em = $em;
@@ -127,9 +127,14 @@ class UserService
      *
      * @return RedirectResponse     [type]  Redirection response
      */
-    public function redirect(string $event = ''): RedirectResponse
+    public function redirect(string $event = '', ?User $user = null): RedirectResponse
     {
-        $userRedirectionEvent = new UserRedirectionEvent($event, $this->router, $this->request);
+        $userRedirectionEvent = new UserRedirectionEvent(
+            $event,
+            $this->router,
+            $this->request,
+            $user
+        );
         return $userRedirectionEvent->redirect();
     }
 }

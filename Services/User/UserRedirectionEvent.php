@@ -6,6 +6,7 @@ use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\UserRedirections;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
+use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 
 /**
  * User redirection event
@@ -37,16 +38,23 @@ final class UserRedirectionEvent
 
     private Request $request;
 
+    private User $user;
+
     /**
      * @param string $event
      * @param RouterInterface $router
      * @param Request $request
      */
-    public function __construct(string $event, RouterInterface $router, Request $request)
+    public function __construct(
+        string $event,
+        RouterInterface $router,
+        Request $request,
+        ?User $user = null)
     {
         $this->event = $event;
         $this->router = $router;
         $this->request = $request;
+        $this->user = $user;
         $this->homepage = $this->router->generate('index');
     }
 
@@ -74,6 +82,10 @@ final class UserRedirectionEvent
     private function redirectByEvent(): RedirectResponse
     {
         $redirectionData = UserRedirections::REDIRECTIONS_BY_EVENTS[$this->event];
+
+        if($this->event === 'user_login_successful' && $this->user && $this->user->isAdmin()){
+            return $this->router->generate('reaccion_cms_admin_index');
+        }
 
         if ($redirectionData['type'] === "route") {
             $routeUrl = $this->router->generate($redirectionData['value']);
