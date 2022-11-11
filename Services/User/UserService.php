@@ -3,14 +3,13 @@
 namespace ReaccionEstudio\ReaccionCMSBundle\Services\User;
 
 use Doctrine\ORM\EntityManagerInterface;
-use ReaccionEstudio\ReaccionCMSBundle\Core\Router\RouterInterface;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use ReaccionEstudio\ReaccionCMSBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -46,7 +45,7 @@ class UserService
      *
      * Router service
      */
-    private Router $router;
+    private RouterInterface $router;
 
     private Request $request;
 
@@ -58,7 +57,7 @@ class UserService
         EntityManagerInterface $em,
         TranslatorInterface $translator,
         SessionInterface $session,
-        Router $router)
+        RouterInterface $router)
     {
         $this->request = $requestStack->getCurrentRequest();
         $this->em = $em;

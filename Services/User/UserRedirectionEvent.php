@@ -2,10 +2,10 @@
 
 namespace ReaccionEstudio\ReaccionCMSBundle\Services\User;
 
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\UserRedirections;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * User redirection event
@@ -33,16 +33,16 @@ final class UserRedirectionEvent
      *
      * Router service
      */
-    private $router;
+    private RouterInterface $router;
 
     private Request $request;
 
     /**
      * @param string $event
-     * @param Router $router
+     * @param RouterInterface $router
      * @param Request $request
      */
-    public function __construct(string $event, Router $router, Request $request)
+    public function __construct(string $event, RouterInterface $router, Request $request)
     {
         $this->event = $event;
         $this->router = $router;
