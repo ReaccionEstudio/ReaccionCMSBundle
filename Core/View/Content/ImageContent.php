@@ -27,6 +27,10 @@ class ImageContent extends BaseContentRender
         // merge properties
         $this->mergeProperties();
 
+        if(!empty($this->properties['width'])){
+            $this->attrs['width'] = $this->properties['width'];
+        }
+
         // get attributes as string
         $stringAttrs = HtmlAttributesHelper::toString($this->attrs);
 

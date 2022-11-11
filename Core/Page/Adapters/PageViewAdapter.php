@@ -42,6 +42,7 @@ class PageViewAdapter implements ViewAdapter
                     'position' => $item->getPosition(),
                     'type' => $item->getType(),
                     'options' => $item->getOptions(),
+                    'createdAt' => $item->getCreatedAt()
                 ];
             }
         }
@@ -49,6 +50,11 @@ class PageViewAdapter implements ViewAdapter
         return [
             'name' => $this->page->getName(),
             'content' => $arrayContent,
+            'seo' => [
+                'title' => $this->page->getSeo()->getTitle(),
+                'description' => $this->page->getSeo()->getDescription(),
+                'keywords' => $this->page->getSeo()->getKeywords()
+            ]
             // ...
         ];
     }
