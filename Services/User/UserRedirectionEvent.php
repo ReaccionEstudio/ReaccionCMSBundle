@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\Cookies;
 use ReaccionEstudio\ReaccionCMSBundle\Common\Constants\UserRedirections;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * User redirection event
@@ -35,13 +36,18 @@ final class UserRedirectionEvent
      */
     private $router;
 
+    private Request $request;
+
     /**
-     * Constructor
+     * @param string $event
+     * @param Router $router
+     * @param Request $request
      */
-    public function __construct(string $event = "", Router $router)
+    public function __construct(string $event, Router $router, Request $request)
     {
         $this->event = $event;
         $this->router = $router;
+        $this->request = $request;
         $this->homepage = $this->router->generate('index');
     }
 
@@ -70,19 +76,19 @@ final class UserRedirectionEvent
     {
         $redirectionData = UserRedirections::REDIRECTIONS_BY_EVENTS[$this->event];
 
-        if ($redirectionData['type'] == "route") {
+        if ($redirectionData['type'] === "route") {
             $routeUrl = $this->router->generate($redirectionData['value']);
             return new RedirectResponse($routeUrl);
-        } else if ($redirectionData['type'] == "referrer") {
+        } else if ($redirectionData['type'] === "referrer") {
             // Referrer redirection
-            $referrer = !empty($_COOKIE[Cookies::REFERRER_URL_COOKIE_NAME]) ? $_COOKIE[Cookies::REFERRER_URL_COOKIE_NAME] : null;
+            $refererUrl = $this->request->headers->get('referer') ?? null;
 
-            if (!$referrer) {
+            if (!$refererUrl) {
                 return new RedirectResponse($this->homepage);
             }
 
-            return new RedirectResponse($referrer);
-        } else if ($redirectionData['type'] == "url") {
+            return new RedirectResponse($refererUrl);
+        } else if ($redirectionData['type'] === "url") {
             return new RedirectResponse($redirectionData['value']);
         }
     }

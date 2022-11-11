@@ -80,6 +80,7 @@
         </service>
 
         <service id="reaccion_cms.user" class="%reaccion_cms.user.class%" public="true">
+            <argument type="service" id="request_stack" />
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="translator" />
             <argument type="service" id="session" />

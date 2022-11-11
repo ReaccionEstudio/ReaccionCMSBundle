@@ -31,11 +31,11 @@ class FlashMessagesHelper extends \Twig_Extension
     /**
      * Display flash messages
      *
-     * @param  Array    $keys           Flash messages keys to display
-     * @param  Array    $extraClasses   Extra classes
+     * @param  array    $keys           Flash messages keys to display
+     * @param  array    $extraClasses   Extra classes
      * @return String   $result         Flash messages in HTML
      */
-    public function displayFlashMessages(Array $keys=[], Array $extraClasses = []) : String
+    public function displayFlashMessages(array $keys=[], array $extraClasses = []) : String
     {
         $flashMessages = $this->session->getFlashBag()->all();
 
@@ -84,7 +84,7 @@ class FlashMessagesHelper extends \Twig_Extension
         {
             $result .= $success_div;
         }
-        
+
         return $result;
     }
 
