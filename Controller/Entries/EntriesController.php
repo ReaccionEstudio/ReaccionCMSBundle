@@ -25,9 +25,11 @@ class EntriesController extends AbstractController
         $entriesService = $this->get("reaccion_cms.entries");
         $view = $this->get("reaccion_cms.theme")->getConfigView("entries", true);
 
+        $currentLanguage = $this->get('reaccion_cms.language')->getLanguage();
+
         // get data
-        $entries = $entriesService->getEntries('en', $page);
-        $categories = $this->get("reaccion_cms.entries")->getCategories();
+        $entries = $entriesService->getEntries($currentLanguage, $page);
+        $categories = $this->get("reaccion_cms.entries")->getCategories($currentLanguage);
 
         // view vars
         $vars = [
@@ -84,7 +86,8 @@ class EntriesController extends AbstractController
         $view = $this->get("reaccion_cms.theme")->getConfigView("entries", true);
 
         // get categories
-        $categories = $this->get("reaccion_cms.entries")->getCategories();
+        $currentLanguage = $this->get('reaccion_cms.language')->getLanguage();
+        $categories = $this->get("reaccion_cms.entries")->getCategories($currentLanguage);
 
         // get current category entity
         foreach ($categories as $categoryEntity) {
@@ -94,7 +97,7 @@ class EntriesController extends AbstractController
         }
 
         // get entries
-        $entriesFilters = ['categories' => [$category]];
+        $entriesFilters = ['categories' => [$category], 'language' => $currentLanguage];
         $entries = $em->getRepository(Entry::class)->getEntries($entriesFilters);
 
         // load pagination limit parameter from config

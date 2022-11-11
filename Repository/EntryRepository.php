@@ -19,26 +19,26 @@ class EntryRepository extends EntityRepository
             $filters['language'] = 'en';
         }
 
-    	// query builder
-    	$qb = $this->createQueryBuilder('e')
-    				->where('e.enabled = 1')
-    				->andWhere('e.language = :language');
+        // query builder
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.enabled = 1')
+            ->andWhere('e.language = :language');
 
         if(isset($filters['categories']))
         {
             $qb->innerJoin('e.categories', 'c')
-               ->andWhere('c.slug IN (:categorySlugs)')
-               ->setParameter('categorySlugs', $filters['categories']);
+                ->andWhere('c.slug IN (:categorySlugs)')
+                ->setParameter('categorySlugs', $filters['categories']);
         }
 
-    	if(isset($filters['tag']))
-    	{
-    		$qb->andWhere('e.tags LIKE :tag')
-           	   ->setParameter('tag', '%' . $filters['tag'] . '%');
-    	}
+        if(isset($filters['tag']))
+        {
+            $qb->andWhere('e.tags LIKE :tag')
+                ->setParameter('tag', '%' . $filters['tag'] . '%');
+        }
 
-    	$qb->orderBy('e.id', 'DESC');
-    	$qb->setParameter('language', $filters['language']);
+        $qb->orderBy('e.id', 'DESC');
+        $qb->setParameter('language', $filters['language']);
 
         return $qb->getQuery()->getResult();
     }
@@ -55,18 +55,18 @@ class EntryRepository extends EntityRepository
         $em = $this->getEntityManager();
         $entryId = $entry->getId();
 
-        $dql = "SELECT 
+        $dql = "SELECT
                 e.id, e.name, e.slug
-                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e 
-                WHERE 
-                e.id  = (SELECT MIN(e1.id) FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e1 WHERE e1.id > :entryId AND e1.language = :language AND e1.enabled = 1) 
+                FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e
+                WHERE
+                e.id  = (SELECT MIN(e1.id) FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e1 WHERE e1.id > :entryId AND e1.language = :language AND e1.enabled = 1)
                 OR e.id  = (SELECT MAX(e2.id) FROM ReaccionEstudio\ReaccionCMSBundle\Entity\Entry e2 WHERE e2.id < :entryId AND e2.language = :language AND e2.enabled = 1)
                 ";
 
         $query = $em->createQuery($dql)
-                    ->setParameter('language', $language)
-                    ->setParameter('entryId', $entryId)
-                    ;
+            ->setParameter('language', $language)
+            ->setParameter('entryId', $entryId)
+        ;
 
         return $query->getArrayResult();
     }
