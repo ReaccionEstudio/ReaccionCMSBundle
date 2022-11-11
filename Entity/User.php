@@ -13,6 +13,8 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -74,5 +76,10 @@ class User extends BaseUser
         $this->nickname = $nickname;
 
         return $this;
+    }
+
+    public function isAdmin() : bool
+    {
+        return $this->hasRole(self::ROLE_ADMIN);
     }
 }
