@@ -84,7 +84,7 @@ final class UserRedirectionEvent
         $redirectionData = UserRedirections::REDIRECTIONS_BY_EVENTS[$this->event];
 
         if($this->event === 'user_login_successful' && $this->user && $this->user->isAdmin()){
-            return $this->router->generate('reaccion_cms_admin_index');
+            return new RedirectResponse($this->router->generate('reaccion_cms_admin_index'));
         }
 
         if ($redirectionData['type'] === "route") {
